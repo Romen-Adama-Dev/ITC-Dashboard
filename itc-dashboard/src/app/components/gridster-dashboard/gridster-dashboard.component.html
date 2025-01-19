@@ -1,0 +1,13 @@
+<div class="options">
+  <button (click)="addItem()" class="add-button">Add Widget</button>
+  <button (click)="removeAllItems()" class="remove-all-button">Remove All Widgets</button>
+</div>
+
+<gridster [options]="options">
+  <gridster-item *ngFor="let item of dashboard" [item]="item">
+    <div class="gridster-item-content">
+      <p>{{ item['content'] }}</p>
+      <button class="remove-button" (click)="removeItem(item)">Remove</button>
+    </div>
+  </gridster-item>
+</gridster>
