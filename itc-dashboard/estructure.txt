@@ -1,0 +1,99 @@
+src/
+└── app/
+    ├── core/                                // Capa de Dominio (Reglas de negocio y entidades)
+    │   ├── domain/
+    │   │   ├── models/
+    │   │   │   ├── widget.model.ts          // Modelo de Widget
+    │   │   │   ├── dashboard.model.ts       // Modelo de Dashboard
+    │   │   │   ├── user.model.ts            // Modelo de Usuario
+    │   │   ├── repositories/
+    │   │   │   ├── widget.repository.ts     // Interfaz para los repositorios de widgets
+    │   │   │   ├── dashboard.repository.ts  // Interfaz para los repositorios de dashboards
+    │   │   │   ├── user.repository.ts       // Interfaz para los repositorios de usuarios
+    │   │   ├── use-cases/
+    │   │   │   ├── get-widgets.usecase.ts   // Caso de uso: Obtener Widgets
+    │   │   │   ├── create-widget.usecase.ts // Caso de uso: Crear Widget
+    │   │   │   ├── update-dashboard.usecase.ts // Caso de uso: Actualizar Dashboard
+    │   │   │   ├── get-user.usecase.ts      // Caso de uso: Obtener Usuario
+    │   │   ├── exceptions/
+    │   │   │   ├── widget.exception.ts      // Excepciones específicas del dominio
+    │   │   │   ├── dashboard.exception.ts   // Excepciones del dashboard
+    │   │   │   ├── user.exception.ts        // Excepciones de usuario
+    │
+    ├── application/                          // Capa de Aplicación (Servicios y Adaptadores)
+    │   ├── services/
+    │   │   ├── widget.service.ts             // Implementa los casos de uso de widgets
+    │   │   ├── dashboard.service.ts          // Implementa los casos de uso del dashboard
+    │   │   ├── user.service.ts               // Implementa los casos de uso de usuarios
+    │   ├── adapters/
+    │   │   ├── widget.adapter.ts             // Convierte datos de API a modelos del dominio
+    │   │   ├── dashboard.adapter.ts          // Convierte datos de API a modelos del dominio
+    │   │   ├── user.adapter.ts               // Convierte datos de usuario a modelo del dominio
+    │
+    ├── infrastructure/                        // Capa de Infraestructura (Repositorios y API)
+    │   ├── repositories/
+    │   │   ├── widget.repository.impl.ts     // Implementación concreta de repositorio
+    │   │   ├── dashboard.repository.impl.ts  // Implementación concreta de repositorio
+    │   │   ├── user.repository.impl.ts       // Implementación concreta de repositorio
+    │   ├── api/
+    │   │   ├── api-endpoints.ts              // Definición de endpoints de la API
+    │   │   ├── http-client.ts                // Cliente HTTP para manejar peticiones
+    │   │   ├── api-interceptor.ts            // Interceptor para manejar errores globales
+    │   ├── utils/
+    │   │   ├── date.util.ts                  // Utilidad para manipulación de fechas
+    │   │   ├── number.util.ts                // Utilidad para operaciones con números
+    │   │   ├── string.util.ts                // Utilidad para manipulación de cadenas de texto
+    │
+    ├── config/                                // Configuraciones globales
+    │   ├── environment.ts                     // Variables de entorno
+    │   ├── app-config.ts                      // Configuración general de la aplicación
+    │
+    ├── state/                                 // Manejo del estado global (NgRx, Signals o Services)
+    │   ├── store/
+    │   │   ├── dashboard.state.ts             // Estado global del Dashboard
+    │   │   ├── widgets.state.ts               // Estado global de Widgets
+    │   │   ├── user.state.ts                  // Estado global de Usuario
+    │   │   ├── dashboard.actions.ts           // Acciones de Dashboard
+    │   │   ├── widgets.actions.ts             // Acciones de Widgets
+    │   │   ├── user.actions.ts                // Acciones de Usuario
+    │   │   ├── dashboard.reducer.ts           // Reducer de Dashboard
+    │   │   ├── widgets.reducer.ts             // Reducer de Widgets
+    │   │   ├── user.reducer.ts                // Reducer de Usuario
+    │   │   ├── dashboard.effects.ts           // Efectos de Dashboard
+    │   │   ├── widgets.effects.ts             // Efectos de Widgets
+    │   │   ├── user.effects.ts                // Efectos de Usuario
+    │
+    ├── assets/                                // Archivos estáticos
+    │   ├── images/                            // Imágenes de la aplicación
+    │   ├── icons/                             // Íconos personalizados
+    │   ├── styles/
+    │   │   ├── themes.scss                    // Temas personalizados de NG-Zorro
+    │   │   ├── global.scss                    // Estilos globales
+    │   │   ├── mixins.scss                    // Mixins y variables SCSS
+    │
+    ├── modules/                               // Módulos de la aplicación
+    │   ├── dashboard.module.ts                // Módulo del Dashboard
+    │   ├── widgets.module.ts                  // Módulo de Widgets
+    │   ├── permissions.module.ts              // Módulo de Permisos
+    │   ├── shared.module.ts                   // Módulo Compartido
+    │   ├── user.module.ts                     // Módulo de Usuario
+    │
+    ├── testing/                               // Configuración y utilidades para pruebas
+    │   ├── mocks/
+    │   │   ├── widget.mock.ts                 // Mock de datos de widgets
+    │   │   ├── dashboard.mock.ts              // Mock de datos de dashboard
+    │   │   ├── user.mock.ts                   // Mock de datos de usuario
+    │   ├── utilities/
+    │   │   ├── test-helpers.ts                // Funciones auxiliares para pruebas
+    │   ├── setup-jasmine.ts                   // Configuración global de Jasmine para pruebas
+    │
+    ├── translations/                          // Sistema de internacionalización (i18n)
+    │   ├── en.json                            // Traducciones en inglés
+    │   ├── es.json                            // Traducciones en español
+    │   ├── fr.json                            // Traducciones en francés
+    │
+    ├── app.component.ts                       // Componente raíz de la aplicación
+    ├── app.component.html                     // Template principal de la aplicación
+    ├── app.module.ts                          // Módulo principal de la aplicación
+    ├── app-routing.module.ts                  // Configuración de rutas de la aplicación
+    ├── main.ts                                // Punto de entrada de la aplicación
