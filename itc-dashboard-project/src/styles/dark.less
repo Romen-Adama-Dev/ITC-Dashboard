@@ -1,0 +1,80 @@
+@import "ng-zorro-antd/ng-zorro-antd.less";
+
+// Variables for Dark Theme
+@primary-color: #FFCC00;
+@background-color: #333333;
+@header-background: #444444;
+@sidebar-background: #2a2a2a;
+@text-color: #ffffff;
+@border-color: fade(@primary-color, 40%);
+@box-shadow-color: rgba(0, 0, 0, 0.7);
+
+body {
+    background-color: @background-color;
+    color: @text-color;
+}
+
+.app-layout,
+.inner-content {
+    background-color: @background-color;
+    border-radius: 4px;
+    color: @text-color;
+    border: 2px solid @border-color;
+}
+
+.menu-sidebar {
+    background: @sidebar-background;
+    border-right: 2px solid @border-color;
+    box-shadow: 2px 0 6px @box-shadow-color;
+    border-radius: 4px;
+
+    .ant-menu {
+        background-color: @sidebar-background !important;
+        border: none !important;
+    }
+
+    .ant-menu-submenu-title,
+    .ant-menu-item {
+        background-color: @sidebar-background !important;
+        color: @text-color !important;
+        border: none !important;
+
+        a {
+            color: @text-color !important;
+        }
+    }
+
+    .ant-menu-item:hover,
+    .ant-menu-submenu-title:hover,
+    .ant-menu-item-active,
+    .ant-menu-submenu-active {
+        background-color: @sidebar-background !important;
+    }
+
+    .ant-menu-item-selected {
+        background-color: fade(@primary-color, 85%) !important;
+
+        a {
+            color: #ffffff !important;
+        }
+    }
+}
+
+.app-header,
+.sidebar-logo {
+    background: @header-background;
+    border-bottom: 2px solid @border-color;
+    border-radius: 4px;
+
+    h1 {
+        color: @text-color;
+    }
+}
+
+.header-trigger,
+.theme-toggle-btn {
+    color: @primary-color;
+}
+  .ant-menu-sub {
+    background-color: fade(@background-color, 70%) !important;
+}
