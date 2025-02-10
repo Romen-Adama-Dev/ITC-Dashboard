@@ -8,7 +8,7 @@ import { ThemeToggleButtonComponent } from './presentation/components/shared/the
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, ThemeToggleButtonComponent],
+  imports: [RouterLink, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, ThemeToggleButtonComponent,],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

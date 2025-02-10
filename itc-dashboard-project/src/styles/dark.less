@@ -75,6 +75,23 @@ body {
 .theme-toggle-btn {
     color: @primary-color;
 }
-  .ant-menu-sub {
+
+.ant-menu-sub {
     background-color: fade(@background-color, 70%) !important;
+}
+
+button[nz-button][nzType="default"] {
+    color: #000000 !important;
+}
+
+button[nz-button][nzType="dashed"] {
+    background-color: #2a2a2a !important;
+    border-color: #2a2a2a !important;
+    color: #ffffff !important;
+}
+
+button[nz-button][disabled] {
+    color: #F5F5DC !important;
+    background-color: @background-color !important;
+    border-color: @border-color !important;
 }
