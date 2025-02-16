@@ -3,7 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { ThemeToggleButtonComponent } from './presentation/components/shared/theme-toggle-button.component';
+import { ThemeToggleButtonComponent } from './presentation/components/shared/buttons/theme-toggle-button.component';
 
 @Component({
   selector: 'app-root',

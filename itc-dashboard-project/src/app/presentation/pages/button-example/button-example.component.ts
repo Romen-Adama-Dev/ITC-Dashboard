@@ -8,11 +8,12 @@ import { DropdownButtonComponent } from "../../components/shared/buttons/dropdow
 import { IconButtonsComponent } from "../../components/shared/buttons/icon-button/icon-button.component";
 
 @Component({
-  selector: 'app-welcome',
+  selector: 'app-buttonExample',
+  standalone: true,
   templateUrl: './button-example.component.html',
   styleUrl: './button-example.component.scss',
   imports: [PrimaryButtonComponent, DefaultButtonComponent, DashedButtonComponent, LinkButtonComponent, DisabledButtonsComponent, DropdownButtonComponent, IconButtonsComponent,]
 })
-export class WelcomeComponent {
+export class buttonExamples {
   constructor() {}
 }
