@@ -7,10 +7,11 @@ import { CardSkeletonComponent } from "../../components/shared/data-view/card-sk
 import { EmptyComponent } from "../../components/shared/data-view/empty/empty.component";
 import { ListComponent } from "../../components/shared/data-view/list/list.component";
 import { PopoverComponent } from "../../components/shared/data-view/popover/popover.component";
+import { NgxGraphCustomCurveComponent } from "../../components/shared/data-view/graph-custom-curve/graph-custom-curve.component";
 
 @Component({
   selector: 'app-data-view-example',
-  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent],
+  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent],
   templateUrl: './data-view-example.component.html',
   styleUrl: './data-view-example.component.scss'
 })

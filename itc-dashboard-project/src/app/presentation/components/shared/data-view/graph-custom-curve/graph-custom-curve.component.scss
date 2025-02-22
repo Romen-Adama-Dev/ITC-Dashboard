@@ -1,0 +1,35 @@
+.chart-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Nodos: Forzamos que el fill de cada nodo sea el color primario */
+.node rect {
+  fill: var(--primary-color) !important;
+  stroke: var(--border-color, #ccc);
+  stroke-width: 1;
+}
+
+/* Cabeza de la flecha: se colorea con el color primario */
+.arrow-head {
+  fill: var(--primary-color, #0768A9);
+}
+
+/* Líneas de aristas: usan la variable --text-color */
+.edge .line {
+  fill: none;
+  stroke: var(--text-color, #000);
+  stroke-width: 2;
+}
+
+/* Etiquetas de aristas: se muestran según --edge-label-color */
+.chart-container .edge-label {
+  font-size: 12px;
+  fill: var(--edge-label-color, var(--text-color, #000)) !important;
+}
+
+/* Texto dentro de los nodos */
+.node text {
+  fill: var(--text-color, #000);
+  font-size: 12px;
+}
