@@ -11,165 +11,152 @@
 
 /* Global Body */
 body {
-    background-color: @background-color;
-    color: @text-color;
+  background-color: @background-color;
+  color: @text-color;
 }
 
 /* Layout Containers */
 .app-layout,
 .inner-content {
-    background-color: @background-color;
-    border: 2px solid @border-color;
-    border-radius: 4px;
-    color: @text-color;
+  background-color: @background-color;
+  border: 2px solid @border-color;
+  border-radius: 4px;
+  color: @text-color;
 }
 
 /* Sidebar */
 .menu-sidebar {
-    background: @sidebar-background;
-    border-right: 2px solid @border-color;
-    box-shadow: 2px 0 6px @box-shadow-color;
-    border-radius: 4px;
+  background: @sidebar-background;
+  border-right: 2px solid @border-color;
+  box-shadow: 2px 0 6px @box-shadow-color;
+  border-radius: 4px;
 
-    .ant-menu {
-        background-color: @sidebar-background !important;
-        border: none !important;
+  .ant-menu {
+    background-color: @sidebar-background !important;
+    border: none !important;
+  }
+
+  .ant-menu-submenu-title,
+  .ant-menu-item {
+    background-color: @sidebar-background !important;
+    color: @text-color !important;
+    border: none !important;
+    a {
+      color: @text-color !important;
     }
+  }
 
-    .ant-menu-submenu-title,
-    .ant-menu-item {
-        background-color: @sidebar-background !important;
-        color: @text-color !important;
-        border: none !important;
+  .ant-menu-item:hover,
+  .ant-menu-submenu-title:hover,
+  .ant-menu-item-active,
+  .ant-menu-submenu-active {
+    background-color: @sidebar-background !important;
+  }
 
-        a {
-            color: @text-color !important;
-        }
+  .ant-menu-item-selected {
+    background-color: fade(@primary-color, 85%) !important;
+    a {
+      color: #ffffff !important;
     }
-
-    .ant-menu-item:hover,
-    .ant-menu-submenu-title:hover,
-    .ant-menu-item-active,
-    .ant-menu-submenu-active {
-        background-color: @sidebar-background !important;
-    }
-
-    .ant-menu-item-selected {
-        background-color: fade(@primary-color, 85%) !important;
-
-        a {
-            color: #ffffff !important;
-        }
-    }
+  }
 }
 
 /* Header and Logo */
 .app-header,
 .sidebar-logo {
-    background: @header-background;
-    border-bottom: 2px solid @border-color;
-    border-radius: 4px;
-
-    h1 {
-        color: @text-color;
-    }
+  background: @header-background;
+  border-bottom: 2px solid @border-color;
+  border-radius: 4px;
+  h1 {
+    color: @text-color;
+  }
 }
 
 /* Header Icons */
 .header-trigger,
 .theme-toggle-btn {
-    color: @primary-color;
+  color: @primary-color;
 }
 
 /* Submenu for inline menus */
 .ant-menu-sub {
-    background-color: fade(@background-color, 70%) !important;
+  background-color: fade(@background-color, 70%) !important;
+  color: #ffffff !important;
 }
-
-/* Button Overrides */
-button[nz-button][nzType="default"],
-button[nz-button][disabled] {
-    color: @text-color !important;
-}
-
-button[nz-button][nzType="dashed"] {
-    background-color: @sidebar-background !important;
-    border-color: @sidebar-background !important;
-    color: @text-color !important;
-}
-
-button[nz-button][disabled] {
-    background-color: @background-color !important;
-    border-color: @border-color !important;
+.ant-menu-sub li a {
+  color: #ffffff !important;
 }
 
 /* Horizontal Menu Overrides for Dark Theme */
 .ant-menu-horizontal {
+  background-color: @header-background !important;
+  color: #ffffff !important;
+  
+  > .ant-menu-item,
+  > .ant-menu-submenu-title {
     background-color: @header-background !important;
     color: #ffffff !important;
-
-    > .ant-menu-item,
-    > .ant-menu-submenu-title {
-        background-color: @header-background !important;
-        color: #ffffff !important;
-
-        a {
-            color: #ffffff !important;
-        }
+    a {
+      color: #ffffff !important;
     }
-
-    > .ant-menu-item-selected,
-    > .ant-menu-submenu-selected {
-        background-color: fade(@primary-color, 85%) !important;
-
-        a {
-            color: #ffffff !important;
-        }
+  }
+  
+  > .ant-menu-item-selected,
+  > .ant-menu-submenu-selected {
+    background-color: fade(@primary-color, 85%) !important;
+    a {
+      color: #ffffff !important;
     }
-
-    .ant-menu-sub {
-        background-color: @header-background !important;
-        color: #ffffff !important;
-
-        li a {
-            color: #ffffff !important;
-        }
-    }
-
-    .ant-menu-group-title {
-        color: #ffffff !important;
-    }
-}
-
-/* Force white color if .nzTitle class is applied */
-.nzTitle {
+  }
+  
+  .ant-menu-sub {
+    background-color: @header-background !important;
     color: #ffffff !important;
+    li a {
+      color: #ffffff !important;
+    }
+  }
+  
+  .ant-menu-group-title {
+    color: #ffffff !important;
+  }
 }
 
 /* Inline Menu Overrides for Dark Theme */
 .ant-menu-inline {
+  background-color: @sidebar-background !important;
+  color: #ffffff !important;
+  
+  > .ant-menu-item,
+  > .ant-menu-submenu-title {
     background-color: @sidebar-background !important;
-    color: @text-color !important;
-
-    > .ant-menu-item,
-    > .ant-menu-submenu-title {
-        background-color: @sidebar-background !important;
-        color: @text-color !important;
-
-        a {
-            color: @text-color !important;
-        }
+    color: #ffffff !important;
+    a {
+      color: #ffffff !important;
     }
-
-    .ant-menu-group-title {
-        color: #ffffff !important;
+  }
+  
+  .ant-menu-sub {
+    background-color: @sidebar-background !important;
+    color: #ffffff !important;
+    li a {
+      color: #ffffff !important;
     }
+  }
+  
+  .ant-menu-group-title {
+    color: #ffffff !important;
+  }
+}
 
-    .ant-menu-item-selected {
-        background-color: fade(@primary-color, 85%) !important;
-
-        a {
-            color: #ffffff !important;
-        }
-    }
+/* Variables CSS Globales para Dark Theme */
+:root {
+  --progress-gradient-start: #fff9e3;  // Variante clara de #FFCC00
+  --progress-gradient-end: #FFCC00;
+  --progress-gradient-mid: #ffd633;      // Valor intermedio
+  
+  --background-color: #333333;
+  --text-color: #ffffff;
+  --border-color: fade(#FFCC00, 40%);
+  --card-background: #2a2a2a;
 }

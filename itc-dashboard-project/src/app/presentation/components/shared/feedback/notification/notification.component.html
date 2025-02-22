@@ -1,0 +1,51 @@
+<div class="notification-demo">
+    <h2>Unified Notification Demo</h2>
+  
+    <!-- Sección Notificaciones Básicas -->
+    <section class="notification-section">
+      <h3>Basic Notifications</h3>
+      <button nz-button nzType="primary" (click)="createNotification('success')">Success</button>
+      <button nz-button nzType="default" (click)="createNotification('error')">Error</button>
+      <button nz-button nzType="dashed" (click)="createNotification('warning')">Warning</button>
+    </section>
+  
+    <!-- Sección Notificación con Icono Personalizado -->
+    <section class="notification-section">
+      <h3>Custom Icon Notification</h3>
+      <ng-template #customIconTemplate>
+        <div class="custom-notification">
+          <div class="icon-container">
+            <nz-icon nzType="smile" nzTheme="outline" style="color: rgb(16, 142, 233);"></nz-icon>
+          </div>
+          <div class="message">Notification Title</div>
+          <div class="description">
+            This is the content of the notification. This is the content of the notification.
+          </div>
+        </div>
+      </ng-template>
+      <button nz-button nzType="primary" (click)="createCustomIconNotification(customIconTemplate)">
+        Open Custom Icon Notification
+      </button>
+    </section>
+  
+    <!-- Sección Notificación con Estilo Personalizado -->
+    <section class="notification-section">
+      <h3>Custom Style Notification</h3>
+      <button nz-button nzType="primary" (click)="createCustomStyleNotification()">
+        Open Custom Style Notification
+      </button>
+    </section>
+  
+    <!-- Sección Notificación Template con Datos Dinámicos -->
+    <section class="notification-section">
+      <h3>Template Notification</h3>
+      <ng-template #templateRef let-fruit="data">
+        It's a <nz-tag [nzColor]="fruit.color">{{ fruit.name }}</nz-tag>
+        <button nz-button nzSize="small">Cut It!</button>
+      </ng-template>
+      <button nz-button nzType="primary" (click)="createTemplateNotification()">
+        Open Template Notification
+      </button>
+    </section>
+  
+  </div>

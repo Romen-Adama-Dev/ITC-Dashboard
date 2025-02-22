@@ -1,0 +1,114 @@
+<div class="unified-skeleton-demo">
+    <h2>Unified Skeleton Demo</h2>
+    
+    <!-- Sección 1: Complex Skeleton -->
+    <section>
+      <h3>Complex Skeleton</h3>
+      <nz-skeleton [nzAvatar]="true" [nzParagraph]="{ rows: 4 }"></nz-skeleton>
+    </section>
+  
+    <nz-divider></nz-divider>
+  
+    <!-- Sección 2: Skeleton Elements -->
+    <section>
+      <h3>Skeleton Elements</h3>
+      <nz-space nzSize="middle">
+        <nz-skeleton-element
+          *nzSpaceItem
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape">
+        </nz-skeleton-element>
+        <nz-skeleton-element
+          *nzSpaceItem
+          nzType="avatar"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="avatarShape">
+        </nz-skeleton-element>
+        <nz-skeleton-element
+          *nzSpaceItem
+          nzType="input"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          style="width:200px">
+        </nz-skeleton-element>
+      </nz-space>
+      <br /><br />
+      <nz-skeleton-element nzType="image" [nzActive]="elementActive"></nz-skeleton-element>
+      <nz-divider></nz-divider>
+      <div nz-row nzAlign="middle" [nzGutter]="8">
+        <div nz-col nzSpan="10">
+          Size:
+          <nz-radio-group [(ngModel)]="elementSize">
+            <label nz-radio-button nzValue="default">Default</label>
+            <label nz-radio-button nzValue="large">Large</label>
+            <label nz-radio-button nzValue="small">Small</label>
+          </nz-radio-group>
+        </div>
+        <div nz-col nzSpan="5">
+          Active:
+          <nz-switch [(ngModel)]="elementActive"></nz-switch>
+        </div>
+      </div>
+      <br /><br />
+      <div nz-row nzAlign="middle" [nzGutter]="8">
+        <div nz-col nzSpan="10">
+          Button Shape:
+          <nz-radio-group [(ngModel)]="buttonShape">
+            <label nz-radio-button nzValue="default">Default</label>
+            <label nz-radio-button nzValue="square">Square</label>
+            <label nz-radio-button nzValue="circle">Circle</label>
+            <label nz-radio-button nzValue="round">Round</label>
+          </nz-radio-group>
+        </div>
+        <div nz-col nzSpan="10">
+          Avatar Shape:
+          <nz-radio-group [(ngModel)]="avatarShape">
+            <label nz-radio-button nzValue="circle">Circle</label>
+            <label nz-radio-button nzValue="square">Square</label>
+          </nz-radio-group>
+        </div>
+      </div>
+    </section>
+  
+    <nz-divider></nz-divider>
+  
+    <!-- Sección 3: Skeleton List -->
+    <section>
+      <h3>Skeleton List</h3>
+      <nz-switch [(ngModel)]="loading"></nz-switch>
+      <nz-list [nzDataSource]="listData" [nzRenderItem]="itemTemplate" nzItemLayout="vertical">
+        <ng-template #itemTemplate let-item>
+          <nz-list-item
+            [nzContent]="loading ? '' : item.content"
+            [nzActions]="loading ? [] : [starAction, likeAction, msgAction]"
+            [nzExtra]="loading ? null : extraTemplate">
+            <nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="true">
+              <ng-template #starAction>
+                <nz-icon nzType="star-o" style="margin-right: 8px;"></nz-icon>
+                156
+              </ng-template>
+              <ng-template #likeAction>
+                <nz-icon nzType="like-o" style="margin-right: 8px;"></nz-icon>
+                156
+              </ng-template>
+              <ng-template #msgAction>
+                <nz-icon nzType="message" style="margin-right: 8px;"></nz-icon>
+                2
+              </ng-template>
+              <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="titleTemplate" [nzDescription]="item.description">
+                <ng-template #titleTemplate>
+                  <a href="{{ item.href }}">{{ item.title }}</a>
+                </ng-template>
+              </nz-list-item-meta>
+              <ng-template #extraTemplate>
+                <img width="272" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
+              </ng-template>
+            </nz-skeleton>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </section>
+  </div>

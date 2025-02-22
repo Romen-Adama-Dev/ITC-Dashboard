@@ -11,103 +11,122 @@
 
 // Global Styles
 body {
-    background-color: @background-color;
-    color: @text-color;
+  background-color: @background-color;
+  color: @text-color;
 }
 
 // Dashboard Layout
 .app-layout {
-    background-color: @background-color;
-    border-radius: 4px;
+  background-color: @background-color;
+  border-radius: 4px;
 }
 
 // Sidebar Styles
 .menu-sidebar {
-    background: @sidebar-background;
-    border-right: 2px solid @border-color;
-    box-shadow: 2px 0 6px @box-shadow-color;
-    border-radius: 4px;
+  background: @sidebar-background;
+  border-right: 2px solid @border-color;
+  box-shadow: 2px 0 6px @box-shadow-color;
+  border-radius: 4px;
 
-    .ant-menu {
-        background-color: @sidebar-background !important;
-        border: none !important;
+  .ant-menu {
+    background-color: @sidebar-background !important;
+    border: none !important;
+  }
+
+  .ant-menu-submenu-title,
+  .ant-menu-item {
+    background-color: @sidebar-background !important;
+    color: @text-color !important;
+    border: none;
+
+    a {
+      color: @text-color !important;
     }
+  }
 
-    .ant-menu-submenu-title,
-    .ant-menu-item {
-        background-color: @sidebar-background !important;
-        color: @text-color !important;
-        border: none;
+  .ant-menu-item:hover,
+  .ant-menu-submenu-title:hover,
+  .ant-menu-item-active,
+  .ant-menu-submenu-active {
+    background-color: @sidebar-background !important;
+  }
 
-        a {
-            color: @text-color !important;
-        }
+  .ant-menu-item-selected {
+    background-color: fade(@primary-color, 85%) !important;
+    a {
+      color: #ffffff !important;
     }
-
-    .ant-menu-item:hover,
-    .ant-menu-submenu-title:hover,
-    .ant-menu-item-active,
-    .ant-menu-submenu-active {
-        background-color: @sidebar-background !important;
-    }
-
-    .ant-menu-item-selected {
-        background-color: fade(@primary-color, 85%) !important;
-
-        a {
-            color: #ffffff !important;
-        }
-    }
+  }
 }
 
 // Header Styles
 .app-header {
-    background: @header-background;
-    border-bottom: 2px solid @border-color;
-    border-radius: 4px;
+  background: @header-background;
+  border-bottom: 2px solid @border-color;
+  border-radius: 4px;
 }
 
 // Sidebar Logo
 .sidebar-logo {
-    background: @sidebar-background;
-    border-bottom: 2px solid @border-color;
-    border-radius: 4px;
-
-    h1 {
-        color: @primary-color;
-    }
+  background: @sidebar-background;
+  border-bottom: 2px solid @border-color;
+  border-radius: 4px;
+  h1 {
+    color: @primary-color;
+  }
 }
 
 // Inner Content Styles
 .inner-content {
-    background: @background-color;
-    color: @text-color;
-    border: 2px solid @border-color;
-    border-radius: 4px;
+  background: @background-color;
+  color: @text-color;
+  border: 2px solid @border-color;
+  border-radius: 4px;
 }
 
 // Icons and Buttons
 .header-trigger,
 .theme-toggle-btn {
-    color: @primary-color;
+  color: @primary-color;
 }
 
 .ant-menu-sub {
-    background-color: fade(@primary-color, 70%) !important;
+  background-color: fade(@primary-color, 70%) !important;
 }
 
-/* Submenu Overrides for Default Theme */
-.ant-menu-horizontal .ant-menu-sub,
-.ant-menu-inline .ant-menu-sub {
-    color: #ffffff !important;
-}
-
+/* Submenu Overrides para Default Theme:
+   En estado normal se conserva el @text-color, pero en hover, focus y cuando están seleccionados,
+   el texto se muestra en blanco */
 .ant-menu-horizontal .ant-menu-sub li a,
 .ant-menu-inline .ant-menu-sub li a {
-    color: #ffffff !important;
+  color: @text-color; // Estado normal (negro)
+}
+
+.ant-menu-horizontal .ant-menu-sub li a:hover,
+.ant-menu-horizontal .ant-menu-sub li a:focus,
+.ant-menu-horizontal .ant-menu-item-selected a,
+.ant-menu-horizontal > .ant-menu-submenu-selected > .ant-menu-submenu-title a {
+  color: #ffffff !important;
 }
 
 .ant-menu-horizontal .ant-menu-group-title,
 .ant-menu-inline .ant-menu-group-title {
-    color: #ffffff !important;
+  color: @text-color; // Estado normal
+}
+
+.ant-menu-horizontal .ant-menu-group-title:hover,
+.ant-menu-inline .ant-menu-group-title:hover {
+  color: #ffffff !important;
+}
+
+/* Variables CSS para integración global */
+:root {
+  --progress-gradient-start: #4da6e3;  // Variante clara de #0768A9
+  --progress-gradient-end: #0768A9;
+  --progress-gradient-mid: #3a94d0;      // Valor intermedio
+  
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --border-color: fade(#0768A9, 40%);
+  --card-background: #f5f5f5;
 }

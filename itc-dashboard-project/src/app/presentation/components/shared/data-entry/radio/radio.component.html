@@ -1,0 +1,12 @@
+<nz-radio-group [(ngModel)]="radioValue" [nzName]="radioName">
+    <label nz-radio nzValue="A">Option A</label>
+    <label nz-radio nzValue="B">Option B</label>
+    <label nz-radio nzValue="C">Option C</label>
+    <label nz-radio nzValue="D">Option D</label>
+    <label nz-radio nzValue="M">
+      More...
+      <ng-container *ngIf="radioValue === 'M'">
+        <input type="text" nz-input placeholder="Enter more" />
+      </ng-container>
+    </label>
+  </nz-radio-group>

@@ -1,0 +1,16 @@
+.search-item {
+    display: flex;
+  }
+  
+  .search-item-desc {
+    flex: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  .search-item-count {
+    flex: none;
+  }
+  
+  /* Si se requieren ajustes locales adicionales, agrégalos aquí. */
+  /* Este componente utiliza ViewEncapsulation.None, por lo que heredará los estilos globales definidos en default.less y dark.less */

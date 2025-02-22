@@ -1,0 +1,10 @@
+<div class="message-demo">
+    <div class="message-buttons">
+      <button nz-button nzType="primary" (click)="createMessage('success')">Success</button>
+      <button nz-button nzType="default" (click)="createMessage('error')">Error</button>
+      <button nz-button nzType="dashed" (click)="createMessage('warning')">Warning</button>
+    </div>
+    <div class="message-sequence">
+      <button nz-button nzType="default" (click)="startShowMessages()">Display a sequence of messages</button>
+    </div>
+  </div>

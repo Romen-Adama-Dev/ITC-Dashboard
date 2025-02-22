@@ -1,0 +1,35 @@
+.notification-demo {
+    padding: 16px;
+  
+    h2 {
+      margin-bottom: 16px;
+    }
+  
+    .notification-section {
+      margin-bottom: 24px;
+  
+      h3 {
+        margin-bottom: 8px;
+      }
+  
+      button {
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+    }
+  
+    .custom-notification {
+      display: flex;
+      flex-direction: column;
+      .icon-container {
+        margin-bottom: 8px;
+      }
+      .message {
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .description {
+        font-size: 14px;
+      }
+    }
+  }

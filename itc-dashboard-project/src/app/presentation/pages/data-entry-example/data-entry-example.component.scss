@@ -1,0 +1,19 @@
+.data-entry-page {
+    padding: 24px;
+    h2 {
+      margin-bottom: 24px;
+    }
+  }
+  
+  .data-entry-group {
+    margin-bottom: 24px;
+    
+    app-primary-button,
+    app-default-button,
+    app-dashed-button,
+    app-link-button {
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+  }
+  

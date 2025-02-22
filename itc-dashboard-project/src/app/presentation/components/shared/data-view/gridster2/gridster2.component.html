@@ -1,0 +1,23 @@
+<div class="gridster-container">
+  <div class="controls">
+    <app-primary-button nzSize="default" (click)="addItem()">Add</app-primary-button>
+    <app-default-button nzSize="default" (click)="changedOptions()">Refresh</app-default-button>
+  </div>
+  <gridster [options]="options">
+    <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
+      <div class="grid-item-content">
+        <div class="item-content">
+          <!-- Aquí no se muestra contenido adicional -->
+        </div>
+        <div class="item-buttons">
+          <app-primary-button nzSize="default" (click)="removeItem(item)">
+            Delete
+          </app-primary-button>
+          <app-primary-button nzSize="default" class="modal-btn">
+            Action
+          </app-primary-button>
+        </div>
+      </div>
+    </gridster-item>
+  </gridster>
+</div>
