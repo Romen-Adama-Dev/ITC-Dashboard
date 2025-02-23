@@ -16,10 +16,13 @@ import { StackedVerticalBarChartComponent } from "../../components/shared/data-v
 import { StackedHorizontalBarChartComponent } from "../../components/shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component";
 import { NormalizedVerticalBarChartComponent } from "../../components/shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component";
 import { NormalizedHorizontalBarChartComponent } from "../../components/shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component";
+import { PieChartComponent } from "../../components/shared/data-view/pie-chart/pie-chart.component";
+import { AdvancedPieChartComponent } from "../../components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component";
+import { PieGridComponent } from "../../components/shared/data-view/pie-grid/pie-grid.component";
 
 @Component({
   selector: 'app-data-view-example',
-  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent],
+  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent],
   templateUrl: './data-view-example.component.html',
   styleUrl: './data-view-example.component.scss'
 })
