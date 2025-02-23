@@ -1,0 +1,25 @@
+:host {
+    display: block;
+    color: var(--text-color, #000000);
+  }
+  
+  :host.dark {
+    color: var(--text-color, #ffffff);
+  }
+  
+  /* Aseguramos que los textos del gráfico usen el color adecuado */
+  ::ng-deep .ngx-charts text {
+    fill: var(--text-color, #000000) !important;
+  }
+  
+  :host.dark ::ng-deep .ngx-charts text {
+    fill: var(--text-color, #ffffff) !important;
+  }
+  
+  /* Sobrescribimos el fondo que agrupa las barras en el gráfico horizontal,
+     usando el primary color con un fade del 50%.
+     Se asume que el rectángulo de fondo es el primer <rect> dentro de cada grupo (.bar-group) */
+  ::ng-deep .ngx-charts .bar-group rect:first-child {
+    fill: var(--primary-color, #0768A9) !important;
+    opacity: 0.5 !important;
+  }

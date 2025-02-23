@@ -8,10 +8,18 @@ import { EmptyComponent } from "../../components/shared/data-view/empty/empty.co
 import { ListComponent } from "../../components/shared/data-view/list/list.component";
 import { PopoverComponent } from "../../components/shared/data-view/popover/popover.component";
 import { NgxGraphCustomCurveComponent } from "../../components/shared/data-view/graph-custom-curve/graph-custom-curve.component";
+import { VerticalBarChartComponent } from "../../components/shared/data-view/vertical-chart/vertical-chart.component";
+import { HorizontalBarChartComponent } from "../../components/shared/data-view/horizontal-chart/horizontal-chart.component";
+import { GroupedVerticalBarChartComponent } from "../../components/shared/data-view/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component";
+import { GroupedHorizontalBarChartComponent } from "../../components/shared/data-view/grouped-horizontal-bar-chart/grouped-horizontal-bar-chart.component";
+import { StackedVerticalBarChartComponent } from "../../components/shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component";
+import { StackedHorizontalBarChartComponent } from "../../components/shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component";
+import { NormalizedVerticalBarChartComponent } from "../../components/shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component";
+import { NormalizedHorizontalBarChartComponent } from "../../components/shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component";
 
 @Component({
   selector: 'app-data-view-example',
-  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent],
+  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent],
   templateUrl: './data-view-example.component.html',
   styleUrl: './data-view-example.component.scss'
 })
