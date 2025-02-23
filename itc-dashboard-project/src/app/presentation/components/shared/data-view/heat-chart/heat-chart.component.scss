@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    color: var(--text-color, #000000);
+  }
+    
+  :host.dark {
+    color: var(--text-color, #ffffff);
+  }
+    
+  ::ng-deep .ngx-charts text {
+    fill: var(--text-color, #000000) !important;
+  }
+    
+  :host.dark ::ng-deep .ngx-charts text {
+    fill: var(--text-color, #ffffff) !important;
+  }

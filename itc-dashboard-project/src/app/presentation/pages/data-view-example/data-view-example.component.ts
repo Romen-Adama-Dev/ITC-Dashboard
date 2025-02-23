@@ -24,10 +24,18 @@ import { PolarChartComponent } from "../../components/shared/data-view/polar-cha
 import { AreaChartComponent } from "../../components/shared/data-view/area-chart/area-chart.component";
 import { StackedAreaChartComponent } from "../../components/shared/data-view/stacked-area-chart/stacked-area-chart.component";
 import { NormalizedAreaChartComponent } from "../../components/shared/data-view/normalized-area-chart/normalized-area-chart.component";
+import { BubbleChartComponent } from "../../components/shared/data-view/bubble-chart/bubble-chart.component";
+import { BoxChartComponent } from "../../components/shared/data-view/box-chart/box-chart.component";
+import { HeatMapComponent } from "../../components/shared/data-view/heat-chart/heat-chart.component";
+import { TreeMapComponent } from "../../components/shared/data-view/tree-chart/tree-chart.component";
+import { NumberCardsComponent } from "../../components/shared/data-view/number-chart/number-chart.component";
+import { GaugeChartComponent } from "../../components/shared/data-view/gauge-chart/gauge-chart.component";
+import { LinearGaugeChartComponent } from "../../components/shared/data-view/linear-gauge-chart/linear-gauge-chart.component";
+import { PercentGaugeChartComponent } from "../../components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component";
 
 @Component({
   selector: 'app-data-view-example',
-  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent, LineChartComponent, PolarChartComponent, AreaChartComponent, StackedAreaChartComponent, NormalizedAreaChartComponent],
+  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent, LineChartComponent, PolarChartComponent, AreaChartComponent, StackedAreaChartComponent, NormalizedAreaChartComponent, BubbleChartComponent, BoxChartComponent, HeatMapComponent, TreeMapComponent, NumberCardsComponent, GaugeChartComponent, LinearGaugeChartComponent, PercentGaugeChartComponent],
   templateUrl: './data-view-example.component.html',
   styleUrl: './data-view-example.component.scss'
 })
