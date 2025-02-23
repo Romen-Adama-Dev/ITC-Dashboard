@@ -19,10 +19,15 @@ import { NormalizedHorizontalBarChartComponent } from "../../components/shared/d
 import { PieChartComponent } from "../../components/shared/data-view/pie-chart/pie-chart.component";
 import { AdvancedPieChartComponent } from "../../components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component";
 import { PieGridComponent } from "../../components/shared/data-view/pie-grid/pie-grid.component";
+import { LineChartComponent } from "../../components/shared/data-view/line-chart/line-chart.component";
+import { PolarChartComponent } from "../../components/shared/data-view/polar-chart/polar-chart.component";
+import { AreaChartComponent } from "../../components/shared/data-view/area-chart/area-chart.component";
+import { StackedAreaChartComponent } from "../../components/shared/data-view/stacked-area-chart/stacked-area-chart.component";
+import { NormalizedAreaChartComponent } from "../../components/shared/data-view/normalized-area-chart/normalized-area-chart.component";
 
 @Component({
   selector: 'app-data-view-example',
-  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent],
+  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent, LineChartComponent, PolarChartComponent, AreaChartComponent, StackedAreaChartComponent, NormalizedAreaChartComponent],
   templateUrl: './data-view-example.component.html',
   styleUrl: './data-view-example.component.scss'
 })
