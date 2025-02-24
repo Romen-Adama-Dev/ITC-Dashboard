@@ -32,10 +32,11 @@ import { NumberCardsComponent } from "../../components/shared/data-view/number-c
 import { GaugeChartComponent } from "../../components/shared/data-view/gauge-chart/gauge-chart.component";
 import { LinearGaugeChartComponent } from "../../components/shared/data-view/linear-gauge-chart/linear-gauge-chart.component";
 import { PercentGaugeChartComponent } from "../../components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component";
+import { UnifiedTableComponent } from "../../components/shared/data-view/table/table.component";
 
 @Component({
   selector: 'app-data-view-example',
-  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent, LineChartComponent, PolarChartComponent, AreaChartComponent, StackedAreaChartComponent, NormalizedAreaChartComponent, BubbleChartComponent, BoxChartComponent, HeatMapComponent, TreeMapComponent, NumberCardsComponent, GaugeChartComponent, LinearGaugeChartComponent, PercentGaugeChartComponent],
+  imports: [AppAvatarComponent, NzDemoAvatarBadgeComponent, AvatarGroupComponent, CardComponent, CardSkeletonComponent, EmptyComponent, ListComponent, PopoverComponent, NgxGraphCustomCurveComponent, VerticalBarChartComponent, HorizontalBarChartComponent, GroupedVerticalBarChartComponent, GroupedHorizontalBarChartComponent, StackedVerticalBarChartComponent, StackedHorizontalBarChartComponent, NormalizedVerticalBarChartComponent, NormalizedHorizontalBarChartComponent, PieChartComponent, AdvancedPieChartComponent, PieGridComponent, LineChartComponent, PolarChartComponent, AreaChartComponent, StackedAreaChartComponent, NormalizedAreaChartComponent, BubbleChartComponent, BoxChartComponent, HeatMapComponent, TreeMapComponent, NumberCardsComponent, GaugeChartComponent, LinearGaugeChartComponent, PercentGaugeChartComponent, UnifiedTableComponent],
   templateUrl: './data-view-example.component.html',
   styleUrl: './data-view-example.component.scss'
 })
