@@ -12,8 +12,8 @@ import {
   PushDirections,
   Resizable
 } from 'angular-gridster2';
-import { PrimaryButtonComponent } from '../../buttons/primary-button/primary-button.component';
-import { DefaultButtonComponent } from '../../buttons/default-button/default-button.component';
+import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component';
+import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component';
 
 interface SafeGridsterConfig extends GridsterConfig {
   draggable: Draggable;
@@ -35,9 +35,11 @@ interface SafeGridsterConfig extends GridsterConfig {
   styleUrls: ['./gridster2.component.scss']
 })
 export class GridsterDashboardComponent implements OnInit {
-  // Usamos nuestro tipo extendido para que el compilador sepa las propiedades extra.
   options!: SafeGridsterConfig;
   dashboard!: Array<GridsterItem>;
+  
+  // Propiedad para controlar la visibilidad del modal personalizado.
+  isModalVisible: boolean = false;
 
   ngOnInit(): void {
     this.options = {
@@ -45,32 +47,17 @@ export class GridsterDashboardComponent implements OnInit {
       compactType: CompactType.None,
       margin: 10,
       outerMargin: true,
-      // Estas propiedades permiten mover y redimensionar y empujar los items
       draggable: { enabled: true },
       resizable: { enabled: true },
       pushItems: true,
       pushDirections: { north: true, east: true, south: true, west: true },
-      // Opciones de grid
       displayGrid: DisplayGrid.Always,
-      // Callback de eventos
       itemChangeCallback: GridsterDashboardComponent.itemChange,
       itemResizeCallback: GridsterDashboardComponent.itemResize
     };
 
-    // Configuración inicial del dashboard.
-    // Puedes ajustarla según las necesidades (por ejemplo, usar diferentes tamaños, posiciones o restricciones)
-    this.dashboard = [
-      /*
-      { id: 1, cols: 1, rows: 1, x: 0, y: 0 },
-      { id: 2, cols: 1, rows: 1, x: 1, y: 0 },
-      { id: 3, cols: 1, rows: 1, x: 2, y: 0 },
-      // Item 2x2
-      { id: 4, cols: 2, rows: 2, x: 3, y: 0 },
-      // Item 3x3
-      { id: 5, cols: 3, rows: 3, x: 0, y: 1 },
-      // Otro ejemplo (2x2)
-      { id: 6, cols: 2, rows: 2, x: 3, y: 2 }*/
-    ];
+    // Inicialmente, el dashboard está vacío.
+    this.dashboard = [];
   }
 
   static itemChange(item: GridsterItem, itemComponent: any): void {
@@ -102,5 +89,21 @@ export class GridsterDashboardComponent implements OnInit {
 
   trackByFn(index: number, item: GridsterItem): number {
     return item['id'];
+  }
+
+  // Abre el modal personalizado
+  openCustomModal(): void {
+    this.isModalVisible = true;
+  }
+
+  // Cierra el modal sin acción
+  closeCustomModal(): void {
+    this.isModalVisible = false;
+  }
+
+  // Función que se llama al confirmar el modal: agrega un nuevo widget y cierra el modal.
+  handleModalAdd(): void {
+    this.addItem();
+    this.closeCustomModal();
   }
 }

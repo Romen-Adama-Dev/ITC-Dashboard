@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GridsterDashboardComponent } from "../../components/shared/data-view/gridster2/gridster2.component";
+import { GridsterDashboardComponent } from "../../components/gridster2/gridster2.component";
 
 @Component({
   selector: 'app-gridster2-example',

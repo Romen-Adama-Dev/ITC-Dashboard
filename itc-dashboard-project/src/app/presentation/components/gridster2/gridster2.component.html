@@ -1,0 +1,38 @@
+<div class="gridster-container">
+  <div class="controls">
+    <!-- Botón Add que abre el modal -->
+    <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
+    <app-default-button nzSize="default" (click)="changedOptions()">Refresh</app-default-button>
+  </div>
+  <gridster [options]="options">
+    <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
+      <div class="grid-item-content">
+        <div class="item-content">
+          <!-- Contenido del item -->
+        </div>
+        <div class="item-buttons">
+          <app-primary-button nzSize="default" (click)="removeItem(item)">Delete</app-primary-button>
+          <app-primary-button nzSize="default" class="modal-btn">Action</app-primary-button>
+        </div>
+      </div>
+    </gridster-item>
+  </gridster>
+
+  <!-- Modal personalizado -->
+  <div id="customModal" class="modal" [class.show]="isModalVisible">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" (click)="closeCustomModal()">&times;</span>
+        <h2>Modal Header</h2>
+      </div>
+      <div class="modal-body">
+        <p>Enter details for the new widget...</p>
+        <!-- Aquí puedes agregar inputs o cualquier otro contenido -->
+      </div>
+      <div class="modal-footer">
+        <app-default-button nzType="default" (click)="closeCustomModal()">Close</app-default-button>
+        <app-primary-button nzType="default" (click)="handleModalAdd()">Add Widget</app-primary-button>
+      </div>
+    </div>
+  </div>
+</div>
