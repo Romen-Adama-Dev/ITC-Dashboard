@@ -2,6 +2,8 @@
   nz-button
   nzType="link"
   [nzSize]="nzSize"
-  [disabled]="disabled">
-  <ng-content></ng-content>
+  [nzLoading]="nzLoading"
+  [disabled]="disabled"
+  [nzDanger]="nzDanger">
+  {{ label }}<ng-content></ng-content>
 </button>

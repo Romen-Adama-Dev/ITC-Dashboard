@@ -1,7 +1,3 @@
-.shape-float-container {
-    height: 300px;
-    position: relative;
-  }
-  nz-float-button {
-    position: absolute;
-  }
+:host {
+  display: inline-block;
+}

@@ -6,6 +6,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTableModule, NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
+import { CommonModule } from '@angular/common';
 
 interface DataItem {
   name: string;
@@ -24,7 +25,7 @@ interface ColumnItem {
 @Component({
   selector: 'app-unified-table',
   standalone: true,
-  imports: [FormsModule, NzButtonModule, NzDropDownModule, NzDividerModule, NzIconModule, NzInputModule, NzTableModule],
+  imports: [FormsModule, NzButtonModule, NzDropDownModule, NzDividerModule, NzIconModule, NzInputModule, NzTableModule, CommonModule],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })

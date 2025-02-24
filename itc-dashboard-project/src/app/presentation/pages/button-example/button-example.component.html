@@ -1,33 +1,138 @@
 <div class="welcome-page">  
     <div class="button-group">
       <app-primary-button nzSize="large">Primary Large</app-primary-button>
+      <app-primary-button nzSize="large" [disabled]="true">Primary Large</app-primary-button>
       <app-primary-button nzSize="default">Primary Default</app-primary-button>
+      <app-primary-button nzSize="default" [disabled]="true">Primary Default</app-primary-button>
       <app-primary-button nzSize="small">Primary Small</app-primary-button>
+      <app-primary-button nzSize="small" [disabled]="true">Primary Small</app-primary-button>
+    </div>
+
+    <div class="button-group">
+      <app-primary-button nzSize="default" [nzDanger]="true">Danger</app-primary-button>
+      <app-primary-button nzSize="default" [nzDanger]="true" [disabled]="true">Danger</app-primary-button>
     </div>
   
     <div class="button-group">
       <app-default-button nzSize="large">Default Large</app-default-button>
+      <app-default-button nzSize="large" [disabled]="true">Default Large</app-default-button>
       <app-default-button nzSize="default">Default</app-default-button>
+      <app-default-button nzSize="default"[disabled]="true">Default</app-default-button>
       <app-default-button nzSize="small">Default Small</app-default-button>
+      <app-default-button nzSize="small"[disabled]="true">Default Small</app-default-button>
+    </div>
+
+    <div class="button-group">
+      <app-default-button nzSize="default" [nzDanger]="true">Danger</app-default-button>
+      <app-default-button nzSize="default" [nzDanger]="true" [disabled]="true">Danger</app-default-button>
     </div>
   
     <div class="button-group">
-      <app-dashed-button>Dashed Button</app-dashed-button>
+      <app-dashed-button nzSize="large">Primary Large</app-dashed-button>
+      <app-dashed-button nzSize="large" [disabled]="true">Primary Large</app-dashed-button>
+      <app-dashed-button nzSize="default">Primary Default</app-dashed-button>
+      <app-dashed-button nzSize="default" [disabled]="true">Primary Default</app-dashed-button>
+      <app-dashed-button nzSize="small">Primary Small</app-dashed-button>
+      <app-dashed-button nzSize="small" [disabled]="true">Primary Small</app-dashed-button>
+    </div>
+
+    <div class="button-group">
+      <app-dashed-button nzSize="default" [nzDanger]="true">Danger</app-dashed-button>
+      <app-dashed-button nzSize="default" [nzDanger]="true" [disabled]="true">Danger</app-dashed-button>
     </div>
   
     <div class="button-group">
-      <app-link-button>Link Button</app-link-button>
+      <app-link-button nzSize="large">Primary Large</app-link-button>
+      <app-link-button nzSize="large" [disabled]="true">Primary Large</app-link-button>
+      <app-link-button nzSize="default">Primary Default</app-link-button>
+      <app-link-button nzSize="default" [disabled]="true">Primary Default</app-link-button>
+      <app-link-button nzSize="small">Primary Small</app-link-button>
+      <app-link-button nzSize="small" [disabled]="true">Primary Small</app-link-button>
     </div>
 
     <div class="button-group">
-      <app-disabled-button>Disabled Button</app-disabled-button>
+      <app-link-button nzSize="default" [nzDanger]="true">Danger</app-link-button>
+      <app-link-button nzSize="default" [nzDanger]="true" [disabled]="true">Danger</app-link-button>
     </div>
 
     <div class="button-group">
-      <app-dropdown-button>Drop button</app-dropdown-button>
+      <app-icon-button 
+        label="Default Primary" 
+        nzType="primary" 
+        nzSize="default" 
+        icon="home"
+        iconTheme="outline">
+      </app-icon-button>
+
+      <app-icon-button 
+        label=""
+        nzType="default"
+        nzShape="circle" 
+        nzSize="small" 
+        icon="sync" 
+        iconTheme="outline"
+        [iconSpin]="true">
+      </app-icon-button>
+
+      <app-icon-button 
+        label="Dashed Twotone" 
+        nzType="dashed" 
+        nzSize="large" 
+        icon="smile"
+        iconTheme="twotone"
+        iconTwotoneColor="#eb2f96">
+      </app-icon-button>
+    
+      <app-icon-button 
+        nzType="default" 
+        nzShape="circle"
+        icon="search"
+        nzSize="default">
+      </app-icon-button>
     </div>
 
     <div class="button-group">
-      <app-icon-button></app-icon-button>
+      <app-float-shape-button 
+        nzType="primary" 
+        shape="circle" 
+        right="144px"
+        label="Float Primary"
+        icon="customer-service"
+        iconTheme="outline">
+      </app-float-shape-button>
+      
+      <app-float-shape-button 
+        nzType="default" 
+        shape="square" 
+        right="84px"
+        label="Float Default"
+        icon="comment"
+        iconTheme="outline">
+      </app-float-shape-button>
     </div>
+    
+    <div class="button-group">
+      <app-float-menu-button
+      nzShape="square"
+      nzType="primary"
+      trigger="hover"
+      primaryIcon="home"
+      primaryIconTheme="twotone"
+      primaryHref="https://primary.example.com"
+      primaryTarget="_blank"
+      secondaryIcon="setting"
+      secondaryIconTheme="outline"
+      secondaryHref="https://secondary.example.com"
+      secondaryTarget="_self">
+      </app-float-menu-button>
+    </div>
+
+    <div class="button-group">
+      <app-dropdown-button label="Drop button"></app-dropdown-button>
+      <app-dropdown-button [disabled]="true" label="Drop Disabled"></app-dropdown-button>
+      <app-dropdown-button nzType="dashed" nzSize="large" label="Dashed"></app-dropdown-button>
+      <app-dropdown-button nzType="text" label="Text"></app-dropdown-button>
+      <app-dropdown-button nzType="link" label="Link"></app-dropdown-button>
+    </div>
+
 </div>

@@ -1,17 +1,15 @@
 <div class="shape-float-container">
-    <nz-float-button 
-      nzShape="circle" 
-      style="right: 94px" 
-      nzType="primary" 
-      [nzIcon]="iconTemplate">
-    </nz-float-button>
-    <nz-float-button 
-      nzShape="square" 
-      style="right: 24px" 
-      nzType="primary" 
-      [nzIcon]="iconTemplate">
-    </nz-float-button>
-    <ng-template #iconTemplate>
-      <nz-icon nzType="customer-service" nzTheme="outline"></nz-icon>
-    </ng-template>
-  </div>
+  <nz-float-button 
+    [nzShape]="shape" 
+    [ngStyle]="{'right': right}" 
+    [nzType]="nzType === 'default' || nzType === 'primary' ? nzType : 'default'" 
+    [nzIcon]="iconTemplate"
+    [nzDescription]="nzDescription"
+    [nzHref]="nzHref"
+    [nzTarget]="nzTarget"
+    (nzOnClick)="handleClick()">
+  </nz-float-button>
+  <ng-template #iconTemplate>
+    <nz-icon [nzType]="icon" [nzTheme]="iconTheme"></nz-icon>
+  </ng-template>
+</div>

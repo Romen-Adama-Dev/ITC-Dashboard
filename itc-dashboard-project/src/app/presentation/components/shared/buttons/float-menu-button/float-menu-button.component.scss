@@ -1,8 +1,5 @@
 .menu-float-container {
-    height: 300px;
-    position: relative;
-  }
-  nz-float-button-group,
-  nz-float-button {
-    position: absolute;
-  }
+  position: fixed;
+  bottom: 24px; /* Puedes ajustar este valor según lo necesites */
+  display: inline-block;
+}

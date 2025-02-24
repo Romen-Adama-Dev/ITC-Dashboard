@@ -3,6 +3,7 @@
   nzType="default"
   [nzSize]="nzSize"
   [nzLoading]="nzLoading"
-  [disabled]="disabled">
-  <ng-content></ng-content>
+  [disabled]="disabled"
+  [nzDanger]="nzDanger">
+  {{ label }}<ng-content></ng-content>
 </button>

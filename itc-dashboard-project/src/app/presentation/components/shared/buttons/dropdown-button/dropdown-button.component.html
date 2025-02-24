@@ -1,13 +1,24 @@
-<div style="color: black; "class="dropdown-button">
-    <button nz-dropdown [nzDropdownMenu]="menu">
-      Actions
-      <nz-icon nzType="down" />
-    </button>
-    <nz-dropdown-menu  #menu="nzDropdownMenu">
-      <ul nz-menu>
-        <li nz-menu-item><a>1st item</a></li>
-        <li nz-menu-item><a>2nd item</a></li>
-        <li nz-menu-item><a>3rd item</a></li>
-      </ul>
-    </nz-dropdown-menu>
-  </div>
+<div class="dropdown-button">
+  <button
+    nz-button
+    [disabled]="disabled"
+    [nzGhost]="nzGhost"
+    [nzLoading]="nzLoading"
+    [nzShape]="nzShape"
+    [nzSize]="nzSize"
+    [nzType]="nzType"
+    [nzBlock]="nzBlock"
+    [nzDanger]="nzDanger"
+    nz-dropdown
+    [nzDropdownMenu]="menu">
+    {{ label }}
+    <nz-icon nzType="down"></nz-icon>
+  </button>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item><a>1st item</a></li>
+      <li nz-menu-item><a>2nd item</a></li>
+      <li nz-menu-item><a>3rd item</a></li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

@@ -1,17 +1,28 @@
-<div class="menu-float-container">
-    <nz-float-button-group 
-      nzShape="circle" 
-      style="right: 24px" 
-      nzType="primary" 
-      nzTrigger="click" 
-      (nzOnOpenChange)="onOpenChange($event)">
-      <nz-float-button [nzIcon]="iconTemplate"></nz-float-button>
-      <nz-float-button [nzIcon]="innerTemplate"></nz-float-button>
-    </nz-float-button-group>
-    <ng-template #iconTemplate>
-      <nz-icon nzType="customer-service" nzTheme="outline"></nz-icon>
-    </ng-template>
-    <ng-template #innerTemplate>
-      <nz-icon nzType="comment" nzTheme="outline"></nz-icon>
-    </ng-template>
-  </div>
+<div class="menu-float-container" [ngStyle]="{'right': right}">
+  <nz-float-button-group 
+    [nzShape]="nzShape" 
+    [nzType]="nzType" 
+    [nzTrigger]="trigger" 
+    (nzOnOpenChange)="onOpenChange($event)">
+    <nz-float-button 
+      [nzIcon]="primaryIconTemplate"
+      [nzDescription]="primaryDescription"
+      [nzHref]="primaryHref"
+      [nzTarget]="primaryTarget"
+      (nzOnClick)="handlePrimaryClick()">
+    </nz-float-button>
+    <nz-float-button 
+      [nzIcon]="secondaryIconTemplate"
+      [nzDescription]="secondaryDescription"
+      [nzHref]="secondaryHref"
+      [nzTarget]="secondaryTarget"
+      (nzOnClick)="handleSecondaryClick()">
+    </nz-float-button>
+  </nz-float-button-group>
+  <ng-template #primaryIconTemplate>
+    <nz-icon [nzType]="primaryIcon" [nzTheme]="primaryIconTheme"></nz-icon>
+  </ng-template>
+  <ng-template #secondaryIconTemplate>
+    <nz-icon [nzType]="secondaryIcon" [nzTheme]="secondaryIconTheme"></nz-icon>
+  </ng-template>
+</div>

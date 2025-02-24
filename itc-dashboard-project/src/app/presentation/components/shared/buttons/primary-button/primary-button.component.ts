@@ -12,4 +12,6 @@ export class PrimaryButtonComponent {
   @Input() nzSize: 'large' | 'default' | 'small' = 'default';
   @Input() nzLoading = false;
   @Input() disabled = false;
+  @Input() label: string = '';
+  @Input() nzDanger: boolean = false;
 }
