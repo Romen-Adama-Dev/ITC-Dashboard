@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  width: 100%;
+  overflow-x: auto; /* Permite scroll horizontal si es necesario */
+}
+
+/* Ajusta las operaciones de la tabla */
 .table-operations {
   margin-bottom: 16px;
 }
@@ -15,7 +22,8 @@
 }
 
 .search-box input {
-  width: 188px;
+  width: 100%;
+  max-width: 188px;
   margin-bottom: 8px;
   display: block;
 }
@@ -26,4 +34,9 @@
 
 .search-button {
   margin-right: 8px;
+}
+
+/* Opcional: se puede forzar que la tabla ocupe el ancho máximo del widget */
+.nz-table {
+  max-width: 100%;
 }

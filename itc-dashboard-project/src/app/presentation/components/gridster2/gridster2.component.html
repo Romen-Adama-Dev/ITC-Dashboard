@@ -1,14 +1,29 @@
 <div class="gridster-container">
   <div class="controls">
-    <!-- Botón Add que abre el modal -->
     <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
     <app-default-button nzSize="default" (click)="changedOptions()">Refresh</app-default-button>
+    <!-- Botón para deshabilitar o habilitar el movimiento/resizing (pushItems) -->
+    <app-default-button nzSize="default" (click)="togglePushItems()">
+      {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
+    </app-default-button>
   </div>
   <gridster [options]="options">
     <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
       <div class="grid-item-content">
         <div class="item-content">
-          <!-- Contenido del item -->
+          <!-- Renderiza el componente según el tipo de gráfico seleccionado -->
+          <ng-container *ngIf="item.chartType === 'line-chart'">
+            <app-line-chart></app-line-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'graph-custom-curve'">
+            <app-graph-custom-curve></app-graph-custom-curve>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'advanced-pie-chart'">
+            <app-advanced-pie-chart></app-advanced-pie-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'table'">
+            <app-unified-table></app-unified-table>
+          </ng-container>
         </div>
         <div class="item-buttons">
           <app-primary-button nzSize="default" (click)="removeItem(item)">Delete</app-primary-button>
@@ -23,11 +38,36 @@
     <div class="modal-content">
       <div class="modal-header">
         <span class="close" (click)="closeCustomModal()">&times;</span>
-        <h2>Modal Header</h2>
+        <h2 style="margin-left: 10px;">Select Chart Type</h2>
       </div>
       <div class="modal-body">
-        <p>Enter details for the new widget...</p>
-        <!-- Aquí puedes agregar inputs o cualquier otro contenido -->
+        <p>Select Chart Type:</p>
+        <div class="radio-selectors">
+          <app-radio-selector
+            label="Line Chart"
+            [(ngModel)]="selectedChartType"
+            nzName="chartType"
+            [nzValue]="'line-chart'">
+          </app-radio-selector>
+          <app-radio-selector
+            label="Graph Custom Curve"
+            [(ngModel)]="selectedChartType"
+            nzName="chartType"
+            [nzValue]="'graph-custom-curve'">
+          </app-radio-selector>
+          <app-radio-selector
+            label="Advanced Pie Chart"
+            [(ngModel)]="selectedChartType"
+            nzName="chartType"
+            [nzValue]="'advanced-pie-chart'">
+          </app-radio-selector>
+          <app-radio-selector
+            label="Table"
+            [(ngModel)]="selectedChartType"
+            nzName="chartType"
+            [nzValue]="'table'">
+          </app-radio-selector>
+        </div>
       </div>
       <div class="modal-footer">
         <app-default-button nzType="default" (click)="closeCustomModal()">Close</app-default-button>
