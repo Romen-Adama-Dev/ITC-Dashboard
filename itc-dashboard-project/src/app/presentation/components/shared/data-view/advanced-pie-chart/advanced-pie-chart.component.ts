@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,14 +8,16 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './advanced-pie-chart.component.html',
   styleUrls: ['./advanced-pie-chart.component.scss']
 })
-export class AdvancedPieChartComponent {
+export class AdvancedPieChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  view: [number, number] = [700, 400];
+  // Tamaño inicial; se actualizará con el ResizeObserver
+  view: [number, number] = [700, 700];
+
   animations = true;
   gradient = false;
   tooltipDisabled = false;
@@ -32,6 +34,26 @@ export class AdvancedPieChartComponent {
     group: 'Ordinal',
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        // Para un gráfico de pastel, usamos el ancho para ambos valores (cuadrado)
+        this.view = [width, width];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
 
   onSelect(event: any): void {
     console.log(event);
