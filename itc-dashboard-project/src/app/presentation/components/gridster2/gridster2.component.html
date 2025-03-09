@@ -11,7 +11,6 @@
     <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
       <div class="grid-item-content">
         <div class="item-content">
-          <!-- Renderiza el componente según el tipo de gráfico seleccionado -->
           <ng-container *ngIf="item.chartType === 'line-chart'">
             <app-line-chart></app-line-chart>
           </ng-container>
@@ -26,8 +25,14 @@
           </ng-container>
         </div>
         <div class="item-buttons">
-          <app-primary-button nzSize="default" (click)="removeItem(item)">Delete</app-primary-button>
-          <app-primary-button nzSize="default" class="modal-btn">Action</app-primary-button>
+          <app-float-shape-button
+            shape="circle"
+            nzType="primary"
+            icon="close"
+            iconTheme="outline"
+            right="0px"
+            (nzOnClick)="removeItem(item)">
+          </app-float-shape-button>
         </div>
       </div>
     </gridster-item>

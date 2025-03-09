@@ -20,6 +20,7 @@ import { LineChartComponent } from '../shared/data-view/line-chart/line-chart.co
 import { NgxGraphCustomCurveComponent } from '../shared/data-view/graph-custom-curve/graph-custom-curve.component';
 import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-chart/advanced-pie-chart.component';
 import { UnifiedTableComponent } from '../shared/data-view/table/table.component';
+import { FloatShapeButtonComponent } from "../shared/buttons/float-shape-button/float-shape-button.component";
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
@@ -45,8 +46,9 @@ interface SafeGridsterConfig extends GridsterConfig {
     LineChartComponent,
     NgxGraphCustomCurveComponent,
     AdvancedPieChartComponent,
-    UnifiedTableComponent
-  ],
+    UnifiedTableComponent,
+    FloatShapeButtonComponent
+],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
 })
@@ -61,9 +63,9 @@ export class GridsterDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.options = {
-      gridType: GridType.ScrollVertical,
+      gridType: GridType.Fixed,
       compactType: CompactType.None,
-      margin: 2,
+      margin: 1,
       outerMargin: false,
       outerMarginTop: null,
       outerMarginRight: null,
@@ -72,20 +74,20 @@ export class GridsterDashboardComponent implements OnInit {
       useTransformPositioning: true,
       mobileBreakpoint: 640,
       useBodyForBreakpoint: false,
-      minCols: 5,
-      maxCols: 100,
-      minRows: 5,
-      maxRows: 100,
+      minCols: 6,
+      maxCols: 10,
+      minRows: 6,
+      maxRows: 10,
       minItemCols: 1,
-      maxItemCols: 100,
+      maxItemCols: 10,
       minItemRows: 1,
-      maxItemRows: 100,
+      maxItemRows: 10,
       minItemArea: 1,
       maxItemArea: 2500,
       defaultItemCols: 6,
       defaultItemRows: 6,
-      fixedColWidth: 105,
-      fixedRowHeight: 105,
+      fixedColWidth: 249,
+      fixedRowHeight: 249,
       keepFixedWidthInMobile: false,
       keepFixedHeightInMobile: false,
       scrollSensitivity: 10,
@@ -117,9 +119,9 @@ export class GridsterDashboardComponent implements OnInit {
       { id: 1, cols: 1, rows: 1, x: 0, y: 0, chartType: 'line-chart' },
       { id: 2, cols: 1, rows: 1, x: 1, y: 0, chartType: 'graph-custom-curve' },
       { id: 3, cols: 1, rows: 1, x: 2, y: 0, chartType: 'advanced-pie-chart' },
-      { id: 4, cols: 3, rows: 2, x: 0, y: 1, chartType: 'table' },
-      { id: 5, cols: 2, rows: 2, x: 3, y: 0, chartType: 'line-chart' },
-      { id: 6, cols: 2, rows: 2, x: 3, y: 2, chartType: 'graph-custom-curve' }
+      { id: 4, cols: 3, rows: 3, x: 0, y: 1, chartType: 'table' },
+      { id: 5, cols: 3, rows: 2, x: 3, y: 0, chartType: 'line-chart' },
+      { id: 6, cols: 3, rows: 2, x: 3, y: 2, chartType: 'graph-custom-curve' }
     ];
   }
 
@@ -141,6 +143,10 @@ export class GridsterDashboardComponent implements OnInit {
 
   removeItem(item: ExtendedGridsterItem): void {
     this.dashboard.splice(this.dashboard.indexOf(item), 1);
+  }
+
+  handleExtraClick(): void {
+    console.log('Extra floating button clicked.');
   }
 
   addItem(): void {
