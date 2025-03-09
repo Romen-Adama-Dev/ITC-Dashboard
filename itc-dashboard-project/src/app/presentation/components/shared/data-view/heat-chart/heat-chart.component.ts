@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,23 +8,23 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './heat-chart.component.html',
   styleUrls: ['./heat-chart.component.scss']
 })
-export class HeatMapComponent {
+export class HeatMapComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
   
-  // Dimensiones del gráfico
+  // Default view size: 700x400; aspect ratio 400/700
   view: [number, number] = [700, 400];
   
-  // Opciones del gráfico
+  // Chart options
   gradient: boolean = true;
   showXAxis: boolean = true;
   showYAxis: boolean = true;
   legend: boolean = true;
   
-  // Datos para el Heat Map
+  // Data for the Heat Map
   data: any[] = [
     {
       "name": "United Kingdom",
@@ -116,12 +116,33 @@ export class HeatMapComponent {
     }
   ];
   
-  // Esquema de colores para el Heat Map
+  // Color scheme for the Heat Map
   colorScheme: any = {
     domain: ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3']
   };
 
   onSelect(event: any): void {
     console.log(event);
+  }
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    // Calculate new height keeping the aspect ratio (400/700)
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        const height = width * (400 / 700);
+        this.view = [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
   }
 }

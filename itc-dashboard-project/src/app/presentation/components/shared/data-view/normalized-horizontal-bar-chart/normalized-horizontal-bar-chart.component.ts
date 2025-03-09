@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,14 +8,16 @@ import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './normalized-horizontal-bar-chart.component.html',
   styleUrls: ['./normalized-horizontal-bar-chart.component.scss']
 })
-export class NormalizedHorizontalBarChartComponent {
+export class NormalizedHorizontalBarChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
   
+  // Default dimensions: 700x400. Responsive adjustments will be based on container width.
   view: [number, number] = [700, 400];
+
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -60,7 +62,29 @@ export class NormalizedHorizontalBarChartComponent {
     group: 'Ordinal',
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
-  
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    // Create a ResizeObserver to update the view dimensions responsively.
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        // Maintain the aspect ratio 400/700 ≈ 0.5714
+        const height = width * (400 / 700);
+        this.view = [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
+
   onSelect(event: any): void {
     console.log(event);
   }

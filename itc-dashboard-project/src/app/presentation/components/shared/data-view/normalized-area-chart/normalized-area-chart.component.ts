@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 import { curveLinear } from 'd3-shape';
 
@@ -9,17 +9,14 @@ import { curveLinear } from 'd3-shape';
   templateUrl: './normalized-area-chart.component.html',
   styleUrls: ['./normalized-area-chart.component.scss']
 })
-export class NormalizedAreaChartComponent {
+export class NormalizedAreaChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  // Chart dimensions
   view: [number, number] = [700, 400];
-
-  // Chart options
   animations: boolean = true;
   legend: boolean = true;
   legendTitle: string = 'Legend';
@@ -43,7 +40,6 @@ export class NormalizedAreaChartComponent {
   maxYAxisTickLength: number = 16;
   wrapTicks: boolean = false;
 
-  // Sample data (normalized area chart uses multi-series data)
   data = [
     {
       name: 'Germany',
@@ -85,6 +81,26 @@ export class NormalizedAreaChartComponent {
     group: 'Ordinal',
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        const height = width * (400 / 700);
+        this.view = [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
 
   onSelect(event: any): void {
     console.log(event);

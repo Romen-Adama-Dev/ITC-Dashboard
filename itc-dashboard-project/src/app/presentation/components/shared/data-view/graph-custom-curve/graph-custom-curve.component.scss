@@ -33,3 +33,21 @@
   fill: var(--text-color, #000);
   font-size: 12px;
 }
+
+:host {
+  display: block;
+  position: absolute;
+  width: 100%;
+}
+
+:host.dark {
+  color: var(--text-color, #ffffff);
+}
+
+::ng-deep .ngx-graph text {
+  fill: var(--text-color, #000000) !important;
+}
+
+:host.dark ::ng-deep .ngx-graph text {
+  fill: var(--text-color, #ffffff) !important;
+}

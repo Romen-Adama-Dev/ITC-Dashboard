@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef } from '@angular/core';
 import { NgxChartsModule, LegendPosition } from '@swimlane/ngx-charts';
 
 @Component({
@@ -63,5 +63,26 @@ export class StackedHorizontalBarChartComponent {
 
   onSelect(event: any): void {
     console.log(event);
+  }
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        // Maintain the aspect ratio 499/749
+        const height = width * (499 / 749);
+        this.view = [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
   }
 }

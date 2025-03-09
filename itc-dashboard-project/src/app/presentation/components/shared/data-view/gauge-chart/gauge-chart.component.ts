@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,7 +8,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './gauge-chart.component.html',
   styleUrls: ['./gauge-chart.component.scss']
 })
-export class GaugeChartComponent {
+export class GaugeChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @Input()
   data: { name: string; value: number; extra?: any }[] = [
@@ -32,10 +32,10 @@ export class GaugeChartComponent {
     return this.theme === 'dark';
   }
   
-  // Chart dimensions
-  view: [number, number] = [700, 400];
+  // Tamaño del gráfico, se actualizará dinámicamente para mantener un contenedor cuadrado
+  view: [number, number] = [700, 700];
 
-  // Gauge chart options (bindings for largeSegments and smallSegments have been removed)
+  // Opciones del Gauge Chart
   animations: boolean = true;
   min: number = 0;
   max: number = 50000;
@@ -47,10 +47,30 @@ export class GaugeChartComponent {
   tooltipDisabled: boolean = false;
   showText: boolean = true;
 
-  // Color scheme
+  // Esquema de colores
   colorScheme: any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5']
   };
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    // Se utiliza el ancho del contenedor para definir un área cuadrada.
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        this.view = [width, width];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
 
   onSelect(event: any): void {
     console.log(event);

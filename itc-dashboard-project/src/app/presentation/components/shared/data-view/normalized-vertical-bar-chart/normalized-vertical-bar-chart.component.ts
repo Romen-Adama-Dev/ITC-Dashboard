@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgxChartsModule, LegendPosition } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,14 +8,16 @@ import { NgxChartsModule, LegendPosition } from '@swimlane/ngx-charts';
   templateUrl: './normalized-vertical-bar-chart.component.html',
   styleUrls: ['./normalized-vertical-bar-chart.component.scss']
 })
-export class NormalizedVerticalBarChartComponent {
+export class NormalizedVerticalBarChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
+  // Default dimensions: 700x400; aspect ratio = 400/700 ≈ 0.5714.
   view: [number, number] = [700, 400];
+
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -24,9 +26,9 @@ export class NormalizedVerticalBarChartComponent {
   legendTitle: string = 'Legend';
   legendPosition: LegendPosition = LegendPosition.Right;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel: string = 'Country';
   showYAxisLabel = true;
-  yAxisLabel = 'Normalized Value';
+  yAxisLabel: string = 'Normalized Value';
   noBarWhenZero = true;
   barPadding = 8;
 
@@ -60,6 +62,29 @@ export class NormalizedVerticalBarChartComponent {
     group: 'Ordinal',
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    // Initialize the ResizeObserver to update the view dimensions responsively.
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        // Calculate height maintaining the aspect ratio (400/700)
+        const height = width * (400 / 700);
+        this.view = [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Observe the host element to adjust view dimensions on resize.
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
 
   onSelect(event: any): void {
     console.log(event);

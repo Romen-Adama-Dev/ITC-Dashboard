@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { LegendPosition, NgxChartsModule, BoxChartModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,7 +8,7 @@ import { LegendPosition, NgxChartsModule, BoxChartModule } from '@swimlane/ngx-c
   templateUrl: './box-chart.component.html',
   styleUrls: ['./box-chart.component.scss']
 })
-export class BoxChartComponent {
+export class BoxChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @Input()
   data: { 
@@ -55,8 +55,8 @@ export class BoxChartComponent {
     return this.theme === 'dark';
   }
 
-  // Dimensiones del gráfico
-  view: [number, number] = [600, 400];
+  // Tamaño inicial; se actualizará automáticamente a un valor cuadrado según el contenedor
+  view: [number, number] = [600, 600];
 
   // Opciones del gráfico
   animations: boolean = true;
@@ -76,10 +76,29 @@ export class BoxChartComponent {
   strokeColor: string = '#FFFFFF';
   strokeWidth: number = 2;
 
-  // Esquema de colores
   colorScheme: any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    // Se observa el contenedor para ajustar el tamaño del gráfico de forma cuadrada
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        this.view = [width, width]; // Forzamos un aspecto cuadrado
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
 
   onSelect(event: any): void {
     console.log(event);

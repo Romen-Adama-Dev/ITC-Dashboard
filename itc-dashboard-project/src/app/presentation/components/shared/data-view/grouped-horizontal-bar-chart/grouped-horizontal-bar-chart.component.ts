@@ -1,5 +1,6 @@
-import { Component, Input, HostBinding, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, HostBinding, AfterViewInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import * as shape from 'd3-shape';
 
 @Component({
   selector: 'app-grouped-horizontal-bar-chart',
@@ -8,13 +9,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './grouped-horizontal-bar-chart.component.html',
   styleUrls: ['./grouped-horizontal-bar-chart.component.scss']
 })
-export class GroupedHorizontalBarChartComponent implements AfterViewInit {
+export class GroupedHorizontalBarChartComponent implements AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
-
+  
+  // Dimensiones iniciales: [700, 400] y relación 400/700 (≈0.5714)
   view: [number, number] = [700, 400];
   showXAxis = true;
   showYAxis = true;
@@ -56,24 +58,25 @@ export class GroupedHorizontalBarChartComponent implements AfterViewInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
+  // Color primario obtenido de las variables CSS (en formato rgba, por ejemplo)
   primaryBackground = '';
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+    // Se actualiza el tamaño manteniendo la relación 400/700 ≈ 0.5714
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        const height = width * (400 / 700);
+        this.view = [width, height];
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
-    const computedStyle = getComputedStyle(this.el.nativeElement);
-    const primaryColor = computedStyle.getPropertyValue('--primary-color').trim() || '#0768A9';
-    let rgba: string;
-    if (primaryColor.startsWith('#') && primaryColor.length === 7) {
-      const r = parseInt(primaryColor.slice(1, 3), 16);
-      const g = parseInt(primaryColor.slice(3, 5), 16);
-      const b = parseInt(primaryColor.slice(5, 7), 16);
-      rgba = `rgba(${r},${g},${b},0.5)`;
-    } else {
-      rgba = primaryColor;
-    }
-    this.primaryBackground = rgba;
-
+    this.resizeObserver.observe(this.el.nativeElement);
+    // Código opcional para actualizar estilos de grupos (si es necesario)
     setTimeout(() => {
       const groups = this.el.nativeElement.querySelectorAll('.bar-group');
       groups.forEach((group: any) => {
@@ -87,6 +90,10 @@ export class GroupedHorizontalBarChartComponent implements AfterViewInit {
         group.insertBefore(rect, group.firstChild);
       });
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
   }
 
   onSelect(event: any): void {

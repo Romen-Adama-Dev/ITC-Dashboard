@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
 
@@ -9,11 +9,18 @@ import * as shape from 'd3-shape';
   templateUrl: './graph-custom-curve.component.html',
   styleUrls: ['./graph-custom-curve.component.scss']
 })
-export class NgxGraphCustomCurveComponent implements OnInit {
+export class NgxGraphCustomCurveComponent implements AfterViewInit, OnDestroy {
+  @Input() theme: 'default' | 'dark' = 'default';
+  @HostBinding('class.dark')
+  get isDarkTheme() {
+    return this.theme === 'dark';
+  }
+
+  // Tamaño inicial; se actualizará de forma responsive
   view: [number, number] = [800, 550];
+
   layout: string = 'dagreCluster';
 
-  // Ejemplo de nodos. Se pueden complementar con atributos "data" para los colores, etc.
   nodes = [
     { id: 'first', label: 'A', data: { color: '#4da6e3' } },
     { id: 'second', label: 'B', data: { color: '#0768A9' } },
@@ -22,7 +29,6 @@ export class NgxGraphCustomCurveComponent implements OnInit {
     { id: 'd', label: 'D', data: { color: '#0768A9' } }
   ];
 
-  // Ejemplo de enlaces (edges)
   links = [
     { id: 'a', source: 'first', target: 'second', label: 'is parent of' },
     { id: 'b', source: 'first', target: 'c1', label: 'custom label' },
@@ -31,15 +37,31 @@ export class NgxGraphCustomCurveComponent implements OnInit {
     { id: 'f', source: 'c1', target: 'd', label: 'second link' }
   ];
 
-  // Ejemplo de clusters
   clusters = [
     { id: 'third', label: 'Cluster node', childNodeIds: ['c1', 'c2'] }
   ];
 
-  // Usamos la interpolación lineal para las curvas de las aristas
+  // Usamos interpolación lineal para las curvas
   curve = shape.curveLinear;
 
-  constructor() {}
+  private resizeObserver: ResizeObserver;
 
-  ngOnInit(): void {}
+  constructor(private el: ElementRef) {
+    // Se mantiene la relación de aspecto: 550 / 800 ≈ 0.6875
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        const height = width * 0.6875;
+        this.view = [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
 }
