@@ -1,0 +1,6 @@
+<select class="chart-selector" [(ngModel)]="selectedChartType" (ngModelChange)="onSelectionChange($event)">
+    <option value="" disabled selected>Select Chart Type</option>
+    <option *ngFor="let option of chartOptions" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>

@@ -15,12 +15,10 @@ import {
 import { FormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component';
 import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component';
-import { RadioSelectorComponent } from "../shared/data-entry/radio-selector/radio-selector.component";
 import { LineChartComponent } from '../shared/data-view/line-chart/line-chart.component';
-import { NgxGraphCustomCurveComponent } from '../shared/data-view/graph-custom-curve/graph-custom-curve.component';
 import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-chart/advanced-pie-chart.component';
-import { UnifiedTableComponent } from '../shared/data-view/table/table.component';
 import { FloatShapeButtonComponent } from "../shared/buttons/float-shape-button/float-shape-button.component";
+import { ChartSelectorVanillaComponent } from "../chart-selector/chart-selector.component";
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
@@ -29,7 +27,7 @@ interface ExtendedGridsterItem extends GridsterItem {
 interface SafeGridsterConfig extends GridsterConfig {
   draggable: Draggable;
   resizable: Resizable;
-  pushDirections: PushDirections;
+  pushDirections: PushDirections; 
 }
 
 @Component({
@@ -42,12 +40,10 @@ interface SafeGridsterConfig extends GridsterConfig {
     GridsterItemComponent,
     PrimaryButtonComponent,
     DefaultButtonComponent,
-    RadioSelectorComponent,
     LineChartComponent,
-    NgxGraphCustomCurveComponent,
     AdvancedPieChartComponent,
-    UnifiedTableComponent,
-    FloatShapeButtonComponent
+    FloatShapeButtonComponent,
+    ChartSelectorVanillaComponent
 ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -55,10 +51,10 @@ interface SafeGridsterConfig extends GridsterConfig {
 export class GridsterDashboardComponent implements OnInit {
   options!: SafeGridsterConfig;
   dashboard!: ExtendedGridsterItem[];
+  // Controla la visibilidad del modal
   isModalVisible: boolean = false;
-  // Valor seleccionado para el tipo de widget
-  selectedChartType: 'line-chart' | 'graph-custom-curve' | 'advanced-pie-chart' | 'table' = 'line-chart';
-  // Controla si se permiten empujar los widgets (pushItems)
+  // Valor seleccionado para el tipo de widget (se elegirá desde el árbol)
+  selectedChartType?: 'line-chart' | 'advanced-pie-chart' = 'advanced-pie-chart';
   pushItemsEnabled: boolean = true;
 
   ngOnInit(): void {
@@ -114,14 +110,10 @@ export class GridsterDashboardComponent implements OnInit {
       scrollToNewItems: false
     };
 
-    // Inicialmente, el dashboard está vacío.
+    // Inicialmente, el dashboard contiene dos widgets de prueba
     this.dashboard = [
       { id: 1, cols: 1, rows: 1, x: 0, y: 0, chartType: 'line-chart' },
-      { id: 2, cols: 1, rows: 1, x: 1, y: 0, chartType: 'graph-custom-curve' },
-      { id: 3, cols: 1, rows: 1, x: 2, y: 0, chartType: 'advanced-pie-chart' },
-      { id: 4, cols: 3, rows: 3, x: 0, y: 1, chartType: 'table' },
-      { id: 5, cols: 3, rows: 2, x: 3, y: 0, chartType: 'line-chart' },
-      { id: 6, cols: 3, rows: 2, x: 3, y: 2, chartType: 'graph-custom-curve' }
+      { id: 2, cols: 1, rows: 1, x: 1, y: 0, chartType: 'advanced-pie-chart' }
     ];
   }
 
@@ -134,7 +126,7 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   changedOptions(): void {
-    // Aquí, por ejemplo, se borran todos los widgets y se actualizan las opciones.
+    // Borra todos los widgets
     this.dashboard = [];
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
@@ -145,11 +137,11 @@ export class GridsterDashboardComponent implements OnInit {
     this.dashboard.splice(this.dashboard.indexOf(item), 1);
   }
 
-  handleExtraClick(): void {
-    console.log('Extra floating button clicked.');
-  }
-
   addItem(): void {
+    if (!this.selectedChartType) {
+      alert('Please select a chart type.');
+      return;
+    }
     let newId = 1;
     if (this.dashboard && this.dashboard.length > 0) {
       newId = Math.max(...this.dashboard.map(item => item['id'])) + 1;
@@ -186,7 +178,6 @@ export class GridsterDashboardComponent implements OnInit {
     }
   }
 
-  // Alterna la propiedad pushItems: true / false y actualiza la configuración
   togglePushItems(): void {
     this.pushItemsEnabled = !this.pushItemsEnabled;
     this.options.pushItems = this.pushItemsEnabled;
