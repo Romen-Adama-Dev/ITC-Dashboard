@@ -15,10 +15,35 @@ import {
 import { FormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component';
 import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component';
-import { LineChartComponent } from '../shared/data-view/line-chart/line-chart.component';
-import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-chart/advanced-pie-chart.component';
 import { FloatShapeButtonComponent } from "../shared/buttons/float-shape-button/float-shape-button.component";
 import { ChartSelectorVanillaComponent } from "../chart-selector/chart-selector.component";
+
+//Charts
+import { AreaChartComponent } from '../shared/data-view/area-chart/area-chart.component';
+import { LineChartComponent } from '../shared/data-view/line-chart/line-chart.component';
+import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-chart/advanced-pie-chart.component';
+import { BoxChartComponent } from '../shared/data-view/box-chart/box-chart.component';
+import { BubbleChartComponent } from '../shared/data-view/bubble-chart/bubble-chart.component';
+import { GaugeChartComponent } from '../shared/data-view/gauge-chart/gauge-chart.component';
+import { NgxGraphCustomCurveComponent } from "../shared/data-view/graph-custom-curve/graph-custom-curve.component";
+import { GroupedHorizontalBarChartComponent } from "../shared/data-view/grouped-horizontal-bar-chart/grouped-horizontal-bar-chart.component";
+import { GroupedVerticalBarChartComponent } from "../shared/data-view/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component";
+import { HeatMapComponent } from "../shared/data-view/heat-chart/heat-chart.component";
+import { HorizontalBarChartComponent } from "../shared/data-view/horizontal-chart/horizontal-chart.component";
+import { LinearGaugeChartComponent } from "../shared/data-view/linear-gauge-chart/linear-gauge-chart.component";
+import { NormalizedAreaChartComponent } from "../shared/data-view/normalized-area-chart/normalized-area-chart.component";
+import { VerticalBarChartComponent } from "../shared/data-view/vertical-chart/vertical-chart.component";
+import { NormalizedHorizontalBarChartComponent } from "../shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component";
+import { NormalizedVerticalBarChartComponent } from "../shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component";
+import { NumberCardsComponent } from "../shared/data-view/number-chart/number-chart.component";
+import { PercentGaugeChartComponent } from "../shared/data-view/percent-gauge-chart/percent-gauge-chart.component";
+import { PieGridComponent } from "../shared/data-view/pie-grid/pie-grid.component";
+import { PieChartComponent } from "../shared/data-view/pie-chart/pie-chart.component";
+import { PolarChartComponent } from "../shared/data-view/polar-chart/polar-chart.component";
+import { StackedAreaChartComponent } from "../shared/data-view/stacked-area-chart/stacked-area-chart.component";
+import { StackedHorizontalBarChartComponent } from "../shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component";
+import { StackedVerticalBarChartComponent } from "../shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component";
+import { TreeMapComponent } from "../shared/data-view/tree-chart/tree-chart.component";
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
@@ -40,10 +65,33 @@ interface SafeGridsterConfig extends GridsterConfig {
     GridsterItemComponent,
     PrimaryButtonComponent,
     DefaultButtonComponent,
+    FloatShapeButtonComponent,
+    ChartSelectorVanillaComponent,
     LineChartComponent,
     AdvancedPieChartComponent,
-    FloatShapeButtonComponent,
-    ChartSelectorVanillaComponent
+    AreaChartComponent,
+    BoxChartComponent,
+    BubbleChartComponent,
+    GaugeChartComponent,
+    NgxGraphCustomCurveComponent,
+    GroupedHorizontalBarChartComponent,
+    GroupedVerticalBarChartComponent,
+    HeatMapComponent,
+    HorizontalBarChartComponent,
+    LinearGaugeChartComponent,
+    NormalizedAreaChartComponent,
+    NormalizedHorizontalBarChartComponent,
+    NormalizedVerticalBarChartComponent,
+    NumberCardsComponent,
+    PercentGaugeChartComponent,
+    PieGridComponent,
+    PieChartComponent,
+    PolarChartComponent,
+    StackedAreaChartComponent,
+    StackedHorizontalBarChartComponent,
+    StackedVerticalBarChartComponent,
+    TreeMapComponent,
+    VerticalBarChartComponent
 ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -54,7 +102,32 @@ export class GridsterDashboardComponent implements OnInit {
   // Controla la visibilidad del modal
   isModalVisible: boolean = false;
   // Valor seleccionado para el tipo de widget (se elegirá desde el árbol)
-  selectedChartType?: 'line-chart' | 'advanced-pie-chart' = 'advanced-pie-chart';
+  selectedChartType?:
+  'line-chart' | 
+  'advanced-pie-chart' | 
+  'area-chart' |
+  'box-chart' |
+  'bubble-chart' |
+  'gauge-chart' |
+  'graph-custom' |
+  'grouped-horizontal-bar' |
+  'vertical-bar-chart' |
+  'heat-map' |
+  'horizontal-bar' |
+  'linear-gauge-chart' |
+  'normalized-area-chart' |
+  'normalized-horizontal-chart' |
+  'normalized-vertical-chart' |
+  'number-chart' |
+  'percent-gauge-chart' |
+  'pie-chart' |
+  'pie-grid-chart' |
+  'polar-chart' |
+  'stacked-area-chart' |
+  'stacked-horizontal-bar-chart' |
+  'stacked-vertical-bar-chart' |
+  'tree-map'  |
+  'vertical-bar'= 'advanced-pie-chart';
   pushItemsEnabled: boolean = true;
 
   ngOnInit(): void {
@@ -70,9 +143,9 @@ export class GridsterDashboardComponent implements OnInit {
       useTransformPositioning: true,
       mobileBreakpoint: 640,
       useBodyForBreakpoint: false,
-      minCols: 6,
+      minCols: 5,
       maxCols: 10,
-      minRows: 6,
+      minRows: 5,
       maxRows: 10,
       minItemCols: 1,
       maxItemCols: 10,
@@ -80,8 +153,8 @@ export class GridsterDashboardComponent implements OnInit {
       maxItemRows: 10,
       minItemArea: 1,
       maxItemArea: 2500,
-      defaultItemCols: 6,
-      defaultItemRows: 6,
+      defaultItemCols: 5,
+      defaultItemRows: 5,
       fixedColWidth: 249,
       fixedRowHeight: 249,
       keepFixedWidthInMobile: false,

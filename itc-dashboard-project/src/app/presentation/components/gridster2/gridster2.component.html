@@ -18,7 +18,75 @@
           <ng-container *ngIf="item.chartType === 'advanced-pie-chart'">
             <app-advanced-pie-chart></app-advanced-pie-chart>
           </ng-container>
-          <!-- Puedes agregar más condiciones para otros tipos si lo necesitas -->
+          <ng-container *ngIf="item.chartType === 'area-chart'">
+            <app-area-chart></app-area-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'box-chart'">
+            <app-box-chart></app-box-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'bubble-chart'">
+            <app-bubble-chart></app-bubble-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'gauge-chart'">
+            <app-gauge-chart></app-gauge-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'graph-custom'">
+            <app-graph-custom-curve></app-graph-custom-curve>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'grouped-horizontal-bar'">
+            <app-grouped-horizontal-bar-chart></app-grouped-horizontal-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'grouped-vertical-bar'">
+            <app-grouped-vertical-bar-chart></app-grouped-vertical-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'heat-map'">
+            <app-heat-map></app-heat-map>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'horizontal-bar'">
+            <app-horizontal-bar-chart></app-horizontal-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'linear-gauge-chart'">
+            <app-linear-gauge-chart></app-linear-gauge-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'normalized-area-chart'">
+            <app-normalized-area-chart></app-normalized-area-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'normalized-horizontal-chart'">
+            <app-normalized-horizontal-bar-chart></app-normalized-horizontal-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'normalized-vertical-chart'">
+            <app-normalized-vertical-bar-chart></app-normalized-vertical-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'number-chart'">
+            <app-number-cards></app-number-cards>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'percent-gauge-chart'">
+            <app-percent-gauge-chart></app-percent-gauge-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'pie-chart'">
+            <app-pie-chart></app-pie-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'pie-grid-chart'">
+            <app-pie-grid></app-pie-grid>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'polar-chart'">
+            <app-polar-chart></app-polar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'stacked-area-chart'">
+            <app-stacked-area-chart></app-stacked-area-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'stacked-horizontal-bar-chart'">
+            <app-stacked-horizontal-bar-chart></app-stacked-horizontal-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'stacked-vertical-bar-chart'">
+            <app-stacked-vertical-bar-chart></app-stacked-vertical-bar-chart>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'tree-map'">
+            <app-tree-map></app-tree-map>
+          </ng-container>
+          <ng-container *ngIf="item.chartType === 'vertical-bar'">
+            <app-vertical-chart></app-vertical-chart>
+          </ng-container>
         </div>
         <div class="item-buttons">
           <app-float-shape-button
@@ -27,6 +95,7 @@
             icon="close"
             iconTheme="outline"
             right="0px"
+            [disabled]="!pushItemsEnabled"
             (nzOnClick)="removeItem(item)">
           </app-float-shape-button>
         </div>
