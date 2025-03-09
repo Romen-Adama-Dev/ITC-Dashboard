@@ -1,0 +1,443 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>itc-dashboard-project documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">itc-dashboard-project documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NzDemoProgressFormatComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/components/shared/feedback/circular-bar/circular-bar.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-circular-bar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NzProgressModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./circular-bar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./circular-bar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formatOne" >formatOne</a>
+                            </li>
+                            <li>
+                                <a href="#formatTwo" >formatTwo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatOne"></a>
+                    <span class="name">
+                        <span ><b>formatOne</b></span>
+                        <a href="#formatOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/presentation/components/shared/feedback/circular-bar/circular-bar.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatTwo"></a>
+                    <span class="name">
+                        <span ><b>formatTwo</b></span>
+                        <a href="#formatTwo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/presentation/components/shared/feedback/circular-bar/circular-bar.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { NzProgressModule } from &#x27;ng-zorro-antd/progress&#x27;;
+
+@Component({
+  selector: &#x27;app-circular-bar&#x27;,
+  standalone: true,
+  imports: [NzProgressModule],
+  templateUrl: &#x27;./circular-bar.component.html&#x27;,
+  styleUrls: [&#x27;./circular-bar.component.scss&#x27;]
+})
+export class NzDemoProgressFormatComponent {
+  formatOne &#x3D; (percent: number): string &#x3D;&gt; &#x60;${percent} Days&#x60;;
+  formatTwo &#x3D; (): string &#x3D;&gt; &#x60;Done&#x60;;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-progress [nzPercent]&#x3D;&quot;75&quot; nzType&#x3D;&quot;circle&quot; [nzFormat]&#x3D;&quot;formatOne&quot;&gt;&lt;/nz-progress&gt;
+&lt;nz-progress [nzPercent]&#x3D;&quot;100&quot; nzType&#x3D;&quot;circle&quot; [nzFormat]&#x3D;&quot;formatTwo&quot;&gt;&lt;/nz-progress&gt;
+&lt;nz-progress [nzPercent]&#x3D;&quot;22&quot; nzType&#x3D;&quot;circle&quot;&gt;&lt;/nz-progress&gt;
+&lt;nz-progress [nzPercent]&#x3D;&quot;70&quot; nzType&#x3D;&quot;circle&quot; nzStatus&#x3D;&quot;exception&quot;&gt;&lt;/nz-progress&gt;
+&lt;nz-progress [nzPercent]&#x3D;&quot;100&quot; nzType&#x3D;&quot;circle&quot;&gt;&lt;/nz-progress&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./circular-bar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+    display: block;
+    padding: 16px;
+  }
+  
+  nz-progress {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-progress [nzPercent]="75" nzType="circle" [nzFormat]="formatOne"></nz-progress><nz-progress [nzPercent]="100" nzType="circle" [nzFormat]="formatTwo"></nz-progress><nz-progress [nzPercent]="22" nzType="circle"></nz-progress><nz-progress [nzPercent]="70" nzType="circle" nzStatus="exception"></nz-progress><nz-progress [nzPercent]="100" nzType="circle"></nz-progress></div>'
+    var COMPONENTS = [{'name': 'AdvancedPieChartComponent', 'selector': 'app-advanced-pie-chart'},{'name': 'AlertIconComponent', 'selector': 'app-alert-icon'},{'name': 'AppAvatarComponent', 'selector': 'app-avatar'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'appInputComponent', 'selector': 'app-input'},{'name': 'AreaChartComponent', 'selector': 'app-area-chart'},{'name': 'AvatarGroupComponent', 'selector': 'app-avatar-group'},{'name': 'BoxChartComponent', 'selector': 'app-box-chart'},{'name': 'BubbleChartComponent', 'selector': 'app-bubble-chart'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CardSkeletonComponent', 'selector': 'app-card-skeleton'},{'name': 'ChartSelectorVanillaComponent', 'selector': 'app-chart-selector-vanilla'},{'name': 'DashedButtonComponent', 'selector': 'app-dashed-button'},{'name': 'DefaultButtonComponent', 'selector': 'app-default-button'},{'name': 'DropdownButtonComponent', 'selector': 'app-dropdown-button'},{'name': 'EmptyComponent', 'selector': 'app-empty'},{'name': 'FloatMenuButtonComponent', 'selector': 'app-float-menu-button'},{'name': 'FloatShapeButtonComponent', 'selector': 'app-float-shape-button'},{'name': 'GaugeChartComponent', 'selector': 'app-gauge-chart'},{'name': 'Gridster2ExampleComponent', 'selector': 'app-gridster2-example'},{'name': 'GridsterDashboardComponent', 'selector': 'app-gridster-dashboard'},{'name': 'GroupedHorizontalBarChartComponent', 'selector': 'app-grouped-horizontal-bar-chart'},{'name': 'GroupedVerticalBarChartComponent', 'selector': 'app-grouped-vertical-bar-chart'},{'name': 'HeatMapComponent', 'selector': 'app-heat-map'},{'name': 'HorizontalBarChartComponent', 'selector': 'app-horizontal-bar-chart'},{'name': 'HorizontalNavComponent', 'selector': 'app-horizontal-nav'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InlineNavComponent', 'selector': 'app-inline-nav'},{'name': 'LinearGaugeChartComponent', 'selector': 'app-linear-gauge-chart'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'NgxGraphCustomCurveComponent', 'selector': 'app-graph-custom-curve'},{'name': 'NormalizedAreaChartComponent', 'selector': 'app-normalized-area-chart'},{'name': 'NormalizedHorizontalBarChartComponent', 'selector': 'app-normalized-horizontal-bar-chart'},{'name': 'NormalizedVerticalBarChartComponent', 'selector': 'app-normalized-vertical-bar-chart'},{'name': 'NumberCardsComponent', 'selector': 'app-number-cards'},{'name': 'NzDemoAutoCompleteUncertainCategoryComponent', 'selector': 'app-auto-complete'},{'name': 'NzDemoAvatarBadgeComponent', 'selector': 'app-avatar-badge'},{'name': 'NzDemoCascaderMultipleComponent', 'selector': 'app-cascader-multiple'},{'name': 'NzDemoDatePickerRangePickerComponent', 'selector': 'app-date-picker-range'},{'name': 'NzDemoDrawerFromDrawerComponent', 'selector': 'app-drawer'},{'name': 'NzDemoInputNumberBasicComponent', 'selector': 'app-input-number'},{'name': 'NzDemoModalAsyncComponent', 'selector': 'app-modal'},{'name': 'NzDemoPopconfirmPromiseComponent', 'selector': 'app-popconfirm-promise'},{'name': 'NzDemoProgressFormatComponent', 'selector': 'app-circular-bar'},{'name': 'NzDemoProgressLineComponent', 'selector': 'app-linear-bar'},{'name': 'NzDemoSliderIconSliderComponent', 'selector': 'app-slider'},{'name': 'NzDemoSpinBasicComponent', 'selector': 'app-spin'},{'name': 'NzDemoUploadDefaultFileListComponent', 'selector': 'app-upload'},{'name': 'PaginationNavComponent', 'selector': 'app-pagination-nav'},{'name': 'PercentGaugeChartComponent', 'selector': 'app-percent-gauge-chart'},{'name': 'PieChartComponent', 'selector': 'app-pie-chart'},{'name': 'PieGridComponent', 'selector': 'app-pie-grid'},{'name': 'PolarChartComponent', 'selector': 'app-polar-chart'},{'name': 'PopoverComponent', 'selector': 'app-popover'},{'name': 'PrimaryButtonComponent', 'selector': 'app-primary-button'},{'name': 'ProgressGradientComponent', 'selector': 'app-custom-bar'},{'name': 'RadioSelectorComponent', 'selector': 'app-radio-selector'},{'name': 'StackedAreaChartComponent', 'selector': 'app-stacked-area-chart'},{'name': 'StackedHorizontalBarChartComponent', 'selector': 'app-stacked-horizontal-bar-chart'},{'name': 'StackedVerticalBarChartComponent', 'selector': 'app-stacked-vertical-bar-chart'},{'name': 'StepHorizontalNavComponent', 'selector': 'app-step-horizontal-nav'},{'name': 'StepVerticalNavComponent', 'selector': 'app-step-vertical-nav'},{'name': 'SwitchDemoComponent', 'selector': 'app-switch'},{'name': 'ThemeToggleButtonComponent', 'selector': 'app-theme-toggle-button'},{'name': 'TreeMapComponent', 'selector': 'app-tree-map'},{'name': 'UnifiedMessageDemoComponent', 'selector': 'app-message'},{'name': 'UnifiedNotificationDemoComponent', 'selector': 'app-notification'},{'name': 'UnifiedRadioGroupComponent', 'selector': 'app-radio'},{'name': 'UnifiedSkeletonDemoComponent', 'selector': 'app-skeleton'},{'name': 'UnifiedTableComponent', 'selector': 'app-unified-table'},{'name': 'VerticalBarChartComponent', 'selector': 'app-vertical-chart'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NzDemoProgressFormatComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NzDemoProgressFormatComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

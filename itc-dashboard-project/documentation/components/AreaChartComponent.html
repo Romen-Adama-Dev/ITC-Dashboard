@@ -1,0 +1,1362 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>itc-dashboard-project documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">itc-dashboard-project documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AreaChartComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>AfterViewInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-area-chart</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgxChartsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./area-chart.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./area-chart.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#animations" >animations</a>
+                            </li>
+                            <li>
+                                <a href="#autoScale" >autoScale</a>
+                            </li>
+                            <li>
+                                <a href="#colorScheme" >colorScheme</a>
+                            </li>
+                            <li>
+                                <a href="#curve" >curve</a>
+                            </li>
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#legend" >legend</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resizeObserver" >resizeObserver</a>
+                            </li>
+                            <li>
+                                <a href="#showXAxis" >showXAxis</a>
+                            </li>
+                            <li>
+                                <a href="#showXAxisLabel" >showXAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#showYAxis" >showYAxis</a>
+                            </li>
+                            <li>
+                                <a href="#showYAxisLabel" >showYAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#timeline" >timeline</a>
+                            </li>
+                            <li>
+                                <a href="#view" >view</a>
+                            </li>
+                            <li>
+                                <a href="#xAxisLabel" >xAxisLabel</a>
+                            </li>
+                            <li>
+                                <a href="#yAxisLabel" >yAxisLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#onSelect" >onSelect</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#theme" >theme</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.dark" >class.dark</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#isDarkTheme" >isDarkTheme</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(el: ElementRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:68</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>el</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <b>theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;default&quot; | &quot;dark&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;default&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.dark"></a>
+                    <span class="name">
+                        <span ><b>class.dark</b></span>
+                        <a href="#class.dark"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSelect"></a>
+                    <span class="name">
+                        <span ><b>onSelect</b></span>
+                        <a href="#onSelect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSelect(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="animations"></a>
+                    <span class="name">
+                        <span ><b>animations</b></span>
+                        <a href="#animations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="autoScale"></a>
+                    <span class="name">
+                        <span ><b>autoScale</b></span>
+                        <a href="#autoScale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="colorScheme"></a>
+                    <span class="name">
+                        <span ><b>colorScheme</b></span>
+                        <a href="#colorScheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    name: &#x27;customScheme&#x27;,
+    selectable: true,
+    group: &#x27;Ordinal&#x27;,
+    domain: [&#x27;#5AA454&#x27;, &#x27;#A10A28&#x27;, &#x27;#C7B42C&#x27;, &#x27;#AAAAAA&#x27;]
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="curve"></a>
+                    <span class="name">
+                        <span ><b>curve</b></span>
+                        <a href="#curve"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>curveLinear</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      name: &#x27;Germany&#x27;,
+      series: [
+        { name: &#x27;2010&#x27;, value: 7300000 },
+        { name: &#x27;2011&#x27;, value: 8940000 },
+        { name: &#x27;2012&#x27;, value: 8200000 }
+      ]
+    },
+    {
+      name: &#x27;USA&#x27;,
+      series: [
+        { name: &#x27;2010&#x27;, value: 7870000 },
+        { name: &#x27;2011&#x27;, value: 8270000 },
+        { name: &#x27;2012&#x27;, value: 8500000 }
+      ]
+    },
+    {
+      name: &#x27;France&#x27;,
+      series: [
+        { name: &#x27;2010&#x27;, value: 5000002 },
+        { name: &#x27;2011&#x27;, value: 5800000 },
+        { name: &#x27;2012&#x27;, value: 6000000 }
+      ]
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="legend"></a>
+                    <span class="name">
+                        <span ><b>legend</b></span>
+                        <a href="#legend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resizeObserver"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>resizeObserver</b></span>
+                        <a href="#resizeObserver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ResizeObserver</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showXAxis"></a>
+                    <span class="name">
+                        <span ><b>showXAxis</b></span>
+                        <a href="#showXAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showXAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>showXAxisLabel</b></span>
+                        <a href="#showXAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showYAxis"></a>
+                    <span class="name">
+                        <span ><b>showYAxis</b></span>
+                        <a href="#showYAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showYAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>showYAxisLabel</b></span>
+                        <a href="#showYAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeline"></a>
+                    <span class="name">
+                        <span ><b>timeline</b></span>
+                        <a href="#timeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="view"></a>
+                    <span class="name">
+                        <span ><b>view</b></span>
+                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[number, number]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[749, 499]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="xAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>xAxisLabel</b></span>
+                        <a href="#xAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Year&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="yAxisLabel"></a>
+                    <span class="name">
+                        <span ><b>yAxisLabel</b></span>
+                        <a href="#yAxisLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Population&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isDarkTheme"></a>
+                        <span class="name"><b>isDarkTheme</b><a href="#isDarkTheme"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isDarkTheme()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/presentation/components/shared/data-view/area-chart/area-chart.component.ts:15</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from &#x27;@angular/core&#x27;;
+import { NgxChartsModule } from &#x27;@swimlane/ngx-charts&#x27;;
+import { curveLinear } from &#x27;d3-shape&#x27;;
+
+@Component({
+  selector: &#x27;app-area-chart&#x27;,
+  standalone: true,
+  imports: [NgxChartsModule],
+  templateUrl: &#x27;./area-chart.component.html&#x27;,
+  styleUrls: [&#x27;./area-chart.component.scss&#x27;]
+})
+export class AreaChartComponent implements AfterViewInit, OnDestroy {
+  @Input() theme: &#x27;default&#x27; | &#x27;dark&#x27; &#x3D; &#x27;default&#x27;;
+  @HostBinding(&#x27;class.dark&#x27;)
+  get isDarkTheme() {
+    return this.theme &#x3D;&#x3D;&#x3D; &#x27;dark&#x27;;
+  }
+
+  // Tamaño inicial, se actualizará dinámicamente
+  view: [number, number] &#x3D; [749, 499];
+
+  animations: boolean &#x3D; true;
+  legend: boolean &#x3D; true;
+  showXAxis: boolean &#x3D; true;
+  showYAxis: boolean &#x3D; true;
+  showXAxisLabel: boolean &#x3D; true;
+  xAxisLabel: string &#x3D; &#x27;Year&#x27;;
+  showYAxisLabel: boolean &#x3D; true;
+  yAxisLabel: string &#x3D; &#x27;Population&#x27;;
+  autoScale: boolean &#x3D; true;
+  timeline: boolean &#x3D; false;
+  curve &#x3D; curveLinear;
+
+  data &#x3D; [
+    {
+      name: &#x27;Germany&#x27;,
+      series: [
+        { name: &#x27;2010&#x27;, value: 7300000 },
+        { name: &#x27;2011&#x27;, value: 8940000 },
+        { name: &#x27;2012&#x27;, value: 8200000 }
+      ]
+    },
+    {
+      name: &#x27;USA&#x27;,
+      series: [
+        { name: &#x27;2010&#x27;, value: 7870000 },
+        { name: &#x27;2011&#x27;, value: 8270000 },
+        { name: &#x27;2012&#x27;, value: 8500000 }
+      ]
+    },
+    {
+      name: &#x27;France&#x27;,
+      series: [
+        { name: &#x27;2010&#x27;, value: 5000002 },
+        { name: &#x27;2011&#x27;, value: 5800000 },
+        { name: &#x27;2012&#x27;, value: 6000000 }
+      ]
+    }
+  ];
+
+  colorScheme: any &#x3D; {
+    name: &#x27;customScheme&#x27;,
+    selectable: true,
+    group: &#x27;Ordinal&#x27;,
+    domain: [&#x27;#5AA454&#x27;, &#x27;#A10A28&#x27;, &#x27;#C7B42C&#x27;, &#x27;#AAAAAA&#x27;]
+  };
+
+  private resizeObserver: ResizeObserver;
+
+  constructor(private el: ElementRef) {
+    // Se actualiza el tamaño manteniendo la relación de aspecto (499/749)
+    this.resizeObserver &#x3D; new ResizeObserver(entries &#x3D;&gt; {
+      for (const entry of entries) {
+        const width &#x3D; entry.contentRect.width;
+        const height &#x3D; width * (499 / 749);
+        this.view &#x3D; [width, height];
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
+
+  onSelect(event: any): void {
+    console.log(event);
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ngx-charts-area-chart
+  [view]&#x3D;&quot;view&quot;
+  [results]&#x3D;&quot;data&quot;
+  [scheme]&#x3D;&quot;colorScheme&quot;
+  [animations]&#x3D;&quot;animations&quot;
+  [legend]&#x3D;&quot;legend&quot;
+  [xAxis]&#x3D;&quot;showXAxis&quot;
+  [yAxis]&#x3D;&quot;showYAxis&quot;
+  [showXAxisLabel]&#x3D;&quot;showXAxisLabel&quot;
+  [xAxisLabel]&#x3D;&quot;xAxisLabel&quot;
+  [showYAxisLabel]&#x3D;&quot;showYAxisLabel&quot;
+  [yAxisLabel]&#x3D;&quot;yAxisLabel&quot;
+  [autoScale]&#x3D;&quot;autoScale&quot;
+  [timeline]&#x3D;&quot;timeline&quot;
+  [curve]&#x3D;&quot;curve&quot;
+  (select)&#x3D;&quot;onSelect($event)&quot;&gt;
+&lt;/ngx-charts-area-chart&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./area-chart.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+  position: absolute;
+  width: 80%;
+}
+
+:host.dark {
+  color: var(--text-color, #ffffff);
+}
+
+::ng-deep .ngx-charts text {
+  fill: var(--text-color, #000000) !important;
+}
+
+:host.dark ::ng-deep .ngx-charts text {
+  fill: var(--text-color, #ffffff) !important;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ngx-charts-area-chart  [view]="view"  [results]="data"  [scheme]="colorScheme"  [animations]="animations"  [legend]="legend"  [xAxis]="showXAxis"  [yAxis]="showYAxis"  [showXAxisLabel]="showXAxisLabel"  [xAxisLabel]="xAxisLabel"  [showYAxisLabel]="showYAxisLabel"  [yAxisLabel]="yAxisLabel"  [autoScale]="autoScale"  [timeline]="timeline"  [curve]="curve"  (select)="onSelect($event)"></ngx-charts-area-chart></div>'
+    var COMPONENTS = [{'name': 'AdvancedPieChartComponent', 'selector': 'app-advanced-pie-chart'},{'name': 'AlertIconComponent', 'selector': 'app-alert-icon'},{'name': 'AppAvatarComponent', 'selector': 'app-avatar'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'appInputComponent', 'selector': 'app-input'},{'name': 'AreaChartComponent', 'selector': 'app-area-chart'},{'name': 'AvatarGroupComponent', 'selector': 'app-avatar-group'},{'name': 'BoxChartComponent', 'selector': 'app-box-chart'},{'name': 'BubbleChartComponent', 'selector': 'app-bubble-chart'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CardSkeletonComponent', 'selector': 'app-card-skeleton'},{'name': 'ChartSelectorVanillaComponent', 'selector': 'app-chart-selector-vanilla'},{'name': 'DashedButtonComponent', 'selector': 'app-dashed-button'},{'name': 'DefaultButtonComponent', 'selector': 'app-default-button'},{'name': 'DropdownButtonComponent', 'selector': 'app-dropdown-button'},{'name': 'EmptyComponent', 'selector': 'app-empty'},{'name': 'FloatMenuButtonComponent', 'selector': 'app-float-menu-button'},{'name': 'FloatShapeButtonComponent', 'selector': 'app-float-shape-button'},{'name': 'GaugeChartComponent', 'selector': 'app-gauge-chart'},{'name': 'Gridster2ExampleComponent', 'selector': 'app-gridster2-example'},{'name': 'GridsterDashboardComponent', 'selector': 'app-gridster-dashboard'},{'name': 'GroupedHorizontalBarChartComponent', 'selector': 'app-grouped-horizontal-bar-chart'},{'name': 'GroupedVerticalBarChartComponent', 'selector': 'app-grouped-vertical-bar-chart'},{'name': 'HeatMapComponent', 'selector': 'app-heat-map'},{'name': 'HorizontalBarChartComponent', 'selector': 'app-horizontal-bar-chart'},{'name': 'HorizontalNavComponent', 'selector': 'app-horizontal-nav'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InlineNavComponent', 'selector': 'app-inline-nav'},{'name': 'LinearGaugeChartComponent', 'selector': 'app-linear-gauge-chart'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'NgxGraphCustomCurveComponent', 'selector': 'app-graph-custom-curve'},{'name': 'NormalizedAreaChartComponent', 'selector': 'app-normalized-area-chart'},{'name': 'NormalizedHorizontalBarChartComponent', 'selector': 'app-normalized-horizontal-bar-chart'},{'name': 'NormalizedVerticalBarChartComponent', 'selector': 'app-normalized-vertical-bar-chart'},{'name': 'NumberCardsComponent', 'selector': 'app-number-cards'},{'name': 'NzDemoAutoCompleteUncertainCategoryComponent', 'selector': 'app-auto-complete'},{'name': 'NzDemoAvatarBadgeComponent', 'selector': 'app-avatar-badge'},{'name': 'NzDemoCascaderMultipleComponent', 'selector': 'app-cascader-multiple'},{'name': 'NzDemoDatePickerRangePickerComponent', 'selector': 'app-date-picker-range'},{'name': 'NzDemoDrawerFromDrawerComponent', 'selector': 'app-drawer'},{'name': 'NzDemoInputNumberBasicComponent', 'selector': 'app-input-number'},{'name': 'NzDemoModalAsyncComponent', 'selector': 'app-modal'},{'name': 'NzDemoPopconfirmPromiseComponent', 'selector': 'app-popconfirm-promise'},{'name': 'NzDemoProgressFormatComponent', 'selector': 'app-circular-bar'},{'name': 'NzDemoProgressLineComponent', 'selector': 'app-linear-bar'},{'name': 'NzDemoSliderIconSliderComponent', 'selector': 'app-slider'},{'name': 'NzDemoSpinBasicComponent', 'selector': 'app-spin'},{'name': 'NzDemoUploadDefaultFileListComponent', 'selector': 'app-upload'},{'name': 'PaginationNavComponent', 'selector': 'app-pagination-nav'},{'name': 'PercentGaugeChartComponent', 'selector': 'app-percent-gauge-chart'},{'name': 'PieChartComponent', 'selector': 'app-pie-chart'},{'name': 'PieGridComponent', 'selector': 'app-pie-grid'},{'name': 'PolarChartComponent', 'selector': 'app-polar-chart'},{'name': 'PopoverComponent', 'selector': 'app-popover'},{'name': 'PrimaryButtonComponent', 'selector': 'app-primary-button'},{'name': 'ProgressGradientComponent', 'selector': 'app-custom-bar'},{'name': 'RadioSelectorComponent', 'selector': 'app-radio-selector'},{'name': 'StackedAreaChartComponent', 'selector': 'app-stacked-area-chart'},{'name': 'StackedHorizontalBarChartComponent', 'selector': 'app-stacked-horizontal-bar-chart'},{'name': 'StackedVerticalBarChartComponent', 'selector': 'app-stacked-vertical-bar-chart'},{'name': 'StepHorizontalNavComponent', 'selector': 'app-step-horizontal-nav'},{'name': 'StepVerticalNavComponent', 'selector': 'app-step-vertical-nav'},{'name': 'SwitchDemoComponent', 'selector': 'app-switch'},{'name': 'ThemeToggleButtonComponent', 'selector': 'app-theme-toggle-button'},{'name': 'TreeMapComponent', 'selector': 'app-tree-map'},{'name': 'UnifiedMessageDemoComponent', 'selector': 'app-message'},{'name': 'UnifiedNotificationDemoComponent', 'selector': 'app-notification'},{'name': 'UnifiedRadioGroupComponent', 'selector': 'app-radio'},{'name': 'UnifiedSkeletonDemoComponent', 'selector': 'app-skeleton'},{'name': 'UnifiedTableComponent', 'selector': 'app-unified-table'},{'name': 'VerticalBarChartComponent', 'selector': 'app-vertical-chart'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AreaChartComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AreaChartComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

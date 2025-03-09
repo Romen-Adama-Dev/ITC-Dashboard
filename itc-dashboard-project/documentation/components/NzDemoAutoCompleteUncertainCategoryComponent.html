@@ -1,0 +1,703 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>itc-dashboard-project documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">itc-dashboard-project documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NzDemoAutoCompleteUncertainCategoryComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/components/shared/data-entry/autocomplete/autocomplete.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-auto-complete</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>FormsModule</code>
+                            <code>NzAutocompleteModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzIconModule</code>
+                            <code>NzInputModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./autocomplete.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./autocomplete.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#inputValue" >inputValue</a>
+                            </li>
+                            <li>
+                                <a href="#options" >options</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getRandomInt" >getRandomInt</a>
+                            </li>
+                            <li>
+                                <a href="#onChange" >onChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRandomInt"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getRandomInt</b></span>
+                        <a href="#getRandomInt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getRandomInt(max: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, min: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-entry/autocomplete/autocomplete.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>max</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>min</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>0</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChange"></a>
+                    <span class="name">
+                        <span ><b>onChange</b></span>
+                        <a href="#onChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onChange(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-entry/autocomplete/autocomplete.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inputValue"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>inputValue</b></span>
+                        <a href="#inputValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/presentation/components/shared/data-entry/autocomplete/autocomplete.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="options"></a>
+                    <span class="name">
+                        <span ><b>options</b></span>
+                        <a href="#options"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Array&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/presentation/components/shared/data-entry/autocomplete/autocomplete.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ViewEncapsulation } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { NzAutocompleteModule } from &#x27;ng-zorro-antd/auto-complete&#x27;;
+import { NzButtonModule } from &#x27;ng-zorro-antd/button&#x27;;
+import { NzIconModule } from &#x27;ng-zorro-antd/icon&#x27;;
+import { NzInputModule } from &#x27;ng-zorro-antd/input&#x27;;
+
+@Component({
+  selector: &#x27;app-auto-complete&#x27;,
+  standalone: true,
+  imports: [FormsModule, NzAutocompleteModule, NzButtonModule, NzIconModule, NzInputModule],
+  encapsulation: ViewEncapsulation.None,
+  templateUrl: &#x27;./autocomplete.component.html&#x27;,
+  styleUrls: [&#x27;./autocomplete.component.html&#x27;]
+})
+export class NzDemoAutoCompleteUncertainCategoryComponent {
+  inputValue?: string;
+  options: Array&lt;{ value: string; category: string; count: number }&gt; &#x3D; [];
+
+  onChange(e: Event): void {
+    const value &#x3D; (e.target as HTMLInputElement).value;
+    this.options &#x3D; new Array(this.getRandomInt(5, 15))
+      .join(&#x27;.&#x27;)
+      .split(&#x27;.&#x27;)
+      .map((_item, idx) &#x3D;&gt; ({
+        value,
+        category: &#x60;${value}${idx}&#x60;,
+        count: this.getRandomInt(200, 100)
+      }));
+  }
+
+  private getRandomInt(max: number, min: number &#x3D; 0): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-input-group nzSearch nzSize&#x3D;&quot;large&quot; [nzAddOnAfter]&#x3D;&quot;suffixIconButton&quot;&gt;
+    &lt;input
+      placeholder&#x3D;&quot;input here&quot;
+      nz-input
+      [(ngModel)]&#x3D;&quot;inputValue&quot;
+      (input)&#x3D;&quot;onChange($event)&quot;
+      [nzAutocomplete]&#x3D;&quot;auto&quot;
+    /&gt;
+  &lt;/nz-input-group&gt;
+  &lt;ng-template #suffixIconButton&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzSize&#x3D;&quot;large&quot; nzSearch&gt;
+      &lt;nz-icon nzType&#x3D;&quot;search&quot; nzTheme&#x3D;&quot;outline&quot;&gt;&lt;/nz-icon&gt;
+    &lt;/button&gt;
+  &lt;/ng-template&gt;
+  &lt;nz-autocomplete #auto&gt;
+    @for (option of options; track option.category) {
+      &lt;nz-auto-option class&#x3D;&quot;search-item&quot; [nzValue]&#x3D;&quot;option.category&quot;&gt;
+        Found {{ option.value }} on
+        &lt;a
+          class&#x3D;&quot;search-item-desc&quot;
+          [href]&#x3D;&quot;&#x27;https://s.taobao.com/search?q&#x3D;&#x27; + option.value&quot;
+          target&#x3D;&quot;_blank&quot;
+          rel&#x3D;&quot;noopener noreferrer&quot;
+        &gt;
+          {{ option.category }}
+        &lt;/a&gt;
+        &lt;span class&#x3D;&quot;search-item-count&quot;&gt;{{ option.count }} results&lt;/span&gt;
+      &lt;/nz-auto-option&gt;
+    }
+  &lt;/nz-autocomplete&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./autocomplete.component.html</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">&lt;nz-input-group nzSearch nzSize&#x3D;&quot;large&quot; [nzAddOnAfter]&#x3D;&quot;suffixIconButton&quot;&gt;
+    &lt;input
+      placeholder&#x3D;&quot;input here&quot;
+      nz-input
+      [(ngModel)]&#x3D;&quot;inputValue&quot;
+      (input)&#x3D;&quot;onChange($event)&quot;
+      [nzAutocomplete]&#x3D;&quot;auto&quot;
+    /&gt;
+  &lt;/nz-input-group&gt;
+  &lt;ng-template #suffixIconButton&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzSize&#x3D;&quot;large&quot; nzSearch&gt;
+      &lt;nz-icon nzType&#x3D;&quot;search&quot; nzTheme&#x3D;&quot;outline&quot;&gt;&lt;/nz-icon&gt;
+    &lt;/button&gt;
+  &lt;/ng-template&gt;
+  &lt;nz-autocomplete #auto&gt;
+    @for (option of options; track option.category) {
+      &lt;nz-auto-option class&#x3D;&quot;search-item&quot; [nzValue]&#x3D;&quot;option.category&quot;&gt;
+        Found {{ option.value }} on
+        &lt;a
+          class&#x3D;&quot;search-item-desc&quot;
+          [href]&#x3D;&quot;&#x27;https://s.taobao.com/search?q&#x3D;&#x27; + option.value&quot;
+          target&#x3D;&quot;_blank&quot;
+          rel&#x3D;&quot;noopener noreferrer&quot;
+        &gt;
+          {{ option.category }}
+        &lt;/a&gt;
+        &lt;span class&#x3D;&quot;search-item-count&quot;&gt;{{ option.count }} results&lt;/span&gt;
+      &lt;/nz-auto-option&gt;
+    }
+  &lt;/nz-autocomplete&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixIconButton">    <input      placeholder="input here"      nz-input      [(ngModel)]="inputValue"      (input)="onChange($event)"      [nzAutocomplete]="auto"    />  </nz-input-group>  <ng-template #suffixIconButton>    <button nz-button nzType="primary" nzSize="large" nzSearch>      <nz-icon nzType="search" nzTheme="outline"></nz-icon>    </button>  </ng-template>  <nz-autocomplete #auto>    @for (option of options; track option.category) {      <nz-auto-option class="search-item" [nzValue]="option.category">        Found {{ option.value }} on        <a          class="search-item-desc"          [href]="\'https://s.taobao.com/search?q=\' + option.value"          target="_blank"          rel="noopener noreferrer"        >          {{ option.category }}        </a>        <span class="search-item-count">{{ option.count }} results</span>      </nz-auto-option>    }  </nz-autocomplete></div>'
+    var COMPONENTS = [{'name': 'AdvancedPieChartComponent', 'selector': 'app-advanced-pie-chart'},{'name': 'AlertIconComponent', 'selector': 'app-alert-icon'},{'name': 'AppAvatarComponent', 'selector': 'app-avatar'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'appInputComponent', 'selector': 'app-input'},{'name': 'AreaChartComponent', 'selector': 'app-area-chart'},{'name': 'AvatarGroupComponent', 'selector': 'app-avatar-group'},{'name': 'BoxChartComponent', 'selector': 'app-box-chart'},{'name': 'BubbleChartComponent', 'selector': 'app-bubble-chart'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CardSkeletonComponent', 'selector': 'app-card-skeleton'},{'name': 'ChartSelectorVanillaComponent', 'selector': 'app-chart-selector-vanilla'},{'name': 'DashedButtonComponent', 'selector': 'app-dashed-button'},{'name': 'DefaultButtonComponent', 'selector': 'app-default-button'},{'name': 'DropdownButtonComponent', 'selector': 'app-dropdown-button'},{'name': 'EmptyComponent', 'selector': 'app-empty'},{'name': 'FloatMenuButtonComponent', 'selector': 'app-float-menu-button'},{'name': 'FloatShapeButtonComponent', 'selector': 'app-float-shape-button'},{'name': 'GaugeChartComponent', 'selector': 'app-gauge-chart'},{'name': 'Gridster2ExampleComponent', 'selector': 'app-gridster2-example'},{'name': 'GridsterDashboardComponent', 'selector': 'app-gridster-dashboard'},{'name': 'GroupedHorizontalBarChartComponent', 'selector': 'app-grouped-horizontal-bar-chart'},{'name': 'GroupedVerticalBarChartComponent', 'selector': 'app-grouped-vertical-bar-chart'},{'name': 'HeatMapComponent', 'selector': 'app-heat-map'},{'name': 'HorizontalBarChartComponent', 'selector': 'app-horizontal-bar-chart'},{'name': 'HorizontalNavComponent', 'selector': 'app-horizontal-nav'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InlineNavComponent', 'selector': 'app-inline-nav'},{'name': 'LinearGaugeChartComponent', 'selector': 'app-linear-gauge-chart'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'NgxGraphCustomCurveComponent', 'selector': 'app-graph-custom-curve'},{'name': 'NormalizedAreaChartComponent', 'selector': 'app-normalized-area-chart'},{'name': 'NormalizedHorizontalBarChartComponent', 'selector': 'app-normalized-horizontal-bar-chart'},{'name': 'NormalizedVerticalBarChartComponent', 'selector': 'app-normalized-vertical-bar-chart'},{'name': 'NumberCardsComponent', 'selector': 'app-number-cards'},{'name': 'NzDemoAutoCompleteUncertainCategoryComponent', 'selector': 'app-auto-complete'},{'name': 'NzDemoAvatarBadgeComponent', 'selector': 'app-avatar-badge'},{'name': 'NzDemoCascaderMultipleComponent', 'selector': 'app-cascader-multiple'},{'name': 'NzDemoDatePickerRangePickerComponent', 'selector': 'app-date-picker-range'},{'name': 'NzDemoDrawerFromDrawerComponent', 'selector': 'app-drawer'},{'name': 'NzDemoInputNumberBasicComponent', 'selector': 'app-input-number'},{'name': 'NzDemoModalAsyncComponent', 'selector': 'app-modal'},{'name': 'NzDemoPopconfirmPromiseComponent', 'selector': 'app-popconfirm-promise'},{'name': 'NzDemoProgressFormatComponent', 'selector': 'app-circular-bar'},{'name': 'NzDemoProgressLineComponent', 'selector': 'app-linear-bar'},{'name': 'NzDemoSliderIconSliderComponent', 'selector': 'app-slider'},{'name': 'NzDemoSpinBasicComponent', 'selector': 'app-spin'},{'name': 'NzDemoUploadDefaultFileListComponent', 'selector': 'app-upload'},{'name': 'PaginationNavComponent', 'selector': 'app-pagination-nav'},{'name': 'PercentGaugeChartComponent', 'selector': 'app-percent-gauge-chart'},{'name': 'PieChartComponent', 'selector': 'app-pie-chart'},{'name': 'PieGridComponent', 'selector': 'app-pie-grid'},{'name': 'PolarChartComponent', 'selector': 'app-polar-chart'},{'name': 'PopoverComponent', 'selector': 'app-popover'},{'name': 'PrimaryButtonComponent', 'selector': 'app-primary-button'},{'name': 'ProgressGradientComponent', 'selector': 'app-custom-bar'},{'name': 'RadioSelectorComponent', 'selector': 'app-radio-selector'},{'name': 'StackedAreaChartComponent', 'selector': 'app-stacked-area-chart'},{'name': 'StackedHorizontalBarChartComponent', 'selector': 'app-stacked-horizontal-bar-chart'},{'name': 'StackedVerticalBarChartComponent', 'selector': 'app-stacked-vertical-bar-chart'},{'name': 'StepHorizontalNavComponent', 'selector': 'app-step-horizontal-nav'},{'name': 'StepVerticalNavComponent', 'selector': 'app-step-vertical-nav'},{'name': 'SwitchDemoComponent', 'selector': 'app-switch'},{'name': 'ThemeToggleButtonComponent', 'selector': 'app-theme-toggle-button'},{'name': 'TreeMapComponent', 'selector': 'app-tree-map'},{'name': 'UnifiedMessageDemoComponent', 'selector': 'app-message'},{'name': 'UnifiedNotificationDemoComponent', 'selector': 'app-notification'},{'name': 'UnifiedRadioGroupComponent', 'selector': 'app-radio'},{'name': 'UnifiedSkeletonDemoComponent', 'selector': 'app-skeleton'},{'name': 'UnifiedTableComponent', 'selector': 'app-unified-table'},{'name': 'VerticalBarChartComponent', 'selector': 'app-vertical-chart'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NzDemoAutoCompleteUncertainCategoryComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NzDemoAutoCompleteUncertainCategoryComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

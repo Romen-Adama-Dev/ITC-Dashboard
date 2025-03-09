@@ -1,0 +1,1015 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>itc-dashboard-project documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">itc-dashboard-project documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AppComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-root</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>RouterLink</code>
+                            <code>RouterOutlet</code>
+                            <code>NzIconModule</code>
+                            <code>NzLayoutModule</code>
+                            <code>NzMenuModule</code>
+                                <code><a href="../components/ThemeToggleButtonComponent.html" target="_self" >ThemeToggleButtonComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentTheme" >currentTheme</a>
+                            </li>
+                            <li>
+                                <a href="#isCollapsed" >isCollapsed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#activateDarkTheme" >activateDarkTheme</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#activateDefaultTheme" >activateDefaultTheme</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#detectUserThemePreference" >detectUserThemePreference</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadThemeCss" >loadThemeCss</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeThemeCss" >removeThemeCss</a>
+                            </li>
+                            <li>
+                                <a href="#toggleTheme" >toggleTheme</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activateDarkTheme"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>activateDarkTheme</b></span>
+                        <a href="#activateDarkTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>activateDarkTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/app.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activateDefaultTheme"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>activateDefaultTheme</b></span>
+                        <a href="#activateDefaultTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>activateDefaultTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/app.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="detectUserThemePreference"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>detectUserThemePreference</b></span>
+                        <a href="#detectUserThemePreference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>detectUserThemePreference()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/app.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadThemeCss"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadThemeCss</b></span>
+                        <a href="#loadThemeCss"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadThemeCss(href: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/app.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>href</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Event&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/app/app.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeThemeCss"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>removeThemeCss</b></span>
+                        <a href="#removeThemeCss"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeThemeCss(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/app.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleTheme"></a>
+                    <span class="name">
+                        <span ><b>toggleTheme</b></span>
+                        <a href="#toggleTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/app/app.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentTheme"></a>
+                    <span class="name">
+                        <span ><b>currentTheme</b></span>
+                        <a href="#currentTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;default&quot; | &quot;dark&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;default&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/app.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCollapsed"></a>
+                    <span class="name">
+                        <span ><b>isCollapsed</b></span>
+                        <a href="#isCollapsed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { RouterLink, RouterOutlet } from &#x27;@angular/router&#x27;;
+import { NzIconModule } from &#x27;ng-zorro-antd/icon&#x27;;
+import { NzLayoutModule } from &#x27;ng-zorro-antd/layout&#x27;;
+import { NzMenuModule } from &#x27;ng-zorro-antd/menu&#x27;;
+import { ThemeToggleButtonComponent } from &#x27;./presentation/components/shared/buttons/theme-toggle-button.component&#x27;;
+
+@Component({
+  selector: &#x27;app-root&#x27;,
+  standalone: true,
+  imports: [RouterLink, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, ThemeToggleButtonComponent,],
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.scss&#x27;]
+})
+export class AppComponent implements OnInit {
+  isCollapsed &#x3D; false;
+  currentTheme: &#x27;default&#x27; | &#x27;dark&#x27; &#x3D; &#x27;default&#x27;;
+
+  ngOnInit(): void {
+    this.detectUserThemePreference();
+  }
+
+  toggleTheme(): void {
+    this.currentTheme &#x3D;&#x3D;&#x3D; &#x27;default&#x27; ? this.activateDarkTheme() : this.activateDefaultTheme();
+  }
+
+  private detectUserThemePreference(): void {
+    const prefersDark &#x3D; window.matchMedia &amp;&amp; window.matchMedia(&#x27;(prefers-color-scheme: dark)&#x27;).matches;
+    prefersDark ? this.activateDarkTheme() : this.activateDefaultTheme();
+  }
+
+  private activateDarkTheme(): void {
+    this.loadThemeCss(&#x27;dark.css&#x27;, &#x27;dark-theme-css&#x27;)
+      .then(() &#x3D;&gt; {
+        this.currentTheme &#x3D; &#x27;dark&#x27;;
+        console.log(&#x27;Tema dark activado&#x27;);
+      })
+      .catch(err &#x3D;&gt; console.error(&#x27;Error al cargar dark.css&#x27;, err));
+  }
+
+  private activateDefaultTheme(): void {
+    this.removeThemeCss(&#x27;dark-theme-css&#x27;);
+    this.currentTheme &#x3D; &#x27;default&#x27;;
+    console.log(&#x27;Tema default activado&#x27;);
+  }
+
+  private loadThemeCss(href: string, id: string): Promise&lt;Event&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const existingLink &#x3D; document.getElementById(id);
+      if (existingLink) {
+        resolve(new Event(&#x27;load&#x27;));
+        return;
+      }
+      const link &#x3D; document.createElement(&#x27;link&#x27;);
+      link.rel &#x3D; &#x27;stylesheet&#x27;;
+      link.href &#x3D; href;
+      link.id &#x3D; id;
+      link.onload &#x3D; resolve;
+      link.onerror &#x3D; reject;
+      document.head.appendChild(link);
+    });
+  }
+
+  private removeThemeCss(id: string): void {
+    const link &#x3D; document.getElementById(id);
+    if (link &amp;&amp; link.parentNode) {
+      link.parentNode.removeChild(link);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-layout class&#x3D;&quot;app-layout&quot;&gt;
+  &lt;nz-sider class&#x3D;&quot;menu-sidebar&quot;
+    nzCollapsible
+    nzWidth&#x3D;&quot;256px&quot;
+    nzBreakpoint&#x3D;&quot;md&quot;
+    [(nzCollapsed)]&#x3D;&quot;isCollapsed&quot;
+    [nzTrigger]&#x3D;&quot;null&quot;&gt;
+    &lt;div class&#x3D;&quot;sidebar-logo&quot;&gt;
+      &lt;a href&#x3D;&quot;https://ng.ant.design/&quot; target&#x3D;&quot;_blank&quot;&gt;
+        &lt;img src&#x3D;&quot;https://ng.ant.design/assets/img/logo.svg&quot; alt&#x3D;&quot;logo&quot;&gt;
+        &lt;h1&gt;DashGrid&lt;/h1&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;ul nz-menu nzTheme&#x3D;&quot;dark&quot; nzMode&#x3D;&quot;inline&quot; [nzInlineCollapsed]&#x3D;&quot;isCollapsed&quot;&gt;
+      &lt;li nz-submenu nzOpen nzTitle&#x3D;&quot;Components&quot; nzIcon&#x3D;&quot;dashboard&quot;&gt;
+        &lt;ul&gt;
+          &lt;li nz-menu-item nzMatchRouter&gt;
+            &lt;a routerLink&#x3D;&quot;/Gridster Example&quot;&gt;Gridster Example&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li nz-submenu nzOpen nzTitle&#x3D;&quot;Emilo&quot; nzIcon&#x3D;&quot;form&quot;&gt;
+        &lt;ul&gt;
+          &lt;li nz-menu-item nzMatchRouter&gt;
+            &lt;a routerLink&#x3D;&quot;/Emilio TFT&quot;&gt;Emilio TFT&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nz-sider&gt;
+  &lt;nz-layout&gt;
+    &lt;nz-header&gt;
+      &lt;div class&#x3D;&quot;app-header&quot;&gt;
+        &lt;span class&#x3D;&quot;header-trigger&quot; (click)&#x3D;&quot;isCollapsed &#x3D; !isCollapsed&quot;&gt;
+          &lt;nz-icon class&#x3D;&quot;trigger&quot; [nzType]&#x3D;&quot;isCollapsed ? &#x27;menu-unfold&#x27; : &#x27;menu-fold&#x27;&quot;&gt;&lt;/nz-icon&gt;
+        &lt;/span&gt;
+        &lt;app-theme-toggle-button
+          [currentTheme]&#x3D;&quot;currentTheme&quot;
+          (toggleTheme)&#x3D;&quot;toggleTheme()&quot;&gt;
+        &lt;/app-theme-toggle-button&gt;
+      &lt;/div&gt;
+    &lt;/nz-header&gt;
+    &lt;nz-content&gt;
+      &lt;div class&#x3D;&quot;inner-content&quot;&gt;
+        &lt;router-outlet&gt;&lt;/router-outlet&gt;
+      &lt;/div&gt;
+    &lt;/nz-content&gt;
+  &lt;/nz-layout&gt;
+&lt;/nz-layout&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./app.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: flex;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-layout {
+  height: 100vh;
+}
+
+.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+
+.header-trigger {
+  height: 64px;
+  padding: 20px 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+}
+
+.trigger:hover {
+  color: primary-color;
+}
+
+
+.sidebar-logo {
+  position: relative;
+  height: 64px;
+  padding-left: 24px;
+  overflow: hidden;
+  line-height: 64px;
+  transition: all 0.3s;
+  // Background will be defined in theme files
+}
+
+.sidebar-logo img {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  vertical-align: middle;
+}
+
+.sidebar-logo h1 {
+  display: inline-block;
+  margin: 0 0 0 20px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+  vertical-align: middle;
+}
+
+nz-header {
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.app-header {
+  position: relative;
+  height: 64px;
+  padding: 0;
+}
+
+nz-content {
+  margin: 24px;
+}
+
+.inner-content {
+  padding: 24px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-layout class="app-layout">  <nz-sider class="menu-sidebar"    nzCollapsible    nzWidth="256px"    nzBreakpoint="md"    [(nzCollapsed)]="isCollapsed"    [nzTrigger]="null">    <div class="sidebar-logo">      <a href="https://ng.ant.design/" target="_blank">        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">        <h1>DashGrid</h1>      </a>    </div>    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">      <li nz-submenu nzOpen nzTitle="Components" nzIcon="dashboard">        <ul>          <li nz-menu-item nzMatchRouter>            <a routerLink="/Gridster Example">Gridster Example</a>          </li>        </ul>      </li>      <li nz-submenu nzOpen nzTitle="Emilo" nzIcon="form">        <ul>          <li nz-menu-item nzMatchRouter>            <a routerLink="/Emilio TFT">Emilio TFT</a>          </li>        </ul>      </li>    </ul>  </nz-sider>  <nz-layout>    <nz-header>      <div class="app-header">        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">          <nz-icon class="trigger" [nzType]="isCollapsed ? \'menu-unfold\' : \'menu-fold\'"></nz-icon>        </span>        <app-theme-toggle-button          [currentTheme]="currentTheme"          (toggleTheme)="toggleTheme()">        </app-theme-toggle-button>      </div>    </nz-header>    <nz-content>      <div class="inner-content">        <router-outlet></router-outlet>      </div>    </nz-content>  </nz-layout></nz-layout></div>'
+    var COMPONENTS = [{'name': 'AdvancedPieChartComponent', 'selector': 'app-advanced-pie-chart'},{'name': 'AlertIconComponent', 'selector': 'app-alert-icon'},{'name': 'AppAvatarComponent', 'selector': 'app-avatar'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'appInputComponent', 'selector': 'app-input'},{'name': 'AreaChartComponent', 'selector': 'app-area-chart'},{'name': 'AvatarGroupComponent', 'selector': 'app-avatar-group'},{'name': 'BoxChartComponent', 'selector': 'app-box-chart'},{'name': 'BubbleChartComponent', 'selector': 'app-bubble-chart'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CardSkeletonComponent', 'selector': 'app-card-skeleton'},{'name': 'ChartSelectorVanillaComponent', 'selector': 'app-chart-selector-vanilla'},{'name': 'DashedButtonComponent', 'selector': 'app-dashed-button'},{'name': 'DefaultButtonComponent', 'selector': 'app-default-button'},{'name': 'DropdownButtonComponent', 'selector': 'app-dropdown-button'},{'name': 'EmptyComponent', 'selector': 'app-empty'},{'name': 'FloatMenuButtonComponent', 'selector': 'app-float-menu-button'},{'name': 'FloatShapeButtonComponent', 'selector': 'app-float-shape-button'},{'name': 'GaugeChartComponent', 'selector': 'app-gauge-chart'},{'name': 'Gridster2ExampleComponent', 'selector': 'app-gridster2-example'},{'name': 'GridsterDashboardComponent', 'selector': 'app-gridster-dashboard'},{'name': 'GroupedHorizontalBarChartComponent', 'selector': 'app-grouped-horizontal-bar-chart'},{'name': 'GroupedVerticalBarChartComponent', 'selector': 'app-grouped-vertical-bar-chart'},{'name': 'HeatMapComponent', 'selector': 'app-heat-map'},{'name': 'HorizontalBarChartComponent', 'selector': 'app-horizontal-bar-chart'},{'name': 'HorizontalNavComponent', 'selector': 'app-horizontal-nav'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InlineNavComponent', 'selector': 'app-inline-nav'},{'name': 'LinearGaugeChartComponent', 'selector': 'app-linear-gauge-chart'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'NgxGraphCustomCurveComponent', 'selector': 'app-graph-custom-curve'},{'name': 'NormalizedAreaChartComponent', 'selector': 'app-normalized-area-chart'},{'name': 'NormalizedHorizontalBarChartComponent', 'selector': 'app-normalized-horizontal-bar-chart'},{'name': 'NormalizedVerticalBarChartComponent', 'selector': 'app-normalized-vertical-bar-chart'},{'name': 'NumberCardsComponent', 'selector': 'app-number-cards'},{'name': 'NzDemoAutoCompleteUncertainCategoryComponent', 'selector': 'app-auto-complete'},{'name': 'NzDemoAvatarBadgeComponent', 'selector': 'app-avatar-badge'},{'name': 'NzDemoCascaderMultipleComponent', 'selector': 'app-cascader-multiple'},{'name': 'NzDemoDatePickerRangePickerComponent', 'selector': 'app-date-picker-range'},{'name': 'NzDemoDrawerFromDrawerComponent', 'selector': 'app-drawer'},{'name': 'NzDemoInputNumberBasicComponent', 'selector': 'app-input-number'},{'name': 'NzDemoModalAsyncComponent', 'selector': 'app-modal'},{'name': 'NzDemoPopconfirmPromiseComponent', 'selector': 'app-popconfirm-promise'},{'name': 'NzDemoProgressFormatComponent', 'selector': 'app-circular-bar'},{'name': 'NzDemoProgressLineComponent', 'selector': 'app-linear-bar'},{'name': 'NzDemoSliderIconSliderComponent', 'selector': 'app-slider'},{'name': 'NzDemoSpinBasicComponent', 'selector': 'app-spin'},{'name': 'NzDemoUploadDefaultFileListComponent', 'selector': 'app-upload'},{'name': 'PaginationNavComponent', 'selector': 'app-pagination-nav'},{'name': 'PercentGaugeChartComponent', 'selector': 'app-percent-gauge-chart'},{'name': 'PieChartComponent', 'selector': 'app-pie-chart'},{'name': 'PieGridComponent', 'selector': 'app-pie-grid'},{'name': 'PolarChartComponent', 'selector': 'app-polar-chart'},{'name': 'PopoverComponent', 'selector': 'app-popover'},{'name': 'PrimaryButtonComponent', 'selector': 'app-primary-button'},{'name': 'ProgressGradientComponent', 'selector': 'app-custom-bar'},{'name': 'RadioSelectorComponent', 'selector': 'app-radio-selector'},{'name': 'StackedAreaChartComponent', 'selector': 'app-stacked-area-chart'},{'name': 'StackedHorizontalBarChartComponent', 'selector': 'app-stacked-horizontal-bar-chart'},{'name': 'StackedVerticalBarChartComponent', 'selector': 'app-stacked-vertical-bar-chart'},{'name': 'StepHorizontalNavComponent', 'selector': 'app-step-horizontal-nav'},{'name': 'StepVerticalNavComponent', 'selector': 'app-step-vertical-nav'},{'name': 'SwitchDemoComponent', 'selector': 'app-switch'},{'name': 'ThemeToggleButtonComponent', 'selector': 'app-theme-toggle-button'},{'name': 'TreeMapComponent', 'selector': 'app-tree-map'},{'name': 'UnifiedMessageDemoComponent', 'selector': 'app-message'},{'name': 'UnifiedNotificationDemoComponent', 'selector': 'app-notification'},{'name': 'UnifiedRadioGroupComponent', 'selector': 'app-radio'},{'name': 'UnifiedSkeletonDemoComponent', 'selector': 'app-skeleton'},{'name': 'UnifiedTableComponent', 'selector': 'app-unified-table'},{'name': 'VerticalBarChartComponent', 'selector': 'app-vertical-chart'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
