@@ -1,8 +1,13 @@
 <div class="gridster-container">
   <div class="controls">
     <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
-    <app-default-button nzSize="default" (click)="changedOptions()">Refresh</app-default-button>
-    <app-default-button nzSize="default" (click)="togglePushItems()">
+    <app-default-button nzSize="default" (click)="changedOptions()" [disabled]="!pushItemsEnabled">
+      Clean Up
+    </app-default-button>
+    <app-default-button 
+      nzSize="default" 
+      (click)="togglePushItems()"
+      [ngClass]="{'hover-style': !pushItemsEnabled}">
       {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
     </app-default-button>
   </div>
