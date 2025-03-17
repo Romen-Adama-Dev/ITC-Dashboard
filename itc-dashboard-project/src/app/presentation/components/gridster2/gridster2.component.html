@@ -86,6 +86,9 @@
           <ng-container *ngIf="item.chartType === 'stacked-vertical-bar-chart'">
             <app-stacked-vertical-bar-chart></app-stacked-vertical-bar-chart>
           </ng-container>
+          <ng-container *ngIf="item.chartType === 'table'">
+            <app-unified-table></app-unified-table>
+          </ng-container>
           <ng-container *ngIf="item.chartType === 'tree-map'">
             <app-tree-map></app-tree-map>
           </ng-container>

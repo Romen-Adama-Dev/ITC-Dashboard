@@ -37,6 +37,7 @@ export class ChartSelectorVanillaComponent {
     {label: 'Stacked Area Chart', value: 'stacked-area-chart'},
     {label: 'Stacked Horizontal Bar Chart', value: 'stacked-horizontal-bar-chart'},
     {label: 'Stacked Vertical Bar Chart', value: 'stacked-vertical-bar-chart'},
+    {label: 'Table', value: 'table'},
     {label: 'Tree Map', value: 'tree-map'},
     {label: 'Vertical Bar Chart', value: 'vertical-bar'}
   ];

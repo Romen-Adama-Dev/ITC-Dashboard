@@ -44,6 +44,7 @@ import { StackedAreaChartComponent } from "../shared/data-view/stacked-area-char
 import { StackedHorizontalBarChartComponent } from "../shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component";
 import { StackedVerticalBarChartComponent } from "../shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component";
 import { TreeMapComponent } from "../shared/data-view/tree-chart/tree-chart.component";
+import { UnifiedTableComponent } from "../shared/data-view/table/table.component";
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
@@ -91,7 +92,8 @@ interface SafeGridsterConfig extends GridsterConfig {
     StackedHorizontalBarChartComponent,
     StackedVerticalBarChartComponent,
     TreeMapComponent,
-    VerticalBarChartComponent
+    VerticalBarChartComponent,
+    UnifiedTableComponent
 ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -126,6 +128,7 @@ export class GridsterDashboardComponent implements OnInit {
   'stacked-area-chart' |
   'stacked-horizontal-bar-chart' |
   'stacked-vertical-bar-chart' |
+  'table' |
   'tree-map'  |
   'vertical-bar'= 'advanced-pie-chart';
   pushItemsEnabled: boolean = true;
