@@ -188,8 +188,7 @@ export class GridsterDashboardComponent implements OnInit {
 
     // Inicialmente, el dashboard contiene dos widgets de prueba
     this.dashboard = [
-      { id: 1, cols: 1, rows: 1, x: 0, y: 0, chartType: 'line-chart' },
-      { id: 2, cols: 1, rows: 1, x: 1, y: 0, chartType: 'advanced-pie-chart' }
+      { id: 1, cols: 2, rows: 2, x: 0, y: 0, chartType: 'horizontal-bar' },
     ];
   }
 

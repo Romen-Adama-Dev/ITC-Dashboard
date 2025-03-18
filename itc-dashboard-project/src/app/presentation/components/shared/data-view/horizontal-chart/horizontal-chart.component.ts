@@ -1,21 +1,23 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { ChartsJson } from '../chart.model';
 
 @Component({
   selector: 'app-horizontal-bar-chart',
   standalone: true,
-  imports: [NgxChartsModule],
+  imports: [NgxChartsModule, HttpClientModule],
   templateUrl: './horizontal-chart.component.html',
   styleUrls: ['./horizontal-chart.component.scss']
 })
-export class HorizontalBarChartComponent implements AfterViewInit, OnDestroy {
+export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  // Responsive dimensions: default ratio 400/700 (≈0.5714)
   view: [number, number] = [700, 400];
 
   showXAxis = true;
@@ -34,24 +36,35 @@ export class HorizontalBarChartComponent implements AfterViewInit, OnDestroy {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  data = [
-    { name: 'Estados Unidos', value: 5000000 },
-    { name: 'Reino Unido', value: 3000000 },
-    { name: 'Francia', value: 2000000 }
-  ];
+  data: any[] = [];
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
-    // Crea un ResizeObserver para ajustar dinámicamente las dimensiones del gráfico.
+  constructor(private el: ElementRef, private http: HttpClient) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        // Calcula la altura manteniendo la relación de aspecto original (400/700).
         const height = width * (400 / 700);
         this.view = [width, height];
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.http.get<ChartsJson>('/assets/data.json').subscribe(
+      response => {
+        if (response && response.charts && response.charts.horizontalBarChart) {
+          this.data = response.charts.horizontalBarChart.data;
+          this.view = response.charts.horizontalBarChart.view;
+          this.theme = response.charts.horizontalBarChart.theme;
+        } else {
+          console.error('La respuesta no contiene horizontalBarChart');
+        }
+      },
+      error => {
+        console.error('Error al cargar el JSON', error);
+      }
+    );
   }
 
   ngAfterViewInit(): void {

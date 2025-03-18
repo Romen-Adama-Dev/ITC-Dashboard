@@ -1,0 +1,22 @@
+{
+  "charts": {
+    "verticalBarChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Estados Unidos", "value": 5000000 },
+        { "name": "Reino Unido", "value": 3000000 },
+        { "name": "Francia", "value": 2000000 }
+      ]
+    },
+    "horizontalBarChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Estados Unidos", "value": 5000000 },
+        { "name": "Reino Unido", "value": 3000000 },
+        { "name": "Francia", "value": 2000000 }
+      ]
+    }
+  }
+}

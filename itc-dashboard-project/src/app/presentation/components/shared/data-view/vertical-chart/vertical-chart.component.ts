@@ -1,14 +1,17 @@
-import { Component, Input, HostBinding, ElementRef } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { ChartsJson } from '../chart.model';
 
 @Component({
   selector: 'app-vertical-chart',
   standalone: true,
-    imports: [NgxChartsModule],
+  imports: [NgxChartsModule, HttpClientModule],
   templateUrl: './vertical-chart.component.html',
-  styleUrl: './vertical-chart.component.scss'
+  styleUrls: ['./vertical-chart.component.scss']
 })
-export class VerticalBarChartComponent {
+export class VerticalBarChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
   @HostBinding('class.dark')
   get isDarkTheme() {
@@ -16,6 +19,7 @@ export class VerticalBarChartComponent {
   }
 
   view: [number, number] = [700, 400];
+
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -32,27 +36,35 @@ export class VerticalBarChartComponent {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  data = [
-    { name: 'Estados Unidos', value: 5000000 },
-    { name: 'Reino Unido', value: 3000000 },
-    { name: 'Francia', value: 2000000 }
-  ];
-
-  onSelect(event: any): void {
-    console.log(event);
-  }
+  data: any[] = [];
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private http: HttpClient) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        // Maintain the aspect ratio 499/749
         const height = width * (499 / 749);
         this.view = [width, height];
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.http.get<ChartsJson>('/assets/data.json').subscribe(
+      response => {
+        if (response && response.charts && response.charts.horizontalBarChart) {
+          this.data = response.charts.horizontalBarChart.data;
+          this.view = response.charts.horizontalBarChart.view;
+          this.theme = response.charts.horizontalBarChart.theme;
+        } else {
+          console.error('La respuesta no contiene horizontalBarChart');
+        }
+      },
+      error => {
+        console.error('Error al cargar el JSON', error);
+      }
+    );
   }
 
   ngAfterViewInit(): void {
@@ -61,5 +73,9 @@ export class VerticalBarChartComponent {
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+  }
+
+  onSelect(event: any): void {
+    console.log(event);
   }
 }
