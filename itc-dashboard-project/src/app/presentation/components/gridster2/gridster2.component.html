@@ -16,7 +16,6 @@
     <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
       <div class="grid-item-content">
         <div class="item-content">
-          <!-- Se renderiza el componente según el tipo de gráfico seleccionado -->
           <ng-container *ngIf="item.chartType === 'line-chart'">
             <app-line-chart></app-line-chart>
           </ng-container>
@@ -110,22 +109,11 @@
       </div>
     </gridster-item>
   </gridster>
-
-  <!-- Modal personalizado -->
-  <div id="customModal" class="modal" [class.show]="isModalVisible">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close" (click)="closeCustomModal()">&times;</span>
-        <h2 style="margin-left: 10px;">Select Chart Type</h2>
-      </div>
-      <div class="modal-body">
-        <p>Select Chart Type:</p>
-        <app-chart-selector-vanilla [(selectedChartType)]="selectedChartType"></app-chart-selector-vanilla>
-      </div>
-      <div class="modal-footer">
-        <app-default-button nzType="default" (click)="closeCustomModal()">Close</app-default-button>
-        <app-primary-button nzType="default" (click)="handleModalAdd()">Add Widget</app-primary-button>
-      </div>
-    </div>
-  </div>
+  
+  <app-chart-selection-modal
+    [isVisible]="isModalVisible" 
+    (selectedChartType)="selectedChartType"
+    (addChart)="onAddChart($event)"
+    (closeModal)="closeCustomModal()">
+  </app-chart-selection-modal>
 </div>

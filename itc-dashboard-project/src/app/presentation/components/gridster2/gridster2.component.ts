@@ -13,12 +13,12 @@ import {
   Resizable,
 } from 'angular-gridster2';
 import { FormsModule } from '@angular/forms';
+
 import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component';
 import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component';
 import { FloatShapeButtonComponent } from "../shared/buttons/float-shape-button/float-shape-button.component";
 import { ChartSelectorVanillaComponent } from "../chart-selector/chart-selector.component";
-
-//Charts
+// Charts
 import { AreaChartComponent } from '../shared/data-view/area-chart/area-chart.component';
 import { LineChartComponent } from '../shared/data-view/line-chart/line-chart.component';
 import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-chart/advanced-pie-chart.component';
@@ -46,6 +46,8 @@ import { StackedVerticalBarChartComponent } from "../shared/data-view/stacked-ve
 import { TreeMapComponent } from "../shared/data-view/tree-chart/tree-chart.component";
 import { UnifiedTableComponent } from "../shared/data-view/table/table.component";
 
+import { ChartSelectionModalComponent } from '../chart-selection-modal/chart-selection-modal.component';
+
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
 }
@@ -67,8 +69,9 @@ interface SafeGridsterConfig extends GridsterConfig {
     PrimaryButtonComponent,
     DefaultButtonComponent,
     FloatShapeButtonComponent,
-    ChartSelectorVanillaComponent,
     LineChartComponent,
+    VerticalBarChartComponent,
+    ChartSelectionModalComponent,
     AdvancedPieChartComponent,
     AreaChartComponent,
     BoxChartComponent,
@@ -85,15 +88,14 @@ interface SafeGridsterConfig extends GridsterConfig {
     NormalizedVerticalBarChartComponent,
     NumberCardsComponent,
     PercentGaugeChartComponent,
-    PieGridComponent,
     PieChartComponent,
+    PieGridComponent,
     PolarChartComponent,
     StackedAreaChartComponent,
     StackedHorizontalBarChartComponent,
     StackedVerticalBarChartComponent,
-    TreeMapComponent,
-    VerticalBarChartComponent,
-    UnifiedTableComponent
+    UnifiedTableComponent,
+    TreeMapComponent
 ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -101,36 +103,34 @@ interface SafeGridsterConfig extends GridsterConfig {
 export class GridsterDashboardComponent implements OnInit {
   options!: SafeGridsterConfig;
   dashboard!: ExtendedGridsterItem[];
-  // Controla la visibilidad del modal
   isModalVisible: boolean = false;
-  // Valor seleccionado para el tipo de widget (se elegirá desde el árbol)
-  selectedChartType?:
-  'line-chart' | 
-  'advanced-pie-chart' | 
-  'area-chart' |
-  'box-chart' |
-  'bubble-chart' |
-  'gauge-chart' |
-  'graph-custom' |
-  'grouped-horizontal-bar' |
-  'vertical-bar-chart' |
-  'heat-map' |
-  'horizontal-bar' |
-  'linear-gauge-chart' |
-  'normalized-area-chart' |
-  'normalized-horizontal-chart' |
-  'normalized-vertical-chart' |
-  'number-chart' |
-  'percent-gauge-chart' |
-  'pie-chart' |
-  'pie-grid-chart' |
-  'polar-chart' |
-  'stacked-area-chart' |
-  'stacked-horizontal-bar-chart' |
-  'stacked-vertical-bar-chart' |
-  'table' |
-  'tree-map'  |
-  'vertical-bar'= 'advanced-pie-chart';
+  selectedChartType?: 
+    'line-chart' | 
+    'advanced-pie-chart' | 
+    'area-chart' |
+    'box-chart' |
+    'bubble-chart' |
+    'gauge-chart' |
+    'graph-custom' |
+    'grouped-horizontal-bar' |
+    'vertical-bar-chart' |
+    'heat-map' |
+    'horizontal-bar' |
+    'linear-gauge-chart' |
+    'normalized-area-chart' |
+    'normalized-horizontal-chart' |
+    'normalized-vertical-chart' |
+    'number-chart' |
+    'percent-gauge-chart' |
+    'pie-chart' |
+    'pie-grid-chart' |
+    'polar-chart' |
+    'stacked-area-chart' |
+    'stacked-horizontal-bar-chart' |
+    'stacked-vertical-bar-chart' |
+    'table' |
+    'tree-map'  |
+    'vertical-bar' = 'advanced-pie-chart';
   pushItemsEnabled: boolean = true;
 
   ngOnInit(): void {
@@ -186,7 +186,7 @@ export class GridsterDashboardComponent implements OnInit {
       scrollToNewItems: false
     };
 
-    // Inicialmente, el dashboard contiene dos widgets de prueba
+    // Inicialmente, el dashboard contiene un widget de prueba
     this.dashboard = [
       { id: 1, cols: 2, rows: 2, x: 0, y: 0, chartType: 'horizontal-bar' },
     ];
@@ -201,7 +201,6 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   changedOptions(): void {
-    // Borra todos los widgets
     this.dashboard = [];
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
@@ -244,13 +243,10 @@ export class GridsterDashboardComponent implements OnInit {
     this.isModalVisible = false;
   }
 
-  handleModalAdd(): void {
-    if (this.selectedChartType) {
-      this.addItem();
-      this.closeCustomModal();
-    } else {
-      alert('Please select a chart type.');
-    }
+  onAddChart(chartType: string): void {
+    this.selectedChartType = chartType as typeof this.selectedChartType;
+    this.addItem();
+    this.closeCustomModal();
   }
 
   togglePushItems(): void {
