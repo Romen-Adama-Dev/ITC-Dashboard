@@ -1,0 +1,22 @@
+{
+    "charts": {
+      "verticalBarChart": {
+        "theme": "dark",
+        "view": [800, 600],
+        "data": [
+          { "name": "España", "value": 4500000 },
+          { "name": "Italia", "value": 3200000 },
+          { "name": "Alemania", "value": 2800000 }
+        ]
+      },
+      "horizontalBarChart": {
+        "theme": "dark",
+        "view": [800, 600],
+        "data": [
+          { "name": "España", "value": 4500000 },
+          { "name": "Italia", "value": 3200000 },
+          { "name": "Alemania", "value": 2800000 }
+        ]
+      }
+    }
+  }

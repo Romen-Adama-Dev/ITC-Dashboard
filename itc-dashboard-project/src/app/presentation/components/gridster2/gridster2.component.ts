@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component';
 import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component';
 import { FloatShapeButtonComponent } from "../shared/buttons/float-shape-button/float-shape-button.component";
-import { ChartSelectorVanillaComponent } from "../chart-selector/chart-selector.component";
+
 // Charts
 import { AreaChartComponent } from '../shared/data-view/area-chart/area-chart.component';
 import { LineChartComponent } from '../shared/data-view/line-chart/line-chart.component';
@@ -188,7 +188,6 @@ export class GridsterDashboardComponent implements OnInit {
 
     // Inicialmente, el dashboard contiene un widget de prueba
     this.dashboard = [
-      { id: 1, cols: 2, rows: 2, x: 0, y: 0, chartType: 'horizontal-bar' },
     ];
   }
 
@@ -243,9 +242,48 @@ export class GridsterDashboardComponent implements OnInit {
     this.isModalVisible = false;
   }
 
-  onAddChart(chartType: string): void {
-    this.selectedChartType = chartType as typeof this.selectedChartType;
-    this.addItem();
+  // Método que se invoca cuando el modal confirma la selección
+  onAddChart(selection: { chartType: string, dataSource: string }): void {
+    this.selectedChartType = selection.chartType as 
+      'line-chart' | 
+      'advanced-pie-chart' | 
+      'area-chart' |
+      'box-chart' |
+      'bubble-chart' |
+      'gauge-chart' |
+      'graph-custom' |
+      'grouped-horizontal-bar' |
+      'vertical-bar-chart' |
+      'heat-map' |
+      'horizontal-bar' |
+      'linear-gauge-chart' |
+      'normalized-area-chart' |
+      'normalized-horizontal-chart' |
+      'normalized-vertical-chart' |
+      'number-chart' |
+      'percent-gauge-chart' |
+      'pie-chart' |
+      'pie-grid-chart' |
+      'polar-chart' |
+      'stacked-area-chart' |
+      'stacked-horizontal-bar-chart' |
+      'stacked-vertical-bar-chart' |
+      'table' |
+      'tree-map'  |
+      'vertical-bar';
+    // Aquí puedes incluir la fuente de datos en el objeto del widget
+    const newId = this.dashboard.length > 0 ? Math.max(...this.dashboard.map(item => item['id'])) + 1 : 1;
+    const newItem: ExtendedGridsterItem = {
+      id: newId,
+      cols: 1,
+      rows: 1,
+      x: 0,
+      y: 0,
+      chartType: this.selectedChartType,
+      // Puedes agregar una propiedad extra para la fuente de datos
+      dataSource: selection.dataSource
+    };
+    this.dashboard.push(newItem);
     this.closeCustomModal();
   }
 

@@ -2,12 +2,17 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close" (click)="handleClose()">&times;</span>
-      <h2 style="margin-left: 10px;">Select Chart Type</h2>
+      <h2 style="margin-left: 10px;">Select Chart Type and Data Source</h2>
     </div>
     <div class="modal-body">
       <p>Select Chart Type:</p>
-      <!-- Se reutiliza el selector de gráficos -->
       <app-chart-selector-vanilla [(selectedChartType)]="selectedChartType"></app-chart-selector-vanilla>
+      
+      <p>Select Data Source:</p>
+      <select [(ngModel)]="selectedDataSource">
+        <option value="/assets/data-set-1.json">Data Set 1</option>
+        <option value="/assets/data-set-2.json">Data Set 2</option>
+      </select>
     </div>
     <div class="modal-footer">
       <app-default-button nzType="default" (click)="handleClose()">Close</app-default-button>

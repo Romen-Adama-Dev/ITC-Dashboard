@@ -1,8 +1,9 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-import { ChartsJson } from '../chart.model';
+import { HttpClientModule } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig } from '../chart.model';
 
 @Component({
   selector: 'app-horizontal-bar-chart',
@@ -13,6 +14,7 @@ import { ChartsJson } from '../chart.model';
 })
 export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/data-set-1.json';
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
@@ -39,8 +41,10 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   data: any[] = [];
 
   private resizeObserver: ResizeObserver;
+  private configSubscription!: Subscription;
 
-  constructor(private el: ElementRef, private http: HttpClient) {
+  constructor(private el: ElementRef, private chartHelper: ChartHelperService) {
+    // Ajusta el tamaño del gráfico según el ancho del contenedor
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
@@ -51,20 +55,19 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit(): void {
-    this.http.get<ChartsJson>('/assets/data.json').subscribe(
-      response => {
-        if (response && response.charts && response.charts.horizontalBarChart) {
-          this.data = response.charts.horizontalBarChart.data;
-          this.view = response.charts.horizontalBarChart.view;
-          this.theme = response.charts.horizontalBarChart.theme;
-        } else {
-          console.error('La respuesta no contiene horizontalBarChart');
+    // Carga la configuración del gráfico horizontal usando el helper
+    this.configSubscription = this.chartHelper
+      .loadChartConfig('horizontalBarChart', this.dataSource)
+      .subscribe(
+        (config: ChartConfig) => {
+          this.data = config.data;
+          this.view = config.view;
+          this.theme = config.theme;
+        },
+        error => {
+          console.error('Error loading chart config', error);
         }
-      },
-      error => {
-        console.error('Error al cargar el JSON', error);
-      }
-    );
+      );
   }
 
   ngAfterViewInit(): void {
@@ -73,6 +76,9 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    if (this.configSubscription) {
+      this.configSubscription.unsubscribe();
+    }
   }
 
   onSelect(event: any): void {

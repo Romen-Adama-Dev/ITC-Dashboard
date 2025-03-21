@@ -47,7 +47,7 @@
             <app-heat-map></app-heat-map>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'horizontal-bar'">
-            <app-horizontal-bar-chart></app-horizontal-bar-chart>
+            <app-horizontal-bar-chart [dataSource]="item['dataSource']"></app-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'linear-gauge-chart'">
             <app-linear-gauge-chart></app-linear-gauge-chart>
