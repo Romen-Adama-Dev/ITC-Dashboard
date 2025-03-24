@@ -243,7 +243,7 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   // Método que se invoca cuando el modal confirma la selección
-  onAddChart(selection: { chartType: string, dataSource: string }): void {
+  onAddChart(selection: { chartType: string, dataSource: string, dataCount: string }): void {
     this.selectedChartType = selection.chartType as 
       'line-chart' | 
       'advanced-pie-chart' | 
@@ -271,7 +271,6 @@ export class GridsterDashboardComponent implements OnInit {
       'table' |
       'tree-map'  |
       'vertical-bar';
-    // Aquí puedes incluir la fuente de datos en el objeto del widget
     const newId = this.dashboard.length > 0 ? Math.max(...this.dashboard.map(item => item['id'])) + 1 : 1;
     const newItem: ExtendedGridsterItem = {
       id: newId,
@@ -280,8 +279,8 @@ export class GridsterDashboardComponent implements OnInit {
       x: 0,
       y: 0,
       chartType: this.selectedChartType,
-      // Puedes agregar una propiedad extra para la fuente de datos
-      dataSource: selection.dataSource
+      dataSource: selection.dataSource,
+      dataCount: selection.dataCount  // <-- Agrega esta propiedad
     };
     this.dashboard.push(newItem);
     this.closeCustomModal();

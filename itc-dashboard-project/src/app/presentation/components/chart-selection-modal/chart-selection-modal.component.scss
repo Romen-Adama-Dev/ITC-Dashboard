@@ -102,3 +102,27 @@
 .shape-float-container.extra-button {
   right: 48px;
 }
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  transition: background-color 0.3s;
+}
+
+.icon-button:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.icon-button.selected {
+  background-color: rgba(0,0,0,0.2);
+  font-weight: bold;
+}
+
+.icon-button i {
+  font-size: 24px;
+}

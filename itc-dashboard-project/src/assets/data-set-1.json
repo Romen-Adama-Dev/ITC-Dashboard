@@ -6,7 +6,11 @@
       "data": [
         { "name": "Estados Unidos", "value": 5000000 },
         { "name": "Reino Unido", "value": 3000000 },
-        { "name": "Francia", "value": 2000000 }
+        { "name": "Francia", "value": 2000000 },
+        { "name": "Alemania", "value": 4000000 },
+        { "name": "Italia", "value": 2500000 },
+        { "name": "España", "value": 1500000 },
+        { "name": "Canadá", "value": 3500000 }
       ]
     },
     "horizontalBarChart": {
@@ -15,7 +19,11 @@
       "data": [
         { "name": "Estados Unidos", "value": 5000000 },
         { "name": "Reino Unido", "value": 3000000 },
-        { "name": "Francia", "value": 2000000 }
+        { "name": "Francia", "value": 2000000 },
+        { "name": "Alemania", "value": 4000000 },
+        { "name": "Italia", "value": 2500000 },
+        { "name": "España", "value": 1500000 },
+        { "name": "Canadá", "value": 3500000 }
       ]
     }
   }

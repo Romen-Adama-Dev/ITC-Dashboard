@@ -13,47 +13,30 @@ import { FormsModule } from '@angular/forms';
 export class ChartSelectionModalComponent {
   @Input() isVisible: boolean = false;
   
-  // Selección del tipo de gráfico
-  @Input() selectedChartType: 
-    'line-chart' | 
-    'advanced-pie-chart' | 
-    'area-chart' |
-    'box-chart' |
-    'bubble-chart' |
-    'gauge-chart' |
-    'graph-custom' |
-    'grouped-horizontal-bar' |
-    'vertical-bar-chart' |
-    'heat-map' |
-    'horizontal-bar' |
-    'linear-gauge-chart' |
-    'normalized-area-chart' |
-    'normalized-horizontal-chart' |
-    'normalized-vertical-chart' |
-    'number-chart' |
-    'percent-gauge-chart' |
-    'pie-chart' |
-    'pie-grid-chart' |
-    'polar-chart' |
-    'stacked-area-chart' |
-    'stacked-horizontal-bar-chart' |
-    'stacked-vertical-bar-chart' |
-    'table' |
-    'tree-map'  |
-    'vertical-bar' = 'advanced-pie-chart';
-
-  // Fuente de datos seleccionada
+  selectedChartCategory?: string;
+  selectedChartVariant?: string;
   @Input() selectedDataSource: string = '/assets/data-set-1.json';
+  // Usamos un input para la cantidad; si se ingresa un valor numérico, se utiliza ese; de lo contrario, se interpreta como "all"
+  selectedDataCount: string = 'all';
 
-  // Emite un objeto con la selección del gráfico y la fuente de datos
-  @Output() addChart = new EventEmitter<{ chartType: string, dataSource: string }>();
-  @Output() closeModal: EventEmitter<void> = new EventEmitter();
+  @Output() addChart = new EventEmitter<{ chartType: string, dataSource: string, dataCount: string }>();
+  @Output() closeModal = new EventEmitter<void>();
+
+  selectChartCategory(category: string): void {
+    this.selectedChartCategory = category;
+    this.selectedChartVariant = undefined;
+  }
 
   handleAdd(): void {
-    if (this.selectedChartType && this.selectedDataSource) {
-      this.addChart.emit({ chartType: this.selectedChartType, dataSource: this.selectedDataSource });
+    const dataCount = this.selectedDataCount && Number(this.selectedDataCount) > 0 ? this.selectedDataCount : 'all';
+    if (this.selectedChartVariant && this.selectedDataSource) {
+      this.addChart.emit({ 
+        chartType: this.selectedChartVariant, 
+        dataSource: this.selectedDataSource, 
+        dataCount: dataCount 
+      });
     } else {
-      alert('Please select a chart type and data source.');
+      alert('Please select a chart variant and data source.');
     }
   }
 

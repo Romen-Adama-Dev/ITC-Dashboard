@@ -2,17 +2,68 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close" (click)="handleClose()">&times;</span>
-      <h2 style="margin-left: 10px;">Select Chart Type and Data Source</h2>
+      <h2>Select Chart Type and Data Source</h2>
     </div>
     <div class="modal-body">
-      <p>Select Chart Type:</p>
-      <app-chart-selector-vanilla [(selectedChartType)]="selectedChartType"></app-chart-selector-vanilla>
-      
-      <p>Select Data Source:</p>
-      <select [(ngModel)]="selectedDataSource">
-        <option value="/assets/data-set-1.json">Data Set 1</option>
-        <option value="/assets/data-set-2.json">Data Set 2</option>
-      </select>
+      <div class="modal-row" style="display: flex; gap: 20px;">
+        <!-- Columna izquierda: Iconos para seleccionar la categoría -->
+        <div class="chart-type-column" style="flex: 1;">
+          <p>Select Chart Category:</p>
+          <div class="icon-list" style="display: flex; flex-direction: column; gap: 10px;">
+            <button type="button" class="icon-button" (click)="selectChartCategory('line-chart')" 
+                    [class.selected]="selectedChartCategory === 'line-chart'">
+              <i class="ri-line-chart-line"></i>
+              <span>Line Chart</span>
+            </button>
+            <button type="button" class="icon-button" (click)="selectChartCategory('bar-chart')" 
+                    [class.selected]="selectedChartCategory === 'bar-chart'">
+              <i class="ri-bar-chart-horizontal-line"></i>
+              <span>Bar Chart</span>
+            </button>
+            <button type="button" class="icon-button" (click)="selectChartCategory('bubble-chart')" 
+                    [class.selected]="selectedChartCategory === 'bubble-chart'">
+              <i class="ri-bubble-chart-line"></i>
+              <span>Bubble Chart</span>
+            </button>
+            <button type="button" class="icon-button" (click)="selectChartCategory('pie-chart')" 
+                    [class.selected]="selectedChartCategory === 'pie-chart'">
+              <i class="ri-pie-chart-line"></i>
+              <span>Pie Chart</span>
+            </button>
+            <button type="button" class="icon-button" (click)="selectChartCategory('graph-custom')" 
+                    [class.selected]="selectedChartCategory === 'graph-custom'">
+              <i class="ri-flow-chart"></i>
+              <span>Custom Graph</span>
+            </button>
+            <button type="button" class="icon-button" (click)="selectChartCategory('table')" 
+                    [class.selected]="selectedChartCategory === 'table'">
+              <i class="ri-table-line"></i>
+              <span>Table</span>
+            </button>
+            <!-- Agrupar el resto en "other" -->
+            <button type="button" class="icon-button" (click)="selectChartCategory('other')" 
+                    [class.selected]="selectedChartCategory === 'other'">
+              <i class="ri-settings-3-line"></i>
+              <span>Other Categories</span>
+            </button>
+          </div>
+        </div>
+        <!-- Columna derecha: Dropdown para variante, fuente de datos y entrada para cantidad -->
+        <div class="data-source-column" style="flex: 1;">
+          <p>Select Chart Variant:</p>
+          <app-chart-selector-vanilla 
+            [selectedChartCategory]="selectedChartCategory" 
+            [(selectedChartVariant)]="selectedChartVariant">
+          </app-chart-selector-vanilla>
+          <p>Select Data Source:</p>
+          <select [(ngModel)]="selectedDataSource">
+            <option value="/assets/data-set-1.json">Data Set 1</option>
+            <option value="/assets/data-set-2.json">Data Set 2</option>
+          </select>
+          <p>Enter Number of Data Items to Display:</p>
+          <input type="number" [(ngModel)]="selectedDataCount" min="1" placeholder="Enter number or leave empty for all" />
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <app-default-button nzType="default" (click)="handleClose()">Close</app-default-button>
