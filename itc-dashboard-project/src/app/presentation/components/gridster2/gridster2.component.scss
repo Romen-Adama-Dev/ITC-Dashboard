@@ -6,6 +6,17 @@
   background-color: var(--background-color);
   color: var(--text-color);
   overflow-y: auto;
+
+  &.dark {
+    --separator-color: #ffffff;
+  }
+
+  ::ng-deep nz-float-button {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 10;
+  }
 }
 
 .gridster-container {
@@ -28,7 +39,7 @@ gridster {
 }
 
 .grid-item-content {
-  position: relative; // Permite posicionar elementos absolutos dentro
+  position: relative;
   background-color: var(--card-background, #f5f5f5);
   border: 1px solid var(--border-color, #ccc);
   min-height: 100%;
@@ -44,8 +55,8 @@ gridster {
 .item-content {
   flex: 1;
   width: 100%;
+  max-height: calc(100% - 50px);
   overflow-y: auto;
-  max-height: calc(100% - 50px); // Deja espacio para los botones
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,12 +64,36 @@ gridster {
   gap: 8px;
 }
 
-/* Botón flotante: se posiciona en la esquina superior derecha del widget */
-.shape-float-container {
+/* Botones flotantes dentro del widget */
+.item-buttons {
   position: absolute;
   top: 8px;
   right: 8px;
+  display: flex;
+  gap: 8px;
   z-index: 10;
+}
+
+.shape-float-container {
+  position: relative;
+
+  &.edit-button,
+  &.delete-button {
+    position: absolute;
+    top: 8px;
+  }
+
+  &.edit-button {
+    right: 48px;
+  }
+
+  &.delete-button {
+    right: 8px;
+  }
+
+  &.extra-button {
+    right: 48px;
+  }
 }
 
 /* Modal personalizado */
@@ -66,28 +101,66 @@ gridster {
   display: none;
   position: fixed;
   z-index: 10000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.085);
-}
 
-.modal.show {
-  display: block;
-}
+  &.show {
+    display: block;
+  }
 
-.modal-content {
-  background-color: var(--card-background, #ffffff);
-  margin: 10% auto;
-  padding: 20px;
-  border: none;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: animatetop 0.4s;
+  &-content {
+    background-color: var(--card-background, #ffffff);
+    margin: 10% auto;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: animatetop 0.4s;
+  }
+
+  &-header,
+  &-body,
+  &-footer {
+    padding: 16px;
+    background-color: var(--background-color, #ffffff);
+    color: var(--text-color, #333333);
+  }
+
+  &-header {
+    padding: 10px 16px;
+    background-color: var(--background-color, #0768A9);
+    color: var(--text-color, #ffffff);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid var(--separator-color, #d9d9d9);
+
+    h2 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+  }
+
+  &-footer {
+    padding: 10px 16px;
+    background-color: var(--background-color, #0768A9);
+    color: var(--text-color, #ffffff);
+    text-align: right;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: 1px solid var(--separator-color, #d9d9d9);
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
 }
 
 @keyframes animatetop {
@@ -101,46 +174,7 @@ gridster {
   }
 }
 
-.modal-header {
-  padding: 10px 16px;
-  background-color: var(--background-color, #0768A9);
-  color: var(--text-color, #ffffff);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom: 1px solid var(--separator-color, #d9d9d9);
-}
-
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.modal-body {
-  padding: 16px;
-  background-color: var(--background-color, #ffffff);
-  color: var(--text-color, #333333);
-}
-
-.modal-footer {
-  padding: 10px 16px;
-  background-color: var(--background-color, #0768A9);
-  color: var(--text-color, #ffffff);
-  text-align: right;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top: 1px solid var(--separator-color, #d9d9d9);
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-}
-
-:host.dark {
-  --separator-color: #ffffff;
-}
-
+/* Responsive */
 @media (max-width: 600px) {
   .modal-content {
     width: 95%;
@@ -148,20 +182,10 @@ gridster {
   }
 }
 
+/* Extras */
 .radio-selectors {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 16px;
-}
-
-:host ::ng-deep nz-float-button {
-  position: absolute !important;
-  top: 8px !important;
-  right: 8px !important;
-  z-index: 10;
-}
-
-.shape-float-container.extra-button {
-  right: 48px;
 }

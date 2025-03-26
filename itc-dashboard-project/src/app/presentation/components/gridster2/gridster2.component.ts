@@ -47,6 +47,8 @@ import { TreeMapComponent } from "../shared/data-view/tree-chart/tree-chart.comp
 import { UnifiedTableComponent } from "../shared/data-view/table/table.component";
 
 import { ChartSelectionModalComponent } from '../chart-selection-modal/chart-selection-modal.component';
+import { EditWidgetModalComponent } from "../edit-modal/edit-modal.component";
+import { ChartDataService } from '../shared/data-view/chart-data.service';
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
@@ -95,7 +97,8 @@ interface SafeGridsterConfig extends GridsterConfig {
     StackedHorizontalBarChartComponent,
     StackedVerticalBarChartComponent,
     UnifiedTableComponent,
-    TreeMapComponent
+    TreeMapComponent,
+    EditWidgetModalComponent
 ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -104,6 +107,8 @@ export class GridsterDashboardComponent implements OnInit {
   options!: SafeGridsterConfig;
   dashboard!: ExtendedGridsterItem[];
   isModalVisible: boolean = false;
+  isEditModalVisible: boolean = false;
+  currentEditItem: ExtendedGridsterItem | null = null;
   selectedChartType?: 
     'line-chart' | 
     'advanced-pie-chart' | 
@@ -188,6 +193,8 @@ export class GridsterDashboardComponent implements OnInit {
 
     // Inicialmente, el dashboard contiene un widget de prueba
     this.dashboard = [
+      { id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'advanced-pie-chart' },
+      { id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'gauge-chart' },
     ];
   }
 
@@ -292,5 +299,45 @@ export class GridsterDashboardComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
     }
+  }
+
+  // Método para abrir el modal de edición para un widget
+  editItem(item: ExtendedGridsterItem): void {
+    this.currentEditItem = item;
+    // Si el widget no tiene dataCount, usar "all" por defecto
+    if (!this.currentEditItem['dataCount']) {
+      this.currentEditItem['dataCount'] = 'all';
+    }
+    this.isEditModalVisible = true;
+  }
+
+  constructor(private chartDataService: ChartDataService) {}
+
+  reloadWidgetData(item: any): void {
+    const dataSource = item.dataSource || '/assets/data-set-1.json'
+    
+    this.chartDataService.loadChartsData(dataSource).subscribe({
+      next: () => {
+        console.log(`✅ Datos recargados desde ${dataSource}`)
+      },
+      error: (error) => {
+        console.error('❌ Error al recargar los datos del gráfico:', error)
+      }
+    })
+  }
+
+  handleWidgetEditSave(update: { dataCount: string; dataSource: string }) {
+    if (this.currentEditItem) {
+      this.currentEditItem['dataCount'] = update.dataCount
+      this.currentEditItem['dataSource'] = update.dataSource
+  
+      this.reloadWidgetData(this.currentEditItem)
+    }
+  
+    this.handleEditModalClose()
+  }
+
+  handleEditModalClose(): void {
+    this.isEditModalVisible = false;
   }
 }

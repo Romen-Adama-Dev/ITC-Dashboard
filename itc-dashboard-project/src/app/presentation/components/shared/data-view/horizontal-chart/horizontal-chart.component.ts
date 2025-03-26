@@ -116,6 +116,21 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
     if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
       this.updateDisplayedData();
     }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      if (this.configSubscription) {
+        this.configSubscription.unsubscribe();
+      }
+      this.configSubscription = this.chartHelper
+        .loadChartConfig('horizontalBarChart', this.dataSource)
+        .subscribe(
+          config => {
+            this.applyConfig(config);
+          },
+          error => {
+            console.error('Error loading chart config', error);
+          }
+        );
+    }
   }
 
   ngAfterViewInit(): void {

@@ -102,15 +102,26 @@
           </ng-container>
         </div>
         <div class="item-buttons">
-          <app-float-shape-button
-            shape="circle"
-            nzType="primary"
-            icon="close"
-            iconTheme="outline"
-            right="0px"
-            [disabled]="!pushItemsEnabled"
-            (nzOnClick)="removeItem(item)">
-          </app-float-shape-button>
+          <div class="shape-float-container edit-button">
+            <app-float-shape-button
+              shape="circle"
+              nzType="primary"
+              icon="edit"
+              iconTheme="outline"
+              [disabled]="!pushItemsEnabled"
+              (nzOnClick)="editItem(item)">
+            </app-float-shape-button>
+          </div>
+          <div class="shape-float-container delete-button">
+            <app-float-shape-button
+              shape="circle"
+              nzType="primary"
+              icon="close"
+              iconTheme="outline"
+              [disabled]="!pushItemsEnabled"
+              (nzOnClick)="removeItem(item)">
+            </app-float-shape-button>
+          </div>
         </div>
       </div>
     </gridster-item>
@@ -122,4 +133,12 @@
     (addChart)="onAddChart($event)"
     (closeModal)="closeCustomModal()">
   </app-chart-selection-modal>
+  
+  <app-edit-widget-modal 
+    [isVisible]="isEditModalVisible"
+    [dataCount]="currentEditItem?.['dataCount'] || 'all'"
+    [dataSource]="currentEditItem?.['dataSource'] || '/assets/data-set-1.json'"
+    (save)="handleWidgetEditSave($event)"
+    (close)="handleEditModalClose()">
+  </app-edit-widget-modal>
 </div>
