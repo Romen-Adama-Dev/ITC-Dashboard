@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "cols": 2,
+    "rows": 2,
+    "x": 0,
+    "y": 0,
+    "chartType": "line-chart",
+    "dataSource": "/assets/data-set-1.json",
+    "dataCount": 4
+  },
+  {
+    "id": 2,
+    "cols": 4,
+    "rows": 2,
+    "x": 2,
+    "y": 0,
+    "chartType": "table",
+    "dataSource": "/assets/data-set-1.json",
+    "dataCount": 4
+  },
+  {
+    "id": 3,
+    "cols": 2,
+    "rows": 1,
+    "x": 0,
+    "y": 2,
+    "chartType": "horizontal-bar",
+    "dataSource": "/assets/data-set-1.json",
+    "dataCount": 4
+  },
+  {
+    "id": 4,
+    "cols": 2,
+    "rows": 1,
+    "x": 2,
+    "y": 2,
+    "chartType": "vertical-bar",
+    "dataSource": "/assets/data-set-1.json",
+    "dataCount": 2
+  },
+  {
+    "id": 5,
+    "cols": 2,
+    "rows": 1,
+    "x": 4,
+    "y": 2,
+    "chartType": "bubble-chart",
+    "dataSource": "/assets/data-set-1.json",
+    "dataCount": 4
+  }
+]
