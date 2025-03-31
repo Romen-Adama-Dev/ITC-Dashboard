@@ -57,7 +57,7 @@ interface ExtendedGridsterItem extends GridsterItem {
 interface SafeGridsterConfig extends GridsterConfig {
   draggable: Draggable;
   resizable: Resizable;
-  pushDirections: PushDirections; 
+  pushDirections: PushDirections;
 }
 
 @Component({
@@ -99,7 +99,7 @@ interface SafeGridsterConfig extends GridsterConfig {
     UnifiedTableComponent,
     TreeMapComponent,
     EditWidgetModalComponent
-],
+  ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
 })
@@ -287,7 +287,7 @@ export class GridsterDashboardComponent implements OnInit {
       y: 0,
       chartType: this.selectedChartType,
       dataSource: selection.dataSource,
-      dataCount: selection.dataCount  // <-- Agrega esta propiedad
+      dataCount: selection.dataCount
     };
     this.dashboard.push(newItem);
     this.closeCustomModal();
@@ -304,7 +304,6 @@ export class GridsterDashboardComponent implements OnInit {
   // Método para abrir el modal de edición para un widget
   editItem(item: ExtendedGridsterItem): void {
     this.currentEditItem = item;
-    // Si el widget no tiene dataCount, usar "all" por defecto
     if (!this.currentEditItem['dataCount']) {
       this.currentEditItem['dataCount'] = 'all';
     }
@@ -314,30 +313,115 @@ export class GridsterDashboardComponent implements OnInit {
   constructor(private chartDataService: ChartDataService) {}
 
   reloadWidgetData(item: any): void {
-    const dataSource = item.dataSource || '/assets/data-set-1.json'
-    
+    const dataSource = item.dataSource || '/assets/data-set-1.json';
     this.chartDataService.loadChartsData(dataSource).subscribe({
       next: () => {
-        console.log(`✅ Datos recargados desde ${dataSource}`)
+        console.log(`✅ Datos recargados desde ${dataSource}`);
       },
       error: (error) => {
-        console.error('❌ Error al recargar los datos del gráfico:', error)
+        console.error('❌ Error al recargar los datos del gráfico:', error);
       }
-    })
+    });
   }
 
   handleWidgetEditSave(update: { dataCount: string; dataSource: string }) {
     if (this.currentEditItem) {
-      this.currentEditItem['dataCount'] = update.dataCount
-      this.currentEditItem['dataSource'] = update.dataSource
-  
-      this.reloadWidgetData(this.currentEditItem)
+      this.currentEditItem['dataCount'] = update.dataCount;
+      this.currentEditItem['dataSource'] = update.dataSource;
+      this.reloadWidgetData(this.currentEditItem);
     }
-  
-    this.handleEditModalClose()
+    this.handleEditModalClose();
   }
 
   handleEditModalClose(): void {
     this.isEditModalVisible = false;
+  }
+
+  // Método que genera y descarga un archivo JSON con la configuración actual del dashboard,
+  // permitiendo ingresar un nombre personalizado para el archivo.
+  serializeToJson(): void {
+    const fileNameInput = prompt("Ingrese el nombre del archivo (sin extensión):", "dashboardConfig");
+    const fileName = fileNameInput ? fileNameInput + ".json" : "dashboardConfig.json";
+    const json = JSON.stringify(this.dashboard, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    console.log('Dashboard serialized as JSON file:', json);
+  }
+
+  // Método para cargar (sobrescribir) el dashboard desde un archivo JSON seleccionado.
+  // Si existen datos en el dashboard, se limpian (se utiliza la función changedOptions)
+  // y se muestra únicamente lo contenido en el archivo JSON.
+  loadJsonFromFile(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Limpia el dashboard actual
+      this.changedOptions();
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        try {
+          const loadedDashboard = JSON.parse(e.target.result);
+          this.dashboard = loadedDashboard;
+          if (this.options.api && this.options.api.optionsChanged) {
+            this.options.api.optionsChanged();
+          }
+          console.log('Dashboard loaded from JSON file:', loadedDashboard);
+        } catch (error) {
+          console.error('Error parsing JSON file', error);
+        }
+      };
+      reader.readAsText(file);
+    }
+  }
+
+  // Método deserialize que actualiza el dashboard actual con los elementos del JSON,
+  // agregando aquellos que no existen y actualizando (haciendo merge) los existentes según su id.
+  deserialize(json: string): void {
+    try {
+      const parsedData = JSON.parse(json);
+      if (Array.isArray(parsedData)) {
+        parsedData.forEach(newItem => {
+          const index = this.dashboard.findIndex(item => item['id'] === newItem.id);
+          if (index >= 0) {
+            // Actualiza el elemento existente con las propiedades del nuevo elemento
+            this.dashboard[index] = { ...this.dashboard[index], ...newItem };
+          } else {
+            // Agrega el nuevo elemento al dashboard
+            this.dashboard.push(newItem);
+          }
+        });
+      } else {
+        console.error("El JSON debe ser un array de configuraciones.");
+      }
+      if (this.options.api && this.options.api.optionsChanged) {
+        this.options.api.optionsChanged();
+      }
+      console.log('Dashboard updated with deserialized JSON:', this.dashboard);
+    } catch (error) {
+      console.error('Error deserializing JSON', error);
+    }
+  }
+
+  // Método para deserializar el dashboard desde un archivo JSON seleccionado,
+  // usando el input file. Este método carga el archivo y llama a deserialize,
+  // que recorre el JSON y actualiza (hace merge) el dashboard actual, sin limpiar completamente los datos existentes.
+  deserializeFromFile(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        try {
+          const json = e.target.result;
+          this.deserialize(json);
+        } catch (error) {
+          console.error('Error al leer el archivo', error);
+        }
+      };
+      reader.readAsText(file);
+    }
   }
 }

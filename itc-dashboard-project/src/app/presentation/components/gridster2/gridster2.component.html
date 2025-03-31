@@ -4,12 +4,21 @@
     <app-default-button nzSize="default" (click)="changedOptions()" [disabled]="!pushItemsEnabled">
       Clean Up
     </app-default-button>
-    <app-default-button 
-      nzSize="default" 
+    <app-default-button
+      nzSize="default"
       (click)="togglePushItems()"
       [ngClass]="{'hover-style': !pushItemsEnabled}">
       {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
     </app-default-button>
+
+    <!-- Se genera y descarga el archivo JSON -->
+    <app-default-button nzSize="default" (click)="serializeToJson()">
+      Serialize to JSON File
+    </app-default-button>
+    <!-- Se selecciona un archivo JSON para cargar la configuración -->
+    <input type="file" (change)="loadJsonFromFile($event)" />
+
+    <input type="file" (change)="deserializeFromFile($event)" />
   </div>
   
   <gridster [options]="options">
@@ -47,7 +56,7 @@
             <app-heat-map></app-heat-map>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'horizontal-bar'">
-            <app-horizontal-bar-chart 
+            <app-horizontal-bar-chart
               [dataSource]="item['dataSource']"
               [dataCount]="item['dataCount']">
             </app-horizontal-bar-chart>
@@ -128,13 +137,13 @@
   </gridster>
   
   <app-chart-selection-modal
-    [isVisible]="isModalVisible" 
+    [isVisible]="isModalVisible"
     (selectedChartType)="selectedChartType"
     (addChart)="onAddChart($event)"
     (closeModal)="closeCustomModal()">
   </app-chart-selection-modal>
   
-  <app-edit-widget-modal 
+  <app-edit-widget-modal
     [isVisible]="isEditModalVisible"
     [dataCount]="currentEditItem?.['dataCount'] || 'all'"
     [dataSource]="currentEditItem?.['dataSource'] || '/assets/data-set-1.json'"
