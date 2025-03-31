@@ -1,85 +1,59 @@
 src/
 └── app/
-    ├── core/                                // Capa de Dominio
+    ├── core/                                
     │   ├── domain/
-    │   │   ├── models/                      // Entidades y modelos del dominio
-    │   │   │   ├── widget.model.ts          // Ej.: Modelo de Widget
-    │   │   │   ├── dashboard.model.ts       // Ej.: Modelo de Dashboard
-    │   │   │   └── user.model.ts            // Ej.: Modelo de Usuario
-    │   │   ├── repositories/                // Interfaces para repositorios
-    │   │   │   ├── widget.repository.ts     // Ej.: Contrato para Widgets
-    │   │   │   ├── dashboard.repository.ts  // Ej.: Contrato para Dashboards
-    │   │   │   └── user.repository.ts       // Ej.: Contrato para Usuarios
-    │   │   ├── use-cases/                   // Casos de uso (interactores)
-    │   │   │   ├── get-widgets.usecase.ts   // Ej.: Obtener widgets
-    │   │   │   ├── create-widget.usecase.ts // Ej.: Crear widget
-    │   │   │   ├── update-dashboard.usecase.ts // Ej.: Actualizar dashboard
-    │   │   │   └── get-user.usecase.ts      // Ej.: Obtener usuario
-    │   │   └── exceptions/                  // Excepciones propias del dominio
-    │   │       ├── widget.exception.ts      
-    │   │       ├── dashboard.exception.ts   
-    │   │       └── user.exception.ts        
+    │   │   ├── models/                      
+    │   │   │   └── (pendientes de migrar desde infrastructure/api) 
+    │   │   ├── repositories/                
+    │   │   │   └── (interfaces contractuales de los servicios de datos)
+    │   │   ├── use-cases/                   
+    │   │   │   └── (casos de uso del dominio, aún no aplicados)
+    │   │   └── exceptions/                  
+    │       └── (excepciones del dominio)
     │
-    ├── application/                         // Capa de Aplicación
-    │   ├── services/                        // Servicios que orquestan los casos de uso
-    │   │   ├── widget.service.ts            
-    │   │   ├── dashboard.service.ts         
-    │   │   └── user.service.ts              
-    │   └── adapters/                        // Adaptadores para convertir datos de API a modelos del dominio
-    │       ├── widget.adapter.ts            
-    │       ├── dashboard.adapter.ts         
-    │       └── user.adapter.ts              
+    ├── application/                         
+    │   ├── services/                        
+    │   │   └── chart-helper.service.ts      
+    │   ├── adapters/                        
+    │   │   └── (adaptadores pendientes de implementar)
+    │   └── entities/
+    │       └── chart-data.service.ts        
     │
-    ├── infrastructure/                      // Capa de Infraestructura
-    │   ├── repositories/                    // Implementaciones concretas de repositorios
-    │   │   ├── widget.repository.impl.ts    
-    │   │   ├── dashboard.repository.impl.ts 
-    │   │   └── user.repository.impl.ts      
-    │   ├── api/                             // Comunicación con APIs externas
-    │   │   ├── api-endpoints.ts             
-    │   │   ├── http-client.ts               
-    │   │   └── api-interceptor.ts           
-    │   └── utils/                           // Utilidades de infraestructura (fechas, números, etc.)
-    │       ├── date.util.ts                 
-    │       ├── number.util.ts               
-    │       └── string.util.ts               
+    ├── infrastructure/                      
+    │   ├── repositories/                    
+    │   │   └── (pendientes de implementación)
+    │   ├── api/                             
+    │   │   └── chart.model.ts               
+    │   └── utils/                           
+    │       └── (utilidades generales)
     │
-    ├── config/                              // Configuración global
-    │   ├── environment.ts                   // Variables de entorno
-    │   └── app-config.ts                    // Configuración (providers, rutas, etc.) con bootstrapApplication
+    ├── config/                              
+    │   ├── app.config.ts                    
+    │   ├── app.routes.ts                    
+    │   └── icons-provider.ts                
     │
-    ├── state/                               // Gestión del estado global (NgRx, Signals o Services)
-    │   └── (carpetas o archivos según la solución elegida)
+    ├── state/                               
+    │   └── (por definir: Signals, Store, etc.)
     │
-    ├── assets/                              // Recursos estáticos
-    │   ├── images/                          // Imágenes (logos, fondos, etc.)
-    │   │   └── logos/
-    │   │       ├── blue-svg.svg             // Logo para tema default
-    │   │       └── yellow-svg.svg           // Logo para tema dark
-    │   ├── icons/                           // Íconos personalizados
-    │   └── fonts/                           // Fuentes personalizadas
+    ├── translations/                        
+    │   └── (archivos de traducción i18n)
     │
-    ├── presentation/                        // Capa de Presentación (UI)
-    │   ├── components/                      // Componentes standalone y presentacionales
-    │   │   └── shared/
-    │   │       └── theme-toggle-button.component.ts  // Botón para alternar tema
-    │   ├── layout/                          // Componentes de layout (estructura de dashboard)
-    │   │   └── dashboard-layout.component.ts         // Layout del dashboard (standalone)
-    │   │       dashboard-layout.component.html
-    │   │       dashboard-layout.component.scss
-    │   └── pages/                           // Páginas o vistas completas asignadas a rutas
-    │       ├── welcome/                     // Página de bienvenida
-    │       │   ├── welcome.component.ts     // Componente standalone
-    │       │   ├── welcome.component.html
-    │       │   └── welcome.component.scss
-    │       └── (otras páginas según necesidad)
+    ├── presentation/                        
+    │   ├── components/                      
+    │   │   ├── shared/                      
+    │   │   ├── feedback/                    
+    │   │   ├── data-view/                   
+    │   │   ├── data-entry/                  
+    │   │   ├── buttons/                     
+    │   │   ├── gridster2/                   
+    │   │   ├── edit-modal/                  
+    │   │   ├── chart-selector/             
+    │   │   └── chart-selection-modal/      
+    │   ├── layout/                          
+    │   └── pages/                           
+    │       └── gridster2-example/           
     │
-    ├── translations/                        // Archivos de traducción (i18n)
-    │   ├── en.json                          
-    │   ├── es.json                          
-    │   └── fr.json                          
-    │
-    ├── app.component.ts                     // Componente raíz (standalone)
-    ├── app.component.html                   // Template raíz
-    ├── main.ts                              // Punto de entrada (bootstrapApplication)
-    └── (opcionalmente archivos de configuración adicionales)
+    ├── app.component.ts                     
+    ├── app.component.html                   
+    ├── app.component.scss                   
+    └── main.ts                              
