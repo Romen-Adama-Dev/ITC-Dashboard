@@ -48,7 +48,7 @@ import { UnifiedTableComponent } from "../shared/data-view/table/table.component
 
 import { ChartSelectionModalComponent } from '../chart-selection-modal/chart-selection-modal.component';
 import { EditWidgetModalComponent } from "../edit-modal/edit-modal.component";
-import { ChartDataService } from '../shared/data-view/chart-data.service';
+import { ChartDataService } from '../../../application/entities/chart-data.service';
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
@@ -313,7 +313,7 @@ export class GridsterDashboardComponent implements OnInit {
   constructor(private chartDataService: ChartDataService) {}
 
   reloadWidgetData(item: any): void {
-    const dataSource = item.dataSource || '/assets/data-set-1.json';
+    const dataSource = item.dataSource || '/assets/datasets/data-set-1.json';
     this.chartDataService.loadChartsData(dataSource).subscribe({
       next: () => {
         console.log(`✅ Datos recargados desde ${dataSource}`);

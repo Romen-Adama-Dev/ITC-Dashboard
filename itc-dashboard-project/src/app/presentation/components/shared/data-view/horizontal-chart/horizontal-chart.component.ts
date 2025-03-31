@@ -3,7 +3,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
-import { ChartConfig, ChartData } from '../chart.model';
+import { ChartConfig, ChartData } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-horizontal-bar-chart',
@@ -14,8 +14,7 @@ import { ChartConfig, ChartData } from '../chart.model';
 })
 export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() theme: 'default' | 'dark' = 'default';
-  @Input() dataSource: string = '/assets/data-set-1.json';
-  // Nuevo Input para cantidad de datos a mostrar
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
   @Input() graphqlEndpoint?: string;
   @Input() graphqlQuery?: string;

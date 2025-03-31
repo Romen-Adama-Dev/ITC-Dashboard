@@ -1,7 +1,7 @@
 import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ChartData, ChartConfig, ChartsJson } from '../chart.model';
+import { ChartData, ChartConfig, ChartsJson } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-vertical-chart',
@@ -18,7 +18,7 @@ export class VerticalBarChartComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   // Fuente de datos y configuración
-  @Input() dataSource: string = '/assets/data.json';
+  @Input() dataSource: string = '/assets/datasets/data.json';
   // Nuevo Input para especificar la cantidad de datos a mostrar: "1", "2" o "all"
   private _dataCount: string = 'all';
   @Input()

@@ -30,8 +30,8 @@ export class ChartDataService {
   private chartsSubject = new BehaviorSubject<ChartsJson | null>(null);
   charts$: Observable<ChartsJson | null> = this.chartsSubject.asObservable();
 
-  // URL predeterminada para cargar datos (puedes modificarla o parametrizarla)
-  private defaultUrl = '/assets/data-set-1.json';
+  // En chart-data.service.ts, cambia la ruta relativa por una ruta absoluta:
+  private defaultUrl = '/assets/datasets/data-set-1.json';
 
   constructor(private http: HttpClient) { }
 

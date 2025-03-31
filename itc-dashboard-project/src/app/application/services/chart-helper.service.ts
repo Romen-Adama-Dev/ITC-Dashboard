@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ChartConfig, ChartsJson } from '../../presentation/components/shared/data-view/chart.model';
-import { ChartDataService } from '../../presentation/components/shared/data-view/chart-data.service';
+import { ChartConfig, ChartsJson } from '../../infrastructure/api/chart.model';
+import { ChartDataService } from '../entities/chart-data.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
