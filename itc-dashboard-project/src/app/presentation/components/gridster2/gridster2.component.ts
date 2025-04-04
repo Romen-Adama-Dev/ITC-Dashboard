@@ -49,7 +49,8 @@ import { UnifiedTableComponent } from '../shared/data-view/table/table.component
 import { ChartSelectionModalComponent } from '../chart-selection-modal/chart-selection-modal.component'
 import { EditWidgetModalComponent } from '../edit-modal/edit-modal.component'
 import { ChartDataService } from '../../../application/entities/chart-data.service'
-import { NzAlertModule } from 'ng-zorro-antd/alert'
+import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification'
+import { NzIconModule } from 'ng-zorro-antd/icon'
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string
@@ -102,7 +103,8 @@ interface SafeGridsterConfig extends GridsterConfig {
     UnifiedTableComponent,
     TreeMapComponent,
     EditWidgetModalComponent,
-    NzAlertModule
+    NzNotificationModule,
+    NzIconModule
   ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -114,12 +116,6 @@ export class GridsterDashboardComponent implements OnInit {
   isEditModalVisible: boolean = false
   currentEditItem: ExtendedGridsterItem | null = null
 
-  // Alert properties
-  showAlert: boolean = false
-  alertMessage: string = ''
-  alertType: 'success' | 'warning' | 'error' | 'info' = 'success'
-
-  // Chart type selected from modal
   selectedChartType: 
     'line-chart' | 
     'advanced-pie-chart' | 
@@ -202,8 +198,6 @@ export class GridsterDashboardComponent implements OnInit {
       disableWarnings: false,
       scrollToNewItems: false
     }
-
-    // Inicialización del dashboard con dos widgets de prueba
     this.dashboard = [
       { id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'advanced-pie-chart' },
       { id: 2, cols: 2, rows: 2, y: 0, x: 0, chartType: 'gauge-chart' }
@@ -223,19 +217,12 @@ export class GridsterDashboardComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged()
     }
-    this.alertType = 'error'
-    this.alertMessage = 'Widgets borrados correctamente.'
-    this.showAlert = true
-    setTimeout(() => { this.showAlert = false }, 5000)
+    this.notification.error('Error', 'Widgets borrados correctamente.')
   }
 
   removeItem(item: ExtendedGridsterItem): void {
     this.dashboard.splice(this.dashboard.indexOf(item), 1)
-    // Mostrar alerta de borrado: rojo
-    this.alertType = 'error'
-    this.alertMessage = 'Widget borrado correctamente.'
-    this.showAlert = true
-    setTimeout(() => { this.showAlert = false }, 5000)
+    this.notification.error('Error', 'Widget borrado correctamente.')
   }
 
   addItem(): void {
@@ -262,6 +249,7 @@ export class GridsterDashboardComponent implements OnInit {
 
   openCustomModal(): void {
     this.isModalVisible = true
+    this.notification.info('Info', 'Modal abierto para selección de widget.')
   }
 
   closeCustomModal(): void {
@@ -309,11 +297,7 @@ export class GridsterDashboardComponent implements OnInit {
       dataCount: selection.dataCount
     }
     this.dashboard.push(newItem)
-    // Mostrar alerta de creación: verde
-    this.alertType = 'success'
-    this.alertMessage = 'Widget creado correctamente.'
-    this.showAlert = true
-    setTimeout(() => { this.showAlert = false }, 5000)
+    this.notification.success('Success', 'Widget creado correctamente.')
     this.closeCustomModal()
   }
 
@@ -322,6 +306,11 @@ export class GridsterDashboardComponent implements OnInit {
     this.options.pushItems = this.pushItemsEnabled
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged()
+    }
+    if (this.pushItemsEnabled) {
+      this.notification.info('Info', 'Widgets desbloqueados.')
+    } else {
+      this.notification.info('Info', 'Widgets bloqueados.')
     }
   }
 
@@ -333,7 +322,7 @@ export class GridsterDashboardComponent implements OnInit {
     this.isEditModalVisible = true
   }
 
-  constructor(private chartDataService: ChartDataService) {}
+  constructor(private chartDataService: ChartDataService, private notification: NzNotificationService) {}
 
   reloadWidgetData(item: any): void {
     const dataSource = item.dataSource || '/assets/datasets/data-set-1.json'
@@ -352,11 +341,7 @@ export class GridsterDashboardComponent implements OnInit {
       this.currentEditItem['dataCount'] = update.dataCount
       this.currentEditItem['dataSource'] = update.dataSource
       this.reloadWidgetData(this.currentEditItem)
-      // Mostrar alerta de edición: amarillo
-      this.alertType = 'warning'
-      this.alertMessage = 'Widget modificado correctamente.'
-      this.showAlert = true
-      setTimeout(() => { this.showAlert = false }, 5000)
+      this.notification.warning('Warning', 'Widget modificado correctamente.')
     }
     this.handleEditModalClose()
   }
@@ -376,6 +361,7 @@ export class GridsterDashboardComponent implements OnInit {
     a.download = fileName
     a.click()
     window.URL.revokeObjectURL(url)
+    this.notification.info('Info', 'Dashboard serializado correctamente.')
     console.log('Dashboard serialized as JSON file:', json)
   }
 
@@ -391,6 +377,7 @@ export class GridsterDashboardComponent implements OnInit {
           if (this.options.api && this.options.api.optionsChanged) {
             this.options.api.optionsChanged()
           }
+          this.notification.success('Success', 'Dashboard cargado desde JSON.')
           console.log('Dashboard loaded from JSON file:', loadedDashboard)
         } catch (error) {
           console.error('Error parsing JSON file', error)
@@ -418,6 +405,7 @@ export class GridsterDashboardComponent implements OnInit {
       if (this.options.api && this.options.api.optionsChanged) {
         this.options.api.optionsChanged()
       }
+      this.notification.success('Success', 'Dashboard actualizado con JSON.')
       console.log('Dashboard updated with deserialized JSON:', this.dashboard)
     } catch (error) {
       console.error('Error deserializing JSON', error)

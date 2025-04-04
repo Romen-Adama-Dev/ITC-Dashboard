@@ -1,0 +1,8 @@
+<nz-upload [nzBeforeUpload]="beforeUpload"
+           (nzChange)="handleChange($event)"
+           [nzShowUploadList]="false">
+  <button nz-button>
+    <nz-icon nzType="upload" nzTheme="outline"></nz-icon>
+    Cargar JSON
+  </button>
+</nz-upload>
