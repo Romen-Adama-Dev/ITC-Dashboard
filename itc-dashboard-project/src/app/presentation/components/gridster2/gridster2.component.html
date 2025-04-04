@@ -1,10 +1,4 @@
 <div class="gridster-container">
-  <nz-alert *ngIf="showAlert"
-            [nzType]="alertType"
-            [nzMessage]="alertMessage"
-            nzShowIcon
-            style="margin-bottom: 16px;">
-  </nz-alert>
   <div class="controls">
     <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
     <app-default-button nzSize="default" (click)="changedOptions()" [disabled]="!pushItemsEnabled">
@@ -16,15 +10,17 @@
       [ngClass]="{'hover-style': !pushItemsEnabled}">
       {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
     </app-default-button>
-
-    <!-- Se genera y descarga el archivo JSON -->
     <app-default-button nzSize="default" (click)="serializeToJson()">
       Serialize to JSON File
     </app-default-button>
-    <!-- Se selecciona un archivo JSON para cargar la configuración -->
-    <input type="file" (change)="loadJsonFromFile($event)" />
-
-    <input type="file" (change)="deserializeFromFile($event)" />
+    <label class="custom-file-upload">
+      <input type="file" (change)="loadJsonFromFile($event)" />
+      Cargar JSON
+    </label>
+    <label class="custom-file-upload">
+      <input type="file" (change)="deserializeFromFile($event)" />
+      Deserializar JSON
+    </label>
   </div>
   
   <gridster [options]="options">
@@ -111,8 +107,8 @@
           </ng-container>
           <ng-container *ngIf="item.chartType === 'vertical-bar'">
             <app-vertical-chart
-              [dataSource]="item['dataSource'] || '/assets/default-data-source.json'"
-              [dataCount]="item['dataCount'] || 'default-value'">
+              [dataSource]="item.dataSource || '/assets/default-data-source.json'"
+              [dataCount]="item.dataCount || 'default-value'">
             </app-vertical-chart>
           </ng-container>
         </div>
