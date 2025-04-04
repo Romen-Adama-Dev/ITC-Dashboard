@@ -223,6 +223,10 @@ export class GridsterDashboardComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged()
     }
+    this.alertType = 'error'
+    this.alertMessage = 'Widgets borrados correctamente.'
+    this.showAlert = true
+    setTimeout(() => { this.showAlert = false }, 5000)
   }
 
   removeItem(item: ExtendedGridsterItem): void {
