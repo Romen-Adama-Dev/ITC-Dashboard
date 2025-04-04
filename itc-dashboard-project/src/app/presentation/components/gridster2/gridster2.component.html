@@ -1,4 +1,10 @@
 <div class="gridster-container">
+  <nz-alert *ngIf="showAlert"
+            [nzType]="alertType"
+            [nzMessage]="alertMessage"
+            nzShowIcon
+            style="margin-bottom: 16px;">
+  </nz-alert>
   <div class="controls">
     <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
     <app-default-button nzSize="default" (click)="changedOptions()" [disabled]="!pushItemsEnabled">
@@ -57,8 +63,8 @@
           </ng-container>
           <ng-container *ngIf="item.chartType === 'horizontal-bar'">
             <app-horizontal-bar-chart
-              [dataSource]="item['dataSource']"
-              [dataCount]="item['dataCount']">
+              [dataSource]="item.dataSource || '/assets/datasets/data-set-1.json'"
+              [dataCount]="item.dataCount || 'all'">
             </app-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'linear-gauge-chart'">
@@ -105,8 +111,8 @@
           </ng-container>
           <ng-container *ngIf="item.chartType === 'vertical-bar'">
             <app-vertical-chart
-              [dataSource]="item['dataSource']"
-              [dataCount]="item['dataCount']">
+              [dataSource]="item['dataSource'] || '/assets/default-data-source.json'"
+              [dataCount]="item['dataCount'] || 'default-value'">
             </app-vertical-chart>
           </ng-container>
         </div>
