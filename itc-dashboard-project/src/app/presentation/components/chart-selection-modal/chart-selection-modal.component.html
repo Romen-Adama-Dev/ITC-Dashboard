@@ -4,43 +4,43 @@
       <h2>Select Chart Type and Data Source</h2>
     </div>
     <div class="modal-body">
-      <div class="modal-row" style="display: flex; gap: 20px;">
+      <div class="modal-row">
         <!-- Columna izquierda: Iconos para seleccionar la categoría -->
-        <div class="chart-type-column" style="flex: 1;">
+        <div class="chart-type-column">
           <p>Select Chart Category:</p>
-          <div class="icon-list" style="display: flex; flex-direction: column; gap: 10px;">
-            <button type="button" class="icon-button" (click)="selectChartCategory('line-chart')" 
+          <div class="icon-list">
+            <button type="button" class="icon-button" (click)="selectChartCategory('line-chart')"
                     [class.selected]="selectedChartCategory === 'line-chart'">
               <i class="ri-line-chart-line"></i>
               <span>Line Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('bar-chart')" 
+            <button type="button" class="icon-button" (click)="selectChartCategory('bar-chart')"
                     [class.selected]="selectedChartCategory === 'bar-chart'">
               <i class="ri-bar-chart-horizontal-line"></i>
               <span>Bar Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('bubble-chart')" 
+            <button type="button" class="icon-button" (click)="selectChartCategory('bubble-chart')"
                     [class.selected]="selectedChartCategory === 'bubble-chart'">
               <i class="ri-bubble-chart-line"></i>
               <span>Bubble Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('pie-chart')" 
+            <button type="button" class="icon-button" (click)="selectChartCategory('pie-chart')"
                     [class.selected]="selectedChartCategory === 'pie-chart'">
               <i class="ri-pie-chart-line"></i>
               <span>Pie Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('graph-custom')" 
+            <button type="button" class="icon-button" (click)="selectChartCategory('graph-custom')"
                     [class.selected]="selectedChartCategory === 'graph-custom'">
               <i class="ri-flow-chart"></i>
               <span>Custom Graph</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('table')" 
+            <button type="button" class="icon-button" (click)="selectChartCategory('table')"
                     [class.selected]="selectedChartCategory === 'table'">
               <i class="ri-table-line"></i>
               <span>Table</span>
             </button>
             <!-- Agrupar el resto en "other" -->
-            <button type="button" class="icon-button" (click)="selectChartCategory('other')" 
+            <button type="button" class="icon-button" (click)="selectChartCategory('other')"
                     [class.selected]="selectedChartCategory === 'other'">
               <i class="ri-settings-3-line"></i>
               <span>Other Categories</span>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <!-- Columna derecha: Dropdown para variante, fuente de datos y entrada para cantidad -->
-        <div class="data-source-column" style="flex: 1;">
+        <div class="data-source-column">
           <p>Select Chart Variant:</p>
           <app-chart-selector-vanilla 
             [selectedChartCategory]="selectedChartCategory" 
