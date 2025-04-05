@@ -16,7 +16,6 @@ export class ChartSelectionModalComponent {
   selectedChartCategory?: string;
   selectedChartVariant?: string;
   @Input() selectedDataSource: string = '/assets/data-set-1.json';
-  // Usamos un input para la cantidad; si se ingresa un valor numérico, se utiliza ese; de lo contrario, se interpreta como "all"
   selectedDataCount: string = 'all';
 
   @Output() addChart = new EventEmitter<{ chartType: string, dataSource: string, dataCount: string }>();

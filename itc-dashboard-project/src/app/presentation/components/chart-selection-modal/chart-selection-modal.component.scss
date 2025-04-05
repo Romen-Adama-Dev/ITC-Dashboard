@@ -47,7 +47,7 @@
   align-items: center;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-bottom: 1px solid var(--separator-color, #d9d9d9);
+  border-bottom: 1px solid var(--border-color, #d9d9d9);
 }
 
 .modal-header h2 {
@@ -68,28 +68,30 @@
   text-align: right;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  border-top: 1px solid var(--separator-color, #d9d9d9);
+  border-top: 1px solid var(--border-color, #d9d9d9);
   display: flex;
   justify-content: flex-end;
   gap: 16px;
 }
 
 :host.dark {
-  --separator-color: #ffffff;
+  /* Los valores se definirán en dark.less */
 }
 
-@media (max-width: 600px) {
-  .modal-content {
-    width: 95%;
-    margin: 15% auto;
-  }
+.modal-row {
+  display: flex;
+  gap: 20px;
 }
 
-.radio-selectors {
+.chart-type-column,
+.data-source-column {
+  flex: 1;
+}
+
+.icon-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
 }
 
 :host ::ng-deep nz-float-button {
@@ -115,14 +117,28 @@
 }
 
 .icon-button:hover {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .icon-button.selected {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
 
 .icon-button i {
   font-size: 24px;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+    margin: 15% auto;
+  }
+}
+
+.radio-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
 }
