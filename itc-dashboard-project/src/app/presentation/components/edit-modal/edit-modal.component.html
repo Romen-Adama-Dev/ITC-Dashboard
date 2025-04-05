@@ -1,30 +1,31 @@
 <div class="modal" [class.show]="isVisible">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close" (click)="handleClose()">&times;</span>
-        <h2>Edit Widget</h2>
-      </div>
-  
-      <div class="modal-body">
-        <p>Select Data Source:</p>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Edit Widget</h2>
+    </div>
+
+    <div class="modal-body">
+      <p>Select Data Source:</p>
+      <div class="select-wrapper">
         <select [(ngModel)]="dataSource">
           <option value="/assets/data-set-1.json">Data Set 1</option>
           <option value="/assets/data-set-2.json">Data Set 2</option>
         </select>
-  
-        <p style="margin-top: 1rem">Enter Number of Data Items to Display:</p>
-        <input
-          type="number"
-          [(ngModel)]="dataCount"
-          min="1"
-          placeholder="Enter number or leave empty for all"
-        />
-        <p *ngIf="warningMessage" class="warning">{{ warningMessage }}</p>
       </div>
-  
-      <div class="modal-footer">
-        <app-default-button nzType="default" (click)="handleClose()">Cancel</app-default-button>
-        <app-primary-button nzType="default" (click)="handleSave()">Save</app-primary-button>
-      </div>
+
+      <p style="margin-top: 1rem">Enter Number of Data Items to Display:</p>
+      <input
+        type="number"
+        [(ngModel)]="dataCount"
+        min="1"
+        placeholder="Enter number or leave empty for all"
+      />
+      <p *ngIf="warningMessage" class="warning">{{ warningMessage }}</p>
+    </div>
+
+    <div class="modal-footer">
+      <app-default-button nzType="default" (click)="handleClose()">Cancel</app-default-button>
+      <app-primary-button nzType="default" (click)="handleSave()">Save</app-primary-button>
     </div>
   </div>
+</div>
