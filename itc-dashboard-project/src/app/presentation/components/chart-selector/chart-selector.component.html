@@ -1,6 +1,8 @@
-<select class="chart-selector" [(ngModel)]="selectedChartVariant" (ngModelChange)="onSelectionChange($event)">
-  <option value="" disabled>Select Chart Variant</option>
-  <option *ngFor="let option of filteredOptions" [value]="option.value">
-    {{ option.label }}
-  </option>
-</select>
+<div class="select-wrapper">
+  <select class="chart-selector" [(ngModel)]="selectedChartVariant" (ngModelChange)="onSelectionChange($event)">
+    <option value="" disabled>Select Chart Variant</option>
+    <option *ngFor="let option of filteredOptions" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+</div>

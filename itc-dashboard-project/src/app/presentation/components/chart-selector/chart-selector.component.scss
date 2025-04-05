@@ -1,13 +1,69 @@
 :host {
-    display: block;
+  display: block;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.chart-selector {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+  font-size: 1rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  background-color: var(--card-background, #fff);
+  color: var(--text-color, #000);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.chart-selector:focus {
+  outline: none;
+  border-color: var(--primary-color, #0768A9);
+}
+
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--text-color, #000);
+}
+
+@media (max-width: 600px) {
+  .chart-selector {
+    padding: 8px 36px 8px 10px;
+    font-size: 0.9rem;
   }
   
-  .chart-selector {
-    width: 100%;
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: var(--card-background, #fff);
-    color: var(--text-color, #000);
+  .select-wrapper::after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--text-color, #000);
   }
+}
+
+/* Ajustes para tema dark */
+:host.dark .chart-selector {
+  background-color: var(--card-background, #2a2a2a);
+  color: var(--text-color, #ffffff);
+  border: 1px solid var(--border-color, rgba(255, 204, 0, 0.4));
+}
+
+:host.dark .chart-selector option {
+  background-color: var(--card-background, #2a2a2a);
+  color: var(--text-color, #ffffff);
+}
+
+:host.dark .chart-selector option:checked {
+  background-color: var(--primary-color, #FFCC00);
+  color: #ffffff;
+}
