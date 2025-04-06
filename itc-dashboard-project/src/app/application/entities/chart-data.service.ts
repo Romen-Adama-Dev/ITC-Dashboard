@@ -19,6 +19,7 @@ export interface ChartsJson {
     advancedPieChart: ChartConfig;
     areaChart: ChartConfig;
     boxChart: ChartConfig;
+    bubbleChart: ChartConfig;
     verticalBarChart: ChartConfig;
     horizontalBarChart: ChartConfig;
   };
