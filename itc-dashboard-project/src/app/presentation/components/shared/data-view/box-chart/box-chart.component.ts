@@ -1,5 +1,6 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { LegendPosition, NgxChartsModule, BoxChartModule } from '@swimlane/ngx-charts';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-box-chart',
@@ -8,57 +9,22 @@ import { LegendPosition, NgxChartsModule, BoxChartModule } from '@swimlane/ngx-c
   templateUrl: './box-chart.component.html',
   styleUrls: ['./box-chart.component.scss']
 })
-export class BoxChartComponent implements AfterViewInit, OnDestroy {
+export class BoxChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() theme: 'default' | 'dark' = 'default';
-  @Input()
-  data: { 
-    name: string; 
-    series: { name: string; min: number; max: number; median: number; value: number; }[]; 
-  }[] = [
-    {
-      name: "Colombia",
-      series: [
-        { name: "2019", value: 12, min: 12, max: 12, median: 12 },
-        { name: "2020", value: 23, min: 23, max: 23, median: 23 },
-        { name: "2021", value: 34, min: 34, max: 34, median: 34 },
-        { name: "2022", value: 27, min: 27, max: 27, median: 27 },
-        { name: "2023", value: 18, min: 18, max: 18, median: 18 },
-        { name: "2024", value: 45, min: 45, max: 45, median: 45 }
-      ]
-    },
-    {
-      name: "Chile",
-      series: [
-        { name: "2019", value: 20, min: 20, max: 20, median: 20 },
-        { name: "2020", value: 28, min: 28, max: 28, median: 28 },
-        { name: "2021", value: 42, min: 42, max: 42, median: 42 },
-        { name: "2022", value: 39, min: 39, max: 39, median: 39 },
-        { name: "2023", value: 31, min: 31, max: 31, median: 31 },
-        { name: "2024", value: 61, min: 61, max: 61, median: 61 }
-      ]
-    },
-    {
-      name: "Perú",
-      series: [
-        { name: "2019", value: 47, min: 47, max: 47, median: 47 },
-        { name: "2020", value: 62, min: 62, max: 62, median: 62 },
-        { name: "2021", value: 55, min: 55, max: 55, median: 55 },
-        { name: "2022", value: 42, min: 42, max: 42, median: 42 },
-        { name: "2023", value: 49, min: 49, max: 49, median: 49 },
-        { name: "2024", value: 71, min: 71, max: 71, median: 71 }
-      ]
-    }
-  ];
+  @Input() dataSource: string = '/assets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+
+  // Propiedad para almacenar los datos que se mostrarán en el gráfico.
+  public data: any[] = [];
+  // Propiedad para guardar la data completa obtenida del JSON.
+  public originalData: any[] = [];
 
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  // Tamaño inicial; se actualizará automáticamente a un valor cuadrado según el contenedor
   view: [number, number] = [600, 600];
-
-  // Opciones del gráfico
   animations: boolean = true;
   legend: boolean = false;
   legendTitle: string = 'Legend';
@@ -82,14 +48,60 @@ export class BoxChartComponent implements AfterViewInit, OnDestroy {
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
-    // Se observa el contenedor para ajustar el tamaño del gráfico de forma cuadrada
+  constructor(private el: ElementRef, private http: HttpClient) {
+    // Ajusta el tamaño del gráfico para mantener un aspecto cuadrado
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width]; // Forzamos un aspecto cuadrado
+        this.view = [width, width];
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+  }
+
+  loadConfig(): void {
+    const ds = this.dataSource && this.dataSource.trim() ? this.dataSource : '/assets/data-set-1.json';
+    this.http.get<any>(ds).subscribe(config => {
+      if (config?.charts?.boxChart) {
+        const boxChart = config.charts.boxChart;
+        this.theme = boxChart.theme;
+        this.view = boxChart.view;
+        this.originalData = boxChart.data;
+      } else {
+        // Si no se encuentra la configuración para boxChart, se deja originalData vacía o se puede asignar un valor por defecto.
+        this.originalData = [];
+      }
+      this.updateDisplayedData();
+    }, error => {
+      console.error('Error loading data-set-1.json:', error);
+      this.originalData = [];
+      this.updateDisplayedData();
+    });
+  }
+
+  updateDisplayedData(): void {
+    if (this.originalData && this.originalData.length > 0) {
+      if (this.dataCount !== 'all') {
+        const count = Number(this.dataCount);
+        this.data = count > this.originalData.length ? [...this.originalData] : this.originalData.slice(0, count);
+      } else {
+        this.data = [...this.originalData];
+      }
+    } else {
+      this.data = [];
+    }
   }
 
   ngAfterViewInit(): void {
