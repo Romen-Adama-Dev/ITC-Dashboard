@@ -25,7 +25,6 @@ import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-char
 import { BoxChartComponent } from '../shared/data-view/box-chart/box-chart.component'
 import { BubbleChartComponent } from '../shared/data-view/bubble-chart/bubble-chart.component'
 import { GaugeChartComponent } from '../shared/data-view/gauge-chart/gauge-chart.component'
-import { NgxGraphCustomCurveComponent } from '../shared/data-view/graph-custom-curve/graph-custom-curve.component'
 import { GroupedHorizontalBarChartComponent } from '../shared/data-view/grouped-horizontal-bar-chart/grouped-horizontal-bar-chart.component'
 import { GroupedVerticalBarChartComponent } from '../shared/data-view/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component'
 import { HeatMapComponent } from '../shared/data-view/heat-chart/heat-chart.component'
@@ -83,7 +82,6 @@ interface SafeGridsterConfig extends GridsterConfig {
     BoxChartComponent,
     BubbleChartComponent,
     GaugeChartComponent,
-    NgxGraphCustomCurveComponent,
     GroupedHorizontalBarChartComponent,
     GroupedVerticalBarChartComponent,
     HeatMapComponent,
@@ -123,7 +121,6 @@ export class GridsterDashboardComponent implements OnInit {
     'box-chart' |
     'bubble-chart' |
     'gauge-chart' |
-    'graph-custom' |
     'grouped-horizontal-bar' |
     'vertical-bar-chart' |
     'heat-map' |
@@ -264,7 +261,6 @@ export class GridsterDashboardComponent implements OnInit {
       | 'box-chart'
       | 'bubble-chart'
       | 'gauge-chart'
-      | 'graph-custom'
       | 'grouped-horizontal-bar'
       | 'vertical-bar-chart'
       | 'heat-map'

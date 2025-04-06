@@ -1,5 +1,7 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClient } from '@angular/common/http';
+import { curveLinear } from 'd3-shape';
 
 @Component({
   selector: 'app-bubble-chart',
@@ -8,14 +10,17 @@ import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './bubble-chart.component.html',
   styleUrls: ['./bubble-chart.component.scss']
 })
-export class BubbleChartComponent implements AfterViewInit, OnDestroy {
+export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  // Tamaño inicial; se actualizará manteniendo la relación 400/700 (aprox. 0.5714)
+  // Tamaño inicial, se ajusta manteniendo la relación de aspecto: 400/700 ≈ 0.5714
   view: [number, number] = [700, 400];
 
   animations: boolean = true;
@@ -31,7 +36,6 @@ export class BubbleChartComponent implements AfterViewInit, OnDestroy {
   showGridLines: boolean = true;
   roundDomains: boolean = false;
   autoScale: boolean = true;
-  // Específico de bubble chart
   minRadius: number = 5;
   maxRadius: number = 20;
   tooltipDisabled: boolean = false;
@@ -42,29 +46,9 @@ export class BubbleChartComponent implements AfterViewInit, OnDestroy {
   maxYAxisTickLength: number = 16;
   wrapTicks: boolean = false;
 
-  data = [
-    {
-      name: 'Germany',
-      series: [
-        { name: '2010', x: 2010, y: 7300000, r: 10 },
-        { name: '2011', x: 2011, y: 8940000, r: 12 }
-      ]
-    },
-    {
-      name: 'USA',
-      series: [
-        { name: '2010', x: 2010, y: 7870000, r: 8 },
-        { name: '2011', x: 2011, y: 8270000, r: 10 }
-      ]
-    },
-    {
-      name: 'France',
-      series: [
-        { name: '2010', x: 2010, y: 5000002, r: 9 },
-        { name: '2011', x: 2011, y: 5800000, r: 11 }
-      ]
-    }
-  ];
+  // Datos originales y los datos que se muestran (posiblemente filtrados)
+  originalData: any[] = [];
+  data: any[] = [];
 
   colorScheme: any = {
     name: 'customScheme',
@@ -75,8 +59,8 @@ export class BubbleChartComponent implements AfterViewInit, OnDestroy {
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
-    // Se establece la relación de aspecto: altura = ancho * (400/700)
+  constructor(private el: ElementRef, private http: HttpClient) {
+    // Se establece la relación de aspecto: height = width * (400/700)
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
@@ -86,12 +70,56 @@ export class BubbleChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
   ngAfterViewInit(): void {
     this.resizeObserver.observe(this.el.nativeElement);
   }
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+  }
+
+  loadConfig(): void {
+    const ds = this.dataSource && this.dataSource.trim() ? this.dataSource : '/assets/data-set-1.json';
+    this.http.get<any>(ds).subscribe(config => {
+      if (config?.charts?.bubbleChart) {
+        const bubbleChart = config.charts.bubbleChart;
+        this.theme = bubbleChart.theme;
+        this.view = bubbleChart.view;
+        this.originalData = bubbleChart.data;
+      }
+      this.updateDisplayedData();
+    }, error => {
+      console.error('Error loading bubble chart config:', error);
+      this.updateDisplayedData();
+    });
+  }
+
+  updateDisplayedData(): void {
+    if (this.originalData && this.originalData.length > 0) {
+      if (this.dataCount !== 'all') {
+        const count = Number(this.dataCount);
+        // Para cada elemento, se truncan las series a "count" elementos
+        this.data = this.originalData.map(item => ({
+          ...item,
+          series: item.series.slice(0, count)
+        }));
+      } else {
+        this.data = [...this.originalData];
+      }
+    }
   }
 
   onSelect(event: any): void {
