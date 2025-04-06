@@ -1,5 +1,6 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-advanced-pie-chart',
@@ -8,8 +9,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './advanced-pie-chart.component.html',
   styleUrls: ['./advanced-pie-chart.component.scss']
 })
-export class AdvancedPieChartComponent implements AfterViewInit, OnDestroy {
+export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
@@ -17,16 +21,13 @@ export class AdvancedPieChartComponent implements AfterViewInit, OnDestroy {
 
   // Tamaño inicial; se actualizará con el ResizeObserver
   view: [number, number] = [700, 700];
-
   animations = true;
   gradient = false;
   tooltipDisabled = false;
 
-  data = [
-    { name: 'Germany', value: 40632 },
-    { name: 'USA', value: 50000 },
-    { name: 'France', value: 36745 }
-  ];
+  // Datos para mostrar y datos originales completos
+  data: any[] = [];
+  originalData: any[] = [];
 
   colorScheme: any = {
     name: 'customScheme',
@@ -37,7 +38,7 @@ export class AdvancedPieChartComponent implements AfterViewInit, OnDestroy {
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private http: HttpClient) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
@@ -47,12 +48,55 @@ export class AdvancedPieChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
   ngAfterViewInit(): void {
     this.resizeObserver.observe(this.el.nativeElement);
   }
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+  }
+
+  loadConfig(): void {
+    const ds = this.dataSource && this.dataSource.trim() ? this.dataSource : '/assets/data-set-1.json';
+    this.http.get<any>(ds).subscribe(config => {
+      if (config?.charts?.advancedPieChart) {
+        const advancedChart = config.charts.advancedPieChart;
+        this.theme = advancedChart.theme;
+        this.view = advancedChart.view;
+        this.originalData = advancedChart.data;
+        this.updateDisplayedData();
+      }
+    }, error => {
+      console.error('Error loading data-set-1.json:', error);
+    });
+  }
+
+  updateDisplayedData(): void {
+    if (this.originalData && this.originalData.length > 0) {
+      if (this.dataCount !== 'all') {
+        const count = Number(this.dataCount);
+        if (count > this.originalData.length) {
+          this.data = [...this.originalData];
+        } else {
+          this.data = this.originalData.slice(0, count);
+        }
+      } else {
+        this.data = [...this.originalData];
+      }
+    }
   }
 
   onSelect(event: any): void {

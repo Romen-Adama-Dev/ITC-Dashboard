@@ -55,7 +55,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string
   dataSource?: string
-  dataCount?: string
+  dataCount?: string | undefined
 }
 
 interface SafeGridsterConfig extends GridsterConfig {
