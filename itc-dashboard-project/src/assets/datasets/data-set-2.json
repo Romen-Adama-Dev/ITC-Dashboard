@@ -12,8 +12,8 @@
         { "name": "Uruguay", "value": 2000000 },
         { "name": "Paraguay", "value": 2500000 }
       ]
-    },
-    "areaChart": {
+      },
+      "areaChart": {
       "theme": "default",
       "view": [749, 499],
       "data": [
@@ -74,68 +74,134 @@
           ]
         }
       ]
-        },
-    "boxChart": {
-      "theme": "default",
-      "view": [749, 499],
-      "data": [
-        {
-          "name": "Marruecos",
-          "series": [
-        { "name": "2019", "value": 12, "min": 12, "max": 12, "median": 12 },
-        { "name": "2020", "value": 23, "min": 23, "max": 23, "median": 23 },
-        { "name": "2021", "value": 34, "min": 34, "max": 34, "median": 34 },
-        { "name": "2022", "value": 27, "min": 27, "max": 27, "median": 27 },
-        { "name": "2023", "value": 18, "min": 18, "max": 18, "median": 18 },
-        { "name": "2024", "value": 45, "min": 45, "max": 45, "median": 45 }
-          ]
-        },
-        {
-          "name": "España",
-          "series": [
-        { "name": "2019", "value": 20, "min": 20, "max": 20, "median": 20 },
-        { "name": "2020", "value": 28, "min": 28, "max": 28, "median": 28 },
-        { "name": "2021", "value": 42, "min": 42, "max": 42, "median": 42 },
-        { "name": "2022", "value": 39, "min": 39, "max": 39, "median": 39 },
-        { "name": "2023", "value": 31, "min": 31, "max": 31, "median": 31 },
-        { "name": "2024", "value": 61, "min": 61, "max": 61, "median": 61 }
-          ]
-        },
-        {
-          "name": "Rusia",
-          "series": [
-        { "name": "2019", "value": 47, "min": 47, "max": 47, "median": 47 },
-        { "name": "2020", "value": 62, "min": 62, "max": 62, "median": 62 },
-        { "name": "2021", "value": 55, "min": 55, "max": 55, "median": 55 },
-        { "name": "2022", "value": 42, "min": 42, "max": 42, "median": 42 },
-        { "name": "2023", "value": 49, "min": 49, "max": 49, "median": 49 },
-        { "name": "2024", "value": 71, "min": 71, "max": 71, "median": 71 }
-          ]
-        },
-        {
-          "name": "EEUU",
-          "series": [
-        { "name": "2019", "value": 30, "min": 30, "max": 30, "median": 30 },
-        { "name": "2020", "value": 40, "min": 40, "max": 40, "median": 40 },
-        { "name": "2021", "value": 50, "min": 50, "max": 50, "median": 50 },
-        { "name": "2022", "value": 45, "min": 45, "max": 45, "median": 45 },
-        { "name": "2023", "value": 35, "min": 35, "max": 35, "median": 35 },
-        { "name": "2024", "value": 55, "min": 55, "max": 55, "median": 55 }
-          ]
-        },
-        {
-          "name": "Japon",
-          "series": [
-        { "name": "2019", "value": 60, "min": 60, "max": 60, "median": 60 },
-        { "name": "2020", "value": 70, "min": 70, "max": 70, "median": 70 },
-        { "name": "2021", "value": 80, "min": 80, "max": 80, "median": 80 },
-        { "name": "2022", "value": 75, "min": 75, "max": 75, "median": 75 },
-        { "name": "2023", "value": 65, "min": 65, "max": 65, "median": 65 },
-        { "name": "2024", "value": 85, "min": 85, "max": 85, "median": 85 }
-          ]
-        }
-      ]
-        },
+      },
+      "boxChart": {
+        "theme": "default",
+        "view": [749, 499],
+        "data": [
+          {
+            "name": "Marruecos",
+            "series": [
+          { "name": "2019", "value": 12, "min": 12, "max": 12, "median": 12 },
+          { "name": "2020", "value": 23, "min": 23, "max": 23, "median": 23 },
+          { "name": "2021", "value": 34, "min": 34, "max": 34, "median": 34 },
+          { "name": "2022", "value": 27, "min": 27, "max": 27, "median": 27 },
+          { "name": "2023", "value": 18, "min": 18, "max": 18, "median": 18 },
+          { "name": "2024", "value": 45, "min": 45, "max": 45, "median": 45 }
+            ]
+          },
+          {
+            "name": "España",
+            "series": [
+          { "name": "2019", "value": 20, "min": 20, "max": 20, "median": 20 },
+          { "name": "2020", "value": 28, "min": 28, "max": 28, "median": 28 },
+          { "name": "2021", "value": 42, "min": 42, "max": 42, "median": 42 },
+          { "name": "2022", "value": 39, "min": 39, "max": 39, "median": 39 },
+          { "name": "2023", "value": 31, "min": 31, "max": 31, "median": 31 },
+          { "name": "2024", "value": 61, "min": 61, "max": 61, "median": 61 }
+            ]
+          },
+          {
+            "name": "Rusia",
+            "series": [
+          { "name": "2019", "value": 47, "min": 47, "max": 47, "median": 47 },
+          { "name": "2020", "value": 62, "min": 62, "max": 62, "median": 62 },
+          { "name": "2021", "value": 55, "min": 55, "max": 55, "median": 55 },
+          { "name": "2022", "value": 42, "min": 42, "max": 42, "median": 42 },
+          { "name": "2023", "value": 49, "min": 49, "max": 49, "median": 49 },
+          { "name": "2024", "value": 71, "min": 71, "max": 71, "median": 71 }
+            ]
+          },
+          {
+            "name": "EEUU",
+            "series": [
+          { "name": "2019", "value": 30, "min": 30, "max": 30, "median": 30 },
+          { "name": "2020", "value": 40, "min": 40, "max": 40, "median": 40 },
+          { "name": "2021", "value": 50, "min": 50, "max": 50, "median": 50 },
+          { "name": "2022", "value": 45, "min": 45, "max": 45, "median": 45 },
+          { "name": "2023", "value": 35, "min": 35, "max": 35, "median": 35 },
+          { "name": "2024", "value": 55, "min": 55, "max": 55, "median": 55 }
+            ]
+          },
+          {
+            "name": "Japon",
+            "series": [
+          { "name": "2019", "value": 60, "min": 60, "max": 60, "median": 60 },
+          { "name": "2020", "value": 70, "min": 70, "max": 70, "median": 70 },
+          { "name": "2021", "value": 80, "min": 80, "max": 80, "median": 80 },
+          { "name": "2022", "value": 75, "min": 75, "max": 75, "median": 75 },
+          { "name": "2023", "value": 65, "min": 65, "max": 65, "median": 65 },
+          { "name": "2024", "value": 85, "min": 85, "max": 85, "median": 85 }
+            ]
+          }
+        ]
+      },
+      "bubbleChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+          {
+        "name": "Australia",
+        "series": [
+          { "name": "2010", "x": 2010.3, "y": 6350000, "r": 10 },
+          { "name": "2011", "x": 2011.7, "y": 6850000, "r": 12 },
+          { "name": "2012", "x": 2012.1, "y": 7350000, "r": 14 },
+          { "name": "2013", "x": 2013.5, "y": 7850000, "r": 16 },
+          { "name": "2014", "x": 2014.9, "y": 8350000, "r": 18 }
+        ]
+          },
+          {
+        "name": "Brazil",
+        "series": [
+          { "name": "2010", "x": 2010.5, "y": 7550000, "r": 14 },
+          { "name": "2011", "x": 2011.2, "y": 8050000, "r": 16 },
+          { "name": "2012", "x": 2012.4, "y": 8550000, "r": 18 },
+          { "name": "2013", "x": 2013.8, "y": 9050000, "r": 20 },
+          { "name": "2014", "x": 2014.6, "y": 9550000, "r": 22 }
+        ]
+          },
+          {
+        "name": "India",
+        "series": [
+          { "name": "2010", "x": 2010.8, "y": 5050000, "r": 9 },
+          { "name": "2011", "x": 2011.4, "y": 5550000, "r": 11 },
+          { "name": "2012", "x": 2012.6, "y": 6050000, "r": 13 },
+          { "name": "2013", "x": 2013.1, "y": 6550000, "r": 15 },
+          { "name": "2014", "x": 2014.3, "y": 7050000, "r": 17 }
+        ]
+          },
+          {
+        "name": "Japan",
+        "series": [
+          { "name": "2010", "x": 2010.6, "y": 4250000, "r": 8 },
+          { "name": "2011", "x": 2011.9, "y": 4750000, "r": 10 },
+          { "name": "2012", "x": 2012.3, "y": 5250000, "r": 12 },
+          { "name": "2013", "x": 2013.7, "y": 5750000, "r": 14 },
+          { "name": "2014", "x": 2014.1, "y": 6250000, "r": 16 }
+        ]
+          },
+          {
+        "name": "Mexico",
+        "series": [
+          { "name": "2010", "x": 2010.4, "y": 3450000, "r": 7 },
+          { "name": "2011", "x": 2011.1, "y": 3950000, "r": 9 },
+          { "name": "2012", "x": 2012.5, "y": 4450000, "r": 11 },
+          { "name": "2013", "x": 2013.9, "y": 4950000, "r": 13 },
+          { "name": "2014", "x": 2014.4, "y": 5450000, "r": 15 }
+        ]
+          },
+          {
+        "name": "South Korea",
+        "series": [
+          { "name": "2010", "x": 2010.7, "y": 6050000, "r": 11 },
+          { "name": "2011", "x": 2011.3, "y": 6550000, "r": 13 },
+          { "name": "2012", "x": 2012.8, "y": 7050000, "r": 15 },
+          { "name": "2013", "x": 2013.4, "y": 7550000, "r": 17 },
+          { "name": "2014", "x": 2014.2, "y": 8050000, "r": 19 }
+        ]
+          }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

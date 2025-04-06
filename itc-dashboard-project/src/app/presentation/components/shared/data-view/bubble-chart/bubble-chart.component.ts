@@ -99,26 +99,33 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
         this.theme = bubbleChart.theme;
         this.view = bubbleChart.view;
         this.originalData = bubbleChart.data;
+      } else {
+        this.originalData = [];
       }
       this.updateDisplayedData();
     }, error => {
       console.error('Error loading bubble chart config:', error);
+      this.originalData = [];
       this.updateDisplayedData();
     });
   }
-
+  
   updateDisplayedData(): void {
     if (this.originalData && this.originalData.length > 0) {
       if (this.dataCount !== 'all') {
         const count = Number(this.dataCount);
-        // Para cada elemento, se truncan las series a "count" elementos
+        console.log(`Filtrando series a los primeros ${count} elementos.`);
         this.data = this.originalData.map(item => ({
           ...item,
-          series: item.series.slice(0, count)
+          series: item.series && Array.isArray(item.series)
+            ? item.series.slice(0, count)
+            : []
         }));
       } else {
         this.data = [...this.originalData];
       }
+    } else {
+      this.data = [];
     }
   }
 
