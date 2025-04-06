@@ -1,5 +1,6 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClient } from '@angular/common/http';
 import { curveLinear } from 'd3-shape';
 
 @Component({
@@ -9,8 +10,11 @@ import { curveLinear } from 'd3-shape';
   templateUrl: './area-chart.component.html',
   styleUrls: ['./area-chart.component.scss']
 })
-export class AreaChartComponent implements AfterViewInit, OnDestroy {
+export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
@@ -31,32 +35,9 @@ export class AreaChartComponent implements AfterViewInit, OnDestroy {
   timeline: boolean = false;
   curve = curveLinear;
 
-  data = [
-    {
-      name: 'Germany',
-      series: [
-        { name: '2010', value: 7300000 },
-        { name: '2011', value: 8940000 },
-        { name: '2012', value: 8200000 }
-      ]
-    },
-    {
-      name: 'USA',
-      series: [
-        { name: '2010', value: 7870000 },
-        { name: '2011', value: 8270000 },
-        { name: '2012', value: 8500000 }
-      ]
-    },
-    {
-      name: 'France',
-      series: [
-        { name: '2010', value: 5000002 },
-        { name: '2011', value: 5800000 },
-        { name: '2012', value: 6000000 }
-      ]
-    }
-  ];
+  // Datos para el gráfico y copia de la data completa
+  data: any[] = [];
+  originalData: any[] = [];
 
   colorScheme: any = {
     name: 'customScheme',
@@ -67,8 +48,8 @@ export class AreaChartComponent implements AfterViewInit, OnDestroy {
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
-    // Se actualiza el tamaño manteniendo la relación de aspecto (499/749)
+  constructor(private el: ElementRef, private http: HttpClient) {
+    // Mantiene la relación de aspecto (499/749)
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
@@ -78,12 +59,56 @@ export class AreaChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
   ngAfterViewInit(): void {
     this.resizeObserver.observe(this.el.nativeElement);
   }
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+  }
+
+  loadConfig(): void {
+    const ds = this.dataSource && this.dataSource.trim() ? this.dataSource : '/assets/data-set-1.json';
+    this.http.get<any>(ds).subscribe(config => {
+      // Se espera que el JSON tenga la propiedad charts.areaChart
+      if (config?.charts?.areaChart) {
+        const areaChart = config.charts.areaChart;
+        this.theme = areaChart.theme;
+        this.view = areaChart.view;
+        this.originalData = areaChart.data;
+        this.updateDisplayedData();
+      }
+    }, error => {
+      console.error('Error loading data-set-1.json:', error);
+    });
+  }
+
+  updateDisplayedData(): void {
+    if (this.originalData && this.originalData.length > 0) {
+      if (this.dataCount !== 'all') {
+        const count = Number(this.dataCount);
+        if (count > this.originalData.length) {
+          this.data = [...this.originalData];
+        } else {
+          this.data = this.originalData.slice(0, count);
+        }
+      } else {
+        this.data = [...this.originalData];
+      }
+    }
   }
 
   onSelect(event: any): void {

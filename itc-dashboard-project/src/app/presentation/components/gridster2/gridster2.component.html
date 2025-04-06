@@ -37,10 +37,16 @@
             </app-advanced-pie-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'area-chart'">
-            <app-area-chart></app-area-chart>
+            <app-area-chart 
+            [dataSource]="item.dataSource || ''"
+            [dataCount]="item.dataCount || ''">
+            ></app-area-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'box-chart'">
-            <app-box-chart></app-box-chart>
+            <app-box-chart
+            [dataSource]="item.dataSource || ''"
+            [dataCount]="item.dataCount || ''">
+            ></app-box-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'bubble-chart'">
             <app-bubble-chart></app-bubble-chart>
