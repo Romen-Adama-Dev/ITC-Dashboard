@@ -1,5 +1,18 @@
 {
     "charts": {
+      "advancedPieChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Brasil", "value": 6000000 },
+        { "name": "Argentina", "value": 4000000 },
+        { "name": "Chile", "value": 3000000 },
+        { "name": "Colombia", "value": 5000000 },
+        { "name": "Perú", "value": 3500000 },
+        { "name": "Uruguay", "value": 2000000 },
+        { "name": "Paraguay", "value": 2500000 }
+      ]
+    },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

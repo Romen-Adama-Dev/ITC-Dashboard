@@ -16,6 +16,7 @@ export interface ChartConfig {
 
 export interface ChartsJson {
   charts: {
+    advancedPieChart: ChartConfig;
     verticalBarChart: ChartConfig;
     horizontalBarChart: ChartConfig;
     // Puedes agregar más tipos de gráficos en el futuro

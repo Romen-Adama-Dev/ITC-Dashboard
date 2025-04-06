@@ -11,6 +11,7 @@ export interface ChartData {
   
   export interface ChartsJson {
     charts: {
+      advancedPieChart: ChartConfig;
       verticalBarChart: ChartConfig;
       horizontalBarChart: ChartConfig;
     };
