@@ -33,7 +33,6 @@ export class ChartSelectorVanillaComponent {
     { label: 'Stacked Horizontal Bar Chart', value: 'stacked-horizontal-bar-chart', category: 'bar-chart' },
     { label: 'Normalized Horizontal Bar Chart', value: 'normalized-horizontal-chart', category: 'bar-chart' },
     { label: 'Vertical Bar Chart', value: 'vertical-bar', category: 'bar-chart' },
-    { label: 'Grouped Vertical Bar Chart', value: 'grouped-vertical-bar', category: 'bar-chart' },
     { label: 'Stacked Vertical Bar Chart', value: 'stacked-vertical-bar-chart', category: 'bar-chart' },
     { label: 'Normalized Vertical Bar Chart', value: 'normalized-vertical-chart', category: 'bar-chart' },
     { label: 'Gauge Chart', value: 'gauge-chart', category: 'gauge-chart' },
