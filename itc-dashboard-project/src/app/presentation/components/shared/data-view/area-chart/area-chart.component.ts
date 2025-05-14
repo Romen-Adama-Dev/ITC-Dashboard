@@ -1,7 +1,20 @@
-import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClient } from '@angular/common/http';
 import { curveLinear } from 'd3-shape';
+import { filter } from 'rxjs/operators';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 
 @Component({
   selector: 'app-area-chart',
@@ -20,22 +33,19 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
     return this.theme === 'dark';
   }
 
-  // Tamaño inicial, se actualizará dinámicamente
   view: [number, number] = [749, 499];
-
-  animations: boolean = true;
-  legend: boolean = true;
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Population';
-  autoScale: boolean = true;
-  timeline: boolean = false;
+  animations = true;
+  legend = true;
+  showXAxis = true;
+  showYAxis = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Year';
+  showYAxisLabel = true;
+  yAxisLabel = 'Population';
+  autoScale = true;
+  timeline = false;
   curve = curveLinear;
 
-  // Datos para el gráfico y copia de la data completa
   data: any[] = [];
   originalData: any[] = [];
 
@@ -48,8 +58,12 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef, private http: HttpClient) {
-    // Mantiene la relación de aspecto (499/749)
+  constructor(
+    private el: ElementRef,
+    private http: HttpClient,
+    private mediator: MediatorService,
+    private helper: ChartHelperService
+  ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
@@ -57,6 +71,20 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
         this.view = [width, height];
       }
     });
+
+    this.mediator.events$
+      .pipe(filter(e => e.origin !== 'area-chart'))
+      .subscribe(event => {
+        const cfg = this.helper.processEvent(event, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view;
+        this.originalData = cfg.data;
+        this.updateDisplayedData();
+      });
   }
 
   ngOnInit(): void {
@@ -81,37 +109,41 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
   }
 
   loadConfig(): void {
-    const ds = this.dataSource && this.dataSource.trim() ? this.dataSource : '/assets/data-set-1.json';
-    this.http.get<any>(ds).subscribe(config => {
-      // Se espera que el JSON tenga la propiedad charts.areaChart
-      if (config?.charts?.areaChart) {
-        const areaChart = config.charts.areaChart;
-        this.theme = areaChart.theme;
-        this.view = areaChart.view;
-        this.originalData = areaChart.data;
-        this.updateDisplayedData();
+    const ds = this.dataSource?.trim() ? this.dataSource : '/assets/data-set-1.json';
+    this.http.get<any>(ds).subscribe(
+      config => {
+        if (config?.charts?.areaChart) {
+          const areaChart = config.charts.areaChart;
+          this.theme = areaChart.theme;
+          this.view = areaChart.view;
+          this.originalData = areaChart.data;
+          this.updateDisplayedData();
+        }
+      },
+      error => {
+        console.error('Error loading data-set-1.json:', error);
       }
-    }, error => {
-      console.error('Error loading data-set-1.json:', error);
-    });
+    );
   }
 
   updateDisplayedData(): void {
-    if (this.originalData && this.originalData.length > 0) {
-      if (this.dataCount !== 'all') {
-        const count = Number(this.dataCount);
-        if (count > this.originalData.length) {
-          this.data = [...this.originalData];
-        } else {
-          this.data = this.originalData.slice(0, count);
-        }
-      } else {
-        this.data = [...this.originalData];
-      }
+    if (!this.originalData?.length) return;
+    if (this.dataCount !== 'all') {
+      const count = Number(this.dataCount);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
+    } else {
+      this.data = [...this.originalData];
     }
   }
 
   onSelect(event: any): void {
-    console.log(event);
+    this.mediator.emit({
+      origin: 'area-chart',
+      type: 'select',
+      payload: event
+    });
   }
 }

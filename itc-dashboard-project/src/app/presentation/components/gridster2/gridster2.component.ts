@@ -50,6 +50,7 @@ import { EditWidgetModalComponent } from '../edit-modal/edit-modal.component'
 import { ChartDataService } from '../../../application/entities/chart-data.service'
 import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzIconModule } from 'ng-zorro-antd/icon'
+import { MediatorService } from '../../../application/services/mediator.service'
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string
@@ -110,40 +111,51 @@ interface SafeGridsterConfig extends GridsterConfig {
 export class GridsterDashboardComponent implements OnInit {
   options!: SafeGridsterConfig
   dashboard!: ExtendedGridsterItem[]
-  isModalVisible: boolean = false
-  isEditModalVisible: boolean = false
+  isModalVisible = false
+  isEditModalVisible = false
   currentEditItem: ExtendedGridsterItem | null = null
 
-  selectedChartType: 
-    'line-chart' | 
-    'advanced-pie-chart' | 
-    'area-chart' |
-    'box-chart' |
-    'bubble-chart' |
-    'gauge-chart' |
-    'grouped-horizontal-bar' |
-    'vertical-bar-chart' |
-    'heat-map' |
-    'horizontal-bar' |
-    'linear-gauge-chart' |
-    'normalized-area-chart' |
-    'normalized-horizontal-chart' |
-    'normalized-vertical-chart' |
-    'number-chart' |
-    'percent-gauge-chart' |
-    'pie-chart' |
-    'pie-grid-chart' |
-    'polar-chart' |
-    'stacked-area-chart' |
-    'stacked-horizontal-bar-chart' |
-    'stacked-vertical-bar-chart' |
-    'table' |
-    'tree-map'  |
-    'vertical-bar' = 'advanced-pie-chart'
+  selectedChartType:
+    | 'line-chart'
+    | 'advanced-pie-chart'
+    | 'area-chart'
+    | 'box-chart'
+    | 'bubble-chart'
+    | 'gauge-chart'
+    | 'grouped-horizontal-bar'
+    | 'vertical-bar-chart'
+    | 'heat-map'
+    | 'horizontal-bar'
+    | 'linear-gauge-chart'
+    | 'normalized-area-chart'
+    | 'normalized-horizontal-chart'
+    | 'normalized-vertical-chart'
+    | 'number-chart'
+    | 'percent-gauge-chart'
+    | 'pie-chart'
+    | 'pie-grid-chart'
+    | 'polar-chart'
+    | 'stacked-area-chart'
+    | 'stacked-horizontal-bar-chart'
+    | 'stacked-vertical-bar-chart'
+    | 'table'
+    | 'tree-map'
+    | 'vertical-bar' = 'advanced-pie-chart'
 
-  pushItemsEnabled: boolean = true
+  pushItemsEnabled = true
+
+  constructor(
+    private chartDataService: ChartDataService,
+    private notification: NzNotificationService,
+    private mediator: MediatorService
+  ) {}
 
   ngOnInit(): void {
+    // Mediador: reemite todos los eventos recibidos
+    this.mediator.events$.subscribe(event => {
+      this.mediator.emit(event)
+    })
+
     this.options = {
       gridType: GridType.Fixed,
       compactType: CompactType.None,
@@ -195,6 +207,7 @@ export class GridsterDashboardComponent implements OnInit {
       disableWarnings: false,
       scrollToNewItems: false
     }
+
     this.dashboard = [
       { id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'advanced-pie-chart' },
       { id: 2, cols: 2, rows: 2, y: 0, x: 0, chartType: 'gauge-chart' }
@@ -227,20 +240,20 @@ export class GridsterDashboardComponent implements OnInit {
       alert('Please select a chart type.')
       return
     }
-    const newId =
-      this.dashboard.length > 0 ? Math.max(...this.dashboard.map(item => item['id'])) + 1 : 1
-    const newItem: ExtendedGridsterItem = {
+    const newId = this.dashboard.length
+      ? Math.max(...this.dashboard.map(i => i['id'])) + 1
+      : 1
+    this.dashboard.push({
       id: newId,
       cols: 1,
       rows: 1,
       x: 0,
       y: 0,
       chartType: this.selectedChartType
-    }
-    this.dashboard.push(newItem)
+    })
   }
 
-  trackByFn(index: number, item: ExtendedGridsterItem): number {
+  trackByFn(_i: number, item: ExtendedGridsterItem): number {
     return item['id']
   }
 
@@ -253,36 +266,12 @@ export class GridsterDashboardComponent implements OnInit {
     this.isModalVisible = false
   }
 
-  onAddChart(selection: { chartType: string, dataSource: string, dataCount: string }): void {
-    this.selectedChartType = selection.chartType as
-      | 'line-chart'
-      | 'advanced-pie-chart'
-      | 'area-chart'
-      | 'box-chart'
-      | 'bubble-chart'
-      | 'gauge-chart'
-      | 'grouped-horizontal-bar'
-      | 'vertical-bar-chart'
-      | 'heat-map'
-      | 'horizontal-bar'
-      | 'linear-gauge-chart'
-      | 'normalized-area-chart'
-      | 'normalized-horizontal-chart'
-      | 'normalized-vertical-chart'
-      | 'number-chart'
-      | 'percent-gauge-chart'
-      | 'pie-chart'
-      | 'pie-grid-chart'
-      | 'polar-chart'
-      | 'stacked-area-chart'
-      | 'stacked-horizontal-bar-chart'
-      | 'stacked-vertical-bar-chart'
-      | 'table'
-      | 'tree-map'
-      | 'vertical-bar';
-    const newId =
-      this.dashboard.length > 0 ? Math.max(...this.dashboard.map(item => item['id'])) + 1 : 1
-    const newItem: ExtendedGridsterItem = {
+  onAddChart(selection: { chartType: string; dataSource: string; dataCount: string }): void {
+    this.selectedChartType = selection.chartType as any
+    const newId = this.dashboard.length
+      ? Math.max(...this.dashboard.map(i => i['id'])) + 1
+      : 1
+    this.dashboard.push({
       id: newId,
       cols: 1,
       rows: 1,
@@ -291,8 +280,7 @@ export class GridsterDashboardComponent implements OnInit {
       chartType: this.selectedChartType,
       dataSource: selection.dataSource,
       dataCount: selection.dataCount
-    }
-    this.dashboard.push(newItem)
+    })
     this.notification.success('Success', 'Widget creado correctamente.')
     this.closeCustomModal()
   }
@@ -303,42 +291,29 @@ export class GridsterDashboardComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged()
     }
-    if (this.pushItemsEnabled) {
-      this.notification.info('Info', 'Widgets desbloqueados.')
-    } else {
-      this.notification.info('Info', 'Widgets bloqueados.')
-    }
+    this.notification.info('Info', this.pushItemsEnabled ? 'Widgets desbloqueados.' : 'Widgets bloqueados.')
   }
 
   editItem(item: ExtendedGridsterItem): void {
     this.currentEditItem = item
-    if (!this.currentEditItem['dataCount']) {
-      this.currentEditItem['dataCount'] = 'all'
-    }
+    this.currentEditItem['dataCount'] ??= 'all'
     this.isEditModalVisible = true
   }
-
-  constructor(private chartDataService: ChartDataService, private notification: NzNotificationService) {}
 
   reloadWidgetData(item: any): void {
     const dataSource = item.dataSource || '/assets/datasets/data-set-1.json'
     this.chartDataService.loadChartsData(dataSource).subscribe({
-      next: () => {
-        console.log(`✅ Datos recargados desde ${dataSource}`)
-      },
-      error: (error) => {
-        console.error('❌ Error al recargar los datos del gráfico:', error)
-      }
+      next: () => console.log(`✅ Datos recargados desde ${dataSource}`),
+      error: err => console.error('❌ Error al recargar datos:', err)
     })
   }
 
   handleWidgetEditSave(update: { dataCount: string; dataSource: string }): void {
-    if (this.currentEditItem) {
-      this.currentEditItem['dataCount'] = update.dataCount
-      this.currentEditItem['dataSource'] = update.dataSource
-      this.reloadWidgetData(this.currentEditItem)
-      this.notification.warning('Warning', 'Widget modificado correctamente.')
-    }
+    if (!this.currentEditItem) return
+    this.currentEditItem['dataCount'] = update.dataCount
+    this.currentEditItem['dataSource'] = update.dataSource
+    this.reloadWidgetData(this.currentEditItem)
+    this.notification.warning('Warning', 'Widget modificado correctamente.')
     this.handleEditModalClose()
   }
 
@@ -347,80 +322,59 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   serializeToJson(): void {
-    const fileNameInput = prompt('Ingrese el nombre del archivo (sin extensión):', 'dashboardConfig')
-    const fileName = fileNameInput ? fileNameInput + '.json' : 'dashboardConfig.json'
-    const json = JSON.stringify(this.dashboard, null, 2)
-    const blob = new Blob([json], { type: 'application/json' })
-    const url = window.URL.createObjectURL(blob)
+    const name = prompt('Nombre de archivo:', 'dashboardConfig') || 'dashboardConfig'
+    const blob = new Blob([JSON.stringify(this.dashboard, null, 2)], { type: 'application/json' })
     const a = document.createElement('a')
-    a.href = url
-    a.download = fileName
+    a.href = URL.createObjectURL(blob)
+    a.download = `${name}.json`
     a.click()
-    window.URL.revokeObjectURL(url)
+    URL.revokeObjectURL(a.href)
     this.notification.info('Info', 'Dashboard serializado correctamente.')
-    console.log('Dashboard serialized as JSON file:', json)
   }
 
   loadJsonFromFile(event: any): void {
     const file = event.target.files[0]
-    if (file) {
-      this.changedOptions()
-      const reader = new FileReader()
-      reader.onload = (e: any) => {
-        try {
-          const loadedDashboard = JSON.parse(e.target.result)
-          this.dashboard = loadedDashboard
-          if (this.options.api && this.options.api.optionsChanged) {
-            this.options.api.optionsChanged()
-          }
-          this.notification.success('Success', 'Dashboard cargado desde JSON.')
-          console.log('Dashboard loaded from JSON file:', loadedDashboard)
-        } catch (error) {
-          console.error('Error parsing JSON file', error)
+    if (!file) return
+    this.changedOptions()
+    const reader = new FileReader()
+    reader.onload = e => {
+      try {
+        this.dashboard = JSON.parse((e.target as any).result)
+        if (this.options.api && this.options.api.optionsChanged) {
+          this.options.api.optionsChanged()
         }
+        this.notification.success('Success', 'Dashboard cargado desde JSON.')
+      } catch {
+        console.error('Error parsing JSON')
       }
-      reader.readAsText(file)
     }
+    reader.readAsText(file)
   }
 
   deserialize(json: string): void {
     try {
-      const parsedData = JSON.parse(json)
-      if (Array.isArray(parsedData)) {
-        parsedData.forEach(newItem => {
-          const index = this.dashboard.findIndex(item => item['id'] === newItem.id)
-          if (index >= 0) {
-            this.dashboard[index] = { ...this.dashboard[index], ...newItem }
-          } else {
-            this.dashboard.push(newItem)
-          }
+      const arr = JSON.parse(json)
+      if (Array.isArray(arr)) {
+        arr.forEach(item => {
+          const idx = this.dashboard.findIndex(d => d['id'] === item['id'])
+          if (idx >= 0) this.dashboard[idx] = { ...this.dashboard[idx], ...item }
+          else this.dashboard.push(item)
         })
-      } else {
-        console.error('El JSON debe ser un array de configuraciones.')
+        if (this.options.api && this.options.api.optionsChanged) {
+          this.options.api.optionsChanged()
+        }
+        this.notification.success('Success', 'Dashboard actualizado con JSON.')
       }
-      if (this.options.api && this.options.api.optionsChanged) {
-        this.options.api.optionsChanged()
-      }
-      this.notification.success('Success', 'Dashboard actualizado con JSON.')
-      console.log('Dashboard updated with deserialized JSON:', this.dashboard)
-    } catch (error) {
-      console.error('Error deserializing JSON', error)
+    } catch {
+      console.error('Error deserializing JSON')
     }
   }
 
   deserializeFromFile(event: any): void {
     const file = event.target.files[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = (e: any) => {
-        try {
-          const json = e.target.result
-          this.deserialize(json)
-        } catch (error) {
-          console.error('Error al leer el archivo', error)
-        }
-      }
-      reader.readAsText(file)
-    }
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = e => this.deserialize((e.target as any).result)
+    reader.readAsText(file)
   }
 }
