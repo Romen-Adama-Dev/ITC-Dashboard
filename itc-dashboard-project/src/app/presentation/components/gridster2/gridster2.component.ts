@@ -25,8 +25,6 @@ import { AdvancedPieChartComponent } from '../shared/data-view/advanced-pie-char
 import { BoxChartComponent } from '../shared/data-view/box-chart/box-chart.component'
 import { BubbleChartComponent } from '../shared/data-view/bubble-chart/bubble-chart.component'
 import { GaugeChartComponent } from '../shared/data-view/gauge-chart/gauge-chart.component'
-import { GroupedHorizontalBarChartComponent } from '../shared/data-view/grouped-horizontal-bar-chart/grouped-horizontal-bar-chart.component'
-import { GroupedVerticalBarChartComponent } from '../shared/data-view/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component'
 import { HeatMapComponent } from '../shared/data-view/heat-chart/heat-chart.component'
 import { HorizontalBarChartComponent } from '../shared/data-view/horizontal-chart/horizontal-chart.component'
 import { LinearGaugeChartComponent } from '../shared/data-view/linear-gauge-chart/linear-gauge-chart.component'
@@ -43,7 +41,6 @@ import { StackedAreaChartComponent } from '../shared/data-view/stacked-area-char
 import { StackedHorizontalBarChartComponent } from '../shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component'
 import { StackedVerticalBarChartComponent } from '../shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component'
 import { TreeMapComponent } from '../shared/data-view/tree-chart/tree-chart.component'
-import { UnifiedTableComponent } from '../shared/data-view/table/table.component'
 
 import { ChartSelectionModalComponent } from '../chart-selection-modal/chart-selection-modal.component'
 import { EditWidgetModalComponent } from '../edit-modal/edit-modal.component'
@@ -83,8 +80,6 @@ interface SafeGridsterConfig extends GridsterConfig {
     BoxChartComponent,
     BubbleChartComponent,
     GaugeChartComponent,
-    GroupedHorizontalBarChartComponent,
-    GroupedVerticalBarChartComponent,
     HeatMapComponent,
     HorizontalBarChartComponent,
     LinearGaugeChartComponent,
@@ -99,7 +94,6 @@ interface SafeGridsterConfig extends GridsterConfig {
     StackedAreaChartComponent,
     StackedHorizontalBarChartComponent,
     StackedVerticalBarChartComponent,
-    UnifiedTableComponent,
     TreeMapComponent,
     EditWidgetModalComponent,
     NzNotificationModule,
@@ -122,7 +116,6 @@ export class GridsterDashboardComponent implements OnInit {
     | 'box-chart'
     | 'bubble-chart'
     | 'gauge-chart'
-    | 'grouped-horizontal-bar'
     | 'vertical-bar-chart'
     | 'heat-map'
     | 'horizontal-bar'
@@ -138,7 +131,6 @@ export class GridsterDashboardComponent implements OnInit {
     | 'stacked-area-chart'
     | 'stacked-horizontal-bar-chart'
     | 'stacked-vertical-bar-chart'
-    | 'table'
     | 'tree-map'
     | 'vertical-bar' = 'advanced-pie-chart'
 
@@ -209,8 +201,7 @@ export class GridsterDashboardComponent implements OnInit {
     }
 
     this.dashboard = [
-      { id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'advanced-pie-chart' },
-      { id: 2, cols: 2, rows: 2, y: 0, x: 0, chartType: 'gauge-chart' }
+      //{ id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'advanced-pie-chart' },
     ]
   }
 

@@ -34,20 +34,22 @@
               <i class="ri-flow-chart"></i>
               <span>Custom Graph</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('table')"
-                    [class.selected]="selectedChartCategory === 'table'">
-              <i class="ri-table-line"></i>
-              <span>Table</span>
-            </button>
-            <!-- Agrupar el resto en "other" -->
             <button type="button" class="icon-button" (click)="selectChartCategory('other')"
                     [class.selected]="selectedChartCategory === 'other'">
               <i class="ri-settings-3-line"></i>
               <span>Other Categories</span>
             </button>
+          
+          
+            <button type="button"
+                    class="icon-button"
+                    (click)="selectChartCategory('gauge-chart')"
+                    [class.selected]="selectedChartCategory === 'gauge-chart'">
+              <i class="ri-flashlight-line"></i>
+              <span>Gauge Chart</span>
+            </button>
           </div>
         </div>
-        <!-- Columna derecha: Dropdown para variante, fuente de datos y entrada para cantidad -->
         <div class="data-source-column">
           <p>Select Chart Variant:</p>
           <app-chart-selector-vanilla 

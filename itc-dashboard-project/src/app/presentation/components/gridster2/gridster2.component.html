@@ -57,12 +57,6 @@
           <ng-container *ngIf="item.chartType === 'gauge-chart'">
             <app-gauge-chart></app-gauge-chart>
           </ng-container>
-          <ng-container *ngIf="item.chartType === 'grouped-horizontal-bar'">
-            <app-grouped-horizontal-bar-chart></app-grouped-horizontal-bar-chart>
-          </ng-container>
-          <ng-container *ngIf="item.chartType === 'grouped-vertical-bar'">
-            <app-grouped-vertical-bar-chart></app-grouped-vertical-bar-chart>
-          </ng-container>
           <ng-container *ngIf="item.chartType === 'heat-map'">
             <app-heat-map></app-heat-map>
           </ng-container>
@@ -107,9 +101,6 @@
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-vertical-bar-chart'">
             <app-stacked-vertical-bar-chart></app-stacked-vertical-bar-chart>
-          </ng-container>
-          <ng-container *ngIf="item.chartType === 'table'">
-            <app-unified-table></app-unified-table>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'tree-map'">
             <app-tree-map></app-tree-map>

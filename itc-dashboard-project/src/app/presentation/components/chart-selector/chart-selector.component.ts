@@ -30,7 +30,6 @@ export class ChartSelectorVanillaComponent {
     { label: 'Pie Chart', value: 'pie-chart', category: 'pie-chart' },
     { label: 'Pie Grid Chart', value: 'pie-grid-chart', category: 'pie-chart' },
     { label: 'Horizontal Bar Chart', value: 'horizontal-bar', category: 'bar-chart' },
-    { label: 'Grouped Horizontal Bar Chart', value: 'grouped-horizontal-bar', category: 'bar-chart' },
     { label: 'Stacked Horizontal Bar Chart', value: 'stacked-horizontal-bar-chart', category: 'bar-chart' },
     { label: 'Normalized Horizontal Bar Chart', value: 'normalized-horizontal-chart', category: 'bar-chart' },
     { label: 'Vertical Bar Chart', value: 'vertical-bar', category: 'bar-chart' },
@@ -46,7 +45,6 @@ export class ChartSelectorVanillaComponent {
     { label: 'Heat Map', value: 'heat-map', category: 'other' },
     { label: 'Number Cards', value: 'number-chart', category: 'other' },
     { label: 'Tree Map', value: 'tree-map', category: 'other' },
-    { label: 'Table', value: 'table', category: 'table' }
   ];
 
   get filteredOptions(): ChartOption[] {
