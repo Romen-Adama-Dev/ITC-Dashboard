@@ -21,6 +21,7 @@ export interface ChartsJson {
     boxChart: ChartConfig;
     bubbleChart: ChartConfig;
     gaugeChart: ChartConfig;
+    heatmapChart: ChartConfig;
     verticalBarChart: ChartConfig;
     horizontalBarChart: ChartConfig;
   };

@@ -193,6 +193,28 @@
         { "name": "Disk I/O",     "value": 762789 }
       ]
     },
+    "heatMap": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "United Kingdom",
+          "series": [
+            { "name": "2010", "value": 36240, "extra": { "code": "uk" } },
+            { "name": "2000", "value": 32543, "extra": { "code": "uk" } },
+            { "name": "1990", "value": 26424, "extra": { "code": "uk" } }
+          ]
+        },
+        {
+          "name": "Turkey",
+          "series": [
+            { "name": "1990", "value": 33894 },
+            { "name": "2000", "value": 26387 },
+            { "name": "2010", "value": 10916 }
+          ]
+        }
+      ]
+    },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],
