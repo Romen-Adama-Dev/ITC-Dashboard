@@ -348,6 +348,36 @@
           }
         ]
       },
+      "normalizedVerticalBarChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+          {
+        "name": "Brazil",
+        "series": [
+          { "name": "2010", "value": 9100000 },
+          { "name": "2011", "value": 9400000 },
+          { "name": "2012", "value": 9700000 }
+        ]
+          },
+          {
+        "name": "Canada",
+        "series": [
+          { "name": "2010", "value": 7200000 },
+          { "name": "2011", "value": 7500000 },
+          { "name": "2012", "value": 7800000 }
+        ]
+          },
+          {
+        "name": "Australia",
+        "series": [
+          { "name": "2010", "value": 6300000 },
+          { "name": "2011", "value": 6700000 },
+          { "name": "2012", "value": 7000000 }
+        ]
+          }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

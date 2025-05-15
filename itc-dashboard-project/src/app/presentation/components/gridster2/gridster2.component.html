@@ -92,12 +92,15 @@
           </ng-container>
           <ng-container *ngIf="item.chartType === 'normalized-horizontal-chart'">
             <app-normalized-horizontal-bar-chart
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
             </app-normalized-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'normalized-vertical-chart'">
-            <app-normalized-vertical-bar-chart></app-normalized-vertical-bar-chart>
+            <app-normalized-vertical-bar-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+          </app-normalized-vertical-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'number-chart'">
             <app-number-cards></app-number-cards>
