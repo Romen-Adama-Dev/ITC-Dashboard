@@ -1,5 +1,21 @@
-import { Component, Input, HostBinding, ElementRef } from '@angular/core';
+// src/app/presentation/components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component.ts
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-percent-gauge-chart',
@@ -8,49 +24,115 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './percent-gauge-chart.component.html',
   styleUrls: ['./percent-gauge-chart.component.scss']
 })
-export class PercentGaugeChartComponent {
+export class PercentGaugeChartComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
+  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
-  
-  // Dimensiones del gráfico
+
+  /** Dimensiones */
   view: [number, number] = [700, 400];
-  
-  // Opciones del Percent Gauge Chart
-  animations: boolean = true;
-  value: number = 70;      // Valor actual (en porcentaje)
-  max: number = 100;       // Valor máximo
-  target: number = 80;     // Valor objetivo
-  showLabel: boolean = true;
-  
-  // Esquema de colores
+
+  /** Opciones del gauge */
+  animations = true;
+  value = 0;
+  max = 100;
+  target = 0;
+  showLabel = true;
+
   colorScheme: any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB']
   };
-  
-  onSelect(event: any): void {
-    console.log(event);
-  }
-    private resizeObserver: ResizeObserver;
-  
-    constructor(private el: ElementRef) {
-      this.resizeObserver = new ResizeObserver(entries => {
-        for (const entry of entries) {
-          const width = entry.contentRect.width;
-          // Maintain the aspect ratio 499/749
-          const height = width * (499 / 749);
-          this.view = [width, height];
+
+  private resizeObserver: ResizeObserver;
+  private configSub?: Subscription;
+  private mediatorSub: Subscription;
+
+  constructor(
+    private el: ElementRef,
+    private helper: ChartHelperService,
+    private mediator: MediatorService
+  ) {
+    // Ajuste dinámico de tamaño
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const e of entries) {
+        const w = e.contentRect.width;
+        this.view = [w, w * (400 / 700)];
+      }
+    });
+
+    // Escuchar eventos globales
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(ev => ev.origin !== 'percent-gauge'))
+      .subscribe(ev => {
+        const cfg = this.helper.processEvent(ev, {
+          theme: this.theme,
+          view: this.view,
+          data: [
+            { name: 'value', value: this.value },
+            { name: 'target', value: this.target }
+          ]
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view as [number, number];
+        // Si los datos cambian, reasignar:
+        if (cfg.data.length >= 2) {
+          this.value = cfg.data[0].value;
+          this.target = cfg.data[1].value;
         }
       });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
     }
-  
-    ngAfterViewInit(): void {
-      this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('percentGaugeChart', this.dataSource)
+      .subscribe({
+        next: cfg => this.applyConfig(cfg),
+        error: err => console.error('Error loading percent gauge config', err)
+      });
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    if (cfg.data.length >= 2) {
+      this.value = cfg.data[0].value;
+      this.target = cfg.data[1].value;
     }
-  
-    ngOnDestroy(): void {
-      this.resizeObserver.disconnect();
-    }
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
+  }
+
+  onSelect(event: any): void {
+    this.mediator.emit({
+      origin: 'percent-gauge',
+      type: 'select',
+      payload: event
+    });
+  }
 }

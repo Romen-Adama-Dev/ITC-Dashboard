@@ -109,7 +109,9 @@
           </app-number-cards>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'percent-gauge-chart'">
-            <app-percent-gauge-chart></app-percent-gauge-chart>
+            <app-percent-gauge-chart
+            [dataSource]="item.dataSource || ''">
+          </app-percent-gauge-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'pie-chart'">
             <app-pie-chart></app-pie-chart>

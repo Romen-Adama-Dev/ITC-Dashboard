@@ -383,6 +383,14 @@
         { "name": "Tuvalu", "value": 15674 }
       ]
     },
+    "percentGaugeChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "value", "value": 70 },
+        { "name": "target", "value": 80 }
+      ]
+    },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],

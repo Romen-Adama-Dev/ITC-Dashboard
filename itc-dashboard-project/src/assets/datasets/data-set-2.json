@@ -396,7 +396,15 @@
           { "name": "South Africa", "value": 34000 },
           { "name": "Russia", "value": 46000 }
         ]
-            },
+      },
+      "percentGaugeChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+          { "name": "value", "value": 20 },
+          { "name": "target", "value": 80 }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

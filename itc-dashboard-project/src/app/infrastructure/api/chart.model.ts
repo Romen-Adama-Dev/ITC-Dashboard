@@ -24,6 +24,7 @@ export interface ChartData {
       normalizedHorizontalBarChart: ChartConfig;
       normalizedVerticalBarChart: ChartConfig;
       numberCards: ChartConfig;
+      percentGaugeChart: ChartConfig;
       verticalBarChart: ChartConfig;
     };
   }
