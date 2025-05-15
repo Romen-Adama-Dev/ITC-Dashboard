@@ -138,13 +138,22 @@
             </app-stacked-area-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-horizontal-bar-chart'">
-            <app-stacked-horizontal-bar-chart></app-stacked-horizontal-bar-chart>
+            <app-stacked-horizontal-bar-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+            </app-stacked-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-vertical-bar-chart'">
-            <app-stacked-vertical-bar-chart></app-stacked-vertical-bar-chart>
+            <app-stacked-vertical-bar-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+            </app-stacked-vertical-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'tree-map'">
-            <app-tree-map></app-tree-map>
+            <app-tree-map
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+            </app-tree-map>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'vertical-bar'">
             <app-vertical-chart

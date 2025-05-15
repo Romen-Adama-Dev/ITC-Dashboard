@@ -491,6 +491,93 @@
         }
       ]
     },
+    "stackedHorizontalBarChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Germany",
+          "series": [
+            { "name": "2010", "value": 7300000 },
+            { "name": "2011", "value": 8940000 }
+          ]
+        },
+        {
+          "name": "USA",
+          "series": [
+            { "name": "2010", "value": 7870000 },
+            { "name": "2011", "value": 8270000 }
+          ]
+        },
+        {
+          "name": "France",
+          "series": [
+            { "name": "2010", "value": 5000002 },
+            { "name": "2011", "value": 5800000 }
+          ]
+        },
+        {
+          "name": "Italy",
+          "series": [
+            { "name": "2010", "value": 4500000 },
+            { "name": "2011", "value": 4700000 }
+          ]
+        }
+      ]
+    },
+    "stackedVerticalBarChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Germany",
+          "series": [
+            { "name": "2010", "value": 7300000 },
+            { "name": "2011", "value": 8940000 }
+          ]
+        },
+        {
+          "name": "USA",
+          "series": [
+            { "name": "2010", "value": 7870000 },
+            { "name": "2011", "value": 8270000 }
+          ]
+        },
+        {
+          "name": "France",
+          "series": [
+            { "name": "2010", "value": 5000002 },
+            { "name": "2011", "value": 5800000 }
+          ]
+        },
+        {
+          "name": "Italy",
+          "series": [
+            { "name": "2010", "value": 4500000 },
+            { "name": "2011", "value": 4700000 }
+          ]
+        }
+      ]
+    },
+    "treeMap": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Italy",               "value": 35800, "extra": { "code": "it" } },
+        { "name": "Åland Islands",       "value": 33545 },
+        { "name": "Yemen",               "value": 38407 },
+        { "name": "Trinidad and Tobago", "value": 26319 },
+        { "name": "Liechtenstein",       "value": 44046 },
+        { "name": "Malaysia",            "value": 44114 },
+        { "name": "Indonesia",           "value": 37569 },
+        { "name": "Norfolk Island",      "value": 48302 },
+        { "name": "Bahrain",             "value": 35618 },
+        { "name": "Philippines",         "value": 37412 },
+        { "name": "Turks and Caicos",    "value": 17567 },
+        { "name": "Guinea-Bissau",       "value": 49279 },
+        { "name": "Tuvalu",              "value": 15674 }
+      ]
+    },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],

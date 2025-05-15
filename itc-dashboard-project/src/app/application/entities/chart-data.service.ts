@@ -34,6 +34,9 @@ export interface ChartsJson {
     pieGridChart: ChartConfig;
     polarChart: ChartConfig;
     stackedAreaChart: ChartConfig;
+    stackedHorizontalBarChart: ChartConfig;
+    stackedVerticalBarChart: ChartConfig;
+    treeMap: ChartConfig;
     verticalBarChart: ChartConfig;
     
   };
