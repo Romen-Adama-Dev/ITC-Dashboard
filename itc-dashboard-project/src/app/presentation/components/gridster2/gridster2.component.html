@@ -123,7 +123,10 @@
             <app-pie-grid></app-pie-grid>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'polar-chart'">
-            <app-polar-chart></app-polar-chart>
+            <app-polar-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+            </app-polar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-area-chart'">
             <app-stacked-area-chart></app-stacked-area-chart>

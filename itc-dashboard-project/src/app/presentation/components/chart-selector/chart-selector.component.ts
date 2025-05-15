@@ -39,7 +39,7 @@ export class ChartSelectorVanillaComponent {
     { label: 'Linear Gauge Chart', value: 'linear-gauge-chart', category: 'gauge-chart' },
     { label: 'Percent Gauge Chart', value: 'percent-gauge-chart', category: 'gauge-chart' },
     { label: 'Bubble Chart', value: 'bubble-chart', category: 'bubble-chart' },
-    { label: 'Polar Chart', value: 'polar-chart', category: 'polar-chart' },
+    { label: 'Polar Chart', value: 'polar-chart', category: 'other' },
     { label: 'Graph custom', value: 'graph-custom', category: 'graph-custom' },
     { label: 'Heat Map', value: 'heat-map', category: 'other' },
     { label: 'Number Cards', value: 'number-chart', category: 'other' },

@@ -415,6 +415,44 @@
           { "name": "Colombia",  "value": 3100000 },
           { "name": "Perú",      "value": 4100000 }
         ]
+      },
+      "polarChart": {
+        "theme": "default",
+        "view": [700, 300],
+        "data": [
+          {
+            "name": "Spain",
+            "series": [
+              { "name": "1990", "value": 39000000 },
+              { "name": "2000", "value": 42000000 },
+              { "name": "2010", "value": 46000000 }
+            ]
+          },
+          {
+            "name": "Italy",
+            "series": [
+              { "name": "1990", "value": 57000000 },
+              { "name": "2000", "value": 59000000 },
+              { "name": "2010", "value": 60000000 }
+            ]
+          },
+          {
+            "name": "Canada",
+            "series": [
+              { "name": "1990", "value": 27000000 },
+              { "name": "2000", "value": 30000000 },
+              { "name": "2010", "value": 34000000 }
+            ]
+          },
+          {
+            "name": "Australia",
+            "series": [
+              { "name": "1990", "value": 17000000 },
+              { "name": "2000", "value": 19000000 },
+              { "name": "2010", "value": 22000000 }
+            ]
+          }
+        ]
             },
       "verticalBarChart": {
         "theme": "dark",

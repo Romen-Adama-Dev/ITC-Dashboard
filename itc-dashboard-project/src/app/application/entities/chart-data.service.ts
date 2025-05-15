@@ -31,6 +31,7 @@ export interface ChartsJson {
     numberCards: ChartConfig;
     percentGaugeChart: ChartConfig;
     pieChart: ChartConfig;
+    polarChart: ChartConfig;
     verticalBarChart: ChartConfig;
     
   };
