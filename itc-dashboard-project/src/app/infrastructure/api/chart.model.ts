@@ -17,7 +17,8 @@ export interface ChartData {
       bubbleChart: ChartConfig;
       gaugeChart: ChartConfig;
       heatmapChart: ChartConfig;
-      verticalBarChart: ChartConfig;
       horizontalBarChart: ChartConfig;
+      lineChart: ChartConfig;
+      verticalBarChart: ChartConfig;
     };
   }

@@ -72,6 +72,12 @@
               [dataCount]="item.dataCount || ''">
             </app-horizontal-bar-chart>
           </ng-container>
+          <ng-container *ngIf="item.chartType === 'line-chart'">
+            <app-horizontal-bar-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+            </app-horizontal-bar-chart>
+          </ng-container>
           <ng-container *ngIf="item.chartType === 'linear-gauge-chart'">
             <app-linear-gauge-chart></app-linear-gauge-chart>
           </ng-container>

@@ -242,6 +242,36 @@
           { "name": "Alemania", "value": 2800000 }
         ]
       },
+      "lineChart": {
+        "theme": "default",
+        "view": [749, 499],
+        "data": [
+          {
+        "name": "Spain",
+        "series": [
+          { "name": "2010", "value": 6500000 },
+          { "name": "2011", "value": 7200000 },
+          { "name": "2012", "value": 7800000 }
+        ]
+          },
+          {
+        "name": "Canada",
+        "series": [
+          { "name": "2010", "value": 7000000 },
+          { "name": "2011", "value": 7500000 },
+          { "name": "2012", "value": 8000000 }
+        ]
+          },
+          {
+        "name": "Italy",
+        "series": [
+          { "name": "2010", "value": 4800000 },
+          { "name": "2011", "value": 5500000 },
+          { "name": "2012", "value": 5900000 }
+        ]
+          }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

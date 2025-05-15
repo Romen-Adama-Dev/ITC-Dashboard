@@ -1,20 +1,43 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+// src/app/presentation/components/shared/data-view/line-chart/line-chart.component.ts
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Subscription, filter } from 'rxjs';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-line-chart',
   standalone: true,
-  imports: [NgxChartsModule],
+  imports: [NgxChartsModule, HttpClientModule],
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent implements AfterViewInit, OnDestroy {
+export class LineChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+  @Input() graphqlEndpoint?: string;
+  @Input() graphqlQuery?: string;
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
+  /** Vista y opciones de ngx-charts */
   view: [number, number] = [749, 499];
   animations = true;
   legend = true;
@@ -27,41 +50,118 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
   autoScale = true;
   timeline = false;
 
-  data = [
-    { "name": "Germany", "series": [ { "name": "2010", "value": 7300000 }, { "name": "2011", "value": 8940000 }, { "name": "2012", "value": 8200000 } ] },
-    { "name": "USA", "series": [ { "name": "2010", "value": 7870000 }, { "name": "2011", "value": 8270000 }, { "name": "2012", "value": 8500000 } ] },
-    { "name": "France", "series": [ { "name": "2010", "value": 5000002 }, { "name": "2011", "value": 5800000 }, { "name": "2012", "value": 6000000 } ] }
-  ];
-
   colorScheme: any = {
     name: 'customScheme',
     selectable: true,
     group: 'Ordinal',
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454','#A10A28','#C7B42C','#AAAAAA']
   };
 
-  private resizeObserver: ResizeObserver;
+  /** Datos internos */
+  data: any[] = [];
+  private originalData: any[] = [];
 
-  constructor(private el: ElementRef) {
+  private resizeObserver: ResizeObserver;
+  private configSub?: Subscription;
+  private mediatorSub: Subscription;
+
+  constructor(
+    private el: ElementRef,
+    private http: HttpClient,
+    private helper: ChartHelperService,
+    private mediator: MediatorService
+  ) {
+    // Observador de resize para mantener proporción
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const width = entry.contentRect.width;
-        const height = width * (499 / 749);
-        this.view = [width, height];
+      for (const e of entries) {
+        const w = e.contentRect.width;
+        this.view = [w, w * (499 / 749)];
       }
     });
+
+    // Escuchar eventos globales (excepto los que yo emito)
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(ev => ev.origin !== 'line-chart'))
+      .subscribe(ev => {
+        const cfg = this.helper.processEvent(ev, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view as [number, number];
+        this.originalData = cfg.data;
+        this.updateDisplayedData();
+      });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+  }
+
+  private loadConfig(): void {
+    // cancelar suscripción anterior
+    this.configSub?.unsubscribe();
+
+    if (this.graphqlEndpoint && this.graphqlQuery) {
+      this.configSub = this.http.post<any>(this.graphqlEndpoint, { query: this.graphqlQuery })
+        .subscribe({
+          next: res => this.applyConfig(res.data.lineChart),
+          error: err => console.error('Error loading via GraphQL', err)
+        });
+    } else {
+      this.configSub = this.helper
+        .loadChartConfig('lineChart', this.dataSource)
+        .subscribe({
+          next: cfg => this.applyConfig(cfg),
+          error: err => console.error('Error loading chart config', err)
+        });
+    }
+  }
+
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = config.data.slice();
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
+    }
+    if (this.dataCount !== 'all') {
+      const cnt = Number(this.dataCount);
+      this.data = cnt > this.originalData.length
+        ? [...this.originalData]
+        : this.originalData.slice(0, cnt);
+    } else {
+      this.data = [...this.originalData];
+    }
   }
 
   ngAfterViewInit(): void {
-
     this.resizeObserver.observe(this.el.nativeElement);
   }
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   onSelect(event: any): void {
     console.log(event);
+    this.mediator.emit({ origin: 'line-chart', type: 'select', payload: event });
   }
 }
