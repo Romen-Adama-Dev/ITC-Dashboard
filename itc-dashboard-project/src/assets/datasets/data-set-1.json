@@ -402,6 +402,19 @@
         { "name": "Perú",      "value": 4000000 }
       ]
     },
+    "pieGridChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Germany", "value": 40632 },
+        { "name": "USA",     "value": 50000 },
+        { "name": "France",  "value": 36745 },
+        { "name": "Italy",   "value": 45800 },
+        { "name": "Spain",   "value": 28700 },
+        { "name": "Canada",  "value": 33800 },
+        { "name": "Brazil",  "value": 29400 }
+      ]
+    },
     "polarChart": {
       "theme": "default",
       "view": [700, 300],

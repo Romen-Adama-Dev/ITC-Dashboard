@@ -416,6 +416,19 @@
           { "name": "Perú",      "value": 4100000 }
         ]
       },
+      "pieGridChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+          { "name": "Argentina", "value": 42000 },
+          { "name": "Mexico",    "value": 48000 },
+          { "name": "Chile",     "value": 35000 },
+          { "name": "Peru",      "value": 39000 },
+          { "name": "Colombia",  "value": 31000 },
+          { "name": "Uruguay",   "value": 27000 },
+          { "name": "Paraguay",  "value": 25000 }
+        ]
+            },
       "polarChart": {
         "theme": "default",
         "view": [700, 300],
