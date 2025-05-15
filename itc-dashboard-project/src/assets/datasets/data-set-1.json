@@ -184,6 +184,15 @@
         }
       ]
     },
+    "gaugeChart": {
+      "theme": "default",
+      "view": [700,700],
+      "data": [
+        { "name": "CPU Usage",    "value": 100000 },
+        { "name": "Memory Usage", "value": 873899 },
+        { "name": "Disk I/O",     "value": 762789 }
+      ]
+    },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],

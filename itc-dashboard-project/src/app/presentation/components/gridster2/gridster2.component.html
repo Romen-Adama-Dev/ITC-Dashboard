@@ -55,7 +55,10 @@
             </app-bubble-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'gauge-chart'">
-            <app-gauge-chart></app-gauge-chart>
+            <app-gauge-chart
+            [dataSource]="item.dataSource || ''"
+            [dataCount]="item.dataCount || ''">
+            </app-gauge-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'heat-map'">
             <app-heat-map></app-heat-map>

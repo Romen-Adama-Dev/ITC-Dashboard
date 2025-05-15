@@ -1,5 +1,20 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+// src/app/presentation/components/shared/data-view/gauge-chart/gauge-chart.component.ts
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HttpClient } from '@angular/common/http';
+import { filter } from 'rxjs/operators';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 
 @Component({
   selector: 'app-gauge-chart',
@@ -8,60 +23,117 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './gauge-chart.component.html',
   styleUrls: ['./gauge-chart.component.scss']
 })
-export class GaugeChartComponent implements AfterViewInit, OnDestroy {
-  @Input() theme: 'default' | 'dark' = 'default';
-  @Input()
-  data: { name: string; value: number; extra?: any }[] = [
-    { name: "Italy", value: 35800, extra: { code: "it" } },
-    { name: "Åland Islands", value: 33545 },
-    { name: "Yemen", value: 38407 },
-    { name: "Trinidad and Tobago", value: 26319 },
-    { name: "Liechtenstein", value: 44046 },
-    { name: "Malaysia", value: 44114 },
-    { name: "Indonesia", value: 37569 },
-    { name: "Norfolk Island", value: 48302 },
-    { name: "Bahrain", value: 35618 },
-    { name: "Philippines", value: 37412 },
-    { name: "Turks and Caicos Islands", value: 17567 },
-    { name: "Guinea-Bissau", value: 49279 },
-    { name: "Tuvalu", value: 15674 }
-  ];
+export class GaugeChartComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy 
+{
+  /** Inputs nuevos para enlazar desde Gridster */
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataCount: string = 'all';
 
-  @HostBinding('class.dark')
-  get isDarkTheme() {
+  /** Tema heredado (sigue sirviendo) */
+  @Input() theme: 'default' | 'dark' = 'default';
+  @HostBinding('class.dark') get isDarkTheme() {
     return this.theme === 'dark';
   }
-  
-  // Tamaño del gráfico, se actualizará dinámicamente para mantener un contenedor cuadrado
+
+  /** Datos internos */
+  public originalData: Array<{ name: string; value: number; extra?: any }> = [];
+  public data: Array<{ name: string; value: number; extra?: any }> = [];
+
+  /** Mantener cuadrado */
   view: [number, number] = [700, 700];
 
-  // Opciones del Gauge Chart
-  animations: boolean = true;
-  min: number = 0;
-  max: number = 50000;
-  units: string = "";
-  angleSpan: number = 240;
-  startAngle: number = -120;
-  showAxis: boolean = true;
+  // Opciones del Gauge
+  animations = true;
+  min = 0;
+  max = 50000;
+  units = '';
+  angleSpan = 240;
+  startAngle = -120;
+  showAxis = true;
   margin: number[] = [10, 10, 10, 10];
-  tooltipDisabled: boolean = false;
-  showText: boolean = true;
-
-  // Esquema de colores
-  colorScheme: any = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5']
-  };
+  tooltipDisabled = false;
+  showText = true;
+  colorScheme: any = { domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5'] };
 
   private resizeObserver: ResizeObserver;
 
-  constructor(private el: ElementRef) {
-    // Se utiliza el ancho del contenedor para definir un área cuadrada.
+  constructor(
+    private el: ElementRef,
+    private http: HttpClient,
+    private mediator: MediatorService,
+    private helper: ChartHelperService
+  ) {
+    // observer para mantenerlo cuadrado
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const width = entry.contentRect.width;
-        this.view = [width, width];
+      for (const e of entries) {
+        const w = e.contentRect.width;
+        this.view = [w, w];
       }
     });
+
+    // reacciona a eventos de filtro o apariencia
+    this.mediator.events$
+      .pipe(filter(e => e.origin !== 'gauge-chart'))
+      .subscribe(event => {
+        const cfg = this.helper.processEvent(event, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view as [number, number];
+        this.originalData = cfg.data as typeof this.originalData;
+        this.updateDisplayedData();
+      });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+  }
+
+  private loadConfig(): void {
+    const ds = this.dataSource?.trim() || '/assets/datasets/data-set-1.json';
+    this.http.get<any>(ds).subscribe(
+      cfg => {
+        const chart = cfg?.charts?.gaugeChart;
+        if (chart) {
+          this.theme = chart.theme;
+          this.view = chart.view;
+          this.originalData = chart.data;
+        } else {
+          this.originalData = [];
+        }
+        this.updateDisplayedData();
+      },
+      err => {
+        console.error('Error cargando gaugeChart:', err);
+        this.originalData = [];
+        this.updateDisplayedData();
+      }
+    );
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
+    }
+    if (this.dataCount !== 'all') {
+      const cnt = Number(this.dataCount);
+      this.data = this.originalData.slice(0, cnt);
+    } else {
+      this.data = [...this.originalData];
+    }
   }
 
   ngAfterViewInit(): void {
@@ -73,6 +145,10 @@ export class GaugeChartComponent implements AfterViewInit, OnDestroy {
   }
 
   onSelect(event: any): void {
-    console.log(event);
+    this.mediator.emit({
+      origin: 'gauge-chart',
+      type: 'select',
+      payload: event
+    });
   }
 }
