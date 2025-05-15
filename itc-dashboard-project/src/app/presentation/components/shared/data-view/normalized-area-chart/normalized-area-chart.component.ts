@@ -1,6 +1,21 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+// src/app/presentation/components/shared/data-view/normalized-area-chart/normalized-area-chart.component.ts
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 import { curveLinear } from 'd3-shape';
+import { Subscription, filter } from 'rxjs';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-normalized-area-chart',
@@ -9,71 +24,43 @@ import { curveLinear } from 'd3-shape';
   templateUrl: './normalized-area-chart.component.html',
   styleUrls: ['./normalized-area-chart.component.scss']
 })
-export class NormalizedAreaChartComponent implements AfterViewInit, OnDestroy {
+export class NormalizedAreaChartComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
+  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
+  /** Configuración del gráfico */
   view: [number, number] = [700, 400];
-  animations: boolean = true;
-  legend: boolean = true;
-  legendTitle: string = 'Legend';
+  animations = true;
+  legend = true;
+  legendTitle = 'Legend';
   legendPosition: LegendPosition = LegendPosition.Right;
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Census Date';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Normalized GDP Per Capita';
-  autoScale: boolean = true;
-  timeline: boolean = false;
-  showGridLines: boolean = true;
+  showXAxis = true;
+  showYAxis = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Census Date';
+  showYAxisLabel = true;
+  yAxisLabel = 'Normalized GDP Per Capita';
+  autoScale = true;
+  timeline = false;
+  showGridLines = true;
   curve = curveLinear;
-  roundDomains: boolean = false;
-  tooltipDisabled: boolean = false;
-  trimXAxisTicks: boolean = true;
-  trimYAxisTicks: boolean = true;
-  rotateXAxisTicks: boolean = true;
-  maxXAxisTickLength: number = 16;
-  maxYAxisTickLength: number = 16;
-  wrapTicks: boolean = false;
-
-  data = [
-    {
-      name: 'Germany',
-      series: [
-        { name: '2010', value: 62000000 },
-        { name: '2011', value: 73000000 },
-        { name: '2012', value: 89400000 }
-      ]
-    },
-    {
-      name: 'USA',
-      series: [
-        { name: '2010', value: 250000000 },
-        { name: '2011', value: 309000000 },
-        { name: '2012', value: 311000000 }
-      ]
-    },
-    {
-      name: 'France',
-      series: [
-        { name: '2010', value: 58000000 },
-        { name: '2011', value: 50000020 },
-        { name: '2012', value: 58000000 }
-      ]
-    },
-    {
-      name: 'UK',
-      series: [
-        { name: '2010', value: 57000000 },
-        { name: '2011', value: 62000000 },
-        { name: '2012', value: 72000000 }
-      ]
-    }
-  ];
+  roundDomains = false;
+  tooltipDisabled = false;
+  trimXAxisTicks = true;
+  trimYAxisTicks = true;
+  rotateXAxisTicks = true;
+  maxXAxisTickLength = 16;
+  maxYAxisTickLength = 16;
+  wrapTicks = false;
 
   colorScheme: any = {
     name: 'customScheme',
@@ -82,16 +69,84 @@ export class NormalizedAreaChartComponent implements AfterViewInit, OnDestroy {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  private resizeObserver: ResizeObserver;
+  /** Datos internos */
+  originalData: any[] = [];
+  data: any[] = [];
 
-  constructor(private el: ElementRef) {
+  private resizeObserver: ResizeObserver;
+  private configSub?: Subscription;
+  private mediatorSub: Subscription;
+
+  constructor(
+    private el: ElementRef,
+    private helper: ChartHelperService,
+    private mediator: MediatorService
+  ) {
+    // Mantener proporción 400/700
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const width = entry.contentRect.width;
-        const height = width * (400 / 700);
-        this.view = [width, height];
+      for (const e of entries) {
+        const w = e.contentRect.width;
+        this.view = [w, w * (400 / 700)];
       }
     });
+
+    // Escuchar eventos globales (excepto los propios)
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(ev => ev.origin !== 'normalized-area-chart'))
+      .subscribe(ev => {
+        const cfg = this.helper.processEvent(ev, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view as [number, number];
+        this.originalData = cfg.data;
+        this.updateDisplayedData();
+      });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+  }
+
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('normalizedAreaChart', this.dataSource)
+      .subscribe({
+        next: cfg => this.applyConfig(cfg),
+        error: err => console.error('Error loading normalized area config', err)
+      });
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = cfg.data.slice();
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
+    }
+    if (this.dataCount !== 'all') {
+      const cnt = Number(this.dataCount);
+      this.data = this.originalData.slice(0, cnt);
+    } else {
+      this.data = [...this.originalData];
+    }
   }
 
   ngAfterViewInit(): void {
@@ -100,9 +155,16 @@ export class NormalizedAreaChartComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   onSelect(event: any): void {
     console.log(event);
+    this.mediator.emit({
+      origin: 'normalized-area-chart',
+      type: 'select',
+      payload: event
+    });
   }
 }

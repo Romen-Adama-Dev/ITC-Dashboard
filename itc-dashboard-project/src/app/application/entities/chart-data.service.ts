@@ -25,6 +25,7 @@ export interface ChartsJson {
     horizontalBarChart: ChartConfig;
     lineChart: ChartConfig;
     linearGaugeChart: ChartConfig;
+    normalizedAreaChart: ChartConfig;
     verticalBarChart: ChartConfig;
     
   };
