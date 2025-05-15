@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomBarComponent } from './custom-bar.component';
+import { ProgressGradientComponent } from './custom-bar.component';
 
 describe('CustomBarComponent', () => {
-  let component: CustomBarComponent;
-  let fixture: ComponentFixture<CustomBarComponent>;
+  let component: ProgressGradientComponent;
+  let fixture: ComponentFixture<ProgressGradientComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomBarComponent]
+      imports: [ProgressGradientComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CustomBarComponent);
+    fixture = TestBed.createComponent(ProgressGradientComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

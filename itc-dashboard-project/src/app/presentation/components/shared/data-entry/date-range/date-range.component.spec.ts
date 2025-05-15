@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DateRangeComponent } from './date-range.component';
+import { NzDemoDatePickerRangePickerComponent } from './date-range.component';
 
 describe('DateRangeComponent', () => {
-  let component: DateRangeComponent;
-  let fixture: ComponentFixture<DateRangeComponent>;
+  let component: NzDemoDatePickerRangePickerComponent;
+  let fixture: ComponentFixture<NzDemoDatePickerRangePickerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DateRangeComponent]
+      imports: [NzDemoDatePickerRangePickerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DateRangeComponent);
+    fixture = TestBed.createComponent(NzDemoDatePickerRangePickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpinComponent } from './spin.component';
+import { NzDemoSpinBasicComponent } from './spin.component';
 
 describe('SpinComponent', () => {
-  let component: SpinComponent;
-  let fixture: ComponentFixture<SpinComponent>;
+  let component: NzDemoSpinBasicComponent;
+  let fixture: ComponentFixture<NzDemoSpinBasicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpinComponent]
+      imports: [NzDemoSpinBasicComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SpinComponent);
+    fixture = TestBed.createComponent(NzDemoSpinBasicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

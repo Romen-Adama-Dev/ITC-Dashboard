@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CascaderComponent } from './cascader.component';
+import { NzDemoCascaderMultipleComponent } from './cascader.component';
 
 describe('CascaderComponent', () => {
-  let component: CascaderComponent;
-  let fixture: ComponentFixture<CascaderComponent>;
+  let component: NzDemoCascaderMultipleComponent;
+  let fixture: ComponentFixture<NzDemoCascaderMultipleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CascaderComponent]
+      imports: [NzDemoCascaderMultipleComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CascaderComponent);
+    fixture = TestBed.createComponent(NzDemoCascaderMultipleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

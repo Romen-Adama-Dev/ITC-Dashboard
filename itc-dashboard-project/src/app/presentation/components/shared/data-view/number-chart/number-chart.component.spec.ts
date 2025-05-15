@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NumberChartComponent } from './number-chart.component';
+import { NumberCardsComponent } from './number-chart.component';
 
 describe('NumberChartComponent', () => {
-  let component: NumberChartComponent;
-  let fixture: ComponentFixture<NumberChartComponent>;
+  let component: NumberCardsComponent;
+  let fixture: ComponentFixture<NumberCardsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NumberChartComponent]
+      imports: [NumberCardsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NumberChartComponent);
+    fixture = TestBed.createComponent(NumberCardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

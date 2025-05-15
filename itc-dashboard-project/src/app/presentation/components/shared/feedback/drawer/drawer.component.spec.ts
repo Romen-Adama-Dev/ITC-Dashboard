@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DrawerComponent } from './drawer.component';
+import { NzDemoDrawerFromDrawerComponent } from './drawer.component';
 
 describe('DrawerComponent', () => {
-  let component: DrawerComponent;
-  let fixture: ComponentFixture<DrawerComponent>;
+  let component: NzDemoDrawerFromDrawerComponent;
+  let fixture: ComponentFixture<NzDemoDrawerFromDrawerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DrawerComponent]
+      imports: [NzDemoDrawerFromDrawerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DrawerComponent);
+    fixture = TestBed.createComponent(NzDemoDrawerFromDrawerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

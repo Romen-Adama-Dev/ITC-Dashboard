@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeatChartComponent } from './heat-chart.component';
+import { HeatMapComponent } from './heat-chart.component';
 
 describe('HeatChartComponent', () => {
-  let component: HeatChartComponent;
-  let fixture: ComponentFixture<HeatChartComponent>;
+  let component: HeatMapComponent;
+  let fixture: ComponentFixture<HeatMapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeatChartComponent]
+      imports: [HeatMapComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeatChartComponent);
+    fixture = TestBed.createComponent(HeatMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,6 +11,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.html']
 })
-export class appInputComponent {
+export class NzDemoInputNumberBasicComponent {
   searchText: string = '';
 }

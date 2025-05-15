@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RadioComponent } from './radio.component';
+import { UnifiedRadioGroupComponent } from './radio.component';
 
 describe('RadioComponent', () => {
-  let component: RadioComponent;
-  let fixture: ComponentFixture<RadioComponent>;
+  let component: UnifiedRadioGroupComponent;
+  let fixture: ComponentFixture<UnifiedRadioGroupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RadioComponent]
+      imports: [UnifiedRadioGroupComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RadioComponent);
+    fixture = TestBed.createComponent(UnifiedRadioGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

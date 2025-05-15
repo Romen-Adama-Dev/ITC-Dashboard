@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PopconfirmComponent } from './popconfirm.component';
+import { NzDemoPopconfirmPromiseComponent } from './popconfirm.component';
 
 describe('PopconfirmComponent', () => {
-  let component: PopconfirmComponent;
-  let fixture: ComponentFixture<PopconfirmComponent>;
+  let component: NzDemoPopconfirmPromiseComponent;
+  let fixture: ComponentFixture<NzDemoPopconfirmPromiseComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PopconfirmComponent]
+      imports: [NzDemoPopconfirmPromiseComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PopconfirmComponent);
+    fixture = TestBed.createComponent(NzDemoPopconfirmPromiseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

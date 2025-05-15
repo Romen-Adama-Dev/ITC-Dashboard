@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputNumberComponent } from './input-number.component';
+import { NzDemoInputNumberBasicComponent } from './input-number.component';
 
 describe('InputNumberComponent', () => {
-  let component: InputNumberComponent;
-  let fixture: ComponentFixture<InputNumberComponent>;
+  let component: NzDemoInputNumberBasicComponent;
+  let fixture: ComponentFixture<NzDemoInputNumberBasicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InputNumberComponent]
+      imports: [NzDemoInputNumberBasicComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InputNumberComponent);
+    fixture = TestBed.createComponent(NzDemoInputNumberBasicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

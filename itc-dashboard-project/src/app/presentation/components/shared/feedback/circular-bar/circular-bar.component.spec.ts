@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CircularBarComponent } from './circular-bar.component';
+import { NzDemoProgressFormatComponent } from './circular-bar.component';
 
 describe('CircularBarComponent', () => {
-  let component: CircularBarComponent;
-  let fixture: ComponentFixture<CircularBarComponent>;
+  let component: NzDemoProgressFormatComponent;
+  let fixture: ComponentFixture<NzDemoProgressFormatComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CircularBarComponent]
+      imports: [NzDemoProgressFormatComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CircularBarComponent);
+    fixture = TestBed.createComponent(NzDemoProgressFormatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

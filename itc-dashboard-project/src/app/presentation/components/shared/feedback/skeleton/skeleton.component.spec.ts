@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SkeletonComponent } from './skeleton.component';
+import { UnifiedSkeletonDemoComponent } from './skeleton.component';
 
 describe('SkeletonComponent', () => {
-  let component: SkeletonComponent;
-  let fixture: ComponentFixture<SkeletonComponent>;
+  let component: UnifiedSkeletonDemoComponent;
+  let fixture: ComponentFixture<UnifiedSkeletonDemoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SkeletonComponent]
+      imports: [UnifiedSkeletonDemoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SkeletonComponent);
+    fixture = TestBed.createComponent(UnifiedSkeletonDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

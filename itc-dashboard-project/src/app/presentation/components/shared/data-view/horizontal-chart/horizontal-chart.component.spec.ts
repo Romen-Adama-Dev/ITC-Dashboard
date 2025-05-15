@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HorizontalChartComponent } from './horizontal-chart.component';
+import { HorizontalBarChartComponent } from './horizontal-chart.component';
 
 describe('HorizontalChartComponent', () => {
-  let component: HorizontalChartComponent;
-  let fixture: ComponentFixture<HorizontalChartComponent>;
+  let component: HorizontalBarChartComponent;
+  let fixture: ComponentFixture<HorizontalBarChartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HorizontalChartComponent]
+      imports: [HorizontalBarChartComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HorizontalChartComponent);
+    fixture = TestBed.createComponent(HorizontalBarChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
