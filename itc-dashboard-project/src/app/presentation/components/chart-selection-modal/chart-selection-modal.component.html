@@ -5,64 +5,61 @@
     </div>
     <div class="modal-body">
       <div class="modal-row">
-        <!-- Columna izquierda: Iconos para seleccionar la categoría -->
+        <!-- Columna izquierda: categorías -->
         <div class="chart-type-column">
           <p>Select Chart Category:</p>
           <div class="icon-list">
-            <button type="button" class="icon-button" (click)="selectChartCategory('line-chart')"
+            <button type="button"
+                    class="icon-button"
+                    (click)="selectChartCategory('line-chart')"
                     [class.selected]="selectedChartCategory === 'line-chart'">
-              <i class="ri-line-chart-line"></i>
-              <span>Line Chart</span>
+              <i class="ri-line-chart-line"></i><span>Line Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('bar-chart')"
+            <button type="button"
+                    class="icon-button"
+                    (click)="selectChartCategory('bar-chart')"
                     [class.selected]="selectedChartCategory === 'bar-chart'">
-              <i class="ri-bar-chart-horizontal-line"></i>
-              <span>Bar Chart</span>
+              <i class="ri-bar-chart-horizontal-line"></i><span>Bar Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('bubble-chart')"
-                    [class.selected]="selectedChartCategory === 'bubble-chart'">
-              <i class="ri-bubble-chart-line"></i>
-              <span>Bubble Chart</span>
-            </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('pie-chart')"
+            <button type="button"
+                    class="icon-button"
+                    (click)="selectChartCategory('pie-chart')"
                     [class.selected]="selectedChartCategory === 'pie-chart'">
-              <i class="ri-pie-chart-line"></i>
-              <span>Pie Chart</span>
+              <i class="ri-pie-chart-line"></i><span>Pie Chart</span>
             </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('graph-custom')"
-                    [class.selected]="selectedChartCategory === 'graph-custom'">
-              <i class="ri-flow-chart"></i>
-              <span>Custom Graph</span>
-            </button>
-            <button type="button" class="icon-button" (click)="selectChartCategory('other')"
-                    [class.selected]="selectedChartCategory === 'other'">
-              <i class="ri-settings-3-line"></i>
-              <span>Other Categories</span>
-            </button>
-          
-          
             <button type="button"
                     class="icon-button"
                     (click)="selectChartCategory('gauge-chart')"
                     [class.selected]="selectedChartCategory === 'gauge-chart'">
-              <i class="ri-flashlight-line"></i>
-              <span>Gauge Chart</span>
+              <i class="ri-flashlight-line"></i><span>Gauge Chart</span>
+            </button>
+            <button type="button"
+                    class="icon-button"
+                    (click)="selectChartCategory('other')"
+                    [class.selected]="selectedChartCategory === 'other'">
+              <i class="ri-settings-3-line"></i><span>Other Categories</span>
             </button>
           </div>
         </div>
+        <!-- Columna derecha: variantes y datasource -->
         <div class="data-source-column">
           <p>Select Chart Variant:</p>
-          <app-chart-selector-vanilla 
-            [selectedChartCategory]="selectedChartCategory" 
+          <app-chart-selector-vanilla
+            [selectedChartCategory]="selectedChartCategory"
             [(selectedChartVariant)]="selectedChartVariant">
           </app-chart-selector-vanilla>
+
           <p>Select Data Source:</p>
           <select [(ngModel)]="selectedDataSource">
             <option value="/assets/data-set-1.json">Data Set 1</option>
             <option value="/assets/data-set-2.json">Data Set 2</option>
           </select>
+
           <p>Enter Number of Data Items to Display:</p>
-          <input type="number" [(ngModel)]="selectedDataCount" min="1" placeholder="Enter number or leave empty for all" />
+          <input type="number"
+                 [(ngModel)]="selectedDataCount"
+                 min="1"
+                 placeholder="Enter number or leave empty for all" />
         </div>
       </div>
     </div>
