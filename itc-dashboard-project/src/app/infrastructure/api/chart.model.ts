@@ -28,6 +28,7 @@ export interface ChartData {
       pieChart: ChartConfig;
       pieGridChart: ChartConfig;
       polarChart: ChartConfig;
+      stackedAreaChart: ChartConfig;
       verticalBarChart: ChartConfig;
     };
   }

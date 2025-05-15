@@ -132,7 +132,10 @@
             </app-polar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-area-chart'">
-            <app-stacked-area-chart></app-stacked-area-chart>
+            <app-stacked-area-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+            </app-stacked-area-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-horizontal-bar-chart'">
             <app-stacked-horizontal-bar-chart></app-stacked-horizontal-bar-chart>

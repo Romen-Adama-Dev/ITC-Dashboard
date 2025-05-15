@@ -466,7 +466,45 @@
             ]
           }
         ]
-            },
+      },
+      "stackedAreaChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+          {
+        "name": "Argentina",
+        "series": [
+          { "name": "2010", "value": 7000000 },
+          { "name": "2011", "value": 7500000 },
+          { "name": "2012", "value": 8000000 }
+        ]
+          },
+          {
+        "name": "Brazil",
+        "series": [
+          { "name": "2010", "value": 6800000 },
+          { "name": "2011", "value": 7200000 },
+          { "name": "2012", "value": 7600000 }
+        ]
+          },
+          {
+        "name": "Chile",
+        "series": [
+          { "name": "2010", "value": 4800000 },
+          { "name": "2011", "value": 5200000 },
+          { "name": "2012", "value": 5600000 }
+        ]
+          },
+          {
+        "name": "Colombia",
+        "series": [
+          { "name": "2010", "value": 4300000 },
+          { "name": "2011", "value": 4600000 },
+          { "name": "2012", "value": 4900000 }
+        ]
+          }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],
