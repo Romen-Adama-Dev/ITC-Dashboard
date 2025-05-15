@@ -391,6 +391,17 @@
         { "name": "target", "value": 80 }
       ]
     },
+    "pieChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Argentina", "value": 4500000 },
+        { "name": "Brasil",    "value": 5000000 },
+        { "name": "Chile",     "value": 3500000 },
+        { "name": "Colombia",  "value": 3000000 },
+        { "name": "Perú",      "value": 4000000 }
+      ]
+    },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],

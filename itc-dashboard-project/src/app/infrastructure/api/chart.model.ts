@@ -25,6 +25,7 @@ export interface ChartData {
       normalizedVerticalBarChart: ChartConfig;
       numberCards: ChartConfig;
       percentGaugeChart: ChartConfig;
+      pieChart: ChartConfig;
       verticalBarChart: ChartConfig;
     };
   }

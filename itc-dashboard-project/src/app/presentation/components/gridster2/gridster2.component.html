@@ -114,7 +114,10 @@
           </app-percent-gauge-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'pie-chart'">
-            <app-pie-chart></app-pie-chart>
+            <app-pie-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+          </app-pie-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'pie-grid-chart'">
             <app-pie-grid></app-pie-grid>

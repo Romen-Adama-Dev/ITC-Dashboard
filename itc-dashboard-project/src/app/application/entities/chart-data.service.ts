@@ -30,6 +30,7 @@ export interface ChartsJson {
     normalizedVerticalBarChart: ChartConfig;
     numberCards: ChartConfig;
     percentGaugeChart: ChartConfig;
+    pieChart: ChartConfig;
     verticalBarChart: ChartConfig;
     
   };
