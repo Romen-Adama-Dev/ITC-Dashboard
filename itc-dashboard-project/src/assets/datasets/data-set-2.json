@@ -318,6 +318,36 @@
           }
         ]
       },
+      "normalizedHorizontalBarChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+          {
+            "name": "Japan",
+            "series": [
+          { "name": "2010", "value": 9200000 },
+          { "name": "2011", "value": 8700000 },
+          { "name": "2012", "value": 8900000 }
+            ]
+          },
+          {
+            "name": "India",
+            "series": [
+          { "name": "2010", "value": 8100000 },
+          { "name": "2011", "value": 8500000 },
+          { "name": "2012", "value": 8800000 }
+            ]
+          },
+          {
+            "name": "Australia",
+            "series": [
+          { "name": "2010", "value": 6200000 },
+          { "name": "2011", "value": 6700000 },
+          { "name": "2012", "value": 7000000 }
+            ]
+          }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

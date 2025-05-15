@@ -21,6 +21,7 @@ export interface ChartData {
       lineChart: ChartConfig;
       linearGaugeChart: ChartConfig;
       normalizedAreaChart: ChartConfig;
+      normalizedHorizontalBarChart: ChartConfig;
       verticalBarChart: ChartConfig;
     };
   }

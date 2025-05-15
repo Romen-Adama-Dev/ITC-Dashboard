@@ -1,5 +1,20 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+// src/app/presentation/components/shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component.ts
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
+import { Subscription, filter } from 'rxjs';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-normalized-horizontal-bar-chart',
@@ -8,22 +23,27 @@ import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './normalized-horizontal-bar-chart.component.html',
   styleUrls: ['./normalized-horizontal-bar-chart.component.scss']
 })
-export class NormalizedHorizontalBarChartComponent implements AfterViewInit, OnDestroy {
+export class NormalizedHorizontalBarChartComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
+  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataCount: string = 'all';
+
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
-  
-  // Default dimensions: 700x400. Responsive adjustments will be based on container width.
-  view: [number, number] = [700, 400];
 
+  /** Configuración del gráfico */
+  view: [number, number] = [700, 400];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   animations = true;
   legend = true;
-  legendTitle: string = 'Legend';
+  legendTitle = 'Legend';
   legendPosition: LegendPosition = LegendPosition.Right;
   showXAxisLabel = true;
   xAxisLabel = 'Normalized Value';
@@ -31,31 +51,7 @@ export class NormalizedHorizontalBarChartComponent implements AfterViewInit, OnD
   yAxisLabel = 'Country';
   noBarWhenZero = true;
   barPadding = 8;
-  
-  data = [
-    {
-      name: 'Germany',
-      series: [
-        { name: '2010', value: 7300000 },
-        { name: '2011', value: 8940000 }
-      ]
-    },
-    {
-      name: 'USA',
-      series: [
-        { name: '2010', value: 7870000 },
-        { name: '2011', value: 8270000 }
-      ]
-    },
-    {
-      name: 'France',
-      series: [
-        { name: '2010', value: 5000002 },
-        { name: '2011', value: 5800000 }
-      ]
-    }
-  ];
-  
+
   colorScheme: any = {
     name: 'customScheme',
     selectable: true,
@@ -63,18 +59,84 @@ export class NormalizedHorizontalBarChartComponent implements AfterViewInit, OnD
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  private resizeObserver: ResizeObserver;
+  /** Datos */
+  originalData: any[] = [];
+  data: any[] = [];
 
-  constructor(private el: ElementRef) {
-    // Create a ResizeObserver to update the view dimensions responsively.
+  private resizeObserver: ResizeObserver;
+  private configSub?: Subscription;
+  private mediatorSub: Subscription;
+
+  constructor(
+    private el: ElementRef,
+    private helper: ChartHelperService,
+    private mediator: MediatorService
+  ) {
+    // Observador de redimensionado para mantener proporción
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const width = entry.contentRect.width;
-        // Maintain the aspect ratio 400/700 ≈ 0.5714
-        const height = width * (400 / 700);
-        this.view = [width, height];
+      for (const e of entries) {
+        const w = e.contentRect.width;
+        this.view = [w, w * (400 / 700)];
       }
     });
+
+    // Suscripción a eventos globales (excluyendo los propios)
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(ev => ev.origin !== 'normalized-horizontal-bar-chart'))
+      .subscribe(ev => {
+        const cfg = this.helper.processEvent(ev, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view as [number, number];
+        this.originalData = cfg.data;
+        this.updateDisplayedData();
+      });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+  }
+
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('normalizedHorizontalBarChart', this.dataSource)
+      .subscribe({
+        next: cfg => this.applyConfig(cfg),
+        error: err => console.error('Error loading normalized horizontal bar config', err)
+      });
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = cfg.data.slice();
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
+    }
+    if (this.dataCount !== 'all') {
+      const cnt = Number(this.dataCount);
+      this.data = this.originalData.slice(0, cnt);
+    } else {
+      this.data = [...this.originalData];
+    }
   }
 
   ngAfterViewInit(): void {
@@ -83,9 +145,16 @@ export class NormalizedHorizontalBarChartComponent implements AfterViewInit, OnD
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   onSelect(event: any): void {
     console.log(event);
+    this.mediator.emit({
+      origin: 'normalized-horizontal-bar-chart',
+      type: 'select',
+      payload: event
+    });
   }
 }
