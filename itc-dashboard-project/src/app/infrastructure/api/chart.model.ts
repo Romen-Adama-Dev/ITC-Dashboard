@@ -19,6 +19,7 @@ export interface ChartData {
       heatmapChart: ChartConfig;
       horizontalBarChart: ChartConfig;
       lineChart: ChartConfig;
+      linearGaugeChart: ChartConfig;
       verticalBarChart: ChartConfig;
     };
   }

@@ -24,6 +24,7 @@ export interface ChartsJson {
     heatmapChart: ChartConfig;
     horizontalBarChart: ChartConfig;
     lineChart: ChartConfig;
+    linearGaugeChart: ChartConfig;
     verticalBarChart: ChartConfig;
     
   };

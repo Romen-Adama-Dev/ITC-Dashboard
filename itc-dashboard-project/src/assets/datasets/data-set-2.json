@@ -272,6 +272,14 @@
           }
         ]
       },
+      "linearGaugeChart": {
+        "theme": "default",
+        "view": [700, 400],
+        "data": [
+        { "name": "Current", "value": 43 },
+        { "name": "Previous", "value": 99 }
+        ]
+      },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],
