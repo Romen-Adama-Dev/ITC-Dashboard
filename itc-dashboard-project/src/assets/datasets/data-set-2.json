@@ -378,6 +378,25 @@
           }
         ]
       },
+      "numberCards": {
+        "theme": "default",
+        "view": [749, 499],
+        "data": [
+          { "name": "France", "value": 42000, "extra": { "code": "fr" } },
+          { "name": "Germany", "value": 39000 },
+          { "name": "Japan", "value": 45000 },
+          { "name": "United States", "value": 50000 },
+          { "name": "Canada", "value": 47000 },
+          { "name": "Australia", "value": 43000 },
+          { "name": "India", "value": 38000 },
+          { "name": "China", "value": 52000 },
+          { "name": "South Korea", "value": 41000 },
+          { "name": "Brazil", "value": 37000 },
+          { "name": "Mexico", "value": 36000 },
+          { "name": "South Africa", "value": 34000 },
+          { "name": "Russia", "value": 46000 }
+        ]
+            },
       "verticalBarChart": {
         "theme": "dark",
         "view": [800, 600],

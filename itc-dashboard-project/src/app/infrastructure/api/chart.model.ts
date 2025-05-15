@@ -23,6 +23,7 @@ export interface ChartData {
       normalizedAreaChart: ChartConfig;
       normalizedHorizontalBarChart: ChartConfig;
       normalizedVerticalBarChart: ChartConfig;
+      numberCards: ChartConfig;
       verticalBarChart: ChartConfig;
     };
   }

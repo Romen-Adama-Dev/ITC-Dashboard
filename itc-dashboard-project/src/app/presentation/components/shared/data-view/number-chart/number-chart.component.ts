@@ -1,5 +1,21 @@
-import { Component, Input, HostBinding, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+// src/app/presentation/components/shared/data-view/number-chart/number-chart.component.ts
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig, ChartData } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-number-cards',
@@ -8,55 +24,106 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './number-chart.component.html',
   styleUrls: ['./number-chart.component.scss']
 })
-export class NumberCardsComponent implements AfterViewInit, OnDestroy {
+export class NumberCardsComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
+  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
-  @Input()
-  data: { name: string; value: number; extra?: any }[] = [
-    { name: "Italy", value: 35800, extra: { code: "it" } },
-    { name: "Åland Islands", value: 33545 },
-    { name: "Yemen", value: 38407 },
-    { name: "Trinidad and Tobago", value: 26319 },
-    { name: "Liechtenstein", value: 44046 },
-    { name: "Malaysia", value: 44114 },
-    { name: "Indonesia", value: 37569 },
-    { name: "Norfolk Island", value: 48302 },
-    { name: "Bahrain", value: 35618 },
-    { name: "Philippines", value: 37412 },
-    { name: "Turks and Caicos Islands", value: 17567 },
-    { name: "Guinea-Bissau", value: 49279 },
-    { name: "Tuvalu", value: 15674 }
-  ];
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
   get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  // Start with a default aspect ratio of 749x499
+  /** Tamaño inicial (se puede ajustar desde JSON) */
   view: [number, number] = [749, 499];
 
   animations: boolean = true;
 
-  // Color scheme for the number cards
   colorScheme: any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  onSelect(event: any): void {
-    console.log(event);
-  }
+  /** Datos completos y filtrados */
+  originalData: ChartData[] = [];
+  data: ChartData[] = [];
 
   private resizeObserver: ResizeObserver;
+  private configSub?: Subscription;
+  private mediatorSub: Subscription;
 
-  constructor(private el: ElementRef) {
+  constructor(
+    private el: ElementRef,
+    private helper: ChartHelperService,
+    private mediator: MediatorService
+  ) {
+    // Observador para ajustar el tamaño manteniendo proporción 499/749
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const width = entry.contentRect.width;
-        // Maintain the aspect ratio 499/749
-        const height = width * (499 / 749);
-        this.view = [width, height];
+      for (const e of entries) {
+        const w = e.contentRect.width;
+        this.view = [w, w * (499 / 749)];
       }
     });
+
+    // Escuchar eventos globales y aplicar filtros/estilos desde el helper
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(ev => ev.origin !== 'number-cards'))
+      .subscribe(ev => {
+        const cfg = this.helper.processEvent(ev, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view as [number, number];
+        this.originalData = cfg.data;
+        this.updateDisplayedData();
+      });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.loadConfig();
+    }
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+  }
+
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('numberCards', this.dataSource)
+      .subscribe({
+        next: cfg => this.applyConfig(cfg),
+        error: err => console.error('Error loading number cards config', err)
+      });
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = cfg.data.slice();
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
+    }
+    if (this.dataCount !== 'all') {
+      const cnt = Number(this.dataCount);
+      this.data = this.originalData.slice(0, cnt);
+    } else {
+      this.data = [...this.originalData];
+    }
   }
 
   ngAfterViewInit(): void {
@@ -65,5 +132,16 @@ export class NumberCardsComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
+  }
+
+  onSelect(event: any): void {
+    // Emitimos un evento para otros componentes
+    this.mediator.emit({
+      origin: 'number-cards',
+      type: 'select',
+      payload: event
+    });
   }
 }

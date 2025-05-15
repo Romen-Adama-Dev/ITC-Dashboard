@@ -364,6 +364,25 @@
         }
       ]
     },
+    "numberCards": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Italy", "value": 35800, "extra": { "code": "it" } },
+        { "name": "Åland Islands", "value": 33545 },
+        { "name": "Yemen", "value": 38407 },
+        { "name": "Trinidad and Tobago", "value": 26319 },
+        { "name": "Liechtenstein", "value": 44046 },
+        { "name": "Malaysia", "value": 44114 },
+        { "name": "Indonesia", "value": 37569 },
+        { "name": "Norfolk Island", "value": 48302 },
+        { "name": "Bahrain", "value": 35618 },
+        { "name": "Philippines", "value": 37412 },
+        { "name": "Turks and Caicos Islands", "value": 17567 },
+        { "name": "Guinea-Bissau", "value": 49279 },
+        { "name": "Tuvalu", "value": 15674 }
+      ]
+    },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],

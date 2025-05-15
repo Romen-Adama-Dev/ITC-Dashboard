@@ -28,6 +28,7 @@ export interface ChartsJson {
     normalizedAreaChart: ChartConfig;
     normalizedHorizontalBarChart: ChartConfig;
     normalizedVerticalBarChart: ChartConfig;
+    numberCards: ChartConfig;
     verticalBarChart: ChartConfig;
     
   };

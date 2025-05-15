@@ -103,7 +103,10 @@
           </app-normalized-vertical-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'number-chart'">
-            <app-number-cards></app-number-cards>
+            <app-number-cards
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''">
+          </app-number-cards>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'percent-gauge-chart'">
             <app-percent-gauge-chart></app-percent-gauge-chart>
