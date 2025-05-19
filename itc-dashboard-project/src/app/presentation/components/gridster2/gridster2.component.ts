@@ -14,6 +14,11 @@ import {
   Resizable,
 } from 'angular-gridster2'
 
+import { ViewChild, ElementRef } from '@angular/core'
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
+import * as htmlToImage from 'html-to-image'
+
 import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component'
 import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component'
 import { FloatShapeButtonComponent } from '../shared/buttons/float-shape-button/float-shape-button.component'
@@ -103,6 +108,7 @@ interface SafeGridsterConfig extends GridsterConfig {
   styleUrls: ['./gridster2.component.scss']
 })
 export class GridsterDashboardComponent implements OnInit {
+  @ViewChild('dashboardRef', { static: false }) dashboardRef!: ElementRef<HTMLElement>
   options!: SafeGridsterConfig
   dashboard!: ExtendedGridsterItem[]
   isModalVisible = false
@@ -201,7 +207,7 @@ export class GridsterDashboardComponent implements OnInit {
     }
 
     this.dashboard = [
-      //{ id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'advanced-pie-chart' },
+      //{ id: 1, cols: 2, rows: 2, y: 0, x: 0, chartType: 'box-chart' },
     ]
   }
 
@@ -367,5 +373,35 @@ export class GridsterDashboardComponent implements OnInit {
     const reader = new FileReader()
     reader.onload = e => this.deserialize((e.target as any).result)
     reader.readAsText(file)
+  }
+
+  exportSvg(): void {
+    const node = this.dashboardRef.nativeElement;
+    const floatBtns = node.querySelectorAll<HTMLElement>('.shape-float-container');
+  
+    floatBtns.forEach(el => el.style.display = 'none');
+  
+    htmlToImage
+      .toSvg(node, {
+        cacheBust: true,
+        width: node.scrollWidth,
+        height: node.scrollHeight,
+        style: {
+          backgroundColor: '#ffffff',
+          transform: 'scale(1)',
+          transformOrigin: 'top left'
+        },
+      })
+      .then((dataUrl: string) => {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'dashboard.svg';
+        link.click();
+      })
+      .catch(err => console.error('Error exportando SVG', err))
+      .finally(() => {
+        // 4. Vuelve a mostrarlos
+        floatBtns.forEach(el => el.style.display = '');
+      });
   }
 }

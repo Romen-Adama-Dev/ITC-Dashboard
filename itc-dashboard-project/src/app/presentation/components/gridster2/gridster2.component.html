@@ -1,4 +1,4 @@
-<div class="gridster-container">
+<div class="gridster-container" #dashboardRef>
   <div class="controls">
     <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
     <app-default-button nzSize="default" (click)="changedOptions()" [disabled]="!pushItemsEnabled">
@@ -21,6 +21,9 @@
       <input type="file" (change)="deserializeFromFile($event)" />
       Deserializar JSON
     </label>
+    <app-primary-button nzSize="default" (click)="exportSvg()">
+      Exportar SVG
+    </app-primary-button>
   </div>
   
   <gridster [options]="options">
