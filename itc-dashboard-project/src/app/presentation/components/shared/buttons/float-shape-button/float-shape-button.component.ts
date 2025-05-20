@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NzFloatButtonModule } from 'ng-zorro-antd/float-button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
