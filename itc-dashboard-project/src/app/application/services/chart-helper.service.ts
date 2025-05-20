@@ -14,14 +14,8 @@ export class ChartHelperService {
     private http: HttpClient
   ) {}
 
-  /**
-   * Carga la configuración para un gráfico concreto usando la clave (por ejemplo, 'horizontalBarChart').
-   * Si se proporciona un dataSource, se realiza una petición directa a ese URL;
-   * de lo contrario se utiliza el BehaviorSubject del ChartDataService.
-   */
   loadChartConfig(chartType: keyof ChartsJson['charts'], dataSource?: string): Observable<ChartConfig> {
     if (dataSource) {
-      // Cargar la configuración directamente desde el URL especificado
       return this.http.get<ChartsJson>(dataSource).pipe(
         map((chartsJson: ChartsJson) => {
           const config = chartsJson.charts[chartType];
@@ -32,7 +26,6 @@ export class ChartHelperService {
         })
       );
     } else {
-      // Usar el BehaviorSubject del ChartDataService
       return this.chartDataService.charts$.pipe(
         map((chartsJson: ChartsJson | null) => {
           if (chartsJson) {
@@ -48,22 +41,15 @@ export class ChartHelperService {
     }
   }
 
-  /**
-   * Combina (merge) una configuración parcial de apariencia con la configuración actual.
-   */
   setAppearance(config: Partial<ChartConfig>, currentConfig: ChartConfig): ChartConfig {
     return {
       ...currentConfig,
-      theme: config.theme || currentConfig.theme,
-      view: config.view || currentConfig.view,
-      data: config.data || currentConfig.data
+      theme: config.theme ?? currentConfig.theme,
+      view: config.view ?? currentConfig.view,
+      data: config.data ?? currentConfig.data
     };
   }
 
-  /**
-   * Procesa un evento y devuelve una configuración actualizada.
-   * Por ejemplo, filtra los datos o actualiza la apariencia.
-   */
   processEvent(event: any, currentConfig: ChartConfig): ChartConfig {
     if (event.type === 'filterData' && event.filter) {
       const filteredData = currentConfig.data.filter(item => item.name.includes(event.filter));

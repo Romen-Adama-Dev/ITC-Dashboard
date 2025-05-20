@@ -46,29 +46,16 @@ export interface ChartsJson {
   providedIn: 'root'
 })
 export class ChartDataService {
-  // Subject que mantiene y emite los datos de gráficos
   private chartsSubject = new BehaviorSubject<ChartsJson | null>(null);
   charts$: Observable<ChartsJson | null> = this.chartsSubject.asObservable();
-
-  // En chart-data.service.ts, cambia la ruta relativa por una ruta absoluta:
   private defaultUrl = '/assets/datasets/data-set-1.json';
-
   constructor(private http: HttpClient) { }
-
-  /**
-   * Carga los datos de gráficos desde el JSON ubicado en la URL indicada (por defecto la URL predeterminada).
-   * Al recibir los datos, se actualiza el BehaviorSubject.
-   */
   loadChartsData(url: string = this.defaultUrl): Observable<ChartsJson> {
     return this.http.get<ChartsJson>(url).pipe(
       tap((data: ChartsJson) => this.chartsSubject.next(data))
     );
   }
 
-  /**
-   * Actualiza manualmente los datos de gráficos.
-   * Esto es útil para actualizaciones reactivas.
-   */
   updateChartsData(newData: ChartsJson): void {
     this.chartsSubject.next(newData);
   }
