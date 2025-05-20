@@ -1,7 +1,18 @@
 <div class="gridster-container">
   <div class="controls">
-    <app-primary-button nzSize="default" (click)="openCustomModal()">Add</app-primary-button>
-    <app-default-button nzSize="default" (click)="changedOptions()" [disabled]="!pushItemsEnabled">
+    <app-primary-button 
+      nzSize="default" 
+      (click)="openCustomModal()"
+      (keydown.enter)="openCustomModal()"
+      tabindex="0">
+      Add
+    </app-primary-button>
+    <app-default-button 
+      nzSize="default" 
+      (click)="changedOptions()"
+      (keydown.enter)="changedOptions()"
+      tabindex="0"
+      [disabled]="!pushItemsEnabled">
       Clean Up
     </app-default-button>
     <app-default-button
