@@ -1,8 +1,0 @@
-<nz-radio-group [(ngModel)]="radioValue" [nzName]="radioName">
-  <label *ngFor="let opt of options" nz-radio [nzValue]="opt.value" [nzAutoFocus]="autoFocus" [nzDisabled]="disabled">
-    {{ opt.label }}
-    <ng-container *ngIf="opt.value === 'M' && radioValue === 'M'">
-      <input type="text" nz-input placeholder="Enter more" />
-    </ng-container>
-  </label>
-</nz-radio-group>
