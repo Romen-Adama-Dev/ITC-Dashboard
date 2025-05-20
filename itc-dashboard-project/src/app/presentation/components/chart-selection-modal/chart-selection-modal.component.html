@@ -64,8 +64,19 @@
       </div>
     </div>
     <div class="modal-footer">
-      <app-default-button nzType="default" (click)="handleClose()">Close</app-default-button>
-      <app-primary-button nzType="default" (click)="handleAdd()">Add Widget</app-primary-button>
+      <app-default-button nzType="default"
+        (click)="handleClose()"
+        (keydown.enter)="handleClose()"
+        tabindex="0">
+        Close
+      </app-default-button>
+      <app-primary-button 
+        nzType="default"
+        (click)="handleAdd()"
+        (keydown.enter)="handleClose()"
+        tabindex="0">
+        Add Widget
+      </app-primary-button>
     </div>
   </div>
 </div>
