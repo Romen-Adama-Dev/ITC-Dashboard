@@ -13,14 +13,36 @@
     <app-default-button nzSize="default" (click)="serializeToJson()">
       Serialize to JSON File
     </app-default-button>
-    <label class="custom-file-upload">
-      <input type="file" (change)="loadJsonFromFile($event)" />
-      Cargar JSON
-    </label>
-    <label class="custom-file-upload">
-      <input type="file" (change)="deserializeFromFile($event)" />
-      Deserializar JSON
-    </label>
+    <!-- Añade estas líneas justo dentro de tu <div class="controls"> -->
+    <input
+    type="file"
+    #loadJsonInput
+    hidden
+    (change)="loadJsonFromFile($event)"
+    />
+    <app-default-button
+    nzSize="default"
+    (click)="loadJsonInput.click()">
+    Cargar JSON
+    </app-default-button>
+
+    <input
+    type="file"
+    #deserializeInput
+    hidden
+    (change)="deserializeFromFile($event)"
+    />
+    <app-default-button
+    nzSize="default"
+    (click)="deserializeInput.click()">
+    Deserializar JSON
+    </app-default-button>
+
+    <app-theme-toggle-button
+      [currentTheme]="currentTheme"
+      (toggleTheme)="onToggleTheme()"
+      class="theme-toggle-wrapper">
+    </app-theme-toggle-button>
   </div>
   
   <gridster [options]="options">

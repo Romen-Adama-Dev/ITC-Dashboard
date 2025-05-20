@@ -48,6 +48,7 @@ import { ChartDataService } from '../../../application/entities/chart-data.servi
 import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { MediatorService } from '../../../application/services/mediator.service'
+import { ThemeToggleButtonComponent } from "../shared/buttons/theme-toggle-button.component";
 
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string
@@ -97,8 +98,9 @@ interface SafeGridsterConfig extends GridsterConfig {
     TreeMapComponent,
     EditWidgetModalComponent,
     NzNotificationModule,
-    NzIconModule
-  ],
+    NzIconModule,
+    ThemeToggleButtonComponent
+],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
 })
@@ -108,6 +110,7 @@ export class GridsterDashboardComponent implements OnInit {
   isModalVisible = false
   isEditModalVisible = false
   currentEditItem: ExtendedGridsterItem | null = null
+  currentTheme: 'default' | 'dark' = 'default';
 
   selectedChartType:
     | 'line-chart'
@@ -367,5 +370,16 @@ export class GridsterDashboardComponent implements OnInit {
     const reader = new FileReader()
     reader.onload = e => this.deserialize((e.target as any).result)
     reader.readAsText(file)
+  }
+
+  onToggleTheme(): void {
+    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement
+    if (this.currentTheme === 'default') {
+      darkLink.disabled = false  
+      this.currentTheme = 'dark'
+    } else {
+      darkLink.disabled = true   
+      this.currentTheme = 'default'
+    }
   }
 }
