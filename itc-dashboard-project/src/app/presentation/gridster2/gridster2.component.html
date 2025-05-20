@@ -7,7 +7,9 @@
     <app-default-button
       nzSize="default"
       (click)="togglePushItems()"
-      [ngClass]="{'hover-style': !pushItemsEnabled}">
+      (keydown.enter)="togglePushItems()"
+      [ngClass]="{'hover-style': !pushItemsEnabled}"
+      tabindex="0">
       {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
     </app-default-button>
     <app-default-button nzSize="default" (click)="serializeToJson()">
