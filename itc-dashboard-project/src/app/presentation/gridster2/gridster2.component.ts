@@ -228,12 +228,12 @@ export class GridsterDashboardComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged()
     }
-    this.notification.error('Error', 'Widgets borrados correctamente.')
+    this.notification.warning('Warning', 'Widgets borrados correctamente.')
   }
 
   removeItem(item: ExtendedGridsterItem): void {
     this.dashboard.splice(this.dashboard.indexOf(item), 1)
-    this.notification.error('Error', 'Widget borrado correctamente.')
+    this.notification.warning('Warning', 'Widget borrado correctamente.')
   }
 
   addItem(): void {
