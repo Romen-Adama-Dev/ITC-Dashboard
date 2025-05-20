@@ -1,4 +1,4 @@
-/* Modal personalizado */
+/* Modal Styles */
 .modal {
   display: none;
   position: fixed;
@@ -9,10 +9,10 @@
   height: 100%;
   overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.085);
-}
 
-.modal.show {
-  display: block;
+  &.show {
+    display: block;
+  }
 }
 
 .modal-content {
@@ -25,6 +25,11 @@
   max-width: 500px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: animatetop 0.4s;
+
+  @media (max-width: 600px) {
+    width: 95%;
+    margin: 15% auto;
+  }
 }
 
 @keyframes animatetop {
@@ -45,14 +50,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 8px 8px 0 0;
   border-bottom: 1px solid var(--border-color, #d9d9d9);
-}
 
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
 }
 
 .modal-body {
@@ -66,18 +70,14 @@
   background-color: var(--background-color, #0768A9);
   color: var(--text-color, #ffffff);
   text-align: right;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-radius: 0 0 8px 8px;
   border-top: 1px solid var(--border-color, #d9d9d9);
   display: flex;
   justify-content: flex-end;
   gap: 16px;
 }
 
-:host.dark {
-  /* Los valores se definirán en dark.less */
-}
-
+/* Utility Classes */
 .modal-row {
   display: flex;
   gap: 20px;
@@ -94,6 +94,38 @@
   gap: 10px;
 }
 
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &.selected {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+
+  i {
+    font-size: 24px;
+  }
+}
+
+.radio-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Floating Button */
 :host ::ng-deep nz-float-button {
   position: absolute !important;
   top: 8px !important;
@@ -105,40 +137,8 @@
   right: 48px;
 }
 
-.icon-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px;
-  transition: background-color 0.3s;
-}
-
-.icon-button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.icon-button.selected {
-  background-color: rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-}
-
-.icon-button i {
-  font-size: 24px;
-}
-
-@media (max-width: 600px) {
-  .modal-content {
-    width: 95%;
-    margin: 15% auto;
-  }
-}
-
-.radio-selectors {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+/* ViewEncapsulation Overrides */
+:host ::ng-deep .modal select,
+:host ::ng-deep .modal input[type="number"] {
+  border-radius: 5px !important;
 }

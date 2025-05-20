@@ -43,7 +43,7 @@ import { StackedVerticalBarChartComponent } from '../components/shared/data-view
 import { TreeMapComponent } from '../components/shared/data-view/tree-chart/tree-chart.component'
 
 import { ChartSelectionModalComponent } from '../components/chart-selection-modal/chart-selection-modal.component'
-import { EditWidgetModalComponent } from '../edit-modal/edit-modal.component'
+import { EditWidgetModalComponent } from '../components/edit-modal/edit-modal.component'
 import { ChartDataService } from '../../application/entities/chart-data.service'
 import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzIconModule } from 'ng-zorro-antd/icon'
@@ -381,11 +381,15 @@ export class GridsterDashboardComponent implements OnInit {
 
   onToggleTheme(): void {
     const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement;
+    const favicon = document.getElementById('app-favicon') as HTMLLinkElement;
+
     if (this.currentTheme === 'default') {
       darkLink.disabled = false;
+      favicon.href = 'assets/icons/yellow-svg.svg';
       this.currentTheme = 'dark';
     } else {
       darkLink.disabled = true;
+      favicon.href = 'assets/icons/blue-svg.svg';
       this.currentTheme = 'default';
     }
   }

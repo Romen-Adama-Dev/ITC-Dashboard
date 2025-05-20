@@ -139,3 +139,20 @@ body {
   --background-color: #ffffff;
   --card-background: #f5f5f5;
 }
+
+.modal select,
+.modal input[type="number"] {
+  background-color: var(--card-background, #ffffff) !important;
+  color: #000000 !important;
+  font-weight: normal !important;
+  border: 1px solid var(--border-color, fade(@primary-color, 40%)) !important;
+  border-radius: 15px !important;
+  padding: 0.5rem 0.75rem !important;
+  outline: none !important;
+}
+
+/* las opciones desplegadas también en negro */
+.modal select option {
+  background-color: var(--card-background, #ffffff) !important;
+  color: #000000 !important;
+}

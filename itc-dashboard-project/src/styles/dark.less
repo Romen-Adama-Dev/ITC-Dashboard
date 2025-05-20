@@ -9,13 +9,12 @@
 @border-color: fade(@primary-color, 40%);
 @box-shadow-color: rgba(0, 0, 0, 0.7);
 
-/* Global Body */
+/* Global Styles */
 body {
   background-color: @background-color;
   color: @text-color;
 }
 
-/* Layout Containers */
 .app-layout,
 .inner-content {
   background-color: @background-color;
@@ -32,31 +31,32 @@ body {
   border-radius: 4px;
 
   .ant-menu {
-    background-color: @sidebar-background !important;
-    border: none !important;
+    background-color: @sidebar-background;
+    border: none;
   }
 
   .ant-menu-submenu-title,
   .ant-menu-item {
-    background-color: @sidebar-background !important;
-    color: @text-color !important;
-    border: none !important;
+    background-color: @sidebar-background;
+    color: @text-color;
+    border: none;
+
     a {
-      color: @text-color !important;
+      color: @text-color;
     }
   }
 
-  .ant-menu-item:hover,
+  .ant-menu-item-hover,
   .ant-menu-submenu-title:hover,
   .ant-menu-item-active,
   .ant-menu-submenu-active {
-    background-color: @sidebar-background !important;
+    background-color: @sidebar-background;
   }
 
   .ant-menu-item-selected {
-    background-color: fade(@primary-color, 85%) !important;
+    background-color: fade(@primary-color, 85%);
     a {
-      color: #ffffff !important;
+      color: #ffffff;
     }
   }
 }
@@ -67,6 +67,7 @@ body {
   background: @header-background;
   border-bottom: 2px solid @border-color;
   border-radius: 4px;
+
   h1 {
     color: @text-color;
   }
@@ -78,94 +79,109 @@ body {
   color: @primary-color;
 }
 
-/* Submenu for inline menus */
+/* Submenu for Inline Menus */
 .ant-menu-sub {
-  background-color: fade(@background-color, 70%) !important;
-  color: #ffffff !important;
-}
-.ant-menu-sub li a {
-  color: #ffffff !important;
+  background-color: fade(@background-color, 70%);
+  color: #ffffff;
+
+  li a {
+    color: #ffffff;
+  }
 }
 
-/* Horizontal Menu Overrides for Dark Theme */
+/* Horizontal Menu */
 .ant-menu-horizontal {
-  background-color: @header-background !important;
-  color: #ffffff !important;
-  
+  background-color: @header-background;
+  color: #ffffff;
+
   > .ant-menu-item,
   > .ant-menu-submenu-title {
-    background-color: @header-background !important;
-    color: #ffffff !important;
+    background-color: @header-background;
+    color: #ffffff;
+
     a {
-      color: #ffffff !important;
+      color: #ffffff;
     }
   }
-  
+
   > .ant-menu-item-selected,
   > .ant-menu-submenu-selected {
-    background-color: fade(@primary-color, 85%) !important;
+    background-color: fade(@primary-color, 85%);
+
     a {
-      color: #ffffff !important;
+      color: #ffffff;
     }
   }
-  
+
   .ant-menu-sub {
-    background-color: @header-background !important;
-    color: #ffffff !important;
+    background-color: @header-background;
+    color: #ffffff;
+
     li a {
-      color: #ffffff !important;
+      color: #ffffff;
     }
   }
-  
+
   .ant-menu-group-title {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 }
 
-/* Inline Menu Overrides for Dark Theme */
+/* Inline Menu */
 .ant-menu-inline {
-  background-color: @sidebar-background !important;
-  color: #ffffff !important;
-  
+  background-color: @sidebar-background;
+  color: #ffffff;
+
   > .ant-menu-item,
   > .ant-menu-submenu-title {
-    background-color: @sidebar-background !important;
-    color: #ffffff !important;
+    background-color: @sidebar-background;
+    color: #ffffff;
+
     a {
-      color: #ffffff !important;
+      color: #ffffff;
     }
   }
-  
+
   .ant-menu-sub {
-    background-color: @sidebar-background !important;
-    color: #ffffff !important;
+    background-color: @sidebar-background;
+    color: #ffffff;
+
     li a {
-      color: #ffffff !important;
+      color: #ffffff;
     }
   }
-  
+
   .ant-menu-group-title {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 }
 
-/* Variables CSS Globales para Dark Theme */
+/* Global CSS Variables */
 :root {
-  --progress-gradient-start: #fff9e3;  // Variante clara de #FFCC00
+  --progress-gradient-start: #fff9e3;
   --progress-gradient-end: #FFCC00;
-  --progress-gradient-mid: #ffd633;      // Valor intermedio
-  
+  --progress-gradient-mid: #ffd633;
   --background-color: #333333;
   --text-color: #ffffff;
-  --border-color: fade(#FFCC00, 40%);
+  --border-color: fade(@primary-color, 40%);
   --card-background: #2a2a2a;
+  --edge-label-color: #ffffff;
+  --primary-color: #FFCC00;
 }
 
-:root {
-  --edge-label-color: #ffffff; // Texto blanco en tema oscuro
-  --text-color: #ffffff;
-  --primary-color: #FFCC00;
-  --border-color: fade(#FFCC00, 40%);
-  --background-color: #333333;
-  --card-background: #2a2a2a;
+.modal select,
+.modal input[type="number"] {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  font-weight: normal !important;
+  border: 1px solid var(--border-color, fade(@primary-color, 40%)) !important;
+  border-radius: 15px !important;
+  padding: 0.5rem 0.75rem !important;
+  outline: none !important;
+}
+
+/* las opciones desplegadas en blanco */
+.modal select option {
+  background-color: transparent !important;
+  color: #ffffff !important;
 }
