@@ -381,15 +381,11 @@ export class GridsterDashboardComponent implements OnInit {
 
   onToggleTheme(): void {
     const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement;
-    const favicon = document.getElementById('app-favicon') as HTMLLinkElement;
-
     if (this.currentTheme === 'default') {
       darkLink.disabled = false;
-      favicon.href = 'assets/icons/yellow-svg.svg';
       this.currentTheme = 'dark';
     } else {
       darkLink.disabled = true;
-      favicon.href = 'assets/icons/blue-svg.svg';
       this.currentTheme = 'default';
     }
   }
