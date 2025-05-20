@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { FormsModule } from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {
   CompactType,
   DisplayGrid,
@@ -12,11 +12,11 @@ import {
   GridType,
   PushDirections,
   Resizable,
-} from 'angular-gridster2'
+} from 'angular-gridster2';
 
-import { PrimaryButtonComponent } from '../components/shared/buttons/primary-button/primary-button.component'
-import { DefaultButtonComponent } from '../components/shared/buttons/default-button/default-button.component'
-import { FloatShapeButtonComponent } from '../components/shared/buttons/float-shape-button/float-shape-button.component'
+import { PrimaryButtonComponent } from '../components/shared/buttons/primary-button/primary-button.component';
+import { DefaultButtonComponent } from '../components/shared/buttons/default-button/default-button.component';
+import { FloatShapeButtonComponent } from '../components/shared/buttons/float-shape-button/float-shape-button.component';
 
 // Charts
 import { AreaChartComponent } from '../components/shared/data-view/area-chart/area-chart.component'
@@ -150,6 +150,13 @@ export class GridsterDashboardComponent implements OnInit {
     this.mediator.events$.subscribe(event => {
       this.mediator.emit(event)
     })
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.currentTheme = prefersDark ? 'dark' : 'default';
+    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement | null;
+    if (darkLink) {
+      darkLink.disabled = this.currentTheme !== 'dark';
+    }
 
     this.options = {
       gridType: GridType.Fixed,
@@ -373,13 +380,13 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   onToggleTheme(): void {
-    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement
+    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement;
     if (this.currentTheme === 'default') {
-      darkLink.disabled = false  
-      this.currentTheme = 'dark'
+      darkLink.disabled = false;
+      this.currentTheme = 'dark';
     } else {
-      darkLink.disabled = true   
-      this.currentTheme = 'default'
+      darkLink.disabled = true;
+      this.currentTheme = 'default';
     }
   }
 }

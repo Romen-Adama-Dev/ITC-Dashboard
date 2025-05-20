@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { FormsModule } from '@angular/forms'
-import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component'
-import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component'
+import { DefaultButtonComponent } from '../components/shared/buttons/default-button/default-button.component'
+import { PrimaryButtonComponent } from '../components/shared/buttons/primary-button/primary-button.component'
 import { CommonModule } from '@angular/common'
 
 @Component({
