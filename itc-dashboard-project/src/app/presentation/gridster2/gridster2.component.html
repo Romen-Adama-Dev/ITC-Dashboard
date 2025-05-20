@@ -65,7 +65,7 @@
     </app-theme-toggle-button>
   </div>
   
-  <gridster [options]="options">
+  <gridster class="gridster-wrapper" [options]="options">
     <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
       <div class="grid-item-content">
         <div class="item-content">
