@@ -23,10 +23,13 @@
       tabindex="0">
       {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
     </app-default-button>
-    <app-default-button nzSize="default" (click)="serializeToJson()">
+    <app-default-button 
+      nzSize="default" 
+      (click)="serializeToJson()"
+      (keydown.enter)="serializeToJson()"
+      tabindex="0">
       Serialize to JSON File
     </app-default-button>
-    <!-- Añade estas líneas justo dentro de tu <div class="controls"> -->
     <input
     type="file"
     #loadJsonInput
@@ -34,9 +37,11 @@
     (change)="loadJsonFromFile($event)"
     />
     <app-default-button
-    nzSize="default"
-    (click)="loadJsonInput.click()">
-    Cargar JSON
+      nzSize="default"
+      (click)="loadJsonInput.click()"
+      (keydown.enter)="loadJsonInput.click()"
+      tabindex="0">
+      Cargar JSON
     </app-default-button>
 
     <input
@@ -46,9 +51,11 @@
     (change)="deserializeFromFile($event)"
     />
     <app-default-button
-    nzSize="default"
-    (click)="deserializeInput.click()">
-    Deserializar JSON
+      nzSize="default"
+      (click)="deserializeInput.click()"
+      (keydown.enter)="deserializeInput.click()"
+      tabindex="0">
+      Deserializar JSON
     </app-default-button>
 
     <app-theme-toggle-button
