@@ -4,7 +4,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { ThemeToggleButtonComponent } from './presentation/components/shared/buttons/theme-toggle-button.component';
-import { GridsterDashboardComponent } from "./presentation/components/gridster2/gridster2.component";
+import { GridsterDashboardComponent } from "./presentation/gridster2/gridster2.component";
 
 @Component({
   selector: 'app-root',
