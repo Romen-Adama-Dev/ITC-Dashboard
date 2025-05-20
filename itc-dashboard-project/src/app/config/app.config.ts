@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { icons } from './icons-provider';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
-import { es_ES, en_GB, zh_CN, provideNzI18n, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es_ES, en_GB, zh_CN, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
 import en from '@angular/common/locales/en';
@@ -22,7 +22,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideNzIcons(icons),
-    // Provider dinámico para NZ_I18N según LOCALE_ID
     {
       provide: NZ_I18N,
       useFactory: () => {
