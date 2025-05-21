@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClient } from '@angular/common/http';
-import { curveLinear } from 'd3-shape';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
@@ -67,13 +66,13 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private mediator: MediatorService,
-    private helper: ChartHelperService
+    private readonly el: ElementRef,
+    private readonly http: HttpClient,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
   ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
