@@ -38,7 +38,6 @@ export interface ChartsJson {
     stackedVerticalBarChart: ChartConfig;
     treeMap: ChartConfig;
     verticalBarChart: ChartConfig;
-    
   };
 }
 
@@ -46,10 +45,12 @@ export interface ChartsJson {
   providedIn: 'root'
 })
 export class ChartDataService {
-  private chartsSubject = new BehaviorSubject<ChartsJson | null>(null);
-  charts$: Observable<ChartsJson | null> = this.chartsSubject.asObservable();
-  private defaultUrl = '/assets/datasets/data-set-1.json';
-  constructor(private http: HttpClient) { }
+  private readonly chartsSubject = new BehaviorSubject<ChartsJson | null>(null);
+  readonly charts$: Observable<ChartsJson | null> = this.chartsSubject.asObservable();
+  private readonly defaultUrl = '/assets/datasets/data-set-1.json';
+
+  constructor(private readonly http: HttpClient) { }
+
   loadChartsData(url: string = this.defaultUrl): Observable<ChartsJson> {
     return this.http.get<ChartsJson>(url).pipe(
       tap((data: ChartsJson) => this.chartsSubject.next(data))
