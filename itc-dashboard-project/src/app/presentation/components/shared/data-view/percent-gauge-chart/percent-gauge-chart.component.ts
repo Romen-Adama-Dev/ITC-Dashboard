@@ -15,8 +15,6 @@ import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
-
 @Component({
   selector: 'app-percent-gauge-chart',
   standalone: true,
