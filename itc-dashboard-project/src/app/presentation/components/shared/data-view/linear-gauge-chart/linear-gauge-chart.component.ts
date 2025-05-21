@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/linear-gauge-chart/linear-gauge-chart.component.ts
 import {
   Component,
   Input,
@@ -11,7 +10,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Subscription, filter } from 'rxjs';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
@@ -27,20 +26,18 @@ import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 export class LinearGaugeChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
-  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
-  /** Propiedades del gauge */
   view: [number, number] = [700, 400];
-  value: number = 0;
-  previousValue: number = 0;
+  value = 0;
+  previousValue = 0;
   min = 0;
   max = 100;
   units = '%';
@@ -50,37 +47,34 @@ export class LinearGaugeChartComponent
     domain: ['#5AA454', '#A10A28', '#CFC0BB', '#7aa3e5']
   };
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
-  private mediatorSub: Subscription;
+  private readonly mediatorSub: Subscription;
   private originalData: { name: string; value: number }[] = [];
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private helper: ChartHelperService,
-    private mediator: MediatorService
+    private readonly el: ElementRef,
+    private readonly helper: ChartHelperService,
+    private readonly mediator: MediatorService
   ) {
-    // Observador de resize para mantener proporción
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const e of entries) {
-        const w = e.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
-    // Escuchar eventos globales (excepto los propios)
     this.mediatorSub = this.mediator.events$
-      .pipe(filter(ev => ev.origin !== 'linear-gauge-chart'))
-      .subscribe(ev => {
-        const cfg = this.helper.processEvent(ev, {
+      .pipe(filter(event => event.origin !== 'linear-gauge-chart'))
+      .subscribe(event => {
+        const config = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
           data: this.originalData
         });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
+        this.theme = config.theme;
+        this.view = config.view as [number, number];
+        this.originalData = config.data;
         this.updateDisplayedValues();
       });
   }
@@ -90,10 +84,10 @@ export class LinearGaugeChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
       this.loadConfig();
     }
-    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
       this.updateDisplayedValues();
     }
   }
@@ -103,28 +97,26 @@ export class LinearGaugeChartComponent
     this.configSub = this.helper
       .loadChartConfig('linearGaugeChart', this.dataSource)
       .subscribe({
-        next: cfg => this.applyConfig(cfg),
+        next: config => this.applyConfig(config),
         error: err => console.error('Error loading linear gauge config', err)
       });
   }
 
-  private applyConfig(cfg: ChartConfig): void {
-    this.theme = cfg.theme;
-    this.view = cfg.view;
-    this.originalData = cfg.data.slice();
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = [...config.data];
     this.updateDisplayedValues();
   }
 
   private updateDisplayedValues(): void {
-    // slice según dataCount
-    let slice = this.originalData;
-    if (this.dataCount !== 'all') {
-      const cnt = Number(this.dataCount);
-      slice = this.originalData.slice(0, cnt);
-    }
-    // asigna el primero y segundo valor
-    this.value = slice[0]?.value ?? this.value;
-    this.previousValue = slice[1]?.value ?? this.previousValue;
+    const dataSlice =
+      this.dataCount === 'all'
+        ? this.originalData
+        : this.originalData.slice(0, Number(this.dataCount));
+
+    this.value = dataSlice[0]?.value ?? this.value;
+    this.previousValue = dataSlice[1]?.value ?? this.previousValue;
   }
 
   ngAfterViewInit(): void {
