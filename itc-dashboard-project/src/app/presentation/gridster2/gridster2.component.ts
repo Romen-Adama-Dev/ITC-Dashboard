@@ -53,7 +53,7 @@ import { ThemeToggleButtonComponent } from "../components/shared/buttons/theme-t
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string
   dataSource?: string
-  dataCount?: string | undefined
+  dataCount?: string
 }
 
 interface SafeGridsterConfig extends GridsterConfig {
@@ -140,9 +140,9 @@ export class GridsterDashboardComponent implements OnInit {
   pushItemsEnabled = true
 
   constructor(
-    private chartDataService: ChartDataService,
-    private notification: NzNotificationService,
-    private mediator: MediatorService
+    private readonly chartDataService: ChartDataService,
+    private readonly notification: NzNotificationService,
+    private readonly mediator: MediatorService
   ) {}
 
   ngOnInit(): void {
@@ -225,9 +225,7 @@ export class GridsterDashboardComponent implements OnInit {
 
   changedOptions(): void {
     this.dashboard = []
-    if (this.options.api && this.options.api.optionsChanged) {
-      this.options.api.optionsChanged()
-    }
+    this.options.api?.optionsChanged?.();
     this.notification.warning('Warning', 'Widgets borrados correctamente.')
   }
 
@@ -289,9 +287,7 @@ export class GridsterDashboardComponent implements OnInit {
   togglePushItems(): void {
     this.pushItemsEnabled = !this.pushItemsEnabled
     this.options.pushItems = this.pushItemsEnabled
-    if (this.options.api && this.options.api.optionsChanged) {
-      this.options.api.optionsChanged()
-    }
+    this.options.api?.optionsChanged?.();
     this.notification.info('Info', this.pushItemsEnabled ? 'Widgets desbloqueados.' : 'Widgets bloqueados.')
   }
 
@@ -302,7 +298,7 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   reloadWidgetData(item: any): void {
-    const dataSource = item.dataSource || '/assets/datasets/data-set-1.json'
+    const dataSource = item.dataSource ?? '/assets/datasets/data-set-1.json';
     this.chartDataService.loadChartsData(dataSource).subscribe({
       next: () => console.log(`✅ Datos recargados desde ${dataSource}`),
       error: err => console.error('❌ Error al recargar datos:', err)
@@ -323,7 +319,7 @@ export class GridsterDashboardComponent implements OnInit {
   }
 
   serializeToJson(): void {
-    const name = prompt('Nombre de archivo:', 'dashboardConfig') || 'dashboardConfig'
+    const name = prompt('Nombre de archivo:', 'dashboardConfig') ?? 'dashboardConfig';
     const blob = new Blob([JSON.stringify(this.dashboard, null, 2)], { type: 'application/json' })
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
@@ -341,9 +337,7 @@ export class GridsterDashboardComponent implements OnInit {
     reader.onload = e => {
       try {
         this.dashboard = JSON.parse((e.target as any).result)
-        if (this.options.api && this.options.api.optionsChanged) {
-          this.options.api.optionsChanged()
-        }
+        this.options.api?.optionsChanged?.();
         this.notification.success('Success', 'Dashboard cargado desde JSON.')
       } catch {
         console.error('Error parsing JSON')
@@ -361,9 +355,7 @@ export class GridsterDashboardComponent implements OnInit {
           if (idx >= 0) this.dashboard[idx] = { ...this.dashboard[idx], ...item }
           else this.dashboard.push(item)
         })
-        if (this.options.api && this.options.api.optionsChanged) {
-          this.options.api.optionsChanged()
-        }
+        this.options.api?.optionsChanged?.();
         this.notification.success('Success', 'Dashboard actualizado con JSON.')
       }
     } catch {
@@ -375,7 +367,10 @@ export class GridsterDashboardComponent implements OnInit {
     const file = event.target.files[0]
     if (!file) return
     const reader = new FileReader()
-    reader.onload = e => this.deserialize((e.target as any).result)
+    reader.onload = e => {
+      this.deserialize((e.target as any).result);
+      this.options.api?.optionsChanged?.();
+    }
     reader.readAsText(file)
   }
 
