@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/horizontal-chart/horizontal-chart.component.ts
 import {
   Component,
   Input,
@@ -32,7 +31,7 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   @Input() graphqlQuery?: string;
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
@@ -56,36 +55,34 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   data: ChartData[] = [];
   originalData: ChartData[] = [];
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
-  private mediatorSub: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private helper: ChartHelperService,
-    private mediator: MediatorService
+    private readonly el: ElementRef,
+    private readonly http: HttpClient,
+    private readonly helper: ChartHelperService,
+    private readonly mediator: MediatorService
   ) {
-    // Auto‐resize keeping aspect ratio
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const w = entry.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
-    // React to global events (except those we originate)
     this.mediatorSub = this.mediator.events$
-      .pipe(filter(e => e.origin !== 'horizontal-bar'))
+      .pipe(filter(event => event.origin !== 'horizontal-bar'))
       .subscribe(event => {
-        const cfg = this.helper.processEvent(event, {
+        const config = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
           data: this.originalData
         });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
+        this.theme = config.theme;
+        this.view = config.view;
+        this.originalData = config.data;
         this.updateDisplayedData();
       });
   }
@@ -104,10 +101,8 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   }
 
   private loadConfig(): void {
-    // Unsubscribe previous
     this.configSub?.unsubscribe();
 
-    // GraphQL vs JSON
     if (this.graphqlEndpoint && this.graphqlQuery) {
       this.configSub = this.http.post<any>(this.graphqlEndpoint, { query: this.graphqlQuery })
         .subscribe({
@@ -118,7 +113,7 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
       this.configSub = this.helper
         .loadChartConfig('horizontalBarChart', this.dataSource)
         .subscribe({
-          next: cfg => this.applyConfig(cfg),
+          next: config => this.applyConfig(config),
           error: err => console.error('Error loading chart config', err)
         });
     }
@@ -127,7 +122,7 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   private applyConfig(config: ChartConfig): void {
     this.theme = config.theme;
     this.view = config.view;
-    this.originalData = config.data.slice();
+    this.originalData = [...config.data];
     this.updateDisplayedData();
   }
 
@@ -136,11 +131,12 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
       this.data = [];
       return;
     }
+
     if (this.dataCount !== 'all') {
-      const cnt = Number(this.dataCount);
-      this.data = cnt > this.originalData.length
+      const count = Number(this.dataCount);
+      this.data = count > this.originalData.length
         ? [...this.originalData]
-        : this.originalData.slice(0, cnt);
+        : this.originalData.slice(0, count);
     } else {
       this.data = [...this.originalData];
     }
