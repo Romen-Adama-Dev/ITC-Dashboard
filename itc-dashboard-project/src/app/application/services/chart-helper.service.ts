@@ -10,14 +10,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChartHelperService {
   constructor(
-    private chartDataService: ChartDataService,
-    private http: HttpClient
+    private readonly chartDataService: ChartDataService,
+    private readonly http: HttpClient
   ) {}
 
-  loadChartConfig(chartType: keyof ChartsJson['charts'], dataSource?: string): Observable<ChartConfig> {
+  loadChartConfig(
+    chartType: keyof ChartsJson['charts'],
+    dataSource?: string
+  ): Observable<ChartConfig> {
     if (dataSource) {
       return this.http.get<ChartsJson>(dataSource).pipe(
-        map((chartsJson: ChartsJson) => {
+        map(chartsJson => {
           const config = chartsJson.charts[chartType];
           if (config) {
             return config;
@@ -27,7 +30,7 @@ export class ChartHelperService {
       );
     } else {
       return this.chartDataService.charts$.pipe(
-        map((chartsJson: ChartsJson | null) => {
+        map(chartsJson => {
           if (chartsJson) {
             const config = chartsJson.charts[chartType];
             if (config) {
@@ -41,7 +44,10 @@ export class ChartHelperService {
     }
   }
 
-  setAppearance(config: Partial<ChartConfig>, currentConfig: ChartConfig): ChartConfig {
+  setAppearance(
+    config: Partial<ChartConfig>,
+    currentConfig: ChartConfig
+  ): ChartConfig {
     return {
       ...currentConfig,
       theme: config.theme ?? currentConfig.theme,
@@ -50,9 +56,14 @@ export class ChartHelperService {
     };
   }
 
-  processEvent(event: any, currentConfig: ChartConfig): ChartConfig {
+  processEvent(
+    event: any,
+    currentConfig: ChartConfig
+  ): ChartConfig {
     if (event.type === 'filterData' && event.filter) {
-      const filteredData = currentConfig.data.filter(item => item.name.includes(event.filter));
+      const filteredData = currentConfig.data.filter(item =>
+        item.name.includes(event.filter)
+      );
       return { ...currentConfig, data: filteredData };
     }
     if (event.type === 'updateAppearance' && event.appearance) {
