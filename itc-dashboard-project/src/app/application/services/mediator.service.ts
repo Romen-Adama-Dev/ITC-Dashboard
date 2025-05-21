@@ -3,7 +3,7 @@ import { Subject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MediatorService {
-  private eventSubject = new Subject<any>();
+  private readonly eventSubject = new Subject<any>();
   events$: Observable<any> = this.eventSubject.asObservable();
 
   emit(event: any): void {
