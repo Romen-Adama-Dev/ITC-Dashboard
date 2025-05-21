@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component.ts
 import {
   Component,
   Input,
@@ -16,6 +15,7 @@ import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Component({
   selector: 'app-percent-gauge-chart',
@@ -27,19 +27,15 @@ import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 export class PercentGaugeChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
-  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
-  /** Dimensiones */
   view: [number, number] = [700, 400];
-
-  /** Opciones del gauge */
   animations = true;
   value = 0;
   max = 100;
@@ -50,43 +46,25 @@ export class PercentGaugeChartComponent
     domain: ['#5AA454', '#E44D25', '#CFC0BB']
   };
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
-  private mediatorSub: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
-    private el: ElementRef,
-    private helper: ChartHelperService,
-    private mediator: MediatorService
+    private readonly el: ElementRef,
+    private readonly helper: ChartHelperService,
+    private readonly mediator: MediatorService
   ) {
-    // Ajuste dinámico de tamaño
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const e of entries) {
-        const w = e.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
-    // Escuchar eventos globales
     this.mediatorSub = this.mediator.events$
-      .pipe(filter(ev => ev.origin !== 'percent-gauge'))
-      .subscribe(ev => {
-        const cfg = this.helper.processEvent(ev, {
-          theme: this.theme,
-          view: this.view,
-          data: [
-            { name: 'value', value: this.value },
-            { name: 'target', value: this.target }
-          ]
-        });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        // Si los datos cambian, reasignar:
-        if (cfg.data.length >= 2) {
-          this.value = cfg.data[0].value;
-          this.target = cfg.data[1].value;
-        }
-      });
+      .pipe(filter(event => event.origin !== 'percent-gauge'))
+      .subscribe(event => this.handleMediatorEvent(event));
   }
 
   ngOnInit(): void {
@@ -99,25 +77,6 @@ export class PercentGaugeChartComponent
     }
   }
 
-  private loadConfig(): void {
-    this.configSub?.unsubscribe();
-    this.configSub = this.helper
-      .loadChartConfig('percentGaugeChart', this.dataSource)
-      .subscribe({
-        next: cfg => this.applyConfig(cfg),
-        error: err => console.error('Error loading percent gauge config', err)
-      });
-  }
-
-  private applyConfig(cfg: ChartConfig): void {
-    this.theme = cfg.theme;
-    this.view = cfg.view;
-    if (cfg.data.length >= 2) {
-      this.value = cfg.data[0].value;
-      this.target = cfg.data[1].value;
-    }
-  }
-
   ngAfterViewInit(): void {
     this.resizeObserver.observe(this.el.nativeElement);
   }
@@ -126,6 +85,43 @@ export class PercentGaugeChartComponent
     this.resizeObserver.disconnect();
     this.configSub?.unsubscribe();
     this.mediatorSub.unsubscribe();
+  }
+
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('percentGaugeChart', this.dataSource)
+      .subscribe({
+        next: config => this.applyConfig(config),
+        error: error => console.error('Error loading percent gauge config', error)
+      });
+  }
+
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    if (config.data.length >= 2) {
+      this.value = config.data[0].value;
+      this.target = config.data[1].value;
+    }
+  }
+
+  private handleMediatorEvent(event: any): void {
+    const config = this.helper.processEvent(event, {
+      theme: this.theme,
+      view: this.view,
+      data: [
+        { name: 'value', value: this.value },
+        { name: 'target', value: this.target }
+      ]
+    });
+
+    this.theme = config.theme;
+    this.view = config.view as [number, number];
+    if (config.data.length >= 2) {
+      this.value = config.data[0].value;
+      this.target = config.data[1].value;
+    }
   }
 
   onSelect(event: any): void {
