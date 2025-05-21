@@ -120,7 +120,7 @@ export class PieGridComponent
       data: this.originalData
     });
     this.theme = config.theme;
-    this.view = config.view as [number, number];
+    this.view = config.view;
     this.originalData = config.data;
     this.updateDisplayedData();
   }

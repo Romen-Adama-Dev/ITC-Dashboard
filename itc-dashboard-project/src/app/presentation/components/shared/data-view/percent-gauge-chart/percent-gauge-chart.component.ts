@@ -117,7 +117,7 @@ export class PercentGaugeChartComponent
     });
 
     this.theme = config.theme;
-    this.view = config.view as [number, number];
+    this.view = config.view;
     if (config.data.length >= 2) {
       this.value = config.data[0].value;
       this.target = config.data[1].value;
