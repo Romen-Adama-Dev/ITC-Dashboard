@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/pie-grid/pie-grid.component.ts
 import {
   Component,
   Input,
@@ -15,7 +14,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { MediatorService } from '../../../../../application/services/mediator.service';
-import { ChartConfig, ChartData } from '../../../../../infrastructure/api/chart.model';
+import { ChartData } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-pie-grid',
@@ -32,7 +31,7 @@ export class PieGridComponent
   @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
@@ -46,40 +45,27 @@ export class PieGridComponent
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  /** Datos cargados */
   originalData: ChartData[] = [];
   data: ChartData[] = [];
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
 
   constructor(
-    private el: ElementRef,
-    private helper: ChartHelperService,
-    private mediator: MediatorService
+    private readonly el: ElementRef,
+    private readonly helper: ChartHelperService,
+    private readonly mediator: MediatorService
   ) {
-    // Observador para tamaño responsivo (aspecto 400/700)
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const w = entry.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
-    // Reactivo a eventos globales excepto los de este componente
     this.mediator.events$
-      .pipe(filter(e => e.origin !== 'pie-grid'))
-      .subscribe(event => {
-        const cfg = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
-      });
+      .pipe(filter(event => event.origin !== 'pie-grid'))
+      .subscribe(event => this.handleMediatorEvent(event));
   }
 
   ngOnInit(): void {
@@ -87,39 +73,11 @@ export class PieGridComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
       this.loadConfig();
     }
-    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
       this.updateDisplayedData();
-    }
-  }
-
-  private loadConfig(): void {
-    this.configSub?.unsubscribe();
-    this.configSub = this.helper
-      .loadChartConfig('pieGridChart', this.dataSource)
-      .subscribe(cfg => {
-        this.theme = cfg.theme;
-        this.view = cfg.view;
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
-      });
-  }
-
-  private updateDisplayedData(): void {
-    if (!this.originalData.length) {
-      this.data = [];
-      return;
-    }
-    if (this.dataCount !== 'all') {
-      const n = Number(this.dataCount);
-      this.data =
-        n > this.originalData.length
-          ? [...this.originalData]
-          : this.originalData.slice(0, n);
-    } else {
-      this.data = [...this.originalData];
     }
   }
 
@@ -130,6 +88,41 @@ export class PieGridComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.configSub?.unsubscribe();
+  }
+
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('pieGridChart', this.dataSource)
+      .subscribe(config => {
+        this.theme = config.theme;
+        this.view = config.view;
+        this.originalData = config.data;
+        this.updateDisplayedData();
+      });
+  }
+
+  private updateDisplayedData(): void {
+    if (this.dataCount === 'all') {
+      this.data = [...this.originalData];
+    } else {
+      const count = Number(this.dataCount);
+      this.data = count > this.originalData.length
+        ? [...this.originalData]
+        : this.originalData.slice(0, count);
+    }
+  }
+
+  private handleMediatorEvent(event: any): void {
+    const config = this.helper.processEvent(event, {
+      theme: this.theme,
+      view: this.view,
+      data: this.originalData
+    });
+    this.theme = config.theme;
+    this.view = config.view as [number, number];
+    this.originalData = config.data;
+    this.updateDisplayedData();
   }
 
   onSelect(event: any): void {
