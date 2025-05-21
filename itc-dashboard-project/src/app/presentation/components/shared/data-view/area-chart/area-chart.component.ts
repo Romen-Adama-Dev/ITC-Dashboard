@@ -56,13 +56,13 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private mediator: MediatorService,
-    private helper: ChartHelperService
+    private readonly el: ElementRef,
+    private readonly http: HttpClient,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
   ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
