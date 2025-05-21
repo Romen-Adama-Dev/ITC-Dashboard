@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/heat-map/heat-map.component.ts
 import {
   Component,
   Input,
@@ -26,20 +25,15 @@ import { ChartHelperService } from '../../../../../application/services/chart-he
 export class HeatMapComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy 
 {
-  /** Ahora recibimos dataSource y dataCount */
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
-
-  /** Tema */
   @Input() theme: 'default' | 'dark' = 'default';
+
   @HostBinding('class.dark') get isDarkTheme() {
     return this.theme === 'dark';
   }
 
-  /** Mantener ratio 400/700 */
   view: [number, number] = [700, 400];
-
-  /** Opciones */
   gradient = true;
   showXAxis = true;
   showYAxis = true;
@@ -48,40 +42,26 @@ export class HeatMapComponent
     domain: ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3']
   };
 
-  /** Datos internos */
   originalData: any[] = [];
   data: any[] = [];
-
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private mediator: MediatorService,
-    private helper: ChartHelperService
+    private readonly el: ElementRef,
+    private readonly http: HttpClient,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
   ) {
-    // Ajustar tamaño manteniendo ratio
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const e of entries) {
-        const w = e.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
-    // Escuchar eventos globales
     this.mediator.events$
-      .pipe(filter(ev => ev.origin !== 'heat-map'))
-      .subscribe(ev => {
-        const cfg = this.helper.processEvent(ev, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
-      });
+      .pipe(filter(event => event.origin !== 'heat-map'))
+      .subscribe(event => this.handleMediatorEvent(event));
   }
 
   ngOnInit(): void {
@@ -97,20 +77,18 @@ export class HeatMapComponent
     }
   }
 
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+  }
+
   private loadConfig(): void {
-    const url = this.dataSource?.trim() || '/assets/datasets/data-set-1.json';
+    const url = this.dataSource.trim() || '/assets/datasets/data-set-1.json';
     this.http.get<any>(url).subscribe({
-      next: cfg => {
-        const chart = cfg?.charts?.heatMap;
-        if (chart) {
-          this.theme = chart.theme;
-          this.view = chart.view;
-          this.originalData = chart.data;
-        } else {
-          this.originalData = [];
-        }
-        this.updateDisplayedData();
-      },
+      next: config => this.processConfig(config),
       error: err => {
         console.error('Error loading heatMap config:', err);
         this.originalData = [];
@@ -119,25 +97,38 @@ export class HeatMapComponent
     });
   }
 
+  private processConfig(config: any): void {
+    const chart = config?.charts?.heatMap;
+    if (chart) {
+      this.theme = chart.theme;
+      this.view = chart.view;
+      this.originalData = chart.data;
+    } else {
+      this.originalData = [];
+    }
+    this.updateDisplayedData();
+  }
+
   private updateDisplayedData(): void {
     if (!this.originalData.length) {
       this.data = [];
       return;
     }
-    if (this.dataCount !== 'all') {
-      const cnt = Number(this.dataCount);
-      this.data = this.originalData.slice(0, cnt);
-    } else {
-      this.data = [...this.originalData];
-    }
+    this.data = this.dataCount === 'all'
+      ? [...this.originalData]
+      : this.originalData.slice(0, Number(this.dataCount));
   }
 
-  ngAfterViewInit(): void {
-    this.resizeObserver.observe(this.el.nativeElement);
-  }
-
-  ngOnDestroy(): void {
-    this.resizeObserver.disconnect();
+  private handleMediatorEvent(event: any): void {
+    const config = this.helper.processEvent(event, {
+      theme: this.theme,
+      view: this.view,
+      data: this.originalData
+    });
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = config.data;
+    this.updateDisplayedData();
   }
 
   onSelect(event: any): void {
