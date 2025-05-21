@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component.ts
 import {
   Component,
   Input,
@@ -11,7 +10,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { NgxChartsModule, LegendPosition } from '@swimlane/ngx-charts';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
@@ -33,7 +32,7 @@ export class StackedVerticalBarChartComponent
   @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
@@ -54,37 +53,31 @@ export class StackedVerticalBarChartComponent
 
   data: ChartData[] = [];
   originalData: ChartData[] = [];
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private cfgSub?: Subscription;
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private mediator: MediatorService,
-    private helper: ChartHelperService
+    private readonly el: ElementRef,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
   ) {
-    // Observador de redimensionamiento
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const w = entry.contentRect.width;
-        const h = w * (400 / 700);
-        this.view = [w, h];
+        const width = entry.contentRect.width;
+        const height = width * (400 / 700);
+        this.view = [width, height];
       }
     });
 
-    // Escucha eventos globales y los aplica
     this.mediator.events$
-      .pipe(filter(e => e.origin !== 'stacked-vertical-bar-chart'))
+      .pipe(filter(event => event.origin !== 'stacked-vertical-bar-chart'))
       .subscribe(event => {
-        const cfg = this.helper.processEvent(event, {
+        const config = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
           data: this.originalData
         });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
+        this.applyConfig(config);
       });
   }
 
@@ -93,10 +86,10 @@ export class StackedVerticalBarChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
       this.reloadConfig();
     }
-    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
       this.updateDisplayedData();
     }
   }
@@ -104,7 +97,10 @@ export class StackedVerticalBarChartComponent
   private loadConfig(): void {
     this.cfgSub = this.helper
       .loadChartConfig('stackedVerticalBarChart', this.dataSource)
-      .subscribe(cfg => this.applyConfig(cfg), err => console.error(err));
+      .subscribe(
+        config => this.applyConfig(config),
+        error => console.error(error)
+      );
   }
 
   private reloadConfig(): void {
@@ -112,10 +108,10 @@ export class StackedVerticalBarChartComponent
     this.loadConfig();
   }
 
-  private applyConfig(cfg: ChartConfig): void {
-    this.theme = cfg.theme;
-    this.view = cfg.view;
-    this.originalData = cfg.data.slice();
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = [...config.data];
     this.updateDisplayedData();
   }
 
@@ -124,14 +120,14 @@ export class StackedVerticalBarChartComponent
       this.data = [];
       return;
     }
-    if (this.dataCount !== 'all') {
-      const cnt = Number(this.dataCount);
-      this.data =
-        cnt >= this.originalData.length
-          ? [...this.originalData]
-          : this.originalData.slice(0, cnt);
-    } else {
+
+    if (this.dataCount === 'all') {
       this.data = [...this.originalData];
+    } else {
+      const count = Number(this.dataCount);
+      this.data = count >= this.originalData.length
+        ? [...this.originalData]
+        : this.originalData.slice(0, count);
     }
   }
 
