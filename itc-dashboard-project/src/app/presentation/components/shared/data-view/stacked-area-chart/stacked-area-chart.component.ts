@@ -31,7 +31,7 @@ export class StackedAreaChartComponent
   @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
@@ -46,7 +46,7 @@ export class StackedAreaChartComponent
   yAxisLabel = 'Value';
   autoScale = true;
   timeline = false;
-  curve = undefined; // curveLinear or leave default
+  curve = undefined;
 
   colorScheme: any = {
     name: 'customScheme',
@@ -55,39 +55,27 @@ export class StackedAreaChartComponent
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  /** Carga bruta de datos */
   originalData: any[] = [];
-  /** Datos a mostrar según dataCount */
   data: any[] = [];
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
 
   constructor(
-    private el: ElementRef,
-    private helper: ChartHelperService,
-    private mediator: MediatorService
+    private readonly el: ElementRef,
+    private readonly helper: ChartHelperService,
+    private readonly mediator: MediatorService
   ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const w = entry.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
     this.mediator.events$
       .pipe(filter(e => e.origin !== 'stacked-area-chart'))
-      .subscribe(event => {
-        const cfg: ChartConfig = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
-      });
+      .subscribe(event => this.handleMediatorEvent(event));
   }
 
   ngOnInit(): void {
@@ -101,6 +89,15 @@ export class StackedAreaChartComponent
     if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
       this.updateDisplayedData();
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
   }
 
   private loadConfig(): void {
@@ -120,23 +117,28 @@ export class StackedAreaChartComponent
       this.data = [];
       return;
     }
-    if (this.dataCount !== 'all') {
-      const n = Number(this.dataCount);
-      this.data = n > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, n);
-    } else {
+
+    if (this.dataCount === 'all') {
       this.data = [...this.originalData];
+    } else {
+      const count = Number(this.dataCount);
+      this.data = count > this.originalData.length
+        ? [...this.originalData]
+        : this.originalData.slice(0, count);
     }
   }
 
-  ngAfterViewInit(): void {
-    this.resizeObserver.observe(this.el.nativeElement);
-  }
+  private handleMediatorEvent(event: any): void {
+    const config: ChartConfig = this.helper.processEvent(event, {
+      theme: this.theme,
+      view: this.view,
+      data: this.originalData
+    });
 
-  ngOnDestroy(): void {
-    this.resizeObserver.disconnect();
-    this.configSub?.unsubscribe();
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = config.data;
+    this.updateDisplayedData();
   }
 
   onSelect(event: any): void {
