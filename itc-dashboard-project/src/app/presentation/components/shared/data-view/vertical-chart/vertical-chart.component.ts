@@ -1,7 +1,20 @@
-import { Component, Input, HostBinding, ElementRef, OnInit, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ChartData, ChartConfig, ChartsJson } from '../../../../../infrastructure/api/chart.model';
+import { HttpClientModule } from '@angular/common/http';
+import { Subscription, filter } from 'rxjs';
+import { MediatorService } from '../../../../../application/services/mediator.service';
+import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig, ChartData } from '../../../../../infrastructure/api/chart.model';
 
 @Component({
   selector: 'app-vertical-chart',
@@ -10,21 +23,20 @@ import { ChartData, ChartConfig, ChartsJson } from '../../../../../infrastructur
   templateUrl: './vertical-chart.component.html',
   styleUrls: ['./vertical-chart.component.scss']
 })
-export class VerticalBarChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class VerticalBarChartComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   @Input() theme: 'default' | 'dark' = 'default';
-  @HostBinding('class.dark')
-  get isDarkTheme() {
+  @HostBinding('class.dark') get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
-  // Fuente de datos y configuración
   @Input() dataSource: string = '/assets/datasets/data.json';
-  // Nuevo Input para especificar la cantidad de datos a mostrar: "1", "2" o "all"
+
   private _dataCount: string = 'all';
   @Input()
   set dataCount(value: string) {
-    this._dataCount = value ? value : 'all';
-    console.log('Setter dataCount:', this._dataCount);
+    this._dataCount = value || 'all';
     this.updateDisplayedData();
   }
   get dataCount(): string {
@@ -32,7 +44,6 @@ export class VerticalBarChartComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   view: [number, number] = [700, 400];
-
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -49,64 +60,40 @@ export class VerticalBarChartComponent implements OnInit, AfterViewInit, OnDestr
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  // Datos que se mostrarán en el gráfico y data original sin filtrar
   data: ChartData[] = [];
-  originalData: ChartData[] = [];
+  private originalData: ChartData[] = [];
 
-  private resizeObserver: ResizeObserver;
-  private configSubscription: any;
+  private readonly resizeObserver: ResizeObserver;
+  private configSubscription?: Subscription;
+  private readonly mediatorSubscription?: Subscription;
 
-  constructor(private el: ElementRef, private http: HttpClient) {
+  constructor(
+    private readonly el: ElementRef,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
+  ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        // Ajusta el ratio para vertical bar chart (por ejemplo, 499/749)
-        const height = width * (499 / 749);
+        const height = width * (400 / 700);
         this.view = [width, height];
       }
     });
+
+    this.mediatorSubscription = this.mediator.events$
+      .pipe(filter(evt => evt.origin !== 'vertical-bar-chart'))
+      .subscribe(evt => this.handleMediatorEvent(evt));
   }
 
   ngOnInit(): void {
-    this.http.get<ChartsJson>(this.dataSource).subscribe(
-      response => {
-        if (response && response.charts && response.charts.verticalBarChart) {
-          const config: ChartConfig = response.charts.verticalBarChart;
-          this.originalData = config.data.slice();
-          console.log('Loaded original data:', this.originalData);
-          this.updateDisplayedData();
-          this.view = config.view;
-          this.theme = config.theme;
-        } else {
-          console.error('La respuesta no contiene verticalBarChart');
-        }
-      },
-      error => {
-        console.error('Error al cargar el JSON', error);
-      }
-    );
-  }
-
-  updateDisplayedData(): void {
-    console.log('Updating displayed data with dataCount:', this.dataCount);
-    if (this.originalData && this.originalData.length > 0) {
-      if (this.dataCount !== 'all') {
-        const count = Number(this.dataCount);
-        if (count > this.originalData.length) {
-          console.warn(`Requested ${count} items, but only ${this.originalData.length} available. Showing all.`);
-          this.data = [...this.originalData];
-        } else {
-          this.data = this.originalData.slice(0, count);
-        }
-      } else {
-        this.data = [...this.originalData];
-      }
-      console.log(`Displaying ${this.data.length} items:`, this.data);
-    }
+    this.loadConfig();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+      this.reloadConfig();
+    }
+    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
       this.updateDisplayedData();
     }
   }
@@ -117,12 +104,58 @@ export class VerticalBarChartComponent implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
-    if (this.configSubscription) {
-      this.configSubscription.unsubscribe();
+    this.configSubscription?.unsubscribe();
+    this.mediatorSubscription?.unsubscribe();
+  }
+
+  private loadConfig(): void {
+    this.configSubscription = this.helper
+      .loadChartConfig('verticalBarChart', this.dataSource)
+      .subscribe({
+        next: cfg => this.applyConfig(cfg),
+        error: err => console.error('Error loading verticalBarChart config', err)
+      });
+  }
+
+  private reloadConfig(): void {
+    this.configSubscription?.unsubscribe();
+    this.loadConfig();
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = [...cfg.data];
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
     }
+    this.data = this.dataCount === 'all'
+      ? [...this.originalData]
+      : this.originalData.slice(0, Number(this.dataCount) || this.originalData.length);
+  }
+
+  private handleMediatorEvent(event: any): void {
+    const updated = this.helper.processEvent(event, {
+      theme: this.theme,
+      view: this.view,
+      data: this.originalData
+    });
+    this.theme = updated.theme;
+    this.view = updated.view;
+    this.originalData = updated.data;
+    this.updateDisplayedData();
   }
 
   onSelect(event: any): void {
-    console.log(event);
+    this.mediator.emit({
+      origin: 'vertical-bar-chart',
+      type: 'select',
+      payload: event
+    });
   }
 }
