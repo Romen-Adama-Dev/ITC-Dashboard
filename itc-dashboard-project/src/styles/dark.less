@@ -33,30 +33,31 @@ body {
   .ant-menu {
     background-color: @sidebar-background;
     border: none;
-  }
 
-  .ant-menu-submenu-title,
-  .ant-menu-item {
-    background-color: @sidebar-background;
-    color: @text-color;
-    border: none;
-
-    a {
+    .ant-menu-submenu-title,
+    .ant-menu-item {
+      background-color: @sidebar-background;
       color: @text-color;
+      border: none;
+
+      a {
+        color: @text-color;
+      }
     }
-  }
 
-  .ant-menu-item-hover,
-  .ant-menu-submenu-title:hover,
-  .ant-menu-item-active,
-  .ant-menu-submenu-active {
-    background-color: @sidebar-background;
-  }
+    .ant-menu-item-hover,
+    .ant-menu-submenu-title:hover,
+    .ant-menu-item-active,
+    .ant-menu-submenu-active {
+      background-color: @sidebar-background;
+    }
 
-  .ant-menu-item-selected {
-    background-color: fade(@primary-color, 85%);
-    a {
-      color: #ffffff;
+    .ant-menu-item-selected {
+      background-color: fade(@primary-color, 85%);
+
+      a {
+        color: #ffffff;
+      }
     }
   }
 }
@@ -169,19 +170,21 @@ body {
   --primary-color: #FFCC00;
 }
 
-.modal select,
-.modal input[type="number"] {
-  background-color: transparent !important;
-  color: #ffffff !important;
-  font-weight: normal !important;
-  border: 1px solid var(--border-color, fade(@primary-color, 40%)) !important;
-  border-radius: 15px !important;
-  padding: 0.5rem 0.75rem !important;
-  outline: none !important;
-}
+/* Modal Styles */
+.modal {
+  select,
+  input[type="number"] {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    font-weight: normal !important;
+    border: 1px solid var(--border-color, fade(@primary-color, 40%)) !important;
+    border-radius: 15px !important;
+    padding: 0.5rem 0.75rem !important;
+    outline: none !important;
+  }
 
-/* las opciones desplegadas en blanco */
-.modal select option {
-  background-color: transparent !important;
-  color: #ffffff !important;
+  select option {
+    background-color: transparent !important;
+    color: #ffffff !important;
+  }
 }

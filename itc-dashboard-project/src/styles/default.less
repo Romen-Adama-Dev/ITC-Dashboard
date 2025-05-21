@@ -1,6 +1,6 @@
 @import "ng-zorro-antd/ng-zorro-antd.less";
 
-// Default Theme Variables
+// Theme Variables
 @primary-color: #0768A9;
 @background-color: #ffffff;
 @header-background: #f8f8f8;
@@ -15,7 +15,7 @@ body {
   color: @text-color;
 }
 
-// Dashboard Layout
+// Layout Styles
 .app-layout {
   background-color: @background-color;
   border-radius: 4px;
@@ -31,30 +31,31 @@ body {
   .ant-menu {
     background-color: @sidebar-background !important;
     border: none !important;
-  }
 
-  .ant-menu-submenu-title,
-  .ant-menu-item {
-    background-color: @sidebar-background !important;
-    color: @text-color !important;
-    border: none;
-
-    a {
+    .ant-menu-submenu-title,
+    .ant-menu-item {
+      background-color: @sidebar-background !important;
       color: @text-color !important;
+      border: none;
+
+      a {
+        color: @text-color !important;
+      }
     }
-  }
 
-  .ant-menu-item:hover,
-  .ant-menu-submenu-title:hover,
-  .ant-menu-item-active,
-  .ant-menu-submenu-active {
-    background-color: @sidebar-background !important;
-  }
+    .ant-menu-item:hover,
+    .ant-menu-submenu-title:hover,
+    .ant-menu-item-active,
+    .ant-menu-submenu-active {
+      background-color: @sidebar-background !important;
+    }
 
-  .ant-menu-item-selected {
-    background-color: fade(@primary-color, 85%) !important;
-    a {
-      color: #ffffff !important;
+    .ant-menu-item-selected {
+      background-color: fade(@primary-color, 85%) !important;
+
+      a {
+        color: #ffffff !important;
+      }
     }
   }
 }
@@ -71,6 +72,7 @@ body {
   background: @sidebar-background;
   border-bottom: 2px solid @border-color;
   border-radius: 4px;
+
   h1 {
     color: @primary-color;
   }
@@ -94,12 +96,10 @@ body {
   background-color: fade(@primary-color, 70%) !important;
 }
 
-/* Submenu Overrides para Default Theme:
-   En estado normal se conserva el @text-color, pero en hover, focus y cuando están seleccionados,
-   el texto se muestra en blanco */
+// Submenu Overrides
 .ant-menu-horizontal .ant-menu-sub li a,
 .ant-menu-inline .ant-menu-sub li a {
-  color: @text-color; // Estado normal (negro)
+  color: @text-color;
 }
 
 .ant-menu-horizontal .ant-menu-sub li a:hover,
@@ -111,7 +111,7 @@ body {
 
 .ant-menu-horizontal .ant-menu-group-title,
 .ant-menu-inline .ant-menu-group-title {
-  color: @text-color; // Estado normal
+  color: @text-color;
 }
 
 .ant-menu-horizontal .ant-menu-group-title:hover,
@@ -119,25 +119,17 @@ body {
   color: #ffffff !important;
 }
 
-/* Variables CSS para integración global */
+// CSS Variables
 :root {
-  --progress-gradient-start: #4da6e3;  // Variante clara de #0768A9
+  --progress-gradient-start: #4da6e3;
   --progress-gradient-end: #0768A9;
-  --progress-gradient-mid: #3a94d0;      // Valor intermedio
-  
+  --progress-gradient-mid: #3a94d0;
   --background-color: #ffffff;
   --text-color: #000000;
   --border-color: fade(#0768A9, 40%);
   --card-background: #f5f5f5;
-}
-
-:root {
-  --edge-label-color: #000000; // Texto negro en tema claro
-  --text-color: #000000;
+  --edge-label-color: #000000;
   --primary-color: #0768A9;
-  --border-color: fade(#0768A9, 40%);
-  --background-color: #ffffff;
-  --card-background: #f5f5f5;
 }
 
 .modal select,
@@ -151,7 +143,6 @@ body {
   outline: none !important;
 }
 
-/* las opciones desplegadas también en negro */
 .modal select option {
   background-color: var(--card-background, #ffffff) !important;
   color: #000000 !important;
