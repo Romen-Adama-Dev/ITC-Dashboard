@@ -1,4 +1,3 @@
-// src/app/presentation/components/shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component.ts
 import {
   Component,
   Input,
@@ -26,7 +25,6 @@ import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
 export class NormalizedVerticalBarChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
-  /** Inputs reactivos */
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
@@ -36,7 +34,6 @@ export class NormalizedVerticalBarChartComponent
     return this.theme === 'dark';
   }
 
-  /** Configuración del gráfico */
   view: [number, number] = [700, 400];
   showXAxis = true;
   showYAxis = true;
@@ -59,39 +56,36 @@ export class NormalizedVerticalBarChartComponent
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  /** Datos internos */
   originalData: any[] = [];
   data: any[] = [];
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
-  private mediatorSub: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
-    private el: ElementRef,
-    private helper: ChartHelperService,
-    private mediator: MediatorService
+    private readonly el: ElementRef,
+    private readonly helper: ChartHelperService,
+    private readonly mediator: MediatorService
   ) {
-    // Observador para redimensionar el gráfico manteniendo proporción 400/700
     this.resizeObserver = new ResizeObserver(entries => {
-      for (const e of entries) {
-        const w = e.contentRect.width;
-        this.view = [w, w * (400 / 700)];
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        this.view = [width, width * (400 / 700)];
       }
     });
 
-    // Escuchar eventos globales (excluyendo los propios)
     this.mediatorSub = this.mediator.events$
-      .pipe(filter(ev => ev.origin !== 'normalized-vertical-bar-chart'))
-      .subscribe(ev => {
-        const cfg = this.helper.processEvent(ev, {
+      .pipe(filter(event => event.origin !== 'normalized-vertical-bar-chart'))
+      .subscribe(event => {
+        const config = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
           data: this.originalData
         });
-        this.theme = cfg.theme;
-        this.view = cfg.view as [number, number];
-        this.originalData = cfg.data;
+        this.theme = config.theme;
+        this.view = config.view as [number, number];
+        this.originalData = config.data;
         this.updateDisplayedData();
       });
   }
@@ -114,15 +108,15 @@ export class NormalizedVerticalBarChartComponent
     this.configSub = this.helper
       .loadChartConfig('normalizedVerticalBarChart', this.dataSource)
       .subscribe({
-        next: cfg => this.applyConfig(cfg),
-        error: err => console.error('Error loading normalized vertical bar config', err)
+        next: config => this.applyConfig(config),
+        error: error => console.error('Error loading chart config', error)
       });
   }
 
-  private applyConfig(cfg: ChartConfig): void {
-    this.theme = cfg.theme;
-    this.view = cfg.view;
-    this.originalData = cfg.data.slice();
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = config.data.slice();
     this.updateDisplayedData();
   }
 
@@ -131,12 +125,9 @@ export class NormalizedVerticalBarChartComponent
       this.data = [];
       return;
     }
-    if (this.dataCount !== 'all') {
-      const cnt = Number(this.dataCount);
-      this.data = this.originalData.slice(0, cnt);
-    } else {
-      this.data = [...this.originalData];
-    }
+    this.data = this.dataCount === 'all'
+      ? [...this.originalData]
+      : this.originalData.slice(0, Number(this.dataCount));
   }
 
   ngAfterViewInit(): void {
