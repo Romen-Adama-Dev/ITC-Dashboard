@@ -57,13 +57,13 @@ export class BoxChartComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver: ResizeObserver;
 
   constructor(
-    private el: ElementRef,
-    private http: HttpClient,
-    private mediator: MediatorService,
-    private helper: ChartHelperService
+    private readonly el: ElementRef,
+    private readonly http: HttpClient,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
   ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
