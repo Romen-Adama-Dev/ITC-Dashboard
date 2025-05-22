@@ -65,12 +65,13 @@
       {{ 'DESERIALIZE_JSON' | translate }}
     </app-default-button>
   
+    <div class="flex-spacer"></div>
     <app-language-dropdown
       [languages]="languages"
       [selectedLanguage]="selectedLanguage"
       (languageChange)="onLanguageChange($event)">
     </app-language-dropdown>
-  
+
     <app-theme-toggle-button
       [currentTheme]="currentTheme"
       (toggleTheme)="onToggleTheme()"
