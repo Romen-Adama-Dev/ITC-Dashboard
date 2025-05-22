@@ -1,10 +1,13 @@
+:host {
+  display: inline-block;
+}
+
 .language-dropdown-trigger {
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .language-dropdown-menu {
-    min-width: 120px;
-  }
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.language-dropdown-menu {
+  min-width: 120px;
+}

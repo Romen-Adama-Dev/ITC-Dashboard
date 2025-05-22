@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-language-dropdown',
   standalone: true,
-  imports: [CommonModule, NzDropDownModule, NzIconModule],
+  imports: [CommonModule, NzDropDownModule, NzIconModule, NzButtonModule],
   templateUrl: './drop-button.component.html',
   styleUrls: ['./drop-button.component.scss']
 })
@@ -20,17 +21,19 @@ export class LanguageDropdownComponent {
   ];
 
   @Input() selectedLanguage: string = 'en';
+
+  @Input() nzSize: 'small' | 'default' | 'large' = 'default';
+  @Input() nzLoading: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() nzDanger: boolean = false;
+
   @Output() languageChange = new EventEmitter<string>();
 
-  /** Para evitar lambdas en el template */
   get selectedLabel(): string {
-    const found = this.languages.find(l => l.code === this.selectedLanguage);
-    return found ? found.label : '';
+    return this.languages.find(l => l.code === this.selectedLanguage)?.label || '';
   }
 
-  changeLanguage(lang: { code: string; label: string }): void {
-    if (lang.code !== this.selectedLanguage) {
-      this.languageChange.emit(lang.code);
-    }
+  changeLanguage(language: { code: string; label: string }): void {
+    this.languageChange.emit(language.code);
   }
 }

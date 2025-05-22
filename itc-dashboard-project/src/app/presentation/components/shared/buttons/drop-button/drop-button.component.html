@@ -1,16 +1,27 @@
-<a nz-dropdown [nzDropdownMenu]="menu" class="language-dropdown-trigger">
-    {{ selectedLabel }}
-    <nz-icon nzType="down"></nz-icon>
-  </a>
-  
-  <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu class="language-dropdown-menu">
-      <li
-        nz-menu-item
-        *ngFor="let lang of languages"
-        [nzSelected]="lang.code === selectedLanguage"
-        (click)="changeLanguage(lang)">
-        {{ lang.label }}
-      </li>
-    </ul>
-  </nz-dropdown-menu>
+<button
+  nz-button
+  nzType="default"
+  [nzSize]="nzSize"
+  [nzLoading]="nzLoading"
+  [disabled]="disabled"
+  [nzDanger]="nzDanger"
+  nz-dropdown
+  [nzDropdownMenu]="menu"
+  class="language-dropdown-trigger"
+>
+  {{ selectedLabel }}
+  <nz-icon nzType="down"></nz-icon>
+</button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu class="language-dropdown-menu">
+    <li
+      nz-menu-item
+      *ngFor="let lang of languages"
+      [nzSelected]="lang.code === selectedLanguage"
+      (click)="changeLanguage(lang)"
+    >
+      {{ lang.label }}
+    </li>
+  </ul>
+</nz-dropdown-menu>
