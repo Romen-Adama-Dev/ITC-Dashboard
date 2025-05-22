@@ -1,0 +1,9 @@
+{
+    "ADD": "Añadir",
+    "CLEAN_UP": "Limpiar",
+    "LOCK_WIDGETS": "Bloquear Widgets",
+    "UNLOCK_WIDGETS": "Desbloquear Widgets",
+    "SERIALIZE": "Exportar a JSON",
+    "LOAD_JSON": "Cargar JSON",
+    "DESERIALIZE_JSON": "Deserializar JSON"
+  }

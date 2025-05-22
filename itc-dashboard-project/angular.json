@@ -34,6 +34,14 @@
                 "glob": "**/*",
                 "input": "src/assets/datasets",
                 "output": "/assets/"
+              },{
+                "glob": "**/*",
+                "input": "src/assets/i18n",
+                "output": "/assets/"
+              },{
+                "glob": "**/*",
+                "input": "src/assets/i18n",
+                "output": "/assets/i18n"
               },
               {
                 "glob": "**/*",

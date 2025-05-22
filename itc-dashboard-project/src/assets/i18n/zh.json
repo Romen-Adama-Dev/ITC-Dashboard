@@ -1,0 +1,9 @@
+{
+    "ADD": "添加",
+    "CLEAN_UP": "清理",
+    "LOCK_WIDGETS": "锁定小部件",
+    "UNLOCK_WIDGETS": "解锁小部件",
+    "SERIALIZE": "导出为 JSON",
+    "LOAD_JSON": "加载 JSON",
+    "DESERIALIZE_JSON": "反序列化 JSON"
+}

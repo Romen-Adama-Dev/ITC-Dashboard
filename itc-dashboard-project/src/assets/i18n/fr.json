@@ -1,0 +1,9 @@
+{
+    "ADD": "Ajouter",
+    "CLEAN_UP": "Nettoyer",
+    "LOCK_WIDGETS": "Verrouiller les widgets",
+    "UNLOCK_WIDGETS": "Déverrouiller les widgets",
+    "SERIALIZE": "Exporter en JSON",
+    "LOAD_JSON": "Charger JSON",
+    "DESERIALIZE_JSON": "Désérialiser JSON"
+}

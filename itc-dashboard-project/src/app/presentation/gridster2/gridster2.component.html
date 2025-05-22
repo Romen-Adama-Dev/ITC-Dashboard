@@ -1,63 +1,76 @@
 <div class="gridster-container">
   <div class="controls">
-    <app-primary-button 
-      nzSize="default" 
+    <app-primary-button
+      nzSize="default"
       (click)="openCustomModal()"
       (keydown.enter)="openCustomModal()"
       tabindex="0">
-      Add
+      {{ 'ADD' | translate }}
     </app-primary-button>
-    <app-default-button 
-      nzSize="default" 
+  
+    <app-default-button
+      nzSize="default"
       (click)="changedOptions()"
       (keydown.enter)="changedOptions()"
-      tabindex="0"
-      [disabled]="!pushItemsEnabled">
-      Clean Up
+      [disabled]="!pushItemsEnabled"
+      tabindex="0">
+      {{ 'CLEAN_UP' | translate }}
     </app-default-button>
+  
     <app-default-button
       nzSize="default"
       (click)="togglePushItems()"
       (keydown.enter)="togglePushItems()"
-      [ngClass]="{'hover-style': !pushItemsEnabled}"
+      [ngClass]="{ 'hover-style': !pushItemsEnabled }"
       tabindex="0">
-      {{ pushItemsEnabled ? 'Lock Widgets' : 'Unlock Widgets' }}
+      {{ pushItemsEnabled
+         ? ('LOCK_WIDGETS' | translate)
+         : ('UNLOCK_WIDGETS' | translate)
+      }}
     </app-default-button>
-    <app-default-button 
-      nzSize="default" 
+  
+    <app-default-button
+      nzSize="default"
       (click)="serializeToJson()"
       (keydown.enter)="serializeToJson()"
       tabindex="0">
-      Serialize to JSON File
+      {{ 'SERIALIZE' | translate }}
     </app-default-button>
+  
     <input
-    type="file"
-    #loadJsonInput
-    hidden
-    (change)="loadJsonFromFile($event)"
+      type="file"
+      #loadJsonInput
+      hidden
+      (change)="loadJsonFromFile($event)"
     />
     <app-default-button
       nzSize="default"
       (click)="loadJsonInput.click()"
       (keydown.enter)="loadJsonInput.click()"
       tabindex="0">
-      Cargar JSON
+      {{ 'LOAD_JSON' | translate }}
     </app-default-button>
-
+  
     <input
-    type="file"
-    #deserializeInput
-    hidden
-    (change)="deserializeFromFile($event)"
+      type="file"
+      #deserializeInput
+      hidden
+      (change)="deserializeFromFile($event)"
     />
     <app-default-button
       nzSize="default"
       (click)="deserializeInput.click()"
       (keydown.enter)="deserializeInput.click()"
       tabindex="0">
-      Deserializar JSON
+      {{ 'DESERIALIZE_JSON' | translate }}
     </app-default-button>
-
+  
+    <app-language-dropdown
+      [languages]="languages"
+      [selectedLanguage]="selectedLanguage"
+      (languageChange)="onLanguageChange($event)">
+    </app-language-dropdown>
+  
     <app-theme-toggle-button
       [currentTheme]="currentTheme"
       (toggleTheme)="onToggleTheme()"

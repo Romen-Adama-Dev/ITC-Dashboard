@@ -1,0 +1,9 @@
+{
+    "ADD": "Hinzufügen",
+    "CLEAN_UP": "Aufräumen",
+    "LOCK_WIDGETS": "Widgets Sperren",
+    "UNLOCK_WIDGETS": "Widgets Entsperren",
+    "SERIALIZE": "Als JSON Exportieren",
+    "LOAD_JSON": "JSON Laden",
+    "DESERIALIZE_JSON": "JSON Deserialisieren"
+}

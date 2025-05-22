@@ -13,10 +13,12 @@ import {
   PushDirections,
   Resizable,
 } from 'angular-gridster2';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { PrimaryButtonComponent } from '../components/shared/buttons/primary-button/primary-button.component';
 import { DefaultButtonComponent } from '../components/shared/buttons/default-button/default-button.component';
 import { FloatShapeButtonComponent } from '../components/shared/buttons/float-shape-button/float-shape-button.component';
+import { LanguageDropdownComponent } from '../components/shared/buttons/drop-button/drop-button.component';
 
 // Charts
 import { AreaChartComponent } from '../components/shared/data-view/area-chart/area-chart.component'
@@ -99,7 +101,9 @@ interface SafeGridsterConfig extends GridsterConfig {
     EditWidgetModalComponent,
     NzNotificationModule,
     NzIconModule,
-    ThemeToggleButtonComponent
+    TranslateModule,
+    ThemeToggleButtonComponent,
+    LanguageDropdownComponent
 ],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
@@ -111,6 +115,15 @@ export class GridsterDashboardComponent implements OnInit {
   isEditModalVisible = false
   currentEditItem: ExtendedGridsterItem | null = null
   currentTheme: 'default' | 'dark' = 'default';
+
+  readonly languages = [
+    { code: 'en', label: 'English' },
+    { code: 'es', label: 'Español' },
+    { code: 'fr', label: 'Français' },
+    { code: 'de', label: 'Deutsch' },
+    { code: 'zh', label: '中文' }
+  ];
+  selectedLanguage = 'en';
 
   selectedChartType:
     | 'line-chart'
@@ -142,7 +155,8 @@ export class GridsterDashboardComponent implements OnInit {
   constructor(
     private readonly chartDataService: ChartDataService,
     private readonly notification: NzNotificationService,
-    private readonly mediator: MediatorService
+    private readonly mediator: MediatorService,
+    private readonly translate: TranslateService,
   ) {}
 
   ngOnInit(): void {
@@ -157,6 +171,10 @@ export class GridsterDashboardComponent implements OnInit {
     if (darkLink) {
       darkLink.disabled = this.currentTheme !== 'dark';
     }
+
+    // Initialize translation
+    this.translate.setDefaultLang(this.selectedLanguage);
+    this.translate.use(this.selectedLanguage);
 
     this.options = {
       gridType: GridType.Fixed,
@@ -383,5 +401,10 @@ export class GridsterDashboardComponent implements OnInit {
       darkLink.disabled = true;
       this.currentTheme = 'default';
     }
+  }
+
+  onLanguageChange(lang: string): void {
+    this.selectedLanguage = lang;
+    this.translate.use(lang);
   }
 }
