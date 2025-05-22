@@ -8,10 +8,9 @@ import es from '@angular/common/locales/es';
 import fr from '@angular/common/locales/fr';
 import de from '@angular/common/locales/de';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, HttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -27,7 +26,7 @@ registerLocaleData(de);
 bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
-    ...(appConfig.providers || []),
+    ...(appConfig.providers ?? []),
     provideHttpClient(),
     importProvidersFrom(
       TranslateModule.forRoot({
@@ -40,4 +39,4 @@ bootstrapApplication(AppComponent, {
     )
   ]
 })
-  .catch(err => console.error(err));
+.catch(err => console.error(err));
