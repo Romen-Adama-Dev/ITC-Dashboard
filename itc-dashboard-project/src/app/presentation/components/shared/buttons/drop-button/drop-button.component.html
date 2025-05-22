@@ -8,18 +8,26 @@
   nz-dropdown
   [nzDropdownMenu]="menu"
   class="language-dropdown-trigger"
+  aria-haspopup="menu"
+  [attr.aria-expanded]="menuVisible"
+  (click)="menuVisible = !menuVisible"
+  (nzVisibleChange)="menuVisible = $event"
 >
   {{ selectedLabel }}
   <nz-icon nzType="down"></nz-icon>
 </button>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
-  <ul nz-menu class="language-dropdown-menu">
+  <ul nz-menu class="language-dropdown-menu" role="menu">
     <li
       nz-menu-item
+      role="menuitem"
+      tabindex="0"
       *ngFor="let lang of languages"
       [nzSelected]="lang.code === selectedLanguage"
       (click)="changeLanguage(lang)"
+      (keydown.enter)="changeLanguage(lang)"
+      (keydown.space)="changeLanguage(lang)"
     >
       {{ lang.label }}
     </li>

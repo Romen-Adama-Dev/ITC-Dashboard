@@ -19,21 +19,23 @@ export class LanguageDropdownComponent {
     { code: 'de', label: 'Deutsch' },
     { code: 'zh', label: '中文' }
   ];
-
   @Input() selectedLanguage: string = 'en';
-
   @Input() nzSize: 'small' | 'default' | 'large' = 'default';
-  @Input() nzLoading: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() nzDanger: boolean = false;
+  @Input() nzLoading = false;
+  @Input() disabled = false;
+  @Input() nzDanger = false;
+  menuVisible = false;
 
   @Output() languageChange = new EventEmitter<string>();
 
   get selectedLabel(): string {
-    return this.languages.find(l => l.code === this.selectedLanguage)?.label || '';
+    return (
+      this.languages.find(l => l.code === this.selectedLanguage)?.label || ''
+    );
   }
 
   changeLanguage(language: { code: string; label: string }): void {
     this.languageChange.emit(language.code);
+    this.menuVisible = false; // cierra menú al seleccionar
   }
 }
