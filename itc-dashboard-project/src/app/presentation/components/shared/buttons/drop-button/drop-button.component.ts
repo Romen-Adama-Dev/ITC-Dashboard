@@ -30,12 +30,12 @@ export class LanguageDropdownComponent {
 
   get selectedLabel(): string {
     return (
-      this.languages.find(l => l.code === this.selectedLanguage)?.label || ''
+      this.languages.find(l => l.code === this.selectedLanguage)?.label ?? ''
     );
   }
 
   changeLanguage(language: { code: string; label: string }): void {
     this.languageChange.emit(language.code);
-    this.menuVisible = false; // cierra menú al seleccionar
+    this.menuVisible = false;
   }
 }

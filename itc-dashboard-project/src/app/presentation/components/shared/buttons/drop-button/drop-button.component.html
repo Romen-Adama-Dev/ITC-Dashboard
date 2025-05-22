@@ -18,10 +18,9 @@
 </button>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
-  <ul nz-menu class="language-dropdown-menu" role="menu">
+  <ul nz-menu class="language-dropdown-menu">
     <li
       nz-menu-item
-      role="menuitem"
       tabindex="0"
       *ngFor="let lang of languages"
       [nzSelected]="lang.code === selectedLanguage"
