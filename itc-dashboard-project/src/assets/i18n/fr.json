@@ -5,5 +5,14 @@
     "UNLOCK_WIDGETS": "Déverrouiller les widgets",
     "SERIALIZE": "Exporter en JSON",
     "LOAD_JSON": "Charger JSON",
-    "DESERIALIZE_JSON": "Désérialiser JSON"
-}
+    "DESERIALIZE_JSON": "Désérialiser JSON",
+    "NOTIF": {
+      "WARN_WIDGETS_CLEARED": "Widgets supprimés avec succès.",
+      "WARN_WIDGET_DELETED": "Widget supprimé avec succès.",
+      "INFO_MODAL_OPEN": "Modal ouvert pour la sélection du widget.",
+      "SUCCESS_WIDGET_CREATED": "Widget créé avec succès."
+    },
+    "WARNING": "Avertissement",
+    "INFO": "Info",
+    "SUCCESS": "Succès"
+  }

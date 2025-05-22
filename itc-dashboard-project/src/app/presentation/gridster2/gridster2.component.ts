@@ -241,17 +241,6 @@ export class GridsterDashboardComponent implements OnInit {
     console.info('itemResized', item, itemComponent)
   }
 
-  changedOptions(): void {
-    this.dashboard = []
-    this.options.api?.optionsChanged?.();
-    this.notification.warning('Warning', 'Widgets borrados correctamente.')
-  }
-
-  removeItem(item: ExtendedGridsterItem): void {
-    this.dashboard.splice(this.dashboard.indexOf(item), 1)
-    this.notification.warning('Warning', 'Widget borrado correctamente.')
-  }
-
   addItem(): void {
     if (!this.selectedChartType) {
       alert('Please select a chart type.')
@@ -274,11 +263,6 @@ export class GridsterDashboardComponent implements OnInit {
     return item['id']
   }
 
-  openCustomModal(): void {
-    this.isModalVisible = true
-    this.notification.info('Info', 'Modal abierto para selección de widget.')
-  }
-
   closeCustomModal(): void {
     this.isModalVisible = false
   }
@@ -298,8 +282,10 @@ export class GridsterDashboardComponent implements OnInit {
       dataSource: selection.dataSource,
       dataCount: selection.dataCount
     })
-    this.notification.success('Success', 'Widget creado correctamente.')
-    this.closeCustomModal()
+    this.notification.success(
+      this.translate.instant('SUCCESS'),
+      this.translate.instant('NOTIF.SUCCESS_WIDGET_CREATED')
+    );
   }
 
   togglePushItems(): void {
@@ -406,5 +392,30 @@ export class GridsterDashboardComponent implements OnInit {
   onLanguageChange(lang: string): void {
     this.selectedLanguage = lang;
     this.translate.use(lang);
+  }
+
+  changedOptions(): void {
+    this.dashboard = [];
+    this.options.api?.optionsChanged?.();
+    this.notification.warning(
+      this.translate.instant('WARNING'),
+      this.translate.instant('NOTIF.WARN_WIDGETS_CLEARED')
+    );
+  }
+  
+  removeItem(item: ExtendedGridsterItem): void {
+    this.dashboard.splice(this.dashboard.indexOf(item), 1);
+    this.notification.warning(
+      this.translate.instant('WARNING'),
+      this.translate.instant('NOTIF.WARN_WIDGET_DELETED')
+    );
+  }
+  
+  openCustomModal(): void {
+    this.isModalVisible = true;
+    this.notification.info(
+      this.translate.instant('INFO'),
+      this.translate.instant('NOTIF.INFO_MODAL_OPEN')
+    );
   }
 }

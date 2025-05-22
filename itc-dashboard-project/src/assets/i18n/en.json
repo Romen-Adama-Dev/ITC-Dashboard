@@ -1,9 +1,18 @@
 {
-    "ADD": "Add",
-    "CLEAN_UP": "Clean Up",
-    "LOCK_WIDGETS": "Lock Widgets",
-    "UNLOCK_WIDGETS": "Unlock Widgets",
-    "SERIALIZE": "Serialize to JSON File",
-    "LOAD_JSON": "Load JSON",
-    "DESERIALIZE_JSON": "Deserialize JSON"
-  }
+  "ADD": "Add",
+  "CLEAN_UP": "Clean Up",
+  "LOCK_WIDGETS": "Lock Widgets",
+  "UNLOCK_WIDGETS": "Unlock Widgets",
+  "SERIALIZE": "Serialize to JSON File",
+  "LOAD_JSON": "Load JSON",
+  "DESERIALIZE_JSON": "Deserialize JSON",
+  "NOTIF": {
+    "WARN_WIDGETS_CLEARED": "Widgets cleared successfully.",
+    "WARN_WIDGET_DELETED": "Widget deleted successfully.",
+    "INFO_MODAL_OPEN": "Modal opened for widget selection.",
+    "SUCCESS_WIDGET_CREATED": "Widget created successfully."
+  },
+  "WARNING": "Warning",
+  "INFO": "Info",
+  "SUCCESS": "Success"
+}

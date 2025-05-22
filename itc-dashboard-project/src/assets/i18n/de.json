@@ -1,9 +1,18 @@
 {
     "ADD": "Hinzufügen",
     "CLEAN_UP": "Aufräumen",
-    "LOCK_WIDGETS": "Widgets Sperren",
-    "UNLOCK_WIDGETS": "Widgets Entsperren",
-    "SERIALIZE": "Als JSON Exportieren",
-    "LOAD_JSON": "JSON Laden",
-    "DESERIALIZE_JSON": "JSON Deserialisieren"
-}
+    "LOCK_WIDGETS": "Widgets sperren",
+    "UNLOCK_WIDGETS": "Widgets entsperren",
+    "SERIALIZE": "Als JSON exportieren",
+    "LOAD_JSON": "JSON laden",
+    "DESERIALIZE_JSON": "JSON deserialisieren",
+    "NOTIF": {
+      "WARN_WIDGETS_CLEARED": "Widgets erfolgreich gelöscht.",
+      "WARN_WIDGET_DELETED": "Widget erfolgreich gelöscht.",
+      "INFO_MODAL_OPEN": "Modal zur Widget-Auswahl geöffnet.",
+      "SUCCESS_WIDGET_CREATED": "Widget erfolgreich erstellt."
+    },
+    "WARNING": "Warnung",
+    "INFO": "Info",
+    "SUCCESS": "Erfolg"
+  }

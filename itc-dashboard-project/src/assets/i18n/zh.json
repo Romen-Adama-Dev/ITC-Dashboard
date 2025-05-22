@@ -5,5 +5,14 @@
     "UNLOCK_WIDGETS": "解锁小部件",
     "SERIALIZE": "导出为 JSON",
     "LOAD_JSON": "加载 JSON",
-    "DESERIALIZE_JSON": "反序列化 JSON"
-}
+    "DESERIALIZE_JSON": "反序列化 JSON",
+    "NOTIF": {
+      "WARN_WIDGETS_CLEARED": "小部件已成功清除。",
+      "WARN_WIDGET_DELETED": "小部件已成功删除。",
+      "INFO_MODAL_OPEN": "已打开小部件选择模态框。",
+      "SUCCESS_WIDGET_CREATED": "小部件创建成功。"
+    },
+    "WARNING": "警告",
+    "INFO": "信息",
+    "SUCCESS": "成功"
+  }

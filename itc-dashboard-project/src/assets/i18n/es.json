@@ -1,9 +1,18 @@
 {
-    "ADD": "Añadir",
-    "CLEAN_UP": "Limpiar",
-    "LOCK_WIDGETS": "Bloquear Widgets",
-    "UNLOCK_WIDGETS": "Desbloquear Widgets",
-    "SERIALIZE": "Exportar a JSON",
-    "LOAD_JSON": "Cargar JSON",
-    "DESERIALIZE_JSON": "Deserializar JSON"
-  }
+  "ADD": "Añadir",
+  "CLEAN_UP": "Limpiar",
+  "LOCK_WIDGETS": "Bloquear Widgets",
+  "UNLOCK_WIDGETS": "Desbloquear Widgets",
+  "SERIALIZE": "Exportar a JSON",
+  "LOAD_JSON": "Cargar JSON",
+  "DESERIALIZE_JSON": "Deserializar JSON",
+  "NOTIF": {
+    "WARN_WIDGETS_CLEARED": "Widgets borrados correctamente.",
+    "WARN_WIDGET_DELETED": "Widget borrado correctamente.",
+    "INFO_MODAL_OPEN": "Modal abierto para selección de widget.",
+    "SUCCESS_WIDGET_CREATED": "Widget creado correctamente."
+  },
+  "WARNING": "Advertencia",
+  "INFO": "Información",
+  "SUCCESS": "Éxito"
+}
