@@ -33,7 +33,7 @@ export class ChartSelectionModalComponent {
   @Output() addChart = new EventEmitter<{ chartType: string; dataSource: string; dataCount: string }>()
   @Output() closeModal = new EventEmitter<void>()
 
-  constructor(private translate: TranslateService) {}
+  constructor(private readonly translate: TranslateService) {}
 
   selectChartCategory(category: string): void {
     this.selectedChartCategory = category

@@ -28,7 +28,7 @@ export class EditWidgetModalComponent {
 
   warningMessage: string = ''
 
-  constructor(private translate: TranslateService) {}
+  constructor(private readonly translate: TranslateService) {}
 
   handleSave(): void {
     if (this.dataCount && Number(this.dataCount) <= 0) {
