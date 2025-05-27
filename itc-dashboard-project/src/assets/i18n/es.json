@@ -1,18 +1,39 @@
 {
-  "ADD": "Añadir",
+  "ADD": "Agregar",
   "CLEAN_UP": "Limpiar",
   "LOCK_WIDGETS": "Bloquear Widgets",
   "UNLOCK_WIDGETS": "Desbloquear Widgets",
-  "SERIALIZE": "Exportar a JSON",
+  "SERIALIZE": "Serializar a archivo JSON",
   "LOAD_JSON": "Cargar JSON",
   "DESERIALIZE_JSON": "Deserializar JSON",
   "NOTIF": {
-    "WARN_WIDGETS_CLEARED": "Widgets borrados correctamente.",
-    "WARN_WIDGET_DELETED": "Widget borrado correctamente.",
+    "WARN_WIDGETS_CLEARED": "Widgets limpiados exitosamente.",
+    "WARN_WIDGET_DELETED": "Widget eliminado exitosamente.",
     "INFO_MODAL_OPEN": "Modal abierto para selección de widget.",
-    "SUCCESS_WIDGET_CREATED": "Widget creado correctamente."
+    "SUCCESS_WIDGET_CREATED": "Widget creado exitosamente."
+  },
+  "EDIT_WIDGET_MODAL": {
+    "TITLE": "Editar Widget",
+    "SELECT_DATA_SOURCE": "Seleccionar fuente de datos",
+    "DATA_SET_1": "Conjunto de datos 1",
+    "DATA_SET_2": "Conjunto de datos 2",
+    "ENTER_DATA_COUNT": "Ingrese el número de elementos de datos a mostrar:",
+    "DATA_COUNT_PLACEHOLDER": "Número o dejar vacío para todos",
+    "WARNING_INVALID_COUNT": "Por favor ingrese un número positivo válido, o deje vacío para todos.",
+    "BUTTON_CANCEL": "Cancelar",
+    "BUTTON_SAVE": "Guardar"
   },
   "WARNING": "Advertencia",
   "INFO": "Información",
-  "SUCCESS": "Éxito"
+  "SUCCESS": "Éxito",
+  "CHART_SELECTION_MODAL": {
+    "TITLE": "Seleccionar tipo de gráfico y fuente de datos",
+    "SELECT_CHART_CATEGORY": "Seleccionar categoría de gráfico:",
+    "LINE_CHART": "Gráfico de líneas",
+    "BAR_CHART": "Gráfico de barras",
+    "PIE_CHART": "Gráfico de pastel",
+    "GAUGE_CHART": "Gráfico de indicador",
+    "OTHER_CATEGORIES": "Otras categorías",
+    "SELECT_VARIANT": "Seleccionar variante de gráfico"
+  }
 }

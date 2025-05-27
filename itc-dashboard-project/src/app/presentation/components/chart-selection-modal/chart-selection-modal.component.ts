@@ -1,45 +1,63 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DefaultButtonComponent } from "../shared/buttons/default-button/default-button.component";
-import { PrimaryButtonComponent } from "../shared/buttons/primary-button/primary-button.component";
-import { ChartSelectorVanillaComponent } from "../chart-selector/chart-selector.component";
-import { FormsModule } from '@angular/forms';
+// chart-selection-modal.component.ts
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
+import { TranslateModule, TranslateService } from '@ngx-translate/core'
+
+import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component'
+import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component'
+import { ChartSelectorVanillaComponent } from '../chart-selector/chart-selector.component'
 
 @Component({
   selector: 'app-chart-selection-modal',
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    DefaultButtonComponent,
+    PrimaryButtonComponent,
+    ChartSelectorVanillaComponent,
+    TranslateModule
+  ],
   templateUrl: './chart-selection-modal.component.html',
-  styleUrls: ['./chart-selection-modal.component.scss'],
-  imports: [DefaultButtonComponent, PrimaryButtonComponent, ChartSelectorVanillaComponent, FormsModule]
+  styleUrls: ['./chart-selection-modal.component.scss']
 })
 export class ChartSelectionModalComponent {
-  @Input() isVisible: boolean = false;
-  
-  selectedChartCategory?: string;
-  selectedChartVariant?: string;
-  @Input() selectedDataSource: string = '/assets/data-set-1.json';
-  selectedDataCount: string = 'all';
+  @Input() isVisible: boolean = false
 
-  @Output() addChart = new EventEmitter<{ chartType: string, dataSource: string, dataCount: string }>();
-  @Output() closeModal = new EventEmitter<void>();
+  selectedChartCategory?: string
+  selectedChartVariant?: string
+  @Input() selectedDataSource: string = '/assets/data-set-1.json'
+  selectedDataCount: string = 'all'
+
+  @Output() addChart = new EventEmitter<{ chartType: string; dataSource: string; dataCount: string }>()
+  @Output() closeModal = new EventEmitter<void>()
+
+  constructor(private translate: TranslateService) {}
 
   selectChartCategory(category: string): void {
-    this.selectedChartCategory = category;
-    this.selectedChartVariant = undefined;
+    this.selectedChartCategory = category
+    this.selectedChartVariant = undefined
   }
 
   handleAdd(): void {
-    const dataCount = this.selectedDataCount && Number(this.selectedDataCount) > 0 ? this.selectedDataCount : 'all';
+    const dataCount =
+      this.selectedDataCount && Number(this.selectedDataCount) > 0
+        ? this.selectedDataCount
+        : 'all'
+
     if (this.selectedChartVariant && this.selectedDataSource) {
-      this.addChart.emit({ 
-        chartType: this.selectedChartVariant, 
-        dataSource: this.selectedDataSource, 
-        dataCount: dataCount 
-      });
+      this.addChart.emit({
+        chartType: this.selectedChartVariant,
+        dataSource: this.selectedDataSource,
+        dataCount
+      })
     } else {
-      alert('Please select a chart variant and data source.');
+      alert(this.translate.instant('WARNING'))
     }
   }
 
   handleClose(): void {
-    this.closeModal.emit();
+    this.closeModal.emit()
   }
 }

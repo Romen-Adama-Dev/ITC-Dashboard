@@ -12,7 +12,28 @@
     "INFO_MODAL_OPEN": "Modal opened for widget selection.",
     "SUCCESS_WIDGET_CREATED": "Widget created successfully."
   },
+  "EDIT_WIDGET_MODAL": {
+    "TITLE": "Edit Widget",
+    "SELECT_DATA_SOURCE": "Select Data Source",
+    "DATA_SET_1": "Data Set 1",
+    "DATA_SET_2": "Data Set 2",
+    "ENTER_DATA_COUNT": "Enter number of data items to display:",
+    "DATA_COUNT_PLACEHOLDER": "Number or leave empty for all",
+    "WARNING_INVALID_COUNT": "Please enter a valid positive number, or leave empty for all.",
+    "BUTTON_CANCEL": "Cancel",
+    "BUTTON_SAVE": "Save"
+  },
   "WARNING": "Warning",
   "INFO": "Info",
-  "SUCCESS": "Success"
+  "SUCCESS": "Success",
+  "CHART_SELECTION_MODAL": {
+    "TITLE": "Select Chart Type and Data Source",
+    "SELECT_CHART_CATEGORY": "Select Chart Category:",
+    "LINE_CHART": "Line Chart",
+    "BAR_CHART": "Bar Chart",
+    "PIE_CHART": "Pie Chart",
+    "GAUGE_CHART": "Gauge Chart",
+    "OTHER_CATEGORIES": "Other Categories",
+    "SELECT_VARIANT": "Select Chart Variant"
+  }
 }

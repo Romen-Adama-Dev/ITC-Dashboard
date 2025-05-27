@@ -1,18 +1,39 @@
 {
-    "ADD": "Ajouter",
-    "CLEAN_UP": "Nettoyer",
-    "LOCK_WIDGETS": "Verrouiller les widgets",
-    "UNLOCK_WIDGETS": "Déverrouiller les widgets",
-    "SERIALIZE": "Exporter en JSON",
-    "LOAD_JSON": "Charger JSON",
-    "DESERIALIZE_JSON": "Désérialiser JSON",
-    "NOTIF": {
-      "WARN_WIDGETS_CLEARED": "Widgets supprimés avec succès.",
-      "WARN_WIDGET_DELETED": "Widget supprimé avec succès.",
-      "INFO_MODAL_OPEN": "Modal ouvert pour la sélection du widget.",
-      "SUCCESS_WIDGET_CREATED": "Widget créé avec succès."
-    },
-    "WARNING": "Avertissement",
-    "INFO": "Info",
-    "SUCCESS": "Succès"
+  "ADD": "Ajouter",
+  "CLEAN_UP": "Nettoyer",
+  "LOCK_WIDGETS": "Verrouiller les widgets",
+  "UNLOCK_WIDGETS": "Déverrouiller les widgets",
+  "SERIALIZE": "Sérialiser en fichier JSON",
+  "LOAD_JSON": "Charger JSON",
+  "DESERIALIZE_JSON": "Désérialiser JSON",
+  "NOTIF": {
+    "WARN_WIDGETS_CLEARED": "Widgets effacés avec succès.",
+    "WARN_WIDGET_DELETED": "Widget supprimé avec succès.",
+    "INFO_MODAL_OPEN": "Fenêtre ouverte pour la sélection de widget.",
+    "SUCCESS_WIDGET_CREATED": "Widget créé avec succès."
+  },
+  "EDIT_WIDGET_MODAL": {
+    "TITLE": "Modifier le widget",
+    "SELECT_DATA_SOURCE": "Sélectionner la source de données",
+    "DATA_SET_1": "Jeu de données 1",
+    "DATA_SET_2": "Jeu de données 2",
+    "ENTER_DATA_COUNT": "Entrez le nombre d'éléments à afficher :",
+    "DATA_COUNT_PLACEHOLDER": "Nombre ou laisser vide pour tout",
+    "WARNING_INVALID_COUNT": "Veuillez entrer un nombre positif valide, ou laisser vide pour tout.",
+    "BUTTON_CANCEL": "Annuler",
+    "BUTTON_SAVE": "Enregistrer"
+  },
+  "WARNING": "Avertissement",
+  "INFO": "Info",
+  "SUCCESS": "Succès",
+  "CHART_SELECTION_MODAL": {
+    "TITLE": "Sélectionner le type de graphique et la source de données",
+    "SELECT_CHART_CATEGORY": "Sélectionner la catégorie de graphique :",
+    "LINE_CHART": "Graphique en ligne",
+    "BAR_CHART": "Graphique en barres",
+    "PIE_CHART": "Graphique en secteurs",
+    "GAUGE_CHART": "Jauge",
+    "OTHER_CATEGORIES": "Autres catégories",
+    "SELECT_VARIANT": "Sélectionner la variante du graphique"
   }
+}

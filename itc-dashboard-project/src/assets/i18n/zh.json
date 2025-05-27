@@ -1,18 +1,39 @@
 {
-    "ADD": "添加",
-    "CLEAN_UP": "清理",
-    "LOCK_WIDGETS": "锁定小部件",
-    "UNLOCK_WIDGETS": "解锁小部件",
-    "SERIALIZE": "导出为 JSON",
-    "LOAD_JSON": "加载 JSON",
-    "DESERIALIZE_JSON": "反序列化 JSON",
-    "NOTIF": {
-      "WARN_WIDGETS_CLEARED": "小部件已成功清除。",
-      "WARN_WIDGET_DELETED": "小部件已成功删除。",
-      "INFO_MODAL_OPEN": "已打开小部件选择模态框。",
-      "SUCCESS_WIDGET_CREATED": "小部件创建成功。"
-    },
-    "WARNING": "警告",
-    "INFO": "信息",
-    "SUCCESS": "成功"
+  "ADD": "添加",
+  "CLEAN_UP": "清理",
+  "LOCK_WIDGETS": "锁定小部件",
+  "UNLOCK_WIDGETS": "解锁小部件",
+  "SERIALIZE": "导出为 JSON",
+  "LOAD_JSON": "加载 JSON",
+  "DESERIALIZE_JSON": "反序列化 JSON",
+  "NOTIF": {
+    "WARN_WIDGETS_CLEARED": "小部件已成功清除。",
+    "WARN_WIDGET_DELETED": "小部件已成功删除。",
+    "INFO_MODAL_OPEN": "已打开小部件选择模态框。",
+    "SUCCESS_WIDGET_CREATED": "小部件创建成功。"
+  },
+  "EDIT_WIDGET_MODAL": {
+    "TITLE": "编辑小部件",
+    "SELECT_DATA_SOURCE": "选择数据源",
+    "DATA_SET_1": "数据集 1",
+    "DATA_SET_2": "数据集 2",
+    "ENTER_DATA_COUNT": "输入要显示的数据项数量：",
+    "DATA_COUNT_PLACEHOLDER": "数字或留空以显示全部",
+    "WARNING_INVALID_COUNT": "请输入有效的正数，或留空以显示全部。",
+    "BUTTON_CANCEL": "取消",
+    "BUTTON_SAVE": "保存"
+  },
+  "WARNING": "警告",
+  "INFO": "信息",
+  "SUCCESS": "成功",
+  "CHART_SELECTION_MODAL": {
+    "TITLE": "选择图表类型和数据源",
+    "SELECT_CHART_CATEGORY": "选择图表类别：",
+    "LINE_CHART": "折线图",
+    "BAR_CHART": "条形图",
+    "PIE_CHART": "饼图",
+    "GAUGE_CHART": "仪表图",
+    "OTHER_CATEGORIES": "其他类别",
+    "SELECT_VARIANT": "选择图表变体"
   }
+}

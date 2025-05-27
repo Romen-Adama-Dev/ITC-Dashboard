@@ -1,40 +1,70 @@
-<div class="modal" [class.show]="isVisible">
+<div
+  class="modal"
+  [class.show]="isVisible"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="edit-widget-title"
+>
   <div class="modal-content">
     <div class="modal-header">
-      <h2>Edit Widget</h2>
+      <h2 id="edit-widget-title">
+        {{ 'EDIT_WIDGET_MODAL.TITLE' | translate }}
+      </h2>
     </div>
 
     <div class="modal-body">
-      <p>Select Data Source:</p>
+      <label for="dataSource">
+        {{ 'EDIT_WIDGET_MODAL.SELECT_DATA_SOURCE' | translate }}
+      </label>
       <div class="select-wrapper">
-        <select [(ngModel)]="dataSource">
-          <option value="/assets/data-set-1.json">Data Set 1</option>
-          <option value="/assets/data-set-2.json">Data Set 2</option>
+        <select
+          id="dataSource"
+          [(ngModel)]="dataSource"
+        >
+          <option
+            value="/assets/data-set-1.json"
+          >
+            {{ 'EDIT_WIDGET_MODAL.DATA_SET_1' | translate }}
+          </option>
+          <option
+            value="/assets/data-set-2.json"
+          >
+            {{ 'EDIT_WIDGET_MODAL.DATA_SET_2' | translate }}
+          </option>
         </select>
       </div>
 
-      <p style="margin-top: 1rem">Enter Number of Data Items to Display:</p>
+      <label for="dataCount" class="mt-2">
+        {{ 'EDIT_WIDGET_MODAL.ENTER_DATA_COUNT' | translate }}
+      </label>
       <input
+        id="dataCount"
         type="number"
-        [(ngModel)]="dataCount"
         min="1"
-        placeholder="Enter number or leave empty for all"
+        [(ngModel)]="dataCount"
+        [placeholder]="'EDIT_WIDGET_MODAL.DATA_COUNT_PLACEHOLDER' | translate"
       />
-      <p *ngIf="warningMessage" class="warning">{{ warningMessage }}</p>
+      <p *ngIf="warningMessage" class="warning">
+        {{ warningMessage }}
+      </p>
     </div>
 
     <div class="modal-footer">
-      <app-default-button 
+      <app-default-button
         nzType="default"
         (click)="handleClose()"
         (keydown.enter)="handleClose()"
-        tabindex="0">Cancel
+        tabindex="0"
+      >
+        {{ 'EDIT_WIDGET_MODAL.BUTTON_CANCEL' | translate }}
       </app-default-button>
-      <app-primary-button 
+      <app-primary-button
         nzType="default"
         (click)="handleSave()"
         (keydown.enter)="handleSave()"
-        tabindex="0">Save
+        tabindex="0"
+      >
+        {{ 'EDIT_WIDGET_MODAL.BUTTON_SAVE' | translate }}
       </app-primary-button>
     </div>
   </div>

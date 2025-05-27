@@ -1,13 +1,21 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
+import { TranslateModule, TranslateService } from '@ngx-translate/core'
+
 import { DefaultButtonComponent } from '../shared/buttons/default-button/default-button.component'
 import { PrimaryButtonComponent } from '../shared/buttons/primary-button/primary-button.component'
-import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-edit-widget-modal',
   standalone: true,
-  imports: [FormsModule, CommonModule, DefaultButtonComponent, PrimaryButtonComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    DefaultButtonComponent,
+    PrimaryButtonComponent,
+    TranslateModule
+  ],
   templateUrl: './edit-modal.component.html',
   styleUrls: ['./edit-modal.component.scss']
 })
@@ -20,17 +28,23 @@ export class EditWidgetModalComponent {
 
   warningMessage: string = ''
 
+  constructor(private translate: TranslateService) {}
+
   handleSave(): void {
     if (this.dataCount && Number(this.dataCount) <= 0) {
-      this.warningMessage = 'Please enter a valid positive number, or leave empty for all.'
+      this.warningMessage = this.translate.instant('EDIT_WIDGET_MODAL.WARNING_INVALID_COUNT')
       return
     }
-    const newDataCount = this.dataCount && Number(this.dataCount) > 0 ? this.dataCount : 'all'
+    const newDataCount =
+      this.dataCount && Number(this.dataCount) > 0
+        ? this.dataCount
+        : 'all'
     this.save.emit({ dataCount: newDataCount, dataSource: this.dataSource })
     this.handleClose()
   }
 
   handleClose(): void {
+    this.warningMessage = ''
     this.close.emit()
   }
 }
