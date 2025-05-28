@@ -20,12 +20,12 @@ export class FloatShapeButtonComponent {
   @Input() nzDescription: string | TemplateRef<void> = '';
   @Input() nzHref: string = '';
   @Input() nzTarget: string = '';
-  @Input() disabled: boolean = false;  // <-- Propiedad agregada
+  @Input() disabled: boolean = false;
 
   @Output() nzOnClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   handleClick(): void {
-    if (!this.disabled) {  // Solo emite si no está deshabilitado
+    if (!this.disabled) {
       this.nzOnClick.emit(true);
     }
   }

@@ -3,14 +3,13 @@
   position: absolute;
   min-height: 300px;
   width: 80%;
-  color: var(--text-color, #000); // Asegúrate de que --text-color esté definida en tu tema
+  color: var(--text-color, #000);
 }
 
 :host.dark {
   color: var(--text-color, #fff);
 }
 
-/* Aplica el color al texto de ngx-charts */
 ::ng-deep .ngx-charts text {
   fill: var(--text-color, #000) !important;
 }

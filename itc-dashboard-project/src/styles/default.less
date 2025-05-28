@@ -1,6 +1,5 @@
 @import "ng-zorro-antd/ng-zorro-antd.less";
 
-// Theme Variables
 @primary-color: #0768A9;
 @background-color: #ffffff;
 @header-background: #f8f8f8;
@@ -9,19 +8,16 @@
 @border-color: fade(@primary-color, 40%);
 @box-shadow-color: rgba(0, 21, 41, 0.35);
 
-// Global Styles
 body {
   background-color: @background-color;
   color: @text-color;
 }
 
-// Layout Styles
 .app-layout {
   background-color: @background-color;
   border-radius: 4px;
 }
 
-// Sidebar Styles
 .menu-sidebar {
   background: @sidebar-background;
   border-right: 2px solid @border-color;
@@ -60,14 +56,12 @@ body {
   }
 }
 
-// Header Styles
 .app-header {
   background: @header-background;
   border-bottom: 2px solid @border-color;
   border-radius: 4px;
 }
 
-// Sidebar Logo
 .sidebar-logo {
   background: @sidebar-background;
   border-bottom: 2px solid @border-color;
@@ -78,7 +72,6 @@ body {
   }
 }
 
-// Inner Content Styles
 .inner-content {
   background: @background-color;
   color: @text-color;
@@ -86,7 +79,6 @@ body {
   border-radius: 4px;
 }
 
-// Icons and Buttons
 .header-trigger,
 .theme-toggle-btn {
   color: @primary-color;
@@ -96,7 +88,6 @@ body {
   background-color: fade(@primary-color, 70%) !important;
 }
 
-// Submenu Overrides
 .ant-menu-horizontal .ant-menu-sub li a,
 .ant-menu-inline .ant-menu-sub li a {
   color: @text-color;
@@ -119,7 +110,6 @@ body {
   color: #ffffff !important;
 }
 
-// CSS Variables
 :root {
   --progress-gradient-start: #4da6e3;
   --progress-gradient-end: #0768A9;
