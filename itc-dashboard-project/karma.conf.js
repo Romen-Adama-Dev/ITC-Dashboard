@@ -1,42 +1,49 @@
+// karma.conf.js
 module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-edge-launcher'),                 // ← add this
+      require('karma-edge-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
 
     client: {
-      clearContext: false // keep Jasmine output visible in browser
+      clearContext: false
     },
 
     coverageReporter: {
       dir: require('path').join(__dirname, 'coverage'),
       subdir: '.',
-      reporters: [{ type: 'html' }, { type: 'text-summary' }]
+      reporters: [
+        { type: 'lcovonly', file: 'lcov.info' },
+        { type: 'html' },
+        { type: 'text-summary' }
+      ]
     },
 
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
 
-    // Define a headless Edge launcher
     customLaunchers: {
       EdgeHeadless: {
         base: 'Edge',
-        flags: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage']
+        flags: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          '--disable-dev-shm-usage'
+        ]
       }
     },
 
-    // Use your new launcher by default (or pass --browsers=EdgeHeadless)
     browsers: ['EdgeHeadless'],
-
     singleRun: false,
     restartOnFileChange: true,
 

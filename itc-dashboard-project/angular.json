@@ -34,11 +34,13 @@
                 "glob": "**/*",
                 "input": "src/assets/datasets",
                 "output": "/assets/"
-              },{
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets/i18n",
                 "output": "/assets/"
-              },{
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets/i18n",
                 "output": "/assets/i18n"
@@ -50,12 +52,12 @@
               }
             ],
             "styles": [
-            "src/styles/default.less",
-            {
-              "input": "src/styles/dark.less",
-              "bundleName": "dark",
-              "inject": false
-            }
+              "src/styles/default.less",
+              {
+                "input": "src/styles/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": []
           },
@@ -116,7 +118,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "**/shared/**"
+            ]
           }
         }
       }
