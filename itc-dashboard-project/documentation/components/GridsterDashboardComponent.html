@@ -1,0 +1,3159 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>itc-dashboard-project documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">itc-dashboard-project documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GridsterDashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/gridster2/gridster2.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-gridster-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>GridsterComponent</code>
+                            <code>GridsterItemComponent</code>
+                                <code><a href="../components/PrimaryButtonComponent.html" target="_self" >PrimaryButtonComponent</a></code>
+                                <code><a href="../components/DefaultButtonComponent.html" target="_self" >DefaultButtonComponent</a></code>
+                                <code><a href="../components/FloatShapeButtonComponent.html" target="_self" >FloatShapeButtonComponent</a></code>
+                                <code><a href="../components/LineChartComponent.html" target="_self" >LineChartComponent</a></code>
+                                <code><a href="../components/VerticalBarChartComponent.html" target="_self" >VerticalBarChartComponent</a></code>
+                                <code><a href="../components/ChartSelectionModalComponent.html" target="_self" >ChartSelectionModalComponent</a></code>
+                                <code><a href="../components/AdvancedPieChartComponent.html" target="_self" >AdvancedPieChartComponent</a></code>
+                                <code><a href="../components/AreaChartComponent.html" target="_self" >AreaChartComponent</a></code>
+                                <code><a href="../components/BoxChartComponent.html" target="_self" >BoxChartComponent</a></code>
+                                <code><a href="../components/BubbleChartComponent.html" target="_self" >BubbleChartComponent</a></code>
+                                <code><a href="../components/GaugeChartComponent.html" target="_self" >GaugeChartComponent</a></code>
+                                <code><a href="../components/HeatMapComponent.html" target="_self" >HeatMapComponent</a></code>
+                                <code><a href="../components/HorizontalBarChartComponent.html" target="_self" >HorizontalBarChartComponent</a></code>
+                                <code><a href="../components/LinearGaugeChartComponent.html" target="_self" >LinearGaugeChartComponent</a></code>
+                                <code><a href="../components/NormalizedAreaChartComponent.html" target="_self" >NormalizedAreaChartComponent</a></code>
+                                <code><a href="../components/NormalizedHorizontalBarChartComponent.html" target="_self" >NormalizedHorizontalBarChartComponent</a></code>
+                                <code><a href="../components/NormalizedVerticalBarChartComponent.html" target="_self" >NormalizedVerticalBarChartComponent</a></code>
+                                <code><a href="../components/NumberCardsComponent.html" target="_self" >NumberCardsComponent</a></code>
+                                <code><a href="../components/PercentGaugeChartComponent.html" target="_self" >PercentGaugeChartComponent</a></code>
+                                <code><a href="../components/PieChartComponent.html" target="_self" >PieChartComponent</a></code>
+                                <code><a href="../components/PieGridComponent.html" target="_self" >PieGridComponent</a></code>
+                                <code><a href="../components/PolarChartComponent.html" target="_self" >PolarChartComponent</a></code>
+                                <code><a href="../components/StackedAreaChartComponent.html" target="_self" >StackedAreaChartComponent</a></code>
+                                <code><a href="../components/StackedHorizontalBarChartComponent.html" target="_self" >StackedHorizontalBarChartComponent</a></code>
+                                <code><a href="../components/StackedVerticalBarChartComponent.html" target="_self" >StackedVerticalBarChartComponent</a></code>
+                                <code><a href="../components/TreeMapComponent.html" target="_self" >TreeMapComponent</a></code>
+                                <code><a href="../components/EditWidgetModalComponent.html" target="_self" >EditWidgetModalComponent</a></code>
+                            <code>NzNotificationModule</code>
+                            <code>NzIconModule</code>
+                            <code>TranslateModule</code>
+                                <code><a href="../components/ThemeToggleButtonComponent.html" target="_self" >ThemeToggleButtonComponent</a></code>
+                                <code><a href="../components/LanguageDropdownComponent.html" target="_self" >LanguageDropdownComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./gridster2.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./gridster2.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentEditItem" >currentEditItem</a>
+                            </li>
+                            <li>
+                                <a href="#currentTheme" >currentTheme</a>
+                            </li>
+                            <li>
+                                <a href="#dashboard" >dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#isEditModalVisible" >isEditModalVisible</a>
+                            </li>
+                            <li>
+                                <a href="#isModalVisible" >isModalVisible</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#languages" >languages</a>
+                            </li>
+                            <li>
+                                <a href="#options" >options</a>
+                            </li>
+                            <li>
+                                <a href="#pushItemsEnabled" >pushItemsEnabled</a>
+                            </li>
+                            <li>
+                                <a href="#selectedChartType" >selectedChartType</a>
+                            </li>
+                            <li>
+                                <a href="#selectedLanguage" >selectedLanguage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addItem" >addItem</a>
+                            </li>
+                            <li>
+                                <a href="#changedOptions" >changedOptions</a>
+                            </li>
+                            <li>
+                                <a href="#closeCustomModal" >closeCustomModal</a>
+                            </li>
+                            <li>
+                                <a href="#deserialize" >deserialize</a>
+                            </li>
+                            <li>
+                                <a href="#deserializeFromFile" >deserializeFromFile</a>
+                            </li>
+                            <li>
+                                <a href="#editItem" >editItem</a>
+                            </li>
+                            <li>
+                                <a href="#handleEditModalClose" >handleEditModalClose</a>
+                            </li>
+                            <li>
+                                <a href="#handleWidgetEditSave" >handleWidgetEditSave</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initGridsterOptions" >initGridsterOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initMediator" >initMediator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initTheme" >initTheme</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initTranslation" >initTranslation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#itemChange" >itemChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#itemResize" >itemResize</a>
+                            </li>
+                            <li>
+                                <a href="#loadJsonFromFile" >loadJsonFromFile</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onAddChart" >onAddChart</a>
+                            </li>
+                            <li>
+                                <a href="#onLanguageChange" >onLanguageChange</a>
+                            </li>
+                            <li>
+                                <a href="#onToggleTheme" >onToggleTheme</a>
+                            </li>
+                            <li>
+                                <a href="#openCustomModal" >openCustomModal</a>
+                            </li>
+                            <li>
+                                <a href="#reloadWidgetData" >reloadWidgetData</a>
+                            </li>
+                            <li>
+                                <a href="#removeItem" >removeItem</a>
+                            </li>
+                            <li>
+                                <a href="#serializeToJson" >serializeToJson</a>
+                            </li>
+                            <li>
+                                <a href="#togglePushItems" >togglePushItems</a>
+                            </li>
+                            <li>
+                                <a href="#trackByFn" >trackByFn</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(chartDataService: <a href="../injectables/ChartDataService.html" target="_self">ChartDataService</a>, notification: NzNotificationService, mediator: <a href="../injectables/MediatorService.html" target="_self">MediatorService</a>, translate: TranslateService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:170</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>chartDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ChartDataService.html" target="_self" >ChartDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notification</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzNotificationService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mediator</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MediatorService.html" target="_self" >MediatorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addItem"></a>
+                    <span class="name">
+                        <span ><b>addItem</b></span>
+                        <a href="#addItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addItem()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="273"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:273</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changedOptions"></a>
+                    <span class="name">
+                        <span ><b>changedOptions</b></span>
+                        <a href="#changedOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changedOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="425"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:425</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeCustomModal"></a>
+                    <span class="name">
+                        <span ><b>closeCustomModal</b></span>
+                        <a href="#closeCustomModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeCustomModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="356"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:356</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deserialize"></a>
+                    <span class="name">
+                        <span ><b>deserialize</b></span>
+                        <a href="#deserialize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deserialize(json: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="389"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:389</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>json</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deserializeFromFile"></a>
+                    <span class="name">
+                        <span ><b>deserializeFromFile</b></span>
+                        <a href="#deserializeFromFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deserializeFromFile(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="406"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:406</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editItem"></a>
+                    <span class="name">
+                        <span ><b>editItem</b></span>
+                        <a href="#editItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editItem(item: <a href="../interfaces/ExtendedGridsterItem.html" target="_self">ExtendedGridsterItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="312"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:312</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExtendedGridsterItem.html" target="_self" >ExtendedGridsterItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleEditModalClose"></a>
+                    <span class="name">
+                        <span ><b>handleEditModalClose</b></span>
+                        <a href="#handleEditModalClose"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleEditModalClose()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="327"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:327</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleWidgetEditSave"></a>
+                    <span class="name">
+                        <span ><b>handleWidgetEditSave</b></span>
+                        <a href="#handleWidgetEditSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleWidgetEditSave(update: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="318"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:318</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>update</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initGridsterOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initGridsterOptions</b></span>
+                        <a href="#initGridsterOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initGridsterOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initMediator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initMediator</b></span>
+                        <a href="#initMediator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initMediator()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTheme"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initTheme</b></span>
+                        <a href="#initTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:195</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTranslation"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initTranslation</b></span>
+                        <a href="#initTranslation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initTranslation()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="204"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:204</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemChange"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>itemChange</b></span>
+                        <a href="#itemChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>itemChange(item: GridsterItem, itemComponent: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="264"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:264</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>GridsterItem</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>itemComponent</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemResize"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>itemResize</b></span>
+                        <a href="#itemResize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>itemResize(item: GridsterItem, itemComponent: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>GridsterItem</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>itemComponent</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadJsonFromFile"></a>
+                    <span class="name">
+                        <span ><b>loadJsonFromFile</b></span>
+                        <a href="#loadJsonFromFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadJsonFromFile(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="372"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:372</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAddChart"></a>
+                    <span class="name">
+                        <span ><b>onAddChart</b></span>
+                        <a href="#onAddChart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onAddChart(selection: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>selection</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLanguageChange"></a>
+                    <span class="name">
+                        <span ><b>onLanguageChange</b></span>
+                        <a href="#onLanguageChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLanguageChange(lang: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="446"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:446</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>lang</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onToggleTheme"></a>
+                    <span class="name">
+                        <span ><b>onToggleTheme</b></span>
+                        <a href="#onToggleTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onToggleTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="435"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:435</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCustomModal"></a>
+                    <span class="name">
+                        <span ><b>openCustomModal</b></span>
+                        <a href="#openCustomModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openCustomModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="348"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:348</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reloadWidgetData"></a>
+                    <span class="name">
+                        <span ><b>reloadWidgetData</b></span>
+                        <a href="#reloadWidgetData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reloadWidgetData(item: <a href="../interfaces/ExtendedGridsterItem.html" target="_self">ExtendedGridsterItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:339</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExtendedGridsterItem.html" target="_self" >ExtendedGridsterItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeItem"></a>
+                    <span class="name">
+                        <span ><b>removeItem</b></span>
+                        <a href="#removeItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeItem(item: <a href="../interfaces/ExtendedGridsterItem.html" target="_self">ExtendedGridsterItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="331"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:331</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExtendedGridsterItem.html" target="_self" >ExtendedGridsterItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="serializeToJson"></a>
+                    <span class="name">
+                        <span ><b>serializeToJson</b></span>
+                        <a href="#serializeToJson"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>serializeToJson()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="361"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:361</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="togglePushItems"></a>
+                    <span class="name">
+                        <span ><b>togglePushItems</b></span>
+                        <a href="#togglePushItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>togglePushItems()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="418"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:418</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackByFn"></a>
+                    <span class="name">
+                        <span ><b>trackByFn</b></span>
+                        <a href="#trackByFn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackByFn(_i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, item: <a href="../interfaces/ExtendedGridsterItem.html" target="_self">ExtendedGridsterItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="452"
+                                    class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:452</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExtendedGridsterItem.html" target="_self" >ExtendedGridsterItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentEditItem"></a>
+                    <span class="name">
+                        <span ><b>currentEditItem</b></span>
+                        <a href="#currentEditItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExtendedGridsterItem.html" target="_self" >ExtendedGridsterItem | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentTheme"></a>
+                    <span class="name">
+                        <span ><b>currentTheme</b></span>
+                        <a href="#currentTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;default&quot; | &quot;dark&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;default&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dashboard"></a>
+                    <span class="name">
+                        <span ><b>dashboard</b></span>
+                        <a href="#dashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExtendedGridsterItem.html" target="_self" >ExtendedGridsterItem[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditModalVisible"></a>
+                    <span class="name">
+                        <span ><b>isEditModalVisible</b></span>
+                        <a href="#isEditModalVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isModalVisible"></a>
+                    <span class="name">
+                        <span ><b>isModalVisible</b></span>
+                        <a href="#isModalVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="languages"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>languages</b></span>
+                        <a href="#languages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { code: &#x27;en&#x27;, label: &#x27;English&#x27; },
+    { code: &#x27;es&#x27;, label: &#x27;Español&#x27; },
+    { code: &#x27;fr&#x27;, label: &#x27;Français&#x27; },
+    { code: &#x27;de&#x27;, label: &#x27;Deutsch&#x27; },
+    { code: &#x27;zh&#x27;, label: &#x27;中文&#x27; }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="options"></a>
+                    <span class="name">
+                        <span ><b>options</b></span>
+                        <a href="#options"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SafeGridsterConfig.html" target="_self" >SafeGridsterConfig</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pushItemsEnabled"></a>
+                    <span class="name">
+                        <span ><b>pushItemsEnabled</b></span>
+                        <a href="#pushItemsEnabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedChartType"></a>
+                    <span class="name">
+                        <span ><b>selectedChartType</b></span>
+                        <a href="#selectedChartType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;line-chart&quot; | &quot;advanced-pie-chart&quot; | &quot;area-chart&quot; | &quot;box-chart&quot; | &quot;bubble-chart&quot; | &quot;gauge-chart&quot; | &quot;vertical-bar-chart&quot; | &quot;heat-map&quot; | &quot;horizontal-bar&quot; | &quot;linear-gauge-chart&quot; | &quot;normalized-area-chart&quot; | &quot;normalized-horizontal-chart&quot; | &quot;normalized-vertical-chart&quot; | &quot;number-chart&quot; | &quot;percent-gauge-chart&quot; | &quot;pie-chart&quot; | &quot;pie-grid-chart&quot; | &quot;polar-chart&quot; | &quot;stacked-area-chart&quot; | &quot;stacked-horizontal-bar-chart&quot; | &quot;stacked-vertical-bar-chart&quot; | &quot;tree-map&quot; | &quot;vertical-bar&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;advanced-pie-chart&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedLanguage"></a>
+                    <span class="name">
+                        <span ><b>selectedLanguage</b></span>
+                        <a href="#selectedLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;en&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/presentation/gridster2/gridster2.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+
+// Angular Gridster2
+import {
+  CompactType,
+  DisplayGrid,
+  Draggable,
+  GridsterComponent,
+  GridsterConfig,
+  GridsterItem,
+  GridsterItemComponent,
+  GridType,
+  PushDirections,
+  Resizable,
+} from &#x27;angular-gridster2&#x27;;
+
+// Ngx-translate
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+
+// Ng Zorro
+import { NzNotificationModule, NzNotificationService } from &#x27;ng-zorro-antd/notification&#x27;;
+import { NzIconModule } from &#x27;ng-zorro-antd/icon&#x27;;
+
+// Services
+import { ChartDataService } from &#x27;../../application/entities/chart-data.service&#x27;;
+import { MediatorService } from &#x27;../../application/services/mediator.service&#x27;;
+
+// Shared Components
+import { PrimaryButtonComponent } from &#x27;../components/shared/buttons/primary-button/primary-button.component&#x27;;
+import { DefaultButtonComponent } from &#x27;../components/shared/buttons/default-button/default-button.component&#x27;;
+import { FloatShapeButtonComponent } from &#x27;../components/shared/buttons/float-shape-button/float-shape-button.component&#x27;;
+import { LanguageDropdownComponent } from &#x27;../components/shared/buttons/drop-button/drop-button.component&#x27;;
+import { ThemeToggleButtonComponent } from &quot;../components/shared/buttons/theme-toggle-button.component&quot;;
+
+// Chart Components
+import { AreaChartComponent } from &#x27;../components/shared/data-view/area-chart/area-chart.component&#x27;;
+import { LineChartComponent } from &#x27;../components/shared/data-view/line-chart/line-chart.component&#x27;;
+import { AdvancedPieChartComponent } from &#x27;../components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component&#x27;;
+import { BoxChartComponent } from &#x27;../components/shared/data-view/box-chart/box-chart.component&#x27;;
+import { BubbleChartComponent } from &#x27;../components/shared/data-view/bubble-chart/bubble-chart.component&#x27;;
+import { GaugeChartComponent } from &#x27;../components/shared/data-view/gauge-chart/gauge-chart.component&#x27;;
+import { HeatMapComponent } from &#x27;../components/shared/data-view/heat-chart/heat-chart.component&#x27;;
+import { HorizontalBarChartComponent } from &#x27;../components/shared/data-view/horizontal-chart/horizontal-chart.component&#x27;;
+import { LinearGaugeChartComponent } from &#x27;../components/shared/data-view/linear-gauge-chart/linear-gauge-chart.component&#x27;;
+import { NormalizedAreaChartComponent } from &#x27;../components/shared/data-view/normalized-area-chart/normalized-area-chart.component&#x27;;
+import { VerticalBarChartComponent } from &#x27;../components/shared/data-view/vertical-chart/vertical-chart.component&#x27;;
+import { NormalizedHorizontalBarChartComponent } from &#x27;../components/shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component&#x27;;
+import { NormalizedVerticalBarChartComponent } from &#x27;../components/shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component&#x27;;
+import { NumberCardsComponent } from &#x27;../components/shared/data-view/number-chart/number-chart.component&#x27;;
+import { PercentGaugeChartComponent } from &#x27;../components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component&#x27;;
+import { PieGridComponent } from &#x27;../components/shared/data-view/pie-grid/pie-grid.component&#x27;;
+import { PieChartComponent } from &#x27;../components/shared/data-view/pie-chart/pie-chart.component&#x27;;
+import { PolarChartComponent } from &#x27;../components/shared/data-view/polar-chart/polar-chart.component&#x27;;
+import { StackedAreaChartComponent } from &#x27;../components/shared/data-view/stacked-area-chart/stacked-area-chart.component&#x27;;
+import { StackedHorizontalBarChartComponent } from &#x27;../components/shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component&#x27;;
+import { StackedVerticalBarChartComponent } from &#x27;../components/shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component&#x27;;
+import { TreeMapComponent } from &#x27;../components/shared/data-view/tree-chart/tree-chart.component&#x27;;
+
+// Modal Components
+import { ChartSelectionModalComponent } from &#x27;../components/chart-selection-modal/chart-selection-modal.component&#x27;;
+import { EditWidgetModalComponent } from &#x27;../components/edit-modal/edit-modal.component&#x27;;
+
+// Interfaces
+interface ExtendedGridsterItem extends GridsterItem {
+  chartType?: string;
+  dataSource?: string;
+  dataCount?: string;
+}
+
+interface SafeGridsterConfig extends GridsterConfig {
+  draggable: Draggable;
+  resizable: Resizable;
+  pushDirections: PushDirections;
+}
+
+@Component({
+  selector: &#x27;app-gridster-dashboard&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    GridsterComponent,
+    GridsterItemComponent,
+    PrimaryButtonComponent,
+    DefaultButtonComponent,
+    FloatShapeButtonComponent,
+    LineChartComponent,
+    VerticalBarChartComponent,
+    ChartSelectionModalComponent,
+    AdvancedPieChartComponent,
+    AreaChartComponent,
+    BoxChartComponent,
+    BubbleChartComponent,
+    GaugeChartComponent,
+    HeatMapComponent,
+    HorizontalBarChartComponent,
+    LinearGaugeChartComponent,
+    NormalizedAreaChartComponent,
+    NormalizedHorizontalBarChartComponent,
+    NormalizedVerticalBarChartComponent,
+    NumberCardsComponent,
+    PercentGaugeChartComponent,
+    PieChartComponent,
+    PieGridComponent,
+    PolarChartComponent,
+    StackedAreaChartComponent,
+    StackedHorizontalBarChartComponent,
+    StackedVerticalBarChartComponent,
+    TreeMapComponent,
+    EditWidgetModalComponent,
+    NzNotificationModule,
+    NzIconModule,
+    TranslateModule,
+    ThemeToggleButtonComponent,
+    LanguageDropdownComponent
+  ],
+  templateUrl: &#x27;./gridster2.component.html&#x27;,
+  styleUrls: [&#x27;./gridster2.component.scss&#x27;]
+})
+export class GridsterDashboardComponent implements OnInit {
+  // Gridster options and dashboard state
+  options!: SafeGridsterConfig;
+  dashboard!: ExtendedGridsterItem[];
+
+  // UI State
+  isModalVisible &#x3D; false;
+  isEditModalVisible &#x3D; false;
+  currentEditItem: ExtendedGridsterItem | null &#x3D; null;
+  currentTheme: &#x27;default&#x27; | &#x27;dark&#x27; &#x3D; &#x27;default&#x27;;
+
+  // Language
+  readonly languages &#x3D; [
+    { code: &#x27;en&#x27;, label: &#x27;English&#x27; },
+    { code: &#x27;es&#x27;, label: &#x27;Español&#x27; },
+    { code: &#x27;fr&#x27;, label: &#x27;Français&#x27; },
+    { code: &#x27;de&#x27;, label: &#x27;Deutsch&#x27; },
+    { code: &#x27;zh&#x27;, label: &#x27;中文&#x27; }
+  ];
+  selectedLanguage &#x3D; &#x27;en&#x27;;
+
+  // Chart selection
+  selectedChartType:
+    | &#x27;line-chart&#x27;
+    | &#x27;advanced-pie-chart&#x27;
+    | &#x27;area-chart&#x27;
+    | &#x27;box-chart&#x27;
+    | &#x27;bubble-chart&#x27;
+    | &#x27;gauge-chart&#x27;
+    | &#x27;vertical-bar-chart&#x27;
+    | &#x27;heat-map&#x27;
+    | &#x27;horizontal-bar&#x27;
+    | &#x27;linear-gauge-chart&#x27;
+    | &#x27;normalized-area-chart&#x27;
+    | &#x27;normalized-horizontal-chart&#x27;
+    | &#x27;normalized-vertical-chart&#x27;
+    | &#x27;number-chart&#x27;
+    | &#x27;percent-gauge-chart&#x27;
+    | &#x27;pie-chart&#x27;
+    | &#x27;pie-grid-chart&#x27;
+    | &#x27;polar-chart&#x27;
+    | &#x27;stacked-area-chart&#x27;
+    | &#x27;stacked-horizontal-bar-chart&#x27;
+    | &#x27;stacked-vertical-bar-chart&#x27;
+    | &#x27;tree-map&#x27;
+    | &#x27;vertical-bar&#x27; &#x3D; &#x27;advanced-pie-chart&#x27;;
+
+  // Gridster push items
+  pushItemsEnabled &#x3D; true;
+
+  constructor(
+    private readonly chartDataService: ChartDataService,
+    private readonly notification: NzNotificationService,
+    private readonly mediator: MediatorService,
+    private readonly translate: TranslateService,
+  ) {}
+
+  // --- Lifecycle ---
+  ngOnInit(): void {
+    this.initMediator();
+    this.initTheme();
+    this.initTranslation();
+    this.initGridsterOptions();
+    this.dashboard &#x3D; [];
+  }
+
+  // --- Initialization ---
+  private initMediator(): void {
+    this.mediator.events$.subscribe(event &#x3D;&gt; {
+      this.mediator.emit(event);
+    });
+  }
+
+  private initTheme(): void {
+    const prefersDark &#x3D; window.matchMedia(&#x27;(prefers-color-scheme: dark)&#x27;).matches;
+    this.currentTheme &#x3D; prefersDark ? &#x27;dark&#x27; : &#x27;default&#x27;;
+    const darkLink &#x3D; document.getElementById(&#x27;dark-theme-css&#x27;) as HTMLLinkElement | null;
+    if (darkLink) {
+      darkLink.disabled &#x3D; this.currentTheme !&#x3D;&#x3D; &#x27;dark&#x27;;
+    }
+  }
+
+  private initTranslation(): void {
+    this.translate.setDefaultLang(this.selectedLanguage);
+    this.translate.use(this.selectedLanguage);
+  }
+
+  private initGridsterOptions(): void {
+    this.options &#x3D; {
+      gridType: GridType.Fixed,
+      compactType: CompactType.None,
+      margin: 1,
+      outerMargin: false,
+      outerMarginTop: null,
+      outerMarginRight: null,
+      outerMarginBottom: null,
+      outerMarginLeft: null,
+      useTransformPositioning: true,
+      mobileBreakpoint: 640,
+      useBodyForBreakpoint: false,
+      minCols: 5,
+      maxCols: 10,
+      minRows: 5,
+      maxRows: 10,
+      minItemCols: 1,
+      maxItemCols: 10,
+      minItemRows: 1,
+      maxItemRows: 10,
+      minItemArea: 1,
+      maxItemArea: 2500,
+      defaultItemCols: 5,
+      defaultItemRows: 5,
+      fixedColWidth: 249,
+      fixedRowHeight: 249,
+      keepFixedWidthInMobile: false,
+      keepFixedHeightInMobile: false,
+      scrollSensitivity: 10,
+      scrollSpeed: 20,
+      enableEmptyCellClick: false,
+      enableEmptyCellContextMenu: false,
+      enableEmptyCellDrop: false,
+      enableEmptyCellDrag: false,
+      enableOccupiedCellDrop: false,
+      emptyCellDragMaxCols: 50,
+      emptyCellDragMaxRows: 50,
+      ignoreMarginInRow: false,
+      draggable: { enabled: true },
+      resizable: { enabled: true },
+      swap: false,
+      pushItems: this.pushItemsEnabled,
+      disablePushOnDrag: false,
+      disablePushOnResize: false,
+      pushDirections: { north: true, east: true, south: true, west: true },
+      pushResizeItems: false,
+      displayGrid: DisplayGrid.None,
+      disableWindowResize: false,
+      disableWarnings: false,
+      scrollToNewItems: false
+    };
+  }
+
+  // --- Gridster Events ---
+  static itemChange(item: GridsterItem, itemComponent: any): void {
+    console.info(&#x27;itemChanged&#x27;, item, itemComponent);
+  }
+
+  static itemResize(item: GridsterItem, itemComponent: any): void {
+    console.info(&#x27;itemResized&#x27;, item, itemComponent);
+  }
+
+  // --- Dashboard Actions ---
+  addItem(): void {
+    if (!this.selectedChartType) {
+      alert(&#x27;Please select a chart type.&#x27;);
+      return;
+    }
+    const newId &#x3D; this.dashboard.length
+      ? Math.max(...this.dashboard.map(i &#x3D;&gt; i[&#x27;id&#x27;])) + 1
+      : 1;
+    this.dashboard.push({
+      id: newId,
+      cols: 1,
+      rows: 1,
+      x: 0,
+      y: 0,
+      chartType: this.selectedChartType
+    });
+  }
+
+  onAddChart(selection: { chartType: string; dataSource: string; dataCount: string }): void {
+    this.selectedChartType &#x3D; selection.chartType as any;
+    const newId &#x3D; this.dashboard.length
+      ? Math.max(...this.dashboard.map(i &#x3D;&gt; i[&#x27;id&#x27;])) + 1
+      : 1;
+    this.dashboard.push({
+      id: newId,
+      cols: 1,
+      rows: 1,
+      x: 0,
+      y: 0,
+      chartType: this.selectedChartType,
+      dataSource: selection.dataSource,
+      dataCount: selection.dataCount
+    });
+    this.notification.success(
+      this.translate.instant(&#x27;SUCCESS&#x27;),
+      this.translate.instant(&#x27;NOTIF.SUCCESS_WIDGET_CREATED&#x27;)
+    );
+  }
+
+  editItem(item: ExtendedGridsterItem): void {
+    this.currentEditItem &#x3D; item;
+    this.currentEditItem[&#x27;dataCount&#x27;] ??&#x3D; &#x27;all&#x27;;
+    this.isEditModalVisible &#x3D; true;
+  }
+
+  handleWidgetEditSave(update: { dataCount: string; dataSource: string }): void {
+    if (!this.currentEditItem) return;
+    this.currentEditItem[&#x27;dataCount&#x27;] &#x3D; update.dataCount;
+    this.currentEditItem[&#x27;dataSource&#x27;] &#x3D; update.dataSource;
+    this.reloadWidgetData(this.currentEditItem);
+    this.notification.warning(&#x27;Warning&#x27;, &#x27;Widget modificado correctamente.&#x27;);
+    this.handleEditModalClose();
+  }
+
+  handleEditModalClose(): void {
+    this.isEditModalVisible &#x3D; false;
+  }
+
+  removeItem(item: ExtendedGridsterItem): void {
+    this.dashboard.splice(this.dashboard.indexOf(item), 1);
+    this.notification.warning(
+      this.translate.instant(&#x27;WARNING&#x27;),
+      this.translate.instant(&#x27;NOTIF.WARN_WIDGET_DELETED&#x27;)
+    );
+  }
+
+  reloadWidgetData(item: ExtendedGridsterItem): void {
+    const dataSource &#x3D; item.dataSource ?? &#x27;/assets/datasets/data-set-1.json&#x27;;
+    this.chartDataService.loadChartsData(dataSource).subscribe({
+      next: () &#x3D;&gt; console.log(&#x60;✅ Datos recargados desde ${dataSource}&#x60;),
+      error: err &#x3D;&gt; console.error(&#x27;❌ Error al recargar datos:&#x27;, err)
+    });
+  }
+
+  // --- Modal Actions ---
+  openCustomModal(): void {
+    this.isModalVisible &#x3D; true;
+    this.notification.info(
+      this.translate.instant(&#x27;INFO&#x27;),
+      this.translate.instant(&#x27;NOTIF.INFO_MODAL_OPEN&#x27;)
+    );
+  }
+
+  closeCustomModal(): void {
+    this.isModalVisible &#x3D; false;
+  }
+
+  // --- Serialization ---
+  serializeToJson(): void {
+    const name &#x3D; prompt(&#x27;Nombre de archivo:&#x27;, &#x27;dashboardConfig&#x27;) ?? &#x27;dashboardConfig&#x27;;
+    const blob &#x3D; new Blob([JSON.stringify(this.dashboard, null, 2)], { type: &#x27;application/json&#x27; });
+    const a &#x3D; document.createElement(&#x27;a&#x27;);
+    a.href &#x3D; URL.createObjectURL(blob);
+    a.download &#x3D; &#x60;${name}.json&#x60;;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    this.notification.info(&#x27;Info&#x27;, &#x27;Dashboard serializado correctamente.&#x27;);
+  }
+
+  loadJsonFromFile(event: any): void {
+    const file &#x3D; event.target.files[0];
+    if (!file) return;
+    this.changedOptions();
+    const reader &#x3D; new FileReader();
+    reader.onload &#x3D; e &#x3D;&gt; {
+      try {
+        this.dashboard &#x3D; JSON.parse((e.target as any).result);
+        this.options.api?.optionsChanged?.();
+        this.notification.success(&#x27;Success&#x27;, &#x27;Dashboard cargado desde JSON.&#x27;);
+      } catch {
+        console.error(&#x27;Error parsing JSON&#x27;);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  deserialize(json: string): void {
+    try {
+      const arr &#x3D; JSON.parse(json);
+      if (Array.isArray(arr)) {
+        arr.forEach(item &#x3D;&gt; {
+          const idx &#x3D; this.dashboard.findIndex(d &#x3D;&gt; d[&#x27;id&#x27;] &#x3D;&#x3D;&#x3D; item[&#x27;id&#x27;]);
+          if (idx &gt;&#x3D; 0) this.dashboard[idx] &#x3D; { ...this.dashboard[idx], ...item };
+          else this.dashboard.push(item);
+        });
+        this.options.api?.optionsChanged?.();
+        this.notification.success(&#x27;Success&#x27;, &#x27;Dashboard actualizado con JSON.&#x27;);
+      }
+    } catch {
+      console.error(&#x27;Error deserializing JSON&#x27;);
+    }
+  }
+
+  deserializeFromFile(event: any): void {
+    const file &#x3D; event.target.files[0];
+    if (!file) return;
+    const reader &#x3D; new FileReader();
+    reader.onload &#x3D; e &#x3D;&gt; {
+      this.deserialize((e.target as any).result);
+      this.options.api?.optionsChanged?.();
+    };
+    reader.readAsText(file);
+  }
+
+  // --- Gridster Options ---
+  togglePushItems(): void {
+    this.pushItemsEnabled &#x3D; !this.pushItemsEnabled;
+    this.options.pushItems &#x3D; this.pushItemsEnabled;
+    this.options.api?.optionsChanged?.();
+    this.notification.info(&#x27;Info&#x27;, this.pushItemsEnabled ? &#x27;Widgets desbloqueados.&#x27; : &#x27;Widgets bloqueados.&#x27;);
+  }
+
+  changedOptions(): void {
+    this.dashboard &#x3D; [];
+    this.options.api?.optionsChanged?.();
+    this.notification.warning(
+      this.translate.instant(&#x27;WARNING&#x27;),
+      this.translate.instant(&#x27;NOTIF.WARN_WIDGETS_CLEARED&#x27;)
+    );
+  }
+
+  // --- Theme &amp; Language ---
+  onToggleTheme(): void {
+    const darkLink &#x3D; document.getElementById(&#x27;dark-theme-css&#x27;) as HTMLLinkElement;
+    if (this.currentTheme &#x3D;&#x3D;&#x3D; &#x27;default&#x27;) {
+      darkLink.disabled &#x3D; false;
+      this.currentTheme &#x3D; &#x27;dark&#x27;;
+    } else {
+      darkLink.disabled &#x3D; true;
+      this.currentTheme &#x3D; &#x27;default&#x27;;
+    }
+  }
+
+  onLanguageChange(lang: string): void {
+    this.selectedLanguage &#x3D; lang;
+    this.translate.use(lang);
+  }
+
+  // --- Utility ---
+  trackByFn(_i: number, item: ExtendedGridsterItem): number {
+    return item[&#x27;id&#x27;];
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;gridster-container&quot;&gt;
+  &lt;div class&#x3D;&quot;controls&quot;&gt;
+    &lt;app-primary-button
+      nzSize&#x3D;&quot;default&quot;
+      (click)&#x3D;&quot;openCustomModal()&quot;
+      (keydown.enter)&#x3D;&quot;openCustomModal()&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+      {{ &#x27;ADD&#x27; | translate }}
+    &lt;/app-primary-button&gt;
+  
+    &lt;app-default-button
+      nzSize&#x3D;&quot;default&quot;
+      (click)&#x3D;&quot;changedOptions()&quot;
+      (keydown.enter)&#x3D;&quot;changedOptions()&quot;
+      [disabled]&#x3D;&quot;!pushItemsEnabled&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+      {{ &#x27;CLEAN_UP&#x27; | translate }}
+    &lt;/app-default-button&gt;
+  
+    &lt;app-default-button
+      nzSize&#x3D;&quot;default&quot;
+      (click)&#x3D;&quot;togglePushItems()&quot;
+      (keydown.enter)&#x3D;&quot;togglePushItems()&quot;
+      [ngClass]&#x3D;&quot;{ &#x27;hover-style&#x27;: !pushItemsEnabled }&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+      {{ pushItemsEnabled
+         ? (&#x27;LOCK_WIDGETS&#x27; | translate)
+         : (&#x27;UNLOCK_WIDGETS&#x27; | translate)
+      }}
+    &lt;/app-default-button&gt;
+  
+    &lt;app-default-button
+      nzSize&#x3D;&quot;default&quot;
+      (click)&#x3D;&quot;serializeToJson()&quot;
+      (keydown.enter)&#x3D;&quot;serializeToJson()&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+      {{ &#x27;SERIALIZE&#x27; | translate }}
+    &lt;/app-default-button&gt;
+  
+    &lt;input
+      type&#x3D;&quot;file&quot;
+      #loadJsonInput
+      hidden
+      (change)&#x3D;&quot;loadJsonFromFile($event)&quot;
+    /&gt;
+    &lt;app-default-button
+      nzSize&#x3D;&quot;default&quot;
+      (click)&#x3D;&quot;loadJsonInput.click()&quot;
+      (keydown.enter)&#x3D;&quot;loadJsonInput.click()&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+      {{ &#x27;LOAD_JSON&#x27; | translate }}
+    &lt;/app-default-button&gt;
+  
+    &lt;input
+      type&#x3D;&quot;file&quot;
+      #deserializeInput
+      hidden
+      (change)&#x3D;&quot;deserializeFromFile($event)&quot;
+    /&gt;
+    &lt;app-default-button
+      nzSize&#x3D;&quot;default&quot;
+      (click)&#x3D;&quot;deserializeInput.click()&quot;
+      (keydown.enter)&#x3D;&quot;deserializeInput.click()&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+      {{ &#x27;DESERIALIZE_JSON&#x27; | translate }}
+    &lt;/app-default-button&gt;
+  
+    &lt;div class&#x3D;&quot;flex-spacer&quot;&gt;&lt;/div&gt;
+    &lt;app-language-dropdown
+      [languages]&#x3D;&quot;languages&quot;
+      [selectedLanguage]&#x3D;&quot;selectedLanguage&quot;
+      (languageChange)&#x3D;&quot;onLanguageChange($event)&quot;
+      tabindex&#x3D;&quot;0&quot;&gt;
+    &lt;/app-language-dropdown&gt;
+
+    &lt;app-theme-toggle-button
+      [currentTheme]&#x3D;&quot;currentTheme&quot;
+      (toggleTheme)&#x3D;&quot;onToggleTheme()&quot;
+      class&#x3D;&quot;theme-toggle-wrapper&quot;&gt;
+    &lt;/app-theme-toggle-button&gt;
+  &lt;/div&gt;
+  
+  &lt;gridster class&#x3D;&quot;gridster-wrapper&quot; [options]&#x3D;&quot;options&quot;&gt;
+    &lt;gridster-item *ngFor&#x3D;&quot;let item of dashboard; trackBy: trackByFn&quot; [item]&#x3D;&quot;item&quot;&gt;
+      &lt;div class&#x3D;&quot;grid-item-content&quot;&gt;
+        &lt;div class&#x3D;&quot;item-content&quot;&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;line-chart&#x27;&quot;&gt;
+            &lt;app-line-chart&gt;&lt;/app-line-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;advanced-pie-chart&#x27;&quot;&gt;
+            &lt;app-advanced-pie-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-advanced-pie-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;area-chart&#x27;&quot;&gt;
+            &lt;app-area-chart 
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+            [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &gt;&lt;/app-area-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;box-chart&#x27;&quot;&gt;
+            &lt;app-box-chart
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+            [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &gt;&lt;/app-box-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;bubble-chart&#x27;&quot;&gt;
+            &lt;app-bubble-chart
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+            [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-bubble-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;gauge-chart&#x27;&quot;&gt;
+            &lt;app-gauge-chart
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+            [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-gauge-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;heat-map&#x27;&quot;&gt;
+            &lt;app-heat-map
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+            [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-heat-map&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;horizontal-bar&#x27;&quot;&gt;
+            &lt;app-horizontal-bar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-horizontal-bar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;line-chart&#x27;&quot;&gt;
+            &lt;app-horizontal-bar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-horizontal-bar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;linear-gauge-chart&#x27;&quot;&gt;
+            &lt;app-linear-gauge-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-linear-gauge-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;normalized-area-chart&#x27;&quot;&gt;
+            &lt;app-normalized-area-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-normalized-area-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;normalized-horizontal-chart&#x27;&quot;&gt;
+            &lt;app-normalized-horizontal-bar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-normalized-horizontal-bar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;normalized-vertical-chart&#x27;&quot;&gt;
+            &lt;app-normalized-vertical-bar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+          &lt;/app-normalized-vertical-bar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;number-chart&#x27;&quot;&gt;
+            &lt;app-number-cards
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+          &lt;/app-number-cards&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;percent-gauge-chart&#x27;&quot;&gt;
+            &lt;app-percent-gauge-chart
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;&gt;
+          &lt;/app-percent-gauge-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;pie-chart&#x27;&quot;&gt;
+            &lt;app-pie-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+          &lt;/app-pie-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;pie-grid-chart&#x27;&quot;&gt;
+            &lt;app-pie-grid
+            [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+            [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-pie-grid&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;polar-chart&#x27;&quot;&gt;
+            &lt;app-polar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-polar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;stacked-area-chart&#x27;&quot;&gt;
+            &lt;app-stacked-area-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-stacked-area-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;stacked-horizontal-bar-chart&#x27;&quot;&gt;
+            &lt;app-stacked-horizontal-bar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-stacked-horizontal-bar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;stacked-vertical-bar-chart&#x27;&quot;&gt;
+            &lt;app-stacked-vertical-bar-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-stacked-vertical-bar-chart&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;tree-map&#x27;&quot;&gt;
+            &lt;app-tree-map
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-tree-map&gt;
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;item.chartType &#x3D;&#x3D;&#x3D; &#x27;vertical-bar&#x27;&quot;&gt;
+            &lt;app-vertical-chart
+              [dataSource]&#x3D;&quot;item.dataSource || &#x27;&#x27;&quot;
+              [dataCount]&#x3D;&quot;item.dataCount || &#x27;&#x27;&quot;&gt;
+            &lt;/app-vertical-chart&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;item-buttons&quot;&gt;
+          &lt;div class&#x3D;&quot;shape-float-container edit-button&quot;&gt;
+            &lt;app-float-shape-button
+              shape&#x3D;&quot;circle&quot;
+              nzType&#x3D;&quot;primary&quot;
+              icon&#x3D;&quot;edit&quot;
+              iconTheme&#x3D;&quot;outline&quot;
+              [disabled]&#x3D;&quot;!pushItemsEnabled&quot;
+              (nzOnClick)&#x3D;&quot;editItem(item)&quot;&gt;
+            &lt;/app-float-shape-button&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;shape-float-container delete-button&quot;&gt;
+            &lt;app-float-shape-button
+              shape&#x3D;&quot;circle&quot;
+              nzType&#x3D;&quot;primary&quot;
+              icon&#x3D;&quot;close&quot;
+              iconTheme&#x3D;&quot;outline&quot;
+              [disabled]&#x3D;&quot;!pushItemsEnabled&quot;
+              (nzOnClick)&#x3D;&quot;removeItem(item)&quot;&gt;
+            &lt;/app-float-shape-button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/gridster-item&gt;
+  &lt;/gridster&gt;
+  
+  &lt;app-chart-selection-modal
+    [isVisible]&#x3D;&quot;isModalVisible&quot;
+    (selectedChartType)&#x3D;&quot;selectedChartType&quot;
+    (addChart)&#x3D;&quot;onAddChart($event)&quot;
+    (closeModal)&#x3D;&quot;closeCustomModal()&quot;&gt;
+  &lt;/app-chart-selection-modal&gt;
+  
+  &lt;app-edit-widget-modal
+    [isVisible]&#x3D;&quot;isEditModalVisible&quot;
+    [dataCount]&#x3D;&quot;currentEditItem?.[&#x27;dataCount&#x27;] || &#x27;all&#x27;&quot;
+    [dataSource]&#x3D;&quot;currentEditItem?.[&#x27;dataSource&#x27;] || &#x27;/assets/data-set-1.json&#x27;&quot;
+    (save)&#x3D;&quot;handleWidgetEditSave($event)&quot;
+    (close)&#x3D;&quot;handleEditModalClose()&quot;&gt;
+  &lt;/app-edit-widget-modal&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./gridster2.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+  padding: 16px;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-y: auto;
+
+  &amp;.dark {
+    --separator-color: #ffffff;
+  }
+
+  ::ng-deep nz-float-button {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 10;
+  }
+}
+
+.gridster-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.controls {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+
+  .flex-spacer {
+    flex: 1;
+  }
+}
+
+.gridster-wrapper {
+  flex: 1;
+  display: block;
+}
+
+.grid-item-content {
+  position: relative;
+  background-color: var(--card-background, #f5f5f5);
+  border: 1px solid var(--border-color, #ccc);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.item-content {
+  flex: 1;
+  width: 100%;
+  max-height: calc(100% - 50px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.item-buttons {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.shape-float-container {
+  position: relative;
+
+  &amp;.edit-button,
+  &amp;.delete-button {
+    position: absolute;
+    top: 8px;
+  }
+
+  &amp;.edit-button {
+    right: 48px;
+  }
+
+  &amp;.delete-button {
+    right: 8px;
+  }
+
+  &amp;.extra-button {
+    right: 48px;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.085);
+
+  &amp;.show {
+    display: block;
+  }
+
+  &amp;-content {
+    background-color: var(--card-background, #ffffff);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: animatetop 0.4s;
+  }
+
+  &amp;-header,
+  &amp;-body,
+  &amp;-footer {
+    padding: 16px;
+    background-color: var(--background-color, #ffffff);
+    color: var(--text-color, #333333);
+  }
+
+  &amp;-header,
+  &amp;-footer {
+    background-color: var(--background-color, #0768A9);
+    color: var(--text-color, #ffffff);
+    display: flex;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--separator-color, #d9d9d9);
+  }
+
+  &amp;-footer {
+    text-align: right;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid var(--separator-color, #d9d9d9);
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  &amp;-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+    margin: 15% auto;
+  }
+}
+
+.radio-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 4px 22px;
+  cursor: pointer;
+  border: 0.5px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 14px;
+  text-align: center;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+
+  &amp;:hover {
+    background-color: var(--upload-hover-bg, #e6e6e612);
+  }
+
+  input[type&#x3D;&quot;file&quot;] {
+    display: none;
+  }
+}
+
+.theme-toggle-wrapper {
+  margin-left: auto;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="gridster-container">  <div class="controls">    <app-primary-button      nzSize="default"      (click)="openCustomModal()"      (keydown.enter)="openCustomModal()"      tabindex="0">      {{ \'ADD\' | translate }}    </app-primary-button>      <app-default-button      nzSize="default"      (click)="changedOptions()"      (keydown.enter)="changedOptions()"      [disabled]="!pushItemsEnabled"      tabindex="0">      {{ \'CLEAN_UP\' | translate }}    </app-default-button>      <app-default-button      nzSize="default"      (click)="togglePushItems()"      (keydown.enter)="togglePushItems()"      [ngClass]="{ \'hover-style\': !pushItemsEnabled }"      tabindex="0">      {{ pushItemsEnabled         ? (\'LOCK_WIDGETS\' | translate)         : (\'UNLOCK_WIDGETS\' | translate)      }}    </app-default-button>      <app-default-button      nzSize="default"      (click)="serializeToJson()"      (keydown.enter)="serializeToJson()"      tabindex="0">      {{ \'SERIALIZE\' | translate }}    </app-default-button>      <input      type="file"      #loadJsonInput      hidden      (change)="loadJsonFromFile($event)"    />    <app-default-button      nzSize="default"      (click)="loadJsonInput.click()"      (keydown.enter)="loadJsonInput.click()"      tabindex="0">      {{ \'LOAD_JSON\' | translate }}    </app-default-button>      <input      type="file"      #deserializeInput      hidden      (change)="deserializeFromFile($event)"    />    <app-default-button      nzSize="default"      (click)="deserializeInput.click()"      (keydown.enter)="deserializeInput.click()"      tabindex="0">      {{ \'DESERIALIZE_JSON\' | translate }}    </app-default-button>      <div class="flex-spacer"></div>    <app-language-dropdown      [languages]="languages"      [selectedLanguage]="selectedLanguage"      (languageChange)="onLanguageChange($event)"      tabindex="0">    </app-language-dropdown>    <app-theme-toggle-button      [currentTheme]="currentTheme"      (toggleTheme)="onToggleTheme()"      class="theme-toggle-wrapper">    </app-theme-toggle-button>  </div>    <gridster class="gridster-wrapper" [options]="options">    <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">      <div class="grid-item-content">        <div class="item-content">          <ng-container *ngIf="item.chartType === \'line-chart\'">            <app-line-chart></app-line-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'advanced-pie-chart\'">            <app-advanced-pie-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-advanced-pie-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'area-chart\'">            <app-area-chart             [dataSource]="item.dataSource || \'\'"            [dataCount]="item.dataCount || \'\'">            ></app-area-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'box-chart\'">            <app-box-chart            [dataSource]="item.dataSource || \'\'"            [dataCount]="item.dataCount || \'\'">            ></app-box-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'bubble-chart\'">            <app-bubble-chart            [dataSource]="item.dataSource || \'\'"            [dataCount]="item.dataCount || \'\'">            </app-bubble-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'gauge-chart\'">            <app-gauge-chart            [dataSource]="item.dataSource || \'\'"            [dataCount]="item.dataCount || \'\'">            </app-gauge-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'heat-map\'">            <app-heat-map            [dataSource]="item.dataSource || \'\'"            [dataCount]="item.dataCount || \'\'">            </app-heat-map>          </ng-container>          <ng-container *ngIf="item.chartType === \'horizontal-bar\'">            <app-horizontal-bar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-horizontal-bar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'line-chart\'">            <app-horizontal-bar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-horizontal-bar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'linear-gauge-chart\'">            <app-linear-gauge-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-linear-gauge-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'normalized-area-chart\'">            <app-normalized-area-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-normalized-area-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'normalized-horizontal-chart\'">            <app-normalized-horizontal-bar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-normalized-horizontal-bar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'normalized-vertical-chart\'">            <app-normalized-vertical-bar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">          </app-normalized-vertical-bar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'number-chart\'">            <app-number-cards              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">          </app-number-cards>          </ng-container>          <ng-container *ngIf="item.chartType === \'percent-gauge-chart\'">            <app-percent-gauge-chart            [dataSource]="item.dataSource || \'\'">          </app-percent-gauge-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'pie-chart\'">            <app-pie-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">          </app-pie-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'pie-grid-chart\'">            <app-pie-grid            [dataSource]="item.dataSource || \'\'"            [dataCount]="item.dataCount || \'\'">            </app-pie-grid>          </ng-container>          <ng-container *ngIf="item.chartType === \'polar-chart\'">            <app-polar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-polar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'stacked-area-chart\'">            <app-stacked-area-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-stacked-area-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'stacked-horizontal-bar-chart\'">            <app-stacked-horizontal-bar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-stacked-horizontal-bar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'stacked-vertical-bar-chart\'">            <app-stacked-vertical-bar-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-stacked-vertical-bar-chart>          </ng-container>          <ng-container *ngIf="item.chartType === \'tree-map\'">            <app-tree-map              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-tree-map>          </ng-container>          <ng-container *ngIf="item.chartType === \'vertical-bar\'">            <app-vertical-chart              [dataSource]="item.dataSource || \'\'"              [dataCount]="item.dataCount || \'\'">            </app-vertical-chart>          </ng-container>        </div>        <div class="item-buttons">          <div class="shape-float-container edit-button">            <app-float-shape-button              shape="circle"              nzType="primary"              icon="edit"              iconTheme="outline"              [disabled]="!pushItemsEnabled"              (nzOnClick)="editItem(item)">            </app-float-shape-button>          </div>          <div class="shape-float-container delete-button">            <app-float-shape-button              shape="circle"              nzType="primary"              icon="close"              iconTheme="outline"              [disabled]="!pushItemsEnabled"              (nzOnClick)="removeItem(item)">            </app-float-shape-button>          </div>        </div>      </div>    </gridster-item>  </gridster>    <app-chart-selection-modal    [isVisible]="isModalVisible"    (selectedChartType)="selectedChartType"    (addChart)="onAddChart($event)"    (closeModal)="closeCustomModal()">  </app-chart-selection-modal>    <app-edit-widget-modal    [isVisible]="isEditModalVisible"    [dataCount]="currentEditItem?.[\'dataCount\'] || \'all\'"    [dataSource]="currentEditItem?.[\'dataSource\'] || \'/assets/data-set-1.json\'"    (save)="handleWidgetEditSave($event)"    (close)="handleEditModalClose()">  </app-edit-widget-modal></div></div>'
+    var COMPONENTS = [{'name': 'AdvancedPieChartComponent', 'selector': 'app-advanced-pie-chart'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AreaChartComponent', 'selector': 'app-area-chart'},{'name': 'BoxChartComponent', 'selector': 'app-box-chart'},{'name': 'BubbleChartComponent', 'selector': 'app-bubble-chart'},{'name': 'ChartSelectionModalComponent', 'selector': 'app-chart-selection-modal'},{'name': 'ChartSelectorVanillaComponent', 'selector': 'app-chart-selector-vanilla'},{'name': 'DefaultButtonComponent', 'selector': 'app-default-button'},{'name': 'EditWidgetModalComponent', 'selector': 'app-edit-widget-modal'},{'name': 'FloatShapeButtonComponent', 'selector': 'app-float-shape-button'},{'name': 'GaugeChartComponent', 'selector': 'app-gauge-chart'},{'name': 'GridsterDashboardComponent', 'selector': 'app-gridster-dashboard'},{'name': 'HeatMapComponent', 'selector': 'app-heat-map'},{'name': 'HorizontalBarChartComponent', 'selector': 'app-horizontal-bar-chart'},{'name': 'LanguageDropdownComponent', 'selector': 'app-language-dropdown'},{'name': 'LinearGaugeChartComponent', 'selector': 'app-linear-gauge-chart'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'NormalizedAreaChartComponent', 'selector': 'app-normalized-area-chart'},{'name': 'NormalizedHorizontalBarChartComponent', 'selector': 'app-normalized-horizontal-bar-chart'},{'name': 'NormalizedVerticalBarChartComponent', 'selector': 'app-normalized-vertical-bar-chart'},{'name': 'NumberCardsComponent', 'selector': 'app-number-cards'},{'name': 'PercentGaugeChartComponent', 'selector': 'app-percent-gauge-chart'},{'name': 'PieChartComponent', 'selector': 'app-pie-chart'},{'name': 'PieGridComponent', 'selector': 'app-pie-grid'},{'name': 'PolarChartComponent', 'selector': 'app-polar-chart'},{'name': 'PrimaryButtonComponent', 'selector': 'app-primary-button'},{'name': 'StackedAreaChartComponent', 'selector': 'app-stacked-area-chart'},{'name': 'StackedHorizontalBarChartComponent', 'selector': 'app-stacked-horizontal-bar-chart'},{'name': 'StackedVerticalBarChartComponent', 'selector': 'app-stacked-vertical-bar-chart'},{'name': 'ThemeToggleButtonComponent', 'selector': 'app-theme-toggle-button'},{'name': 'TreeMapComponent', 'selector': 'app-tree-map'},{'name': 'VerticalBarChartComponent', 'selector': 'app-vertical-chart'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GridsterDashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GridsterDashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
