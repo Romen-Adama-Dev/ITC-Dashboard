@@ -20,11 +20,11 @@ import {
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 // Ng Zorro
-import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 // Services
-import { ChartDataService } from '../../application/entities/chart-data.service';
+import { ChartDataService } from '../../application/services/chart-data.service';
 import { MediatorService } from '../../application/services/mediator.service';
 
 // Shared Components
@@ -110,7 +110,6 @@ interface SafeGridsterConfig extends GridsterConfig {
     StackedVerticalBarChartComponent,
     TreeMapComponent,
     EditWidgetModalComponent,
-    NzNotificationModule,
     NzIconModule,
     TranslateModule,
     ThemeToggleButtonComponent,

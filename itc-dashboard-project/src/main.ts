@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/config/app.config';
+import { appConfig } from './app/core/config/app.config';
 import { AppComponent } from './app/app.component';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';

@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { MediatorService } from '../../../../../application/services/mediator.service';
-import { ChartData } from '../../../../../infrastructure/api/chart.model';
+import { ChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-pie-chart',

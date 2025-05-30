@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
-import { ChartConfig, ChartData } from '../../../../../infrastructure/api/chart.model';
+import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-stacked-horizontal-bar-chart',

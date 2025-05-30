@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { MediatorService } from '../../../../../application/services/mediator.service';
-import { ChartConfig } from '../../../../../infrastructure/api/chart.model';
+import { ChartConfig } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-stacked-area-chart',
