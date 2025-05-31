@@ -71,44 +71,6 @@ From the root folder, you can run:
 
 ---
 
-## 📁 Folder Structure
-├── angular.json                       # Angular CLI workspace configuration
-├── package.json                       # Dependencies & scripts
-├── tsconfig.json                      # TypeScript configuration
-├── eslint.config.js                   # ESLint Flat Configuration
-├── README.md                          # ← You are here
-├── documentation/                     # Auto-generated Compodoc docs
-│
-├── projects/
-│   └── itc-dashboard-library/         # Reusable component library
-│       ├── src/
-│       │   ├── lib/
-│       │   │   ├── chart-components/  # All ngx-charts-based components
-│       │   │   ├── services/          # MediatorService, ChartHelperService, ChartDataService
-│       │   │   └── shared/            # Buttons, dropdowns, modals, accessibility utilities
-│       │   └── public-api.ts
-│       ├── package.json               # Library-specific dependencies & build settings
-│       └── tsconfig.lib.json
-│
-└── src/
-├── app/
-│   ├── application/               # Application layer (services, models, RxJS flows)
-│   ├── infrastructure/            # HTTP adapters (ChartDataService), JSON fixtures
-│   ├── presentation/              # Demo components using the library
-│   │   ├── gridster2/             # Dashboard container & layout
-│   │   ├── chart-selection-modal/ # Add-widget modal
-│   │   ├── edit-widget-modal/     # Configure-widget modal
-│   │   └── shared/                # Reusable UI (buttons, dropdowns, notifications)
-│   └── core/                      # Global configuration (i18n, theme toggler, icon provider)
-├── assets/
-│   ├── datasets/                  # Example JSON files (data-set-1.json, data-set-2.json)
-│   └── i18n/                      # Translation JSON files (en.json, es.json, …)
-├── environments/                  # Angular environment configs (dev/prod)
-├── index.html                     # Demo entry point (theme  tags, root component)
-└── main.ts                        # Bootstrap Angular, register i18n & Mediator
-
----
-
 ## ⭐ Key Features
 
 1. **Drag-and-Drop Dashboard**  
