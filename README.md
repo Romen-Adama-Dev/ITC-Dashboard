@@ -1,8 +1,3 @@
-Tu README tiene contenido muy completo, pero la sintaxis Markdown está algo desordenada. Te propongo esta versión “pulida” antes de subirla a GitHub. He corregido los encabezados, los retornos de carro y los bloques de código para que todo se renderice correctamente.
-
-⸻
-
-
 # ITC Dashboard Project
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Romen-Adama-Dev_ITC-Dashboard&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Romen-Adama-Dev_ITC-Dashboard)
