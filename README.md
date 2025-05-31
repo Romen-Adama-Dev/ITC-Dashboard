@@ -118,11 +118,7 @@ From the root folder, you can run:
   - The SonarCloud badge at the top of this README reflects current status.
 
 - **Unit Testing**  
-  - Jasmine + Karma for component and service tests.  
-  - Running tests also generates a coverage report.
-
-- **End-to-End Testing**  
-  - Integration with Cypress or Protractor can be configured as needed.  
+  - Karma for component and service tests.
 
 - **Documentation (Compodoc)**  
   - Generates automatic HTML documentation for services, modules, components and interfaces.  
