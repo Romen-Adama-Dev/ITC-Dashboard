@@ -34,11 +34,13 @@
                 "glob": "**/*",
                 "input": "src/assets/datasets",
                 "output": "/assets/"
-              },{
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets/i18n",
                 "output": "/assets/"
-              },{
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets/i18n",
                 "output": "/assets/i18n"
@@ -50,12 +52,12 @@
               }
             ],
             "styles": [
-            "src/styles/default.less",
-            {
-              "input": "src/styles/dark.less",
-              "bundleName": "dark",
-              "inject": false
-            }
+              "src/styles/default.less",
+              {
+                "input": "src/styles/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": []
           },
@@ -118,11 +120,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "1896638d-9c3f-42f5-a3f0-3aab89e37d92"
+    "analytics": "1896638d-9c3f-42f5-a3f0-3aab89e37d92",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }
