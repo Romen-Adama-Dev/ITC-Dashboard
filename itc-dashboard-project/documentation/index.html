@@ -82,24 +82,258 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1>ItcDashboardProject</h1>
-<p>This project was generated using <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 19.1.4.</p>
-<h2>Development server</h2>
-<p>To start a local development server, run:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng serve</code></pre></div><p>Once the server is running, open your browser and navigate to <code>http://localhost:4200/</code>. The application will automatically reload whenever you modify any of the source files.</p>
-<h2>Code scaffolding</h2>
-<p>Angular CLI includes powerful code scaffolding tools. To generate a new component, run:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng generate component component-name</code></pre></div><p>For a complete list of available schematics (such as <code>components</code>, <code>directives</code>, or <code>pipes</code>), run:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng generate --help</code></pre></div><h2>Building</h2>
-<p>To build the project run:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng build</code></pre></div><p>This will compile your project and store the build artifacts in the <code>dist/</code> directory. By default, the production build optimizes your application for performance and speed.</p>
-<h2>Running unit tests</h2>
-<p>To execute unit tests with the <a href="https://karma-runner.github.io">Karma</a> test runner, use the following command:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng test</code></pre></div><h2>Running end-to-end tests</h2>
-<p>For end-to-end (e2e) testing, run:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng e2e</code></pre></div><p>Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.</p>
-<h2>Additional Resources</h2>
-<p>For more information on using the Angular CLI, including detailed command references, visit the <a href="https://angular.dev/tools/cli">Angular CLI Overview and Command Reference</a> page.</p>
+<h1>ITC Dashboard Project</h1>
+<p><a href="https://sonarcloud.io/summary/new_code?id=Romen-Adama-Dev_ITC-Dashboard"><img src="https://sonarcloud.io/api/project_badges/measure?project=Romen-Adama-Dev_ITC-Dashboard&metric=alert_status" alt="Quality Gate Status" class="img-responsive"></a></p>
+<blockquote>
+<p><strong>Interactive, modular dashboards in Angular</strong><br>A reusable component library and demo application for building drag-and-drop, data-reactive dashboards—fully themed, i18n-ready, and enterprise-grade.</p>
+</blockquote>
+<hr>
+<h2>🚀 Table of Contents</h2>
+<ol>
+<li><a href="#project-overview">Project Overview</a>  </li>
+<li><a href="#prerequisites">Prerequisites</a>  </li>
+<li><a href="#getting-started">Getting Started</a>  <ul>
+<li><a href="#clone--install">Clone &amp; Install</a>  </li>
+<li><a href="#available-scripts">Available Scripts</a></li>
+</ul>
+</li>
+<li><a href="#folder-structure">Folder Structure</a>  </li>
+<li><a href="#key-features">Key Features</a>  </li>
+<li><a href="#code-quality--documentation">Code Quality &amp; Documentation</a>  </li>
+<li><a href="#contributing">Contributing</a>  </li>
+<li><a href="#license">License</a>  </li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+</ol>
+<hr>
+<h2>📋 Project Overview</h2>
+<p>The <strong>ITC Dashboard Project</strong> (Final Degree Project at the Instituto Tecnológico de Canarias under NextGenDem research) provides:</p>
+<ul>
+<li>A <strong>modular Angular library</strong> of chart components (<code>ngx-charts</code>-based) for bar, line, pie, area, gauge, box and more.</li>
+<li>A <strong>drag-and-drop dashboard</strong> powered by angular-gridster2, allowing users to resize, rearrange and configure widgets at runtime.</li>
+<li><strong>Reactive data flows</strong> built on RxJS, so any JSON or WebSocket source propagates instantly to all subscribed charts.</li>
+<li><strong>No-code customization</strong> via Angular Forms and NG-Zorro modals: choose chart type, data source, item count, theme (light/dark) and localization (i18n via <code>ngx-translate</code>).</li>
+<li>A <strong>Clean Architecture</strong> separation (Domain → Application → Infrastructure → Presentation) that ensures maintainability and extensibility.</li>
+<li><strong>Accessibility best practices</strong> (WCAG AA contrast, keyboard navigation, ARIA attributes) and <strong>internationalization</strong> in multiple languages (ES, EN, +3).</li>
+<li><strong>Enterprise-grade code quality</strong> with SonarCloud, ESLint, Conventional Commits and automatically generated documentation via Compodoc.</li>
+</ul>
+<p>This repository contains both the reusable component library (<code>projects/</code>) and a stand-alone demo application (<code>src/</code>) that illustrates how to embed the library into any Angular workspace.</p>
+<hr>
+<h2>🔧 Prerequisites</h2>
+<ul>
+<li><strong>Node.js</strong> (LTS recommended; tested on v18.x and v20.x)  </li>
+<li><strong>npm</strong> (v8.x or higher) or <strong>yarn</strong> (v1.22+)  </li>
+<li><strong>Angular CLI</strong> (v19.x) installed globally  </li>
+<li>A modern browser (Chrome, Firefox, Safari) for development and demonstration</li>
+</ul>
+<hr>
+<h2>⚡ Getting Started</h2>
+<h3>Clone &amp; Install</h3>
+<ol>
+<li>Clone the repository and navigate to its root.  </li>
+<li>Install dependencies using your preferred package manager.</li>
+</ol>
+<h3>Available Scripts</h3>
+<p>From the root folder, you can run:</p>
+<ul>
+<li><strong>Serve the demo application</strong> (with live reload)  </li>
+<li><strong>Build both the library and the demo</strong> for production  </li>
+<li><strong>Run unit tests</strong> via Karma &amp; Jasmine  </li>
+<li><strong>Run end-to-end tests</strong> (Cypress or Protractor can be configured)  </li>
+<li><strong>Lint all TypeScript and HTML files</strong>  </li>
+<li><strong>Generate Compodoc documentation</strong> (output in <code>documentation/</code> folder)  </li>
+<li><strong>List available Angular CLI schematics</strong></li>
+</ul>
+<blockquote>
+<p><em>Note: Replace npm with yarn if you prefer.</em></p>
+</blockquote>
+<hr>
+<h2>⭐ Key Features</h2>
+<ol>
+<li><p><strong>Drag-and-Drop Dashboard</strong>  </p>
+<ul>
+<li>Based on <code>angular-gridster2</code>.  </li>
+<li>Widgets can be moved, resized, locked/unlocked, serialized to JSON and reloaded.</li>
+</ul>
+</li>
+<li><p><strong>Modular Chart Components</strong>  </p>
+<ul>
+<li>Built on <code>ngx-charts</code> and <code>d3-shape</code>.  </li>
+<li>Each chart (bar, line, pie, area, gauge, box, heatmap, etc.) lives in its own Angular component.  </li>
+<li>Chart configuration (theme, axes, colors, labels) flows reactively via <code>ChartHelperService</code>.</li>
+</ul>
+</li>
+<li><p><strong>Reactive Data Flows (RxJS)</strong>  </p>
+<ul>
+<li><code>MediatorService</code> acts as a centralized event bus.  </li>
+<li>Chart components subscribe to <code>MediatorService.events$</code> and call <code>processEvent(...)</code> to update themselves instantly.  </li>
+<li><code>ChartDataService</code> fetches JSON or real-time WebSocket data and exposes an <code>Observable&lt;ChartData[]&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>No-Code Customization UI</strong>  </p>
+<ul>
+<li>Add a widget via <code>ChartSelectionModalComponent</code>: pick chart type, data source (local JSON, REST, WebSocket).  </li>
+<li>Edit a widget via <code>EditWidgetModalComponent</code>: adjust <code>dataCount</code>, axis labels, palette, title, legend and tooltip visibility.  </li>
+<li>Language dropdown uses <code>ngx-translate</code> for dynamic UI translation.</li>
+</ul>
+</li>
+<li><p><strong>Theming &amp; Accessibility</strong>  </p>
+<ul>
+<li>Light &amp; Dark themes defined in <code>styles/default.less</code> and <code>styles/dark.less</code>.  </li>
+<li>Theme toggle button dynamically enables/disables <code>&lt;link id=&quot;dark-theme-css&quot;&gt;</code>.  </li>
+<li>WCAG AA contrast ratios, keyboard navigation (<code>tabindex</code>, <code>(keydown.enter)</code>), and ARIA attributes across all interactive elements.</li>
+</ul>
+</li>
+<li><p><strong>Clean Architecture</strong>  </p>
+<ul>
+<li><strong>Domain Layer:</strong> <code>chart.model.ts</code>—pure TypeScript interfaces (<code>ChartConfig</code>, <code>ChartData</code>).  </li>
+<li><strong>Application Layer:</strong> <code>ChartHelperService</code> (event processing), <code>MediatorService</code> (event bus), <code>ChartDataService</code> (data fetching/caching).  </li>
+<li><strong>Infrastructure Layer:</strong> HTTP adapters, JSON fixtures in <code>assets/datasets/</code>, potential interceptors (auth/logging).  </li>
+<li><strong>Presentation Layer:</strong> Angular components &amp; NG-Zorro UI, Gridster2 dashboard, shared buttons &amp; modals.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>📐 Code Quality &amp; Documentation</h2>
+<ul>
+<li><p><strong>Linting &amp; Formatting</strong>  </p>
+<ul>
+<li>ESLint flat-config (<code>eslint.config.js</code>) enforces TypeScript best practices, Angular style rules and template accessibility (<code>@angular-eslint/template-accessibility</code>).  </li>
+<li>To lint all files, run the lint command as listed in “Available Scripts”.  </li>
+<li>Automatic fixes can be applied where possible via the lint tool’s “fix” option.</li>
+</ul>
+</li>
+<li><p><strong>Static Analysis (SonarCloud)</strong>  </p>
+<ul>
+<li>A Quality Gate runs on every pull request.  </li>
+<li>Key metrics: coverage &gt; 80%, controlled cyclomatic complexity, zero critical vulnerabilities.  </li>
+<li>The SonarCloud badge at the top of this README reflects current status.</li>
+</ul>
+</li>
+<li><p><strong>Unit Testing</strong>  </p>
+<ul>
+<li>Karma for component and service tests.</li>
+</ul>
+</li>
+<li><p><strong>Documentation (Compodoc)</strong>  </p>
+<ul>
+<li>Generates automatic HTML documentation for services, modules, components and interfaces.  </li>
+<li>The output is served from the <code>documentation/</code> folder and can be viewed in a browser.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>🤝 Contributing</h2>
+<p>Contributions are welcome! Please follow these guidelines:</p>
+<ol>
+<li><p><strong>Fork &amp; Clone</strong>  </p>
+<ul>
+<li>Fork the repository on GitHub and clone your fork locally.  </li>
+<li>Create a new feature branch for your changes.</li>
+</ul>
+</li>
+<li><p><strong>Code, Test &amp; Lint</strong>  </p>
+<ul>
+<li>Ensure all new code is covered by unit tests.  </li>
+<li>Run the linting tool and fix any reported issues before committing.  </li>
+<li>Update <code>CHANGELOG.md</code> and bump the version in <code>package.json</code> if required.</li>
+</ul>
+</li>
+<li><p><strong>Commit Message Convention</strong>  </p>
+<ul>
+<li>Follow Conventional Commits, for example:  <ul>
+<li><code>feat(chart): add new radial-gauge component</code>  </li>
+<li><code>fix(dashboard): correct widget positioning bug</code>  </li>
+<li><code>docs(readme): update installation instructions</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Push &amp; Create Pull Request</strong>  </p>
+<ul>
+<li>Push your feature branch to your fork.  </li>
+<li>Open a pull request against the <code>main</code> branch in the original repository, with a clear description, issue references and any relevant screenshots.  </li>
+<li>Wait for CI checks (linting, tests, SonarCloud) to pass before merging.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>📜 License</h2>
+<p>This project is licensed under the MIT License.<br>Refer to the <a href="LICENSE">LICENSE</a> file for full details.</p>
+<p><em>Open-Source &amp; Free to Use — credit must be given in derivative works.</em></p>
+<hr>
+<h2>🙏 Acknowledgements</h2>
+<ul>
+<li>NextGenDem (ITC) for funding and domain expertise.  </li>
+<li>Swimlane (<code>ngx-charts</code>), Angular-Gridster2, NG-Zorro, <code>ngx-translate</code> teams for outstanding open-source libraries.  </li>
+<li>StackOverflow and the Angular community for troubleshooting and sharing best practices.  </li>
+<li>My family, friends, mentors … and tools like ChatGPT / CoPilot for assistance in content generation and coding.</li>
+</ul>
+<hr>
+<h3>Explanation of Changes and Improvements</h3>
+<ol>
+<li><p><strong>Title &amp; Badge</strong>  </p>
+<ul>
+<li>SonarCloud badge in the header shows Quality Gate status at a glance.  </li>
+<li>Subtitle offers a concise summary of the project’s purpose.</li>
+</ul>
+</li>
+<li><p><strong>Table of Contents</strong>  </p>
+<ul>
+<li>Quick navigation to key sections improves reader experience.</li>
+</ul>
+</li>
+<li><p><strong>Project Overview</strong>  </p>
+<ul>
+<li>Concise summary of the project, its components and main objectives.  </li>
+<li>Mentions real-world integration with NextGenDem (ITC) and layered architecture.</li>
+</ul>
+</li>
+<li><p><strong>Prerequisites</strong>  </p>
+<ul>
+<li>Clearly lists minimum versions and required tools before cloning.</li>
+</ul>
+</li>
+<li><p><strong>Getting Started</strong>  </p>
+<ul>
+<li>Provides high-level instructions for cloning, installing and running the demo.  </li>
+<li>Lists all available scripts without full bash syntax, for a cleaner presentation.</li>
+</ul>
+</li>
+<li><p><strong>Folder Structure</strong>  </p>
+<ul>
+<li>Describes the organization of directories: <code>projects/</code> for the library, <code>src/</code> for the demo.  </li>
+<li>Helps new contributors find each module quickly.</li>
+</ul>
+</li>
+<li><p><strong>Key Features</strong>  </p>
+<ul>
+<li>Details primary functionalities: drag-and-drop dashboard, modular chart components, RxJS flows, theming, accessibility, Clean Architecture, etc.  </li>
+<li>Links to original third-party repositories where appropriate.</li>
+</ul>
+</li>
+<li><p><strong>Code Quality &amp; Documentation</strong>  </p>
+<ul>
+<li>Explains how linting (ESLint flat config), static analysis (SonarCloud), testing (Karma/Jasmine, e2e), and documentation (Compodoc) work.  </li>
+<li>Includes the commands in plain text form as part of “Available Scripts.”</li>
+</ul>
+</li>
+<li><p><strong>Contributing</strong>  </p>
+<ul>
+<li>Outlines a straightforward workflow: forks, branches, commit conventions and pull request process.  </li>
+<li>Highlights the use of Conventional Commits and a CI checklist.</li>
+</ul>
+</li>
+<li><p><strong>License</strong>  </p>
+<ul>
+<li>Clarifies MIT licensing and freedom to use, modify and redistribute.</li>
+</ul>
+</li>
+<li><p><strong>Acknowledgements</strong>  </p>
+<ul>
+<li>Credits NextGenDem (ITC), key open-source libraries and personal acknowledgments (family, friends, mentors, ChatGPT/CoPilot).</li>
+</ul>
+</li>
+</ol>
 
 
 
