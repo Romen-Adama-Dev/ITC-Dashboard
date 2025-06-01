@@ -79,11 +79,34 @@
 .modal-row {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .chart-type-column,
 .data-source-column {
   flex: 1;
+}
+
+.data-source-column {
+  label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .select-wrapper select,
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
 }
 
 .icon-list {
@@ -113,6 +136,16 @@
 
   i {
     font-size: 24px;
+  }
+
+  span {
+    white-space: nowrap;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 4px;
   }
 }
 
