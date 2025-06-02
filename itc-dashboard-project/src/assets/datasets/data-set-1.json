@@ -4,13 +4,13 @@
       "theme": "default",
       "view": [749, 499],
       "data": [
-        { "name": "Estados Unidos", "value": 5000000 },
-        { "name": "Reino Unido", "value": 3000000 },
-        { "name": "Francia", "value": 2000000 },
-        { "name": "Alemania", "value": 4000000 },
-        { "name": "Italia", "value": 2500000 },
-        { "name": "España", "value": 1500000 },
-        { "name": "Canadá", "value": 3500000 }
+        { "name": "Tenerife", "value": 1500 },
+        { "name": "Gran Canaria", "value": 1100 },
+        { "name": "Lanzarote", "value": 750 },
+        { "name": "Fuerteventura", "value": 650 },
+        { "name": "La Palma", "value": 950 },
+        { "name": "La Gomera", "value": 800 },
+        { "name": "El Hierro", "value": 600 }
       ]
     },
     "areaChart": {
@@ -18,59 +18,66 @@
       "view": [749, 499],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 },
-            { "name": "2012", "value": 8200000 }
+            { "name": "2018", "value": 1200 },
+            { "name": "2019", "value": 1300 },
+            { "name": "2020", "value": 1400 },
+            { "name": "2021", "value": 1450 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 },
-            { "name": "2012", "value": 8500000 }
+            { "name": "2018", "value": 950 },
+            { "name": "2019", "value": 1000 },
+            { "name": "2020", "value": 1050 },
+            { "name": "2021", "value": 1100 }
           ]
         },
         {
-          "name": "France",
+          "name": "Lanzarote",
           "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 },
-            { "name": "2012", "value": 6000000 }
+            { "name": "2018", "value": 600 },
+            { "name": "2019", "value": 650 },
+            { "name": "2020", "value": 700 },
+            { "name": "2021", "value": 750 }
           ]
         },
         {
-          "name": "Italy",
+          "name": "Fuerteventura",
           "series": [
-            { "name": "2010", "value": 4500000 },
-            { "name": "2011", "value": 4700000 },
-            { "name": "2012", "value": 4900000 }
+            { "name": "2018", "value": 550 },
+            { "name": "2019", "value": 600 },
+            { "name": "2020", "value": 650 },
+            { "name": "2021", "value": 700 }
           ]
         },
         {
-          "name": "Spain",
+          "name": "La Palma",
           "series": [
-            { "name": "2010", "value": 3200000 },
-            { "name": "2011", "value": 3400000 },
-            { "name": "2012", "value": 3600000 }
+            { "name": "2018", "value": 800 },
+            { "name": "2019", "value": 850 },
+            { "name": "2020", "value": 900 },
+            { "name": "2021", "value": 950 }
           ]
         },
         {
-          "name": "Canada",
+          "name": "La Gomera",
           "series": [
-            { "name": "2010", "value": 6100000 },
-            { "name": "2011", "value": 6300000 },
-            { "name": "2012", "value": 6500000 }
+            { "name": "2018", "value": 700 },
+            { "name": "2019", "value": 750 },
+            { "name": "2020", "value": 800 },
+            { "name": "2021", "value": 850 }
           ]
         },
         {
-          "name": "Japan",
+          "name": "El Hierro",
           "series": [
-            { "name": "2010", "value": 9000000 },
-            { "name": "2011", "value": 9200000 },
-            { "name": "2012", "value": 9400000 }
+            { "name": "2018", "value": 500 },
+            { "name": "2019", "value": 550 },
+            { "name": "2020", "value": 600 },
+            { "name": "2021", "value": 650 }
           ]
         }
       ]
@@ -80,117 +87,89 @@
       "view": [749, 499],
       "data": [
         {
-          "name": "Colombia",
+          "name": "Tenerife",
           "series": [
-        { "name": "2019", "value": 12, "min": 12, "max": 12, "median": 12 },
-        { "name": "2020", "value": 23, "min": 23, "max": 23, "median": 23 },
-        { "name": "2021", "value": 34, "min": 34, "max": 34, "median": 34 },
-        { "name": "2022", "value": 27, "min": 27, "max": 27, "median": 27 },
-        { "name": "2023", "value": 18, "min": 18, "max": 18, "median": 18 },
-        { "name": "2024", "value": 45, "min": 45, "max": 45, "median": 45 }
+            { "name": "2019", "value": 1200, "min": 1100, "max": 1300, "median": 1200 },
+            { "name": "2020", "value": 1250, "min": 1150, "max": 1350, "median": 1250 },
+            { "name": "2021", "value": 1300, "min": 1200, "max": 1400, "median": 1300 },
+            { "name": "2022", "value": 1350, "min": 1250, "max": 1450, "median": 1350 }
           ]
         },
         {
-          "name": "Chile",
+          "name": "Gran Canaria",
           "series": [
-        { "name": "2019", "value": 20, "min": 20, "max": 20, "median": 20 },
-        { "name": "2020", "value": 28, "min": 28, "max": 28, "median": 28 },
-        { "name": "2021", "value": 42, "min": 42, "max": 42, "median": 42 },
-        { "name": "2022", "value": 39, "min": 39, "max": 39, "median": 39 },
-        { "name": "2023", "value": 31, "min": 31, "max": 31, "median": 31 },
-        { "name": "2024", "value": 61, "min": 61, "max": 61, "median": 61 }
+            { "name": "2019", "value": 1000, "min": 900, "max": 1100, "median": 1000 },
+            { "name": "2020", "value": 1050, "min": 950, "max": 1150, "median": 1050 },
+            { "name": "2021", "value": 1100, "min": 1000, "max": 1200, "median": 1100 },
+            { "name": "2022", "value": 1150, "min": 1050, "max": 1250, "median": 1150 }
           ]
         },
         {
-          "name": "Perú",
+          "name": "La Palma",
           "series": [
-        { "name": "2019", "value": 47, "min": 47, "max": 47, "median": 47 },
-        { "name": "2020", "value": 62, "min": 62, "max": 62, "median": 62 },
-        { "name": "2021", "value": 55, "min": 55, "max": 55, "median": 55 },
-        { "name": "2022", "value": 42, "min": 42, "max": 42, "median": 42 },
-        { "name": "2023", "value": 49, "min": 49, "max": 49, "median": 49 },
-        { "name": "2024", "value": 71, "min": 71, "max": 71, "median": 71 }
+            { "name": "2019", "value": 850, "min": 750, "max": 950, "median": 850 },
+            { "name": "2020", "value": 900, "min": 800, "max": 1000, "median": 900 },
+            { "name": "2021", "value": 950, "min": 850, "max": 1050, "median": 950 },
+            { "name": "2022", "value": 1000, "min": 900, "max": 1100, "median": 1000 }
           ]
         },
         {
-          "name": "Argentina",
+          "name": "Fuerteventura",
           "series": [
-        { "name": "2019", "value": 30, "min": 30, "max": 30, "median": 30 },
-        { "name": "2020", "value": 40, "min": 40, "max": 40, "median": 40 },
-        { "name": "2021", "value": 50, "min": 50, "max": 50, "median": 50 },
-        { "name": "2022", "value": 45, "min": 45, "max": 45, "median": 45 },
-        { "name": "2023", "value": 35, "min": 35, "max": 35, "median": 35 },
-        { "name": "2024", "value": 55, "min": 55, "max": 55, "median": 55 }
+            { "name": "2019", "value": 600, "min": 500, "max": 700, "median": 600 },
+            { "name": "2020", "value": 650, "min": 550, "max": 750, "median": 650 },
+            { "name": "2021", "value": 700, "min": 600, "max": 800, "median": 700 },
+            { "name": "2022", "value": 750, "min": 650, "max": 850, "median": 750 }
           ]
         },
         {
-          "name": "Brasil",
+          "name": "El Hierro",
           "series": [
-        { "name": "2019", "value": 60, "min": 60, "max": 60, "median": 60 },
-        { "name": "2020", "value": 70, "min": 70, "max": 70, "median": 70 },
-        { "name": "2021", "value": 80, "min": 80, "max": 80, "median": 80 },
-        { "name": "2022", "value": 75, "min": 75, "max": 75, "median": 75 },
-        { "name": "2023", "value": 65, "min": 65, "max": 65, "median": 65 },
-        { "name": "2024", "value": 85, "min": 85, "max": 85, "median": 85 }
+            { "name": "2019", "value": 550, "min": 450, "max": 650, "median": 550 },
+            { "name": "2020", "value": 600, "min": 500, "max": 700, "median": 600 },
+            { "name": "2021", "value": 650, "min": 550, "max": 750, "median": 650 },
+            { "name": "2022", "value": 700, "min": 600, "max": 800, "median": 700 }
           ]
         }
       ]
-        },
+    },
     "bubbleChart": {
       "theme": "default",
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-        { "name": "2010", "x": 2010.2, "y": 7150000, "r": 12 },
-        { "name": "2011", "x": 2011.4, "y": 8850000, "r": 14 }
+            { "name": "2022", "x": 2022.1, "y": 1300, "r": 25 },
+            { "name": "2023", "x": 2023.2, "y": 1350, "r": 28 },
+            { "name": "2024", "x": 2024.3, "y": 1400, "r": 30 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-        { "name": "2010", "x": 2010.7, "y": 7850000, "r": 10 },
-        { "name": "2011", "x": 2011.3, "y": 8250000, "r": 12 }
+            { "name": "2022", "x": 2022.1, "y": 1100, "r": 20 },
+            { "name": "2023", "x": 2023.2, "y": 1150, "r": 22 },
+            { "name": "2024", "x": 2024.3, "y": 1200, "r": 24 }
           ]
         },
         {
-          "name": "France",
+          "name": "La Palma",
           "series": [
-        { "name": "2010", "x": 2010.5, "y": 5050000, "r": 11 },
-        { "name": "2011", "x": 2011.6, "y": 5750000, "r": 13 }
-          ]
-        },
-        {
-          "name": "Italy",
-          "series": [
-        { "name": "2010", "x": 2010.8, "y": 4550000, "r": 9 },
-        { "name": "2011", "x": 2011.2, "y": 4850000, "r": 11 }
-          ]
-        },
-        {
-          "name": "Spain",
-          "series": [
-        { "name": "2010", "x": 2010.3, "y": 3250000, "r": 8 },
-        { "name": "2011", "x": 2011.5, "y": 3550000, "r": 10 }
-          ]
-        },
-        {
-          "name": "Canada",
-          "series": [
-        { "name": "2010", "x": 2010.9, "y": 6050000, "r": 12 },
-        { "name": "2011", "x": 2011.1, "y": 6450000, "r": 14 }
+            { "name": "2022", "x": 2022.1, "y": 900, "r": 18 },
+            { "name": "2023", "x": 2023.2, "y": 950, "r": 19 },
+            { "name": "2024", "x": 2024.3, "y": 1000, "r": 20 }
           ]
         }
       ]
     },
     "gaugeChart": {
       "theme": "default",
-      "view": [700,700],
+      "view": [700, 700],
       "data": [
-        { "name": "CPU Usage",    "value": 100000 },
-        { "name": "Memory Usage", "value": 873899 },
-        { "name": "Disk I/O",     "value": 762789 }
+        { "name": "Índice de Biodiversidad", "value": 90 },
+        { "name": "Especies Amenazadas", "value": 140 },
+        { "name": "Especies Endémicas", "value": 600 }
       ]
     },
     "heatMap": {
@@ -198,19 +177,30 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "United Kingdom",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 36240, "extra": { "code": "uk" } },
-            { "name": "2000", "value": 32543, "extra": { "code": "uk" } },
-            { "name": "1990", "value": 26424, "extra": { "code": "uk" } }
+            { "name": "Bosque Húmedo", "value": 350 },
+            { "name": "Matorral", "value": 450 },
+            { "name": "Costas", "value": 250 },
+            { "name": "Volcanes", "value": 180 }
           ]
         },
         {
-          "name": "Turkey",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "1990", "value": 33894 },
-            { "name": "2000", "value": 26387 },
-            { "name": "2010", "value": 10916 }
+            { "name": "Bosque Húmedo", "value": 300 },
+            { "name": "Matorral", "value": 400 },
+            { "name": "Costas", "value": 250 },
+            { "name": "Volcanes", "value": 160 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "Bosque Húmedo", "value": 320 },
+            { "name": "Matorral", "value": 350 },
+            { "name": "Costas", "value": 270 },
+            { "name": "Volcanes", "value": 140 }
           ]
         }
       ]
@@ -219,13 +209,10 @@
       "theme": "default",
       "view": [749, 499],
       "data": [
-        { "name": "Estados Unidos", "value": 5000000 },
-        { "name": "Reino Unido", "value": 3000000 },
-        { "name": "Francia", "value": 2000000 },
-        { "name": "Alemania", "value": 4000000 },
-        { "name": "Italia", "value": 2500000 },
-        { "name": "España", "value": 1500000 },
-        { "name": "Canadá", "value": 3500000 }
+        { "name": "Tenerife", "value": 95 },
+        { "name": "Gran Canaria", "value": 90 },
+        { "name": "La Palma", "value": 92 },
+        { "name": "Lanzarote", "value": 85 }
       ]
     },
     "lineChart": {
@@ -233,27 +220,21 @@
       "view": [749, 499],
       "data": [
         {
-          "name": "Germany",
+          "name": "Índice Biodiversidad",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 },
-            { "name": "2012", "value": 8200000 }
+            { "name": "2018", "value": 80 },
+            { "name": "2019", "value": 83 },
+            { "name": "2020", "value": 86 },
+            { "name": "2021", "value": 88 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Especies Endémicas Totales",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 },
-            { "name": "2012", "value": 8500000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 },
-            { "name": "2012", "value": 6000000 }
+            { "name": "2018", "value": 520 },
+            { "name": "2019", "value": 540 },
+            { "name": "2020", "value": 560 },
+            { "name": "2021", "value": 580 }
           ]
         }
       ]
@@ -262,8 +243,8 @@
       "theme": "default",
       "view": [700, 400],
       "data": [
-      { "name": "Current", "value": 78 },
-      { "name": "Previous", "value": 53 }
+        { "name": "Área Protegida (%)", "value": 45 },
+        { "name": "Meta (%)", "value": 65 }
       ]
     },
     "normalizedAreaChart": {
@@ -271,35 +252,19 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 62000000 },
-            { "name": "2011", "value": 73000000 },
-            { "name": "2012", "value": 89400000 }
+            { "name": "2018", "value": 1200 },
+            { "name": "2019", "value": 1300 },
+            { "name": "2020", "value": 1400 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "2010", "value": 250000000 },
-            { "name": "2011", "value": 309000000 },
-            { "name": "2012", "value": 311000000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 58000000 },
-            { "name": "2011", "value": 50000020 },
-            { "name": "2012", "value": 58000000 }
-          ]
-        },
-        {
-          "name": "UK",
-          "series": [
-            { "name": "2010", "value": 57000000 },
-            { "name": "2011", "value": 62000000 },
-            { "name": "2012", "value": 72000000 }
+            { "name": "2018", "value": 950 },
+            { "name": "2019", "value": 1000 },
+            { "name": "2020", "value": 1050 }
           ]
         }
       ]
@@ -309,27 +274,17 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 },
-            { "name": "2012", "value": 8200000 }
+            { "name": "Índice", "value": 0.92 },
+            { "name": "Meta", "value": 1 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 },
-            { "name": "2012", "value": 8500000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 },
-            { "name": "2012", "value": 6000000 }
+            { "name": "Índice", "value": 0.88 },
+            { "name": "Meta", "value": 1 }
           ]
         }
       ]
@@ -339,27 +294,17 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 },
-            { "name": "2012", "value": 8200000 }
+            { "name": "Índice", "value": 0.92 },
+            { "name": "Meta", "value": 1 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 },
-            { "name": "2012", "value": 8500000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 },
-            { "name": "2012", "value": 6000000 }
+            { "name": "Índice", "value": 0.88 },
+            { "name": "Meta", "value": 1 }
           ]
         }
       ]
@@ -368,51 +313,37 @@
       "theme": "default",
       "view": [749, 499],
       "data": [
-        { "name": "Italy", "value": 35800, "extra": { "code": "it" } },
-        { "name": "Åland Islands", "value": 33545 },
-        { "name": "Yemen", "value": 38407 },
-        { "name": "Trinidad and Tobago", "value": 26319 },
-        { "name": "Liechtenstein", "value": 44046 },
-        { "name": "Malaysia", "value": 44114 },
-        { "name": "Indonesia", "value": 37569 },
-        { "name": "Norfolk Island", "value": 48302 },
-        { "name": "Bahrain", "value": 35618 },
-        { "name": "Philippines", "value": 37412 },
-        { "name": "Turks and Caicos Islands", "value": 17567 },
-        { "name": "Guinea-Bissau", "value": 49279 },
-        { "name": "Tuvalu", "value": 15674 }
+        { "name": "Especies Endémicas", "value": 620 },
+        { "name": "Especies Amenazadas", "value": 140 },
+        { "name": "Especies Introducidas", "value": 300 }
       ]
     },
     "percentGaugeChart": {
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "value", "value": 70 },
-        { "name": "target", "value": 80 }
+        { "name": "Cumplimiento (%)", "value": 45 },
+        { "name": "Meta (%)", "value": 65 }
       ]
     },
     "pieChart": {
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Argentina", "value": 4500000 },
-        { "name": "Brasil",    "value": 5000000 },
-        { "name": "Chile",     "value": 3500000 },
-        { "name": "Colombia",  "value": 3000000 },
-        { "name": "Perú",      "value": 4000000 }
+        { "name": "Bosque Húmedo", "value": 40 },
+        { "name": "Matorral", "value": 45 },
+        { "name": "Costas", "value": 30 },
+        { "name": "Volcanes", "value": 20 }
       ]
     },
     "pieGridChart": {
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Germany", "value": 40632 },
-        { "name": "USA",     "value": 50000 },
-        { "name": "France",  "value": 36745 },
-        { "name": "Italy",   "value": 45800 },
-        { "name": "Spain",   "value": 28700 },
-        { "name": "Canada",  "value": 33800 },
-        { "name": "Brazil",  "value": 29400 }
+        { "name": "Tenerife", "value": 1500 },
+        { "name": "Gran Canaria", "value": 1100 },
+        { "name": "La Palma", "value": 950 },
+        { "name": "Lanzarote", "value": 750 }
       ]
     },
     "polarChart": {
@@ -420,35 +351,31 @@
       "view": [700, 300],
       "data": [
         {
-          "name": "Germany",
+          "name": "Bosque Húmedo",
           "series": [
-            { "name": "1990", "value": 62000000 },
-            { "name": "2000", "value": 73000000 },
-            { "name": "2010", "value": 89400000 }
+            { "name": "Índice", "value": 0.75 },
+            { "name": "Meta", "value": 1 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Matorral",
           "series": [
-            { "name": "1990", "value": 250000000 },
-            { "name": "2000", "value": 309000000 },
-            { "name": "2010", "value": 311000000 }
+            { "name": "Índice", "value": 0.65 },
+            { "name": "Meta", "value": 1 }
           ]
         },
         {
-          "name": "France",
+          "name": "Costas",
           "series": [
-            { "name": "1990", "value": 58000000 },
-            { "name": "2000", "value": 50000020 },
-            { "name": "2010", "value": 58000000 }
+            { "name": "Índice", "value": 0.55 },
+            { "name": "Meta", "value": 1 }
           ]
         },
         {
-          "name": "UK",
+          "name": "Volcanes",
           "series": [
-            { "name": "1990", "value": 57000000 },
-            { "name": "2000", "value": 62000000 },
-            { "name": "2010", "value": 72000000 }
+            { "name": "Índice", "value": 0.45 },
+            { "name": "Meta", "value": 1 }
           ]
         }
       ]
@@ -458,35 +385,19 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Plantas",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 },
-            { "name": "2012", "value": 8200000 }
+            { "name": "2018", "value": 4700 },
+            { "name": "2019", "value": 4800 },
+            { "name": "2020", "value": 4900 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Aves",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 },
-            { "name": "2012", "value": 8500000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 },
-            { "name": "2012", "value": 6000000 }
-          ]
-        },
-        {
-          "name": "Italy",
-          "series": [
-            { "name": "2010", "value": 4500000 },
-            { "name": "2011", "value": 4700000 },
-            { "name": "2012", "value": 4900000 }
+            { "name": "2018", "value": 850 },
+            { "name": "2019", "value": 870 },
+            { "name": "2020", "value": 900 }
           ]
         }
       ]
@@ -496,31 +407,19 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 }
+            { "name": "Plantas", "value": 4700 },
+            { "name": "Aves", "value": 850 },
+            { "name": "Mamíferos", "value": 120 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 }
-          ]
-        },
-        {
-          "name": "Italy",
-          "series": [
-            { "name": "2010", "value": 4500000 },
-            { "name": "2011", "value": 4700000 }
+            { "name": "Plantas", "value": 4000 },
+            { "name": "Aves", "value": 750 },
+            { "name": "Mamíferos", "value": 100 }
           ]
         }
       ]
@@ -530,31 +429,19 @@
       "view": [700, 400],
       "data": [
         {
-          "name": "Germany",
+          "name": "Tenerife",
           "series": [
-            { "name": "2010", "value": 7300000 },
-            { "name": "2011", "value": 8940000 }
+            { "name": "Plantas", "value": 4700 },
+            { "name": "Aves", "value": 850 },
+            { "name": "Mamíferos", "value": 120 }
           ]
         },
         {
-          "name": "USA",
+          "name": "Gran Canaria",
           "series": [
-            { "name": "2010", "value": 7870000 },
-            { "name": "2011", "value": 8270000 }
-          ]
-        },
-        {
-          "name": "France",
-          "series": [
-            { "name": "2010", "value": 5000002 },
-            { "name": "2011", "value": 5800000 }
-          ]
-        },
-        {
-          "name": "Italy",
-          "series": [
-            { "name": "2010", "value": 4500000 },
-            { "name": "2011", "value": 4700000 }
+            { "name": "Plantas", "value": 4000 },
+            { "name": "Aves", "value": 750 },
+            { "name": "Mamíferos", "value": 100 }
           ]
         }
       ]
@@ -563,34 +450,21 @@
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Italy",               "value": 35800, "extra": { "code": "it" } },
-        { "name": "Åland Islands",       "value": 33545 },
-        { "name": "Yemen",               "value": 38407 },
-        { "name": "Trinidad and Tobago", "value": 26319 },
-        { "name": "Liechtenstein",       "value": 44046 },
-        { "name": "Malaysia",            "value": 44114 },
-        { "name": "Indonesia",           "value": 37569 },
-        { "name": "Norfolk Island",      "value": 48302 },
-        { "name": "Bahrain",             "value": 35618 },
-        { "name": "Philippines",         "value": 37412 },
-        { "name": "Turks and Caicos",    "value": 17567 },
-        { "name": "Guinea-Bissau",       "value": 49279 },
-        { "name": "Tuvalu",              "value": 15674 }
+        { "name": "Bosque Húmedo", "value": 350 },
+        { "name": "Matorral", "value": 450 },
+        { "name": "Costas", "value": 250 },
+        { "name": "Volcanes", "value": 180 }
       ]
     },
     "verticalBarChart": {
       "theme": "default",
       "view": [749, 499],
       "data": [
-        { "name": "Estados Unidos", "value": 5000000 },
-        { "name": "Reino Unido", "value": 3000000 },
-        { "name": "Francia", "value": 2000000 },
-        { "name": "Alemania", "value": 4000000 },
-        { "name": "Italia", "value": 2500000 },
-        { "name": "España", "value": 1500000 },
-        { "name": "Canadá", "value": 3500000 }
+        { "name": "Tenerife", "value": 20 },
+        { "name": "Gran Canaria", "value": 18 },
+        { "name": "La Palma", "value": 15 },
+        { "name": "Lanzarote", "value": 12 }
       ]
     }
-    
   }
 }

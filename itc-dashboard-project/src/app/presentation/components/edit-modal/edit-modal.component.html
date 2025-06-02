@@ -1,3 +1,4 @@
+<!-- edit-modal.component.html -->
 <div
   class="modal"
   [class.show]="isVisible"
@@ -17,19 +18,9 @@
         {{ 'EDIT_WIDGET_MODAL.SELECT_DATA_SOURCE' | translate }}
       </label>
       <div class="select-wrapper">
-        <select
-          id="dataSource"
-          [(ngModel)]="dataSource"
-        >
-          <option
-            value="/assets/data-set-1.json"
-          >
-            {{ 'EDIT_WIDGET_MODAL.DATA_SET_1' | translate }}
-          </option>
-          <option
-            value="/assets/data-set-2.json"
-          >
-            {{ 'EDIT_WIDGET_MODAL.DATA_SET_2' | translate }}
+        <select id="dataSource" [(ngModel)]="dataSource">
+          <option *ngFor="let ds of dataSources" [value]="ds">
+            {{ ds.split('/').pop() }}
           </option>
         </select>
       </div>
