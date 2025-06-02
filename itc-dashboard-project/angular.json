@@ -32,7 +32,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets/datasets",
+                "input": "src/assets/",
                 "output": "/assets/"
               },
               {

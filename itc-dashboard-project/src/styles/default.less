@@ -1,6 +1,8 @@
+/* default.less */
 @import "ng-zorro-antd/ng-zorro-antd.less";
 
-@primary-color: #0768A9;
+@primary-color: #016859;
+@secondary-color: #268071;
 @background-color: #ffffff;
 @header-background: #f8f8f8;
 @sidebar-background: #ffffff;
@@ -43,12 +45,11 @@ body {
     .ant-menu-submenu-title:hover,
     .ant-menu-item-active,
     .ant-menu-submenu-active {
-      background-color: @sidebar-background !important;
+      background-color: fade(@primary-color, 90%) !important;
     }
 
     .ant-menu-item-selected {
-      background-color: fade(@primary-color, 85%) !important;
-
+      background-color: @secondary-color !important;
       a {
         color: #ffffff !important;
       }
@@ -111,21 +112,22 @@ body {
 }
 
 :root {
-  --progress-gradient-start: #4da6e3;
-  --progress-gradient-end: #0768A9;
-  --progress-gradient-mid: #3a94d0;
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --border-color: fade(#0768A9, 40%);
+  --progress-gradient-start: #e0f7f5;
+  --progress-gradient-mid: @secondary-color;
+  --progress-gradient-end: @primary-color;
+  --background-color: @background-color;
+  --text-color: @text-color;
+  --border-color: fade(@primary-color, 40%);
   --card-background: #f5f5f5;
-  --edge-label-color: #000000;
-  --primary-color: #0768A9;
+  --edge-label-color: @text-color;
+  --primary-color: @primary-color;
+  --secondary-color: @secondary-color;
 }
 
 .modal select,
 .modal input[type="number"] {
   background-color: var(--card-background, #ffffff) !important;
-  color: #000000 !important;
+  color: @text-color !important;
   font-weight: normal !important;
   border: 1px solid var(--border-color, fade(@primary-color, 40%)) !important;
   border-radius: 5px !important;
@@ -135,5 +137,5 @@ body {
 
 .modal select option {
   background-color: var(--card-background, #ffffff) !important;
-  color: #000000 !important;
+  color: @text-color !important;
 }
