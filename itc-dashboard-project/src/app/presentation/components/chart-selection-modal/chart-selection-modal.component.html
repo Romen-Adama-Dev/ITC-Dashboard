@@ -1,3 +1,4 @@
+<!-- src/app/presentation/components/chart-selection-modal/chart-selection-modal.component.html -->
 <div
   id="customModal"
   class="modal"
@@ -75,11 +76,8 @@
           <label for="dataSource" class="mt-3">{{ 'EDIT_WIDGET_MODAL.SELECT_DATA_SOURCE' | translate }}</label>
           <div class="select-wrapper">
             <select id="dataSource" [(ngModel)]="selectedDataSource">
-              <option value="/assets/data-set-1.json">
-                {{ 'EDIT_WIDGET_MODAL.DATA_SET_1' | translate }}
-              </option>
-              <option value="/assets/data-set-2.json">
-                {{ 'EDIT_WIDGET_MODAL.DATA_SET_2' | translate }}
+              <option *ngFor="let ds of dataSources" [value]="ds">
+                {{ ds.split('/').pop() }}
               </option>
             </select>
           </div>

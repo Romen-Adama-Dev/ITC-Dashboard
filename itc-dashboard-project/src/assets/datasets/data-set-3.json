@@ -1,0 +1,540 @@
+{
+  "charts": {
+    "advancedPieChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Tenerife", "value": 1200 },
+        { "name": "Gran Canaria", "value": 950 },
+        { "name": "Lanzarote", "value": 600 },
+        { "name": "Fuerteventura", "value": 550 },
+        { "name": "La Palma", "value": 800 },
+        { "name": "La Gomera", "value": 700 },
+        { "name": "El Hierro", "value": 500 }
+      ]
+    },
+    "areaChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "2018", "value": 1050 },
+            { "name": "2019", "value": 1100 },
+            { "name": "2020", "value": 1150 },
+            { "name": "2021", "value": 1175 },
+            { "name": "2022", "value": 1180 },
+            { "name": "2023", "value": 1190 },
+            { "name": "2024", "value": 1200 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "2018", "value": 880 },
+            { "name": "2019", "value": 900 },
+            { "name": "2020", "value": 920 },
+            { "name": "2021", "value": 930 },
+            { "name": "2022", "value": 940 },
+            { "name": "2023", "value": 945 },
+            { "name": "2024", "value": 950 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "2018", "value": 550 },
+            { "name": "2019", "value": 570 },
+            { "name": "2020", "value": 580 },
+            { "name": "2021", "value": 590 },
+            { "name": "2022", "value": 595 },
+            { "name": "2023", "value": 598 },
+            { "name": "2024", "value": 600 }
+          ]
+        },
+        {
+          "name": "Fuerteventura",
+          "series": [
+            { "name": "2018", "value": 500 },
+            { "name": "2019", "value": 520 },
+            { "name": "2020", "value": 540 },
+            { "name": "2021", "value": 545 },
+            { "name": "2022", "value": 548 },
+            { "name": "2023", "value": 549 },
+            { "name": "2024", "value": 550 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "2018", "value": 740 },
+            { "name": "2019", "value": 760 },
+            { "name": "2020", "value": 780 },
+            { "name": "2021", "value": 790 },
+            { "name": "2022", "value": 795 },
+            { "name": "2023", "value": 798 },
+            { "name": "2024", "value": 800 }
+          ]
+        },
+        {
+          "name": "La Gomera",
+          "series": [
+            { "name": "2018", "value": 650 },
+            { "name": "2019", "value": 670 },
+            { "name": "2020", "value": 685 },
+            { "name": "2021", "value": 695 },
+            { "name": "2022", "value": 698 },
+            { "name": "2023", "value": 699 },
+            { "name": "2024", "value": 700 }
+          ]
+        },
+        {
+          "name": "El Hierro",
+          "series": [
+            { "name": "2018", "value": 480 },
+            { "name": "2019", "value": 490 },
+            { "name": "2020", "value": 495 },
+            { "name": "2021", "value": 497 },
+            { "name": "2022", "value": 498 },
+            { "name": "2023", "value": 499 },
+            { "name": "2024", "value": 500 }
+          ]
+        }
+      ]
+    },
+    "boxChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "2019", "value": 1100, "min": 1000, "max": 1200, "median": 1100 },
+            { "name": "2020", "value": 1150, "min": 1050, "max": 1250, "median": 1150 },
+            { "name": "2021", "value": 1175, "min": 1075, "max": 1275, "median": 1175 },
+            { "name": "2022", "value": 1180, "min": 1080, "max": 1280, "median": 1180 },
+            { "name": "2023", "value": 1190, "min": 1090, "max": 1290, "median": 1190 },
+            { "name": "2024", "value": 1200, "min": 1100, "max": 1300, "median": 1200 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "2019", "value": 900, "min": 800, "max": 1000, "median": 900 },
+            { "name": "2020", "value": 920, "min": 820, "max": 1020, "median": 920 },
+            { "name": "2021", "value": 930, "min": 830, "max": 1030, "median": 930 },
+            { "name": "2022", "value": 940, "min": 840, "max": 1040, "median": 940 },
+            { "name": "2023", "value": 945, "min": 845, "max": 1045, "median": 945 },
+            { "name": "2024", "value": 950, "min": 850, "max": 1050, "median": 950 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "2019", "value": 760, "min": 660, "max": 860, "median": 760 },
+            { "name": "2020", "value": 780, "min": 680, "max": 880, "median": 780 },
+            { "name": "2021", "value": 790, "min": 690, "max": 890, "median": 790 },
+            { "name": "2022", "value": 795, "min": 695, "max": 895, "median": 795 },
+            { "name": "2023", "value": 798, "min": 698, "max": 898, "median": 798 },
+            { "name": "2024", "value": 800, "min": 700, "max": 900, "median": 800 }
+          ]
+        },
+        {
+          "name": "Fuerteventura",
+          "series": [
+            { "name": "2019", "value": 520, "min": 420, "max": 620, "median": 520 },
+            { "name": "2020", "value": 540, "min": 440, "max": 640, "median": 540 },
+            { "name": "2021", "value": 545, "min": 445, "max": 645, "median": 545 },
+            { "name": "2022", "value": 548, "min": 448, "max": 648, "median": 548 },
+            { "name": "2023", "value": 549, "min": 449, "max": 649, "median": 549 },
+            { "name": "2024", "value": 550, "min": 450, "max": 650, "median": 550 }
+          ]
+        },
+        {
+          "name": "El Hierro",
+          "series": [
+            { "name": "2019", "value": 490, "min": 390, "max": 590, "median": 490 },
+            { "name": "2020", "value": 495, "min": 395, "max": 595, "median": 495 },
+            { "name": "2021", "value": 497, "min": 397, "max": 597, "median": 497 },
+            { "name": "2022", "value": 498, "min": 398, "max": 598, "median": 498 },
+            { "name": "2023", "value": 499, "min": 399, "max": 599, "median": 499 },
+            { "name": "2024", "value": 500, "min": 400, "max": 600, "median": 500 }
+          ]
+        }
+      ]
+    },
+    "bubbleChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 1180, "r": 20 },
+            { "name": "2023", "x": 2023.2, "y": 1190, "r": 22 },
+            { "name": "2024", "x": 2024.3, "y": 1200, "r": 24 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 940, "r": 18 },
+            { "name": "2023", "x": 2023.2, "y": 945, "r": 19 },
+            { "name": "2024", "x": 2024.3, "y": 950, "r": 20 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 795, "r": 16 },
+            { "name": "2023", "x": 2023.2, "y": 798, "r": 17 },
+            { "name": "2024", "x": 2024.3, "y": 800, "r": 18 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 595, "r": 14 },
+            { "name": "2023", "x": 2023.2, "y": 598, "r": 15 },
+            { "name": "2024", "x": 2024.3, "y": 600, "r": 16 }
+          ]
+        },
+        {
+          "name": "Fuerteventura",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 548, "r": 13 },
+            { "name": "2023", "x": 2023.2, "y": 549, "r": 14 },
+            { "name": "2024", "x": 2024.3, "y": 550, "r": 15 }
+          ]
+        },
+        {
+          "name": "El Hierro",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 498, "r": 12 },
+            { "name": "2023", "x": 2023.2, "y": 499, "r": 13 },
+            { "name": "2024", "x": 2024.3, "y": 500, "r": 14 }
+          ]
+        }
+      ]
+    },
+    "gaugeChart": {
+      "theme": "default",
+      "view": [700, 700],
+      "data": [
+        { "name": "Índice de Biodiversidad", "value": 85 },
+        { "name": "Especies Amenazadas", "value": 120 },
+        { "name": "Especies Endémicas", "value": 550 }
+      ]
+    },
+    "heatMap": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "Bosque Húmedo", "value": 300 },
+            { "name": "Matorral", "value": 400 },
+            { "name": "Costas", "value": 200 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "Bosque Húmedo", "value": 250 },
+            { "name": "Matorral", "value": 350 },
+            { "name": "Costas", "value": 200 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "Bosque Húmedo", "value": 280 },
+            { "name": "Matorral", "value": 300 },
+            { "name": "Costas", "value": 220 }
+          ]
+        }
+      ]
+    },
+    "horizontalBarChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Tenerife", "value": 85 },
+        { "name": "Gran Canaria", "value": 80 },
+        { "name": "La Palma", "value": 82 },
+        { "name": "Lanzarote", "value": 75 },
+        { "name": "Fuerteventura", "value": 70 },
+        { "name": "La Gomera", "value": 78 },
+        { "name": "El Hierro", "value": 77 }
+      ]
+    },
+    "lineChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        {
+          "name": "Índice Biodiversidad",
+          "series": [
+            { "name": "2018", "value": 75 },
+            { "name": "2019", "value": 78 },
+            { "name": "2020", "value": 80 },
+            { "name": "2021", "value": 82 },
+            { "name": "2022", "value": 83 },
+            { "name": "2023", "value": 84 },
+            { "name": "2024", "value": 85 }
+          ]
+        },
+        {
+          "name": "Especies Endémicas Totales",
+          "series": [
+            { "name": "2018", "value": 500 },
+            { "name": "2019", "value": 520 },
+            { "name": "2020", "value": 540 },
+            { "name": "2021", "value": 555 },
+            { "name": "2022", "value": 565 },
+            { "name": "2023", "value": 572 },
+            { "name": "2024", "value": 580 }
+          ]
+        }
+      ]
+    },
+    "linearGaugeChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Área Protegida (%)", "value": 40 },
+        { "name": "Objetivo Meta (%)", "value": 60 }
+      ]
+    },
+    "normalizedAreaChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "2018", "value": 1050 },
+            { "name": "2019", "value": 1100 },
+            { "name": "2020", "value": 1150 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "2018", "value": 880 },
+            { "name": "2019", "value": 900 },
+            { "name": "2020", "value": 920 }
+          ]
+        }
+      ]
+    },
+    "normalizedHorizontalBarChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "Índice", "value": 0.9 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "Índice", "value": 0.85 }
+          ]
+        }
+      ]
+    },
+    "normalizedVerticalBarChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "Índice", "value": 0.9 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "Índice", "value": 0.85 }
+          ]
+        }
+      ]
+    },
+    "numberCards": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Especies Endémicas Totales", "value": 580, "extra": { "unit": "especies" } },
+        { "name": "Especies Amenazadas", "value": 120, "extra": { "unit": "especies" } },
+        { "name": "Especies Introducidas", "value": 250, "extra": { "unit": "especies" } }
+      ]
+    },
+    "percentGaugeChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Meta Protección (%)", "value": 60 },
+        { "name": "Cumplimiento Actual (%)", "value": 40 }
+      ]
+    },
+    "pieChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Bosque Húmedo", "value": 35 },
+        { "name": "Matorral", "value": 40 },
+        { "name": "Costas", "value": 25 }
+      ]
+    },
+    "pieGridChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Tenerife", "value": 1200 },
+        { "name": "Gran Canaria", "value": 950 },
+        { "name": "La Palma", "value": 800 },
+        { "name": "La Gomera", "value": 700 },
+        { "name": "El Hierro", "value": 500 }
+      ]
+    },
+    "polarChart": {
+      "theme": "default",
+      "view": [700, 300],
+      "data": [
+        {
+          "name": "Bosque Húmedo",
+          "series": [
+            { "name": "Índice", "value": 0.7 }
+          ]
+        },
+        {
+          "name": "Matorral",
+          "series": [
+            { "name": "Índice", "value": 0.6 }
+          ]
+        },
+        {
+          "name": "Costas",
+          "series": [
+            { "name": "Índice", "value": 0.5 }
+          ]
+        }
+      ]
+    },
+    "stackedAreaChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Plantas",
+          "series": [
+            { "name": "2018", "value": 4500 },
+            { "name": "2019", "value": 4600 },
+            { "name": "2020", "value": 4700 }
+          ]
+        },
+        {
+          "name": "Aves",
+          "series": [
+            { "name": "2018", "value": 800 },
+            { "name": "2019", "value": 820 },
+            { "name": "2020", "value": 830 }
+          ]
+        },
+        {
+          "name": "Mamíferos",
+          "series": [
+            { "name": "2018", "value": 120 },
+            { "name": "2019", "value": 125 },
+            { "name": "2020", "value": 130 }
+          ]
+        },
+        {
+          "name": "Reptiles",
+          "series": [
+            { "name": "2018", "value": 50 },
+            { "name": "2019", "value": 52 },
+            { "name": "2020", "value": 55 }
+          ]
+        }
+      ]
+    },
+    "stackedHorizontalBarChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "Plantas", "value": 4500 },
+            { "name": "Aves", "value": 800 },
+            { "name": "Mamíferos", "value": 120 },
+            { "name": "Reptiles", "value": 50 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "Plantas", "value": 3800 },
+            { "name": "Aves", "value": 700 },
+            { "name": "Mamíferos", "value": 110 },
+            { "name": "Reptiles", "value": 45 }
+          ]
+        }
+      ]
+    },
+    "stackedVerticalBarChart": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        {
+          "name": "Tenerife",
+          "series": [
+            { "name": "Plantas", "value": 4500 },
+            { "name": "Aves", "value": 800 },
+            { "name": "Mamíferos", "value": 120 },
+            { "name": "Reptiles", "value": 50 }
+          ]
+        },
+        {
+          "name": "Gran Canaria",
+          "series": [
+            { "name": "Plantas", "value": 3800 },
+            { "name": "Aves", "value": 700 },
+            { "name": "Mamíferos", "value": 110 },
+            { "name": "Reptiles", "value": 45 }
+          ]
+        }
+      ]
+    },
+    "treeMap": {
+      "theme": "default",
+      "view": [700, 400],
+      "data": [
+        { "name": "Bosque Húmedo", "value": 300, "extra": { "habitat": "Bosque" } },
+        { "name": "Matorral", "value": 400, "extra": { "habitat": "Matorral" } },
+        { "name": "Costas", "value": 200, "extra": { "habitat": "Litoral" } },
+        { "name": "Zonas Áridas", "value": 150, "extra": { "habitat": "Árido" } }
+      ]
+    },
+    "verticalBarChart": {
+      "theme": "default",
+      "view": [749, 499],
+      "data": [
+        { "name": "Tenerife", "value": 15 },
+        { "name": "Gran Canaria", "value": 12 },
+        { "name": "La Palma", "value": 10 },
+        { "name": "Lanzarote", "value": 8 },
+        { "name": "Fuerteventura", "value": 7 },
+        { "name": "La Gomera", "value": 9 },
+        { "name": "El Hierro", "value": 6 }
+      ]
+    }
+  }
+}
