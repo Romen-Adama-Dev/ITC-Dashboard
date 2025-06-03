@@ -45,7 +45,7 @@ export class ChartSelectorVanillaComponent {
     // Otros
     { label: 'Bubble Chart',               value: 'bubble-chart',               category: 'other' },
     { label: 'Polar Chart',                value: 'polar-chart',                category: 'other' },
-    { label: 'Heat Map',                   value: 'heat-map',                   category: 'other' },
+    { label: 'Heat Map',                   value: 'heatMap',                   category: 'other' },
     { label: 'Number Cards',               value: 'number-chart',               category: 'other' },
     { label: 'Tree Map',                   value: 'tree-map',                   category: 'other' },
   ];

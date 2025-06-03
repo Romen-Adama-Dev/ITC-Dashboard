@@ -21,7 +21,7 @@ export class ChartHelperService {
     if (dataSource) {
       return this.http.get<ChartsJson>(dataSource).pipe(
         map(chartsJson => {
-          const config = chartsJson.charts[chartType];
+          const config = chartsJson.charts[chartType] as ChartConfig;
           if (config) {
             return config;
           }
@@ -32,7 +32,7 @@ export class ChartHelperService {
       return this.chartDataService.charts$.pipe(
         map(chartsJson => {
           if (chartsJson) {
-            const config = chartsJson.charts[chartType];
+            const config = chartsJson.charts[chartType] as ChartConfig;
             if (config) {
               return config;
             }
@@ -43,6 +43,7 @@ export class ChartHelperService {
       );
     }
   }
+
 
   setAppearance(
     config: Partial<ChartConfig>,

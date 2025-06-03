@@ -25,6 +25,7 @@ import { ChartConfig } from '../../../../../domain/entities/chart.model';
 export class NormalizedHorizontalBarChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
@@ -71,22 +72,41 @@ export class NormalizedHorizontalBarChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
     this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'normalized-horizontal-bar-chart'))
       .subscribe(event => {
-        const config = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
-        this.updateDisplayedData();
+        if (
+          event.type === 'updateCount' &&
+          event.dataSource === this.dataSource
+        ) {
+          this.dataCount = event.dataCount;
+          this.updateDisplayedData();
+        }
+        if (
+          event.type === 'updateSource' &&
+          event.widgetId === this.widgetId
+        ) {
+          this.dataSource = event.dataSource;
+          this.loadConfig();
+        }
+        if (
+          event.type === 'updateAppearance' &&
+          event.widgetId === this.widgetId
+        ) {
+          const cfg = this.helper.setAppearance(event.appearance, {
+            theme: this.theme,
+            view: this.view,
+            data: this.originalData
+          });
+          this.theme = cfg.theme;
+          this.view = cfg.view;
+          this.originalData = cfg.data;
+          this.updateDisplayedData();
+        }
       });
   }
 
@@ -95,10 +115,16 @@ export class NormalizedHorizontalBarChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.loadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedData();
     }
   }
@@ -141,7 +167,6 @@ export class NormalizedHorizontalBarChartComponent
   }
 
   onSelect(event: any): void {
-    console.log(event);
     this.mediator.emit({
       origin: 'normalized-horizontal-bar-chart',
       type: 'select',

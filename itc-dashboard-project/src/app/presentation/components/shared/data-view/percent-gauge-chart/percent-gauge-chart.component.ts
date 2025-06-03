@@ -14,7 +14,8 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
-import { ChartConfig } from '../../../../../domain/entities/chart.model';
+import { ChartConfig, SimpleChartData } from '../../../../../domain/entities/chart.model';
+
 @Component({
   selector: 'app-percent-gauge-chart',
   standalone: true,
@@ -25,8 +26,10 @@ import { ChartConfig } from '../../../../../domain/entities/chart.model';
 export class PercentGaugeChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
   get isDarkTheme(): boolean {
@@ -56,7 +59,7 @@ export class PercentGaugeChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
@@ -70,7 +73,16 @@ export class PercentGaugeChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+    if (
+      changes['dataSource'] &&
+      !changes['dataSource'].isFirstChange()
+    ) {
+      this.loadConfig();
+    }
+    if (
+      changes['dataCount'] &&
+      !changes['dataCount'].isFirstChange()
+    ) {
       this.loadConfig();
     }
   }
@@ -91,34 +103,54 @@ export class PercentGaugeChartComponent
       .loadChartConfig('percentGaugeChart', this.dataSource)
       .subscribe({
         next: config => this.applyConfig(config),
-        error: error => console.error('Error loading percent gauge config', error)
+        error: error =>
+          console.error('Error loading percent gauge config', error)
       });
   }
 
   private applyConfig(config: ChartConfig): void {
     this.theme = config.theme;
     this.view = config.view;
-    if (config.data.length >= 2) {
-      this.value = config.data[0].value;
-      this.target = config.data[1].value;
+    const simpleData = config.data as SimpleChartData[];
+    if (simpleData.length >= 2) {
+      this.value = simpleData[0].value;
+      this.target = simpleData[1].value;
     }
   }
 
   private handleMediatorEvent(event: any): void {
-    const config = this.helper.processEvent(event, {
-      theme: this.theme,
-      view: this.view,
-      data: [
+    if (event.type === 'updateSource' && event.widgetId === this.widgetId) {
+      this.dataSource = event.dataSource;
+      this.loadConfig();
+      return;
+    }
+    if (
+      event.type === 'updateCount' &&
+      event.dataSource === this.dataSource
+    ) {
+      this.loadConfig();
+      return;
+    }
+    if (
+      event.type === 'updateAppearance' &&
+      event.widgetId === this.widgetId
+    ) {
+      const currentData: SimpleChartData[] = [
         { name: 'value', value: this.value },
         { name: 'target', value: this.target }
-      ]
-    });
-
-    this.theme = config.theme;
-    this.view = config.view;
-    if (config.data.length >= 2) {
-      this.value = config.data[0].value;
-      this.target = config.data[1].value;
+      ];
+      const cfg = this.helper.processEvent(event, {
+        theme: this.theme,
+        view: this.view,
+        data: currentData
+      });
+      this.theme = cfg.theme;
+      this.view = cfg.view;
+      const updatedData = cfg.data as SimpleChartData[];
+      if (updatedData.length >= 2) {
+        this.value = updatedData[0].value;
+        this.target = updatedData[1].value;
+      }
     }
   }
 

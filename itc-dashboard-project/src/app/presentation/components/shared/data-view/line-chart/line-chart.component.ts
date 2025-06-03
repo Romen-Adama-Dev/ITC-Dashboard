@@ -23,7 +23,10 @@ import { ChartConfig } from '../../../../../domain/entities/chart.model';
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class LineChartComponent
+  implements OnInit, AfterViewInit, OnDestroy, OnChanges
+{
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
@@ -76,15 +79,30 @@ export class LineChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
     this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'line-chart'))
       .subscribe(event => {
-        const config = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
-        this.updateDisplayedData();
+        if (event.type === 'updateCount' && event.dataSource === this.dataSource) {
+          this.dataCount = event.dataCount;
+          this.updateDisplayedData();
+        }
+
+        if (
+          event.type === 'updateSource' &&
+          event.widgetId === this.widgetId &&
+          event.dataSource === this.dataSource
+        ) {
+          this.loadConfig();
+        }
+
+        if (event.type === 'updateAppearance' && event.widgetId === this.widgetId) {
+          const cfg = this.helper.setAppearance(event.appearance, {
+            theme: this.theme,
+            view: this.view,
+            data: this.originalData
+          });
+          this.theme = cfg.theme;
+          this.view = cfg.view;
+          this.originalData = cfg.data;
+          this.updateDisplayedData();
+        }
       });
   }
 
@@ -105,7 +123,8 @@ export class LineChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
     this.configSub?.unsubscribe();
 
     if (this.graphqlEndpoint && this.graphqlQuery) {
-      this.configSub = this.http.post<any>(this.graphqlEndpoint, { query: this.graphqlQuery })
+      this.configSub = this.http
+        .post<any>(this.graphqlEndpoint, { query: this.graphqlQuery })
         .subscribe({
           next: res => this.applyConfig(res.data.lineChart),
           error: err => console.error('Error loading via GraphQL', err)
@@ -135,9 +154,10 @@ export class LineChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
 
     if (this.dataCount !== 'all') {
       const count = Number(this.dataCount);
-      this.data = count > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
     } else {
       this.data = [...this.originalData];
     }
@@ -154,7 +174,10 @@ export class LineChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
   }
 
   onSelect(event: any): void {
-    console.log(event);
-    this.mediator.emit({ origin: 'line-chart', type: 'select', payload: event });
+    this.mediator.emit({
+      origin: 'line-chart',
+      type: 'select',
+      payload: event
+    });
   }
 }

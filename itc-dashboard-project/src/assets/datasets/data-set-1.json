@@ -1,16 +1,13 @@
 {
   "charts": {
-    "advancedPieChart": {
+    "sharedChart": {
       "theme": "default",
       "view": [749, 499],
       "data": [
-        { "name": "Tenerife", "value": 1500 },
-        { "name": "Gran Canaria", "value": 1100 },
-        { "name": "Lanzarote", "value": 750 },
-        { "name": "Fuerteventura", "value": 650 },
-        { "name": "La Palma", "value": 950 },
-        { "name": "La Gomera", "value": 800 },
-        { "name": "El Hierro", "value": 600 }
+        { "name": "Tenerife",      "value": 1200 },
+        { "name": "Gran Canaria",  "value": 950 },
+        { "name": "La Palma",      "value": 800 },
+        { "name": "Lanzarote",     "value": 650 }
       ]
     },
     "areaChart": {
@@ -20,64 +17,49 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "2018", "value": 1200 },
-            { "name": "2019", "value": 1300 },
-            { "name": "2020", "value": 1400 },
-            { "name": "2021", "value": 1450 }
+            { "name": "2018", "value": 1100 },
+            { "name": "2019", "value": 1150 },
+            { "name": "2020", "value": 1175 },
+            { "name": "2021", "value": 1180 },
+            { "name": "2022", "value": 1190 },
+            { "name": "2023", "value": 1200 },
+            { "name": "2024", "value": 1200 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "2018", "value": 950 },
-            { "name": "2019", "value": 1000 },
-            { "name": "2020", "value": 1050 },
-            { "name": "2021", "value": 1100 }
+            { "name": "2018", "value": 900 },
+            { "name": "2019", "value": 920 },
+            { "name": "2020", "value": 930 },
+            { "name": "2021", "value": 940 },
+            { "name": "2022", "value": 945 },
+            { "name": "2023", "value": 950 },
+            { "name": "2024", "value": 950 }
           ]
         },
         {
           "name": "Lanzarote",
           "series": [
             { "name": "2018", "value": 600 },
-            { "name": "2019", "value": 650 },
-            { "name": "2020", "value": 700 },
-            { "name": "2021", "value": 750 }
-          ]
-        },
-        {
-          "name": "Fuerteventura",
-          "series": [
-            { "name": "2018", "value": 550 },
-            { "name": "2019", "value": 600 },
-            { "name": "2020", "value": 650 },
-            { "name": "2021", "value": 700 }
+            { "name": "2019", "value": 620 },
+            { "name": "2020", "value": 630 },
+            { "name": "2021", "value": 640 },
+            { "name": "2022", "value": 645 },
+            { "name": "2023", "value": 650 },
+            { "name": "2024", "value": 650 }
           ]
         },
         {
           "name": "La Palma",
           "series": [
-            { "name": "2018", "value": 800 },
-            { "name": "2019", "value": 850 },
-            { "name": "2020", "value": 900 },
-            { "name": "2021", "value": 950 }
-          ]
-        },
-        {
-          "name": "La Gomera",
-          "series": [
-            { "name": "2018", "value": 700 },
-            { "name": "2019", "value": 750 },
-            { "name": "2020", "value": 800 },
-            { "name": "2021", "value": 850 }
-          ]
-        },
-        {
-          "name": "El Hierro",
-          "series": [
-            { "name": "2018", "value": 500 },
-            { "name": "2019", "value": 550 },
-            { "name": "2020", "value": 600 },
-            { "name": "2021", "value": 650 }
+            { "name": "2018", "value": 750 },
+            { "name": "2019", "value": 780 },
+            { "name": "2020", "value": 790 },
+            { "name": "2021", "value": 795 },
+            { "name": "2022", "value": 798 },
+            { "name": "2023", "value": 800 },
+            { "name": "2024", "value": 800 }
           ]
         }
       ]
@@ -89,46 +71,45 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "2019", "value": 1200, "min": 1100, "max": 1300, "median": 1200 },
-            { "name": "2020", "value": 1250, "min": 1150, "max": 1350, "median": 1250 },
-            { "name": "2021", "value": 1300, "min": 1200, "max": 1400, "median": 1300 },
-            { "name": "2022", "value": 1350, "min": 1250, "max": 1450, "median": 1350 }
+            { "name": "2019", "value": 1150, "min": 1100, "max": 1200, "median": 1150 },
+            { "name": "2020", "value": 1175, "min": 1125, "max": 1225, "median": 1175 },
+            { "name": "2021", "value": 1180, "min": 1130, "max": 1230, "median": 1180 },
+            { "name": "2022", "value": 1190, "min": 1140, "max": 1240, "median": 1190 },
+            { "name": "2023", "value": 1200, "min": 1150, "max": 1250, "median": 1200 },
+            { "name": "2024", "value": 1200, "min": 1150, "max": 1250, "median": 1200 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "2019", "value": 1000, "min": 900, "max": 1100, "median": 1000 },
-            { "name": "2020", "value": 1050, "min": 950, "max": 1150, "median": 1050 },
-            { "name": "2021", "value": 1100, "min": 1000, "max": 1200, "median": 1100 },
-            { "name": "2022", "value": 1150, "min": 1050, "max": 1250, "median": 1150 }
+            { "name": "2019", "value": 920, "min": 870, "max": 970, "median": 920 },
+            { "name": "2020", "value": 930, "min": 880, "max": 980, "median": 930 },
+            { "name": "2021", "value": 940, "min": 890, "max": 990, "median": 940 },
+            { "name": "2022", "value": 945, "min": 895, "max": 995, "median": 945 },
+            { "name": "2023", "value": 950, "min": 900, "max": 1000, "median": 950 },
+            { "name": "2024", "value": 950, "min": 900, "max": 1000, "median": 950 }
           ]
         },
         {
           "name": "La Palma",
           "series": [
-            { "name": "2019", "value": 850, "min": 750, "max": 950, "median": 850 },
-            { "name": "2020", "value": 900, "min": 800, "max": 1000, "median": 900 },
-            { "name": "2021", "value": 950, "min": 850, "max": 1050, "median": 950 },
-            { "name": "2022", "value": 1000, "min": 900, "max": 1100, "median": 1000 }
+            { "name": "2019", "value": 780, "min": 730, "max": 830, "median": 780 },
+            { "name": "2020", "value": 790, "min": 740, "max": 840, "median": 790 },
+            { "name": "2021", "value": 795, "min": 745, "max": 845, "median": 795 },
+            { "name": "2022", "value": 798, "min": 748, "max": 848, "median": 798 },
+            { "name": "2023", "value": 800, "min": 750, "max": 850, "median": 800 },
+            { "name": "2024", "value": 800, "min": 750, "max": 850, "median": 800 }
           ]
         },
         {
-          "name": "Fuerteventura",
+          "name": "Lanzarote",
           "series": [
-            { "name": "2019", "value": 600, "min": 500, "max": 700, "median": 600 },
-            { "name": "2020", "value": 650, "min": 550, "max": 750, "median": 650 },
-            { "name": "2021", "value": 700, "min": 600, "max": 800, "median": 700 },
-            { "name": "2022", "value": 750, "min": 650, "max": 850, "median": 750 }
-          ]
-        },
-        {
-          "name": "El Hierro",
-          "series": [
-            { "name": "2019", "value": 550, "min": 450, "max": 650, "median": 550 },
-            { "name": "2020", "value": 600, "min": 500, "max": 700, "median": 600 },
-            { "name": "2021", "value": 650, "min": 550, "max": 750, "median": 650 },
-            { "name": "2022", "value": 700, "min": 600, "max": 800, "median": 700 }
+            { "name": "2019", "value": 620, "min": 570, "max": 670, "median": 620 },
+            { "name": "2020", "value": 630, "min": 580, "max": 680, "median": 630 },
+            { "name": "2021", "value": 640, "min": 590, "max": 690, "median": 640 },
+            { "name": "2022", "value": 645, "min": 595, "max": 695, "median": 645 },
+            { "name": "2023", "value": 650, "min": 600, "max": 700, "median": 650 },
+            { "name": "2024", "value": 650, "min": 600, "max": 700, "median": 650 }
           ]
         }
       ]
@@ -140,36 +121,35 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "2022", "x": 2022.1, "y": 1300, "r": 25 },
-            { "name": "2023", "x": 2023.2, "y": 1350, "r": 28 },
-            { "name": "2024", "x": 2024.3, "y": 1400, "r": 30 }
+            { "name": "2022", "x": 2022.1, "y": 1190, "r": 24 },
+            { "name": "2023", "x": 2023.2, "y": 1200, "r": 25 },
+            { "name": "2024", "x": 2024.3, "y": 1200, "r": 25 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "2022", "x": 2022.1, "y": 1100, "r": 20 },
-            { "name": "2023", "x": 2023.2, "y": 1150, "r": 22 },
-            { "name": "2024", "x": 2024.3, "y": 1200, "r": 24 }
+            { "name": "2022", "x": 2022.1, "y": 945, "r": 19 },
+            { "name": "2023", "x": 2023.2, "y": 950, "r": 20 },
+            { "name": "2024", "x": 2024.3, "y": 950, "r": 20 }
           ]
         },
         {
           "name": "La Palma",
           "series": [
-            { "name": "2022", "x": 2022.1, "y": 900, "r": 18 },
-            { "name": "2023", "x": 2023.2, "y": 950, "r": 19 },
-            { "name": "2024", "x": 2024.3, "y": 1000, "r": 20 }
+            { "name": "2022", "x": 2022.1, "y": 798, "r": 17 },
+            { "name": "2023", "x": 2023.2, "y": 800, "r": 18 },
+            { "name": "2024", "x": 2024.3, "y": 800, "r": 18 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "2022", "x": 2022.1, "y": 645, "r": 15 },
+            { "name": "2023", "x": 2023.2, "y": 650, "r": 16 },
+            { "name": "2024", "x": 2024.3, "y": 650, "r": 16 }
           ]
         }
-      ]
-    },
-    "gaugeChart": {
-      "theme": "default",
-      "view": [700, 700],
-      "data": [
-        { "name": "Índice de Biodiversidad", "value": 90 },
-        { "name": "Especies Amenazadas", "value": 140 },
-        { "name": "Especies Endémicas", "value": 600 }
       ]
     },
     "heatMap": {
@@ -179,40 +159,35 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "Bosque Húmedo", "value": 350 },
-            { "name": "Matorral", "value": 450 },
-            { "name": "Costas", "value": 250 },
-            { "name": "Volcanes", "value": 180 }
+            { "name": "Bosque Húmedo", "value": 400 },
+            { "name": "Matorral",      "value": 500 },
+            { "name": "Costas",        "value": 300 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "Bosque Húmedo", "value": 300 },
-            { "name": "Matorral", "value": 400 },
-            { "name": "Costas", "value": 250 },
-            { "name": "Volcanes", "value": 160 }
+            { "name": "Bosque Húmedo", "value": 350 },
+            { "name": "Matorral",      "value": 450 },
+            { "name": "Costas",        "value": 250 }
           ]
         },
         {
           "name": "La Palma",
           "series": [
             { "name": "Bosque Húmedo", "value": 320 },
-            { "name": "Matorral", "value": 350 },
-            { "name": "Costas", "value": 270 },
-            { "name": "Volcanes", "value": 140 }
+            { "name": "Matorral",      "value": 400 },
+            { "name": "Costas",        "value": 200 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "Bosque Húmedo", "value": 250 },
+            { "name": "Matorral",      "value": 300 },
+            { "name": "Costas",        "value": 100 }
           ]
         }
-      ]
-    },
-    "horizontalBarChart": {
-      "theme": "default",
-      "view": [749, 499],
-      "data": [
-        { "name": "Tenerife", "value": 95 },
-        { "name": "Gran Canaria", "value": 90 },
-        { "name": "La Palma", "value": 92 },
-        { "name": "Lanzarote", "value": 85 }
       ]
     },
     "lineChart": {
@@ -222,19 +197,37 @@
         {
           "name": "Índice Biodiversidad",
           "series": [
-            { "name": "2018", "value": 80 },
-            { "name": "2019", "value": 83 },
-            { "name": "2020", "value": 86 },
-            { "name": "2021", "value": 88 }
+            { "name": "2018", "value": 75 },
+            { "name": "2019", "value": 78 },
+            { "name": "2020", "value": 80 },
+            { "name": "2021", "value": 82 },
+            { "name": "2022", "value": 83 },
+            { "name": "2023", "value": 84 },
+            { "name": "2024", "value": 85 }
           ]
         },
         {
           "name": "Especies Endémicas Totales",
           "series": [
-            { "name": "2018", "value": 520 },
-            { "name": "2019", "value": 540 },
-            { "name": "2020", "value": 560 },
-            { "name": "2021", "value": 580 }
+            { "name": "2018", "value": 1100 },
+            { "name": "2019", "value": 1150 },
+            { "name": "2020", "value": 1175 },
+            { "name": "2021", "value": 1180 },
+            { "name": "2022", "value": 1190 },
+            { "name": "2023", "value": 1200 },
+            { "name": "2024", "value": 1200 }
+          ]
+        },
+        {
+          "name": "Especies Amenazadas",
+          "series": [
+            { "name": "2018", "value": 200 },
+            { "name": "2019", "value": 210 },
+            { "name": "2020", "value": 220 },
+            { "name": "2021", "value": 230 },
+            { "name": "2022", "value": 240 },
+            { "name": "2023", "value": 250 },
+            { "name": "2024", "value": 250 }
           ]
         }
       ]
@@ -243,8 +236,8 @@
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Área Protegida (%)", "value": 45 },
-        { "name": "Meta (%)", "value": 65 }
+        { "name": "Área Protegida (%)", "value": 35 },
+        { "name": "Objetivo Meta (%)", "value": 60 }
       ]
     },
     "normalizedAreaChart": {
@@ -254,17 +247,33 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "2018", "value": 1200 },
-            { "name": "2019", "value": 1300 },
-            { "name": "2020", "value": 1400 }
+            { "name": "2018", "value": 1100 },
+            { "name": "2019", "value": 1150 },
+            { "name": "2020", "value": 1175 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "2018", "value": 950 },
-            { "name": "2019", "value": 1000 },
-            { "name": "2020", "value": 1050 }
+            { "name": "2018", "value": 900 },
+            { "name": "2019", "value": 920 },
+            { "name": "2020", "value": 930 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "2018", "value": 600 },
+            { "name": "2019", "value": 620 },
+            { "name": "2020", "value": 630 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "2018", "value": 750 },
+            { "name": "2019", "value": 780 },
+            { "name": "2020", "value": 790 }
           ]
         }
       ]
@@ -276,15 +285,37 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "Índice", "value": 0.92 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 40 },
+            { "name": "Objetivo", "value": 60 },
+            { "name": "Meta", "value": 80 },
+            { "name": "Superado", "value": 100 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "Índice", "value": 0.88 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 35 },
+            { "name": "Objetivo", "value": 55 },
+            { "name": "Meta", "value": 75 },
+            { "name": "Superado", "value": 95 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "Índice", "value": 30 },
+            { "name": "Objetivo", "value": 50 },
+            { "name": "Meta", "value": 70 },
+            { "name": "Superado", "value": 90 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "Índice", "value": 25 },
+            { "name": "Objetivo", "value": 45 },
+            { "name": "Meta", "value": 65 },
+            { "name": "Superado", "value": 85 }
           ]
         }
       ]
@@ -296,15 +327,37 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "Índice", "value": 0.92 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 0.9 },
+            { "name": "Objetivo", "value": 0.95 },
+            { "name": "Meta", "value": 1.0 },
+            { "name": "Superado", "value": 1.05 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "Índice", "value": 0.88 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 0.85 },
+            { "name": "Objetivo", "value": 0.90 },
+            { "name": "Meta", "value": 0.95 },
+            { "name": "Superado", "value": 1.00 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "Índice", "value": 0.80 },
+            { "name": "Objetivo", "value": 0.85 },
+            { "name": "Meta", "value": 0.90 },
+            { "name": "Superado", "value": 0.95 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "Índice", "value": 0.75 },
+            { "name": "Objetivo", "value": 0.80 },
+            { "name": "Meta", "value": 0.85 },
+            { "name": "Superado", "value": 0.90 }
           ]
         }
       ]
@@ -313,17 +366,20 @@
       "theme": "default",
       "view": [749, 499],
       "data": [
-        { "name": "Especies Endémicas", "value": 620 },
-        { "name": "Especies Amenazadas", "value": 140 },
-        { "name": "Especies Introducidas", "value": 300 }
+        { "name": "Especies Endémicas Totales", "value": 1200, "extra": { "unit": "especies" } },
+        { "name": "Especies Amenazadas", "value": 250, "extra": { "unit": "especies" } },
+        { "name": "Especies Introducidas", "value": 300, "extra": { "unit": "especies" } },
+        { "name": "Áreas Protegidas", "value": 35, "extra": { "unit": "áreas" } },
+        { "name": "Índice de Biodiversidad", "value": 85, "extra": { "unit": "%" } },
+        { "name": "Objetivo Meta", "value": 60, "extra": { "unit": "%" } }
       ]
     },
     "percentGaugeChart": {
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Cumplimiento (%)", "value": 45 },
-        { "name": "Meta (%)", "value": 65 }
+        { "name": "Meta Protección (%)", "value": 60 },
+        { "name": "Cumplimiento Actual (%)", "value": 35 }
       ]
     },
     "pieChart": {
@@ -331,19 +387,25 @@
       "view": [700, 400],
       "data": [
         { "name": "Bosque Húmedo", "value": 40 },
-        { "name": "Matorral", "value": 45 },
+        { "name": "Matorral", "value": 50 },
         { "name": "Costas", "value": 30 },
-        { "name": "Volcanes", "value": 20 }
+        { "name": "Áreas Urbanas", "value": 20 },
+        { "name": "Áreas Agrícolas", "value": 15 },
+        { "name": "Áreas Protegidas", "value": 35 },
+        { "name": "Áreas Recreativas", "value": 10 },
+        { "name": "Áreas de Conservación", "value": 8 },
+        { "name": "Áreas de Restauración", "value": 7 },
+        { "name": "Áreas de Investigación", "value": 5 }
       ]
     },
     "pieGridChart": {
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Tenerife", "value": 1500 },
-        { "name": "Gran Canaria", "value": 1100 },
-        { "name": "La Palma", "value": 950 },
-        { "name": "Lanzarote", "value": 750 }
+        { "name": "Tenerife", "value": 1200 },
+        { "name": "Gran Canaria", "value": 950 },
+        { "name": "La Palma", "value": 800 },
+        { "name": "Lanzarote", "value": 650 }
       ]
     },
     "polarChart": {
@@ -353,29 +415,61 @@
         {
           "name": "Bosque Húmedo",
           "series": [
-            { "name": "Índice", "value": 0.75 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 0.7 }
           ]
         },
         {
           "name": "Matorral",
           "series": [
-            { "name": "Índice", "value": 0.65 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 0.6 }
           ]
         },
         {
           "name": "Costas",
           "series": [
-            { "name": "Índice", "value": 0.55 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 0.5 }
           ]
         },
         {
-          "name": "Volcanes",
+          "name": "Áreas Urbanas",
           "series": [
-            { "name": "Índice", "value": 0.45 },
-            { "name": "Meta", "value": 1 }
+            { "name": "Índice", "value": 0.4 }
+          ]
+        },
+        {
+          "name": "Áreas Agrícolas",
+          "series": [
+            { "name": "Índice", "value": 0.3 }
+          ]
+        },
+        {
+          "name": "Áreas Protegidas",
+          "series": [
+            { "name": "Índice", "value": 0.8 }
+          ]
+        },
+        {
+          "name": "Áreas Recreativas",
+          "series": [
+            { "name": "Índice", "value": 0.2 }
+          ]
+        },
+        {
+          "name": "Áreas de Conservación",
+          "series": [
+            { "name": "Índice", "value": 0.9 }
+          ]
+        },
+        {
+          "name": "Áreas de Restauración",
+          "series": [
+            { "name": "Índice", "value": 0.1 }
+          ]
+        },
+        {
+          "name": "Áreas de Investigación",
+          "series": [
+            { "name": "Índice", "value": 0.05 }
           ]
         }
       ]
@@ -387,17 +481,33 @@
         {
           "name": "Plantas",
           "series": [
-            { "name": "2018", "value": 4700 },
-            { "name": "2019", "value": 4800 },
-            { "name": "2020", "value": 4900 }
+            { "name": "2018", "value": 4000 },
+            { "name": "2019", "value": 4100 },
+            { "name": "2020", "value": 4200 }
           ]
         },
         {
           "name": "Aves",
           "series": [
-            { "name": "2018", "value": 850 },
-            { "name": "2019", "value": 870 },
-            { "name": "2020", "value": 900 }
+            { "name": "2018", "value": 800 },
+            { "name": "2019", "value": 820 },
+            { "name": "2020", "value": 830 }
+          ]
+        },
+        {
+          "name": "Mamíferos",
+          "series": [
+            { "name": "2018", "value": 120 },
+            { "name": "2019", "value": 125 },
+            { "name": "2020", "value": 130 }
+          ]
+        },
+        {
+          "name": "Reptiles",
+          "series": [
+            { "name": "2018", "value": 50 },
+            { "name": "2019", "value": 52 },
+            { "name": "2020", "value": 55 }
           ]
         }
       ]
@@ -409,17 +519,37 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "Plantas", "value": 4700 },
-            { "name": "Aves", "value": 850 },
-            { "name": "Mamíferos", "value": 120 }
+            { "name": "Plantas", "value": 4000 },
+            { "name": "Aves", "value": 800 },
+            { "name": "Mamíferos", "value": 120 },
+            { "name": "Reptiles", "value": 50 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "Plantas", "value": 4000 },
-            { "name": "Aves", "value": 750 },
-            { "name": "Mamíferos", "value": 100 }
+            { "name": "Plantas", "value": 3500 },
+            { "name": "Aves", "value": 700 },
+            { "name": "Mamíferos", "value": 110 },
+            { "name": "Reptiles", "value": 45 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "Plantas", "value": 3000 },
+            { "name": "Aves", "value": 600 },
+            { "name": "Mamíferos", "value": 100 },
+            { "name": "Reptiles", "value": 40 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "Plantas", "value": 2500 },
+            { "name": "Aves", "value": 500 },
+            { "name": "Mamíferos", "value": 90 },
+            { "name": "Reptiles", "value": 35 }
           ]
         }
       ]
@@ -431,17 +561,37 @@
         {
           "name": "Tenerife",
           "series": [
-            { "name": "Plantas", "value": 4700 },
-            { "name": "Aves", "value": 850 },
-            { "name": "Mamíferos", "value": 120 }
+            { "name": "Plantas", "value": 4000 },
+            { "name": "Aves", "value": 800 },
+            { "name": "Mamíferos", "value": 120 },
+            { "name": "Reptiles", "value": 50 }
           ]
         },
         {
           "name": "Gran Canaria",
           "series": [
-            { "name": "Plantas", "value": 4000 },
-            { "name": "Aves", "value": 750 },
-            { "name": "Mamíferos", "value": 100 }
+            { "name": "Plantas", "value": 3500 },
+            { "name": "Aves", "value": 700 },
+            { "name": "Mamíferos", "value": 110 },
+            { "name": "Reptiles", "value": 45 }
+          ]
+        },
+        {
+          "name": "Lanzarote",
+          "series": [
+            { "name": "Plantas", "value": 3000 },
+            { "name": "Aves", "value": 600 },
+            { "name": "Mamíferos", "value": 100 },
+            { "name": "Reptiles", "value": 40 }
+          ]
+        },
+        {
+          "name": "La Palma",
+          "series": [
+            { "name": "Plantas", "value": 2500 },
+            { "name": "Aves", "value": 500 },
+            { "name": "Mamíferos", "value": 90 },
+            { "name": "Reptiles", "value": 35 }
           ]
         }
       ]
@@ -450,20 +600,16 @@
       "theme": "default",
       "view": [700, 400],
       "data": [
-        { "name": "Bosque Húmedo", "value": 350 },
-        { "name": "Matorral", "value": 450 },
-        { "name": "Costas", "value": 250 },
-        { "name": "Volcanes", "value": 180 }
-      ]
-    },
-    "verticalBarChart": {
-      "theme": "default",
-      "view": [749, 499],
-      "data": [
-        { "name": "Tenerife", "value": 20 },
-        { "name": "Gran Canaria", "value": 18 },
-        { "name": "La Palma", "value": 15 },
-        { "name": "Lanzarote", "value": 12 }
+        { "name": "Bosque Húmedo", "value": 400, "extra": { "habitat": "Bosque" } },
+        { "name": "Matorral", "value": 500, "extra": { "habitat": "Matorral" } },
+        { "name": "Costas", "value": 300, "extra": { "habitat": "Litoral" } },
+        { "name": "Áreas Urbanas", "value": 200, "extra": { "habitat": "Urbano" } },
+        { "name": "Áreas Agrícolas", "value": 150, "extra": { "habitat": "Agrícola" } },
+        { "name": "Áreas Protegidas", "value": 350, "extra": { "habitat": "Protegido" } },
+        { "name": "Áreas Recreativas", "value": 100, "extra": { "habitat": "Recreativo" } },
+        { "name": "Áreas de Conservación", "value": 80, "extra": { "habitat": "Conservación" } },
+        { "name": "Áreas de Restauración", "value": 70, "extra": { "habitat": "Restauración" } },
+        { "name": "Áreas de Investigación", "value": 50, "extra": { "habitat": "Investigación" } }
       ]
     }
   }

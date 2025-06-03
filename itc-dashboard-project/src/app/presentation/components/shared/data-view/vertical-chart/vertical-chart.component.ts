@@ -10,30 +10,26 @@ import {
   OnDestroy
 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClientModule } from '@angular/common/http';
-import { Subscription, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
-import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.model';
+import { ChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-vertical-chart',
   standalone: true,
-  imports: [NgxChartsModule, HttpClientModule],
+  imports: [NgxChartsModule],
   templateUrl: './vertical-chart.component.html',
   styleUrls: ['./vertical-chart.component.scss']
 })
 export class VerticalBarChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
-  @HostBinding('class.dark') get isDarkTheme(): boolean {
-    return this.theme === 'dark';
-  }
+  @Input() dataSource = '/assets/datasets/data-set-1.json';
 
-  @Input() dataSource: string = '/assets/datasets/data.json';
-
-  private _dataCount: string = 'all';
+  private _dataCount = 'all';
   @Input()
   set dataCount(value: string) {
     this._dataCount = value || 'all';
@@ -43,13 +39,18 @@ export class VerticalBarChartComponent
     return this._dataCount;
   }
 
+  @HostBinding('class.dark')
+  get isDarkTheme(): boolean {
+    return this.theme === 'dark';
+  }
+
   view: [number, number] = [700, 400];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'País';
+  xAxisLabel = 'Valor';
   showYAxisLabel = true;
   yAxisLabel = 'Población';
 
@@ -62,10 +63,9 @@ export class VerticalBarChartComponent
 
   data: ChartData[] = [];
   private originalData: ChartData[] = [];
-
+  private configSub?: Subscription;
+  private readonly mediatorSub?: Subscription;
   private readonly resizeObserver: ResizeObserver;
-  private configSubscription?: Subscription;
-  private readonly mediatorSubscription?: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -80,9 +80,22 @@ export class VerticalBarChartComponent
       }
     });
 
-    this.mediatorSubscription = this.mediator.events$
-      .pipe(filter(evt => evt.origin !== 'vertical-bar-chart'))
-      .subscribe(evt => this.handleMediatorEvent(evt));
+    this.mediatorSub = this.mediator.events$.subscribe(event => {
+      if (
+        event.type === 'updateCount' &&
+        event.dataSource === this.dataSource
+      ) {
+        this.dataCount = event.dataCount;
+        this.updateDisplayedData();
+      }
+      if (
+        event.type === 'updateSource' &&
+        event.widgetId === this.widgetId &&
+        event.dataSource === this.dataSource
+      ) {
+        this.reloadConfig();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -90,10 +103,16 @@ export class VerticalBarChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.reloadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedData();
     }
   }
@@ -104,29 +123,29 @@ export class VerticalBarChartComponent
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
-    this.configSubscription?.unsubscribe();
-    this.mediatorSubscription?.unsubscribe();
+    this.configSub?.unsubscribe();
+    this.mediatorSub?.unsubscribe();
   }
 
   private loadConfig(): void {
-    this.configSubscription = this.helper
-      .loadChartConfig('verticalBarChart', this.dataSource)
-      .subscribe({
-        next: cfg => this.applyConfig(cfg),
-        error: err => console.error('Error loading verticalBarChart config', err)
-      });
+    const ds = this.dataSource.trim() || '/assets/datasets/data-set-1.json';
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper.loadChartConfig('sharedChart', ds).subscribe({
+      next: config => {
+        this.theme = config.theme;
+        this.view = config.view;
+        this.originalData = [...config.data];
+        this.updateDisplayedData();
+      },
+      error: err => {
+        console.error('Error cargando configuración:', err);
+      }
+    });
   }
 
   private reloadConfig(): void {
-    this.configSubscription?.unsubscribe();
+    this.configSub?.unsubscribe();
     this.loadConfig();
-  }
-
-  private applyConfig(cfg: ChartConfig): void {
-    this.theme = cfg.theme;
-    this.view = cfg.view;
-    this.originalData = [...cfg.data];
-    this.updateDisplayedData();
   }
 
   private updateDisplayedData(): void {
@@ -134,28 +153,13 @@ export class VerticalBarChartComponent
       this.data = [];
       return;
     }
-    this.data = this.dataCount === 'all'
-      ? [...this.originalData]
-      : this.originalData.slice(0, Number(this.dataCount) || this.originalData.length);
-  }
-
-  private handleMediatorEvent(event: any): void {
-    const updated = this.helper.processEvent(event, {
-      theme: this.theme,
-      view: this.view,
-      data: this.originalData
-    });
-    this.theme = updated.theme;
-    this.view = updated.view;
-    this.originalData = updated.data;
-    this.updateDisplayedData();
+    this.data =
+      this.dataCount === 'all'
+        ? [...this.originalData]
+        : this.originalData.slice(0, Number(this.dataCount) || this.originalData.length);
   }
 
   onSelect(event: any): void {
-    this.mediator.emit({
-      origin: 'vertical-bar-chart',
-      type: 'select',
-      payload: event
-    });
+    this.mediator.emit({ type: 'select', payload: event });
   }
 }

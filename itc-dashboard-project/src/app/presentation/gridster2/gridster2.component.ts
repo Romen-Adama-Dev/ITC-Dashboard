@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-// Angular Gridster2
 import {
   CompactType,
   DisplayGrid,
@@ -15,54 +13,43 @@ import {
   PushDirections,
   Resizable,
 } from 'angular-gridster2';
-
-// Ngx-translate
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
-// Ng Zorro
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-// Services
 import { ChartDataService } from '../../application/services/chart-data.service';
 import { MediatorService } from '../../application/services/mediator.service';
 
-// Shared Components
 import { PrimaryButtonComponent } from '../components/shared/buttons/primary-button/primary-button.component';
 import { DefaultButtonComponent } from '../components/shared/buttons/default-button/default-button.component';
 import { FloatShapeButtonComponent } from '../components/shared/buttons/float-shape-button/float-shape-button.component';
 import { LanguageDropdownComponent } from '../components/shared/buttons/drop-button/drop-button.component';
 import { ThemeToggleButtonComponent } from "../components/shared/buttons/theme-toggle-button.component";
-
-// Chart Components
-import { AreaChartComponent } from '../components/shared/data-view/area-chart/area-chart.component';
-import { LineChartComponent } from '../components/shared/data-view/line-chart/line-chart.component';
-import { AdvancedPieChartComponent } from '../components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component';
-import { BoxChartComponent } from '../components/shared/data-view/box-chart/box-chart.component';
-import { BubbleChartComponent } from '../components/shared/data-view/bubble-chart/bubble-chart.component';
-import { GaugeChartComponent } from '../components/shared/data-view/gauge-chart/gauge-chart.component';
-import { HeatMapComponent } from '../components/shared/data-view/heat-chart/heat-chart.component';
 import { HorizontalBarChartComponent } from '../components/shared/data-view/horizontal-chart/horizontal-chart.component';
-import { LinearGaugeChartComponent } from '../components/shared/data-view/linear-gauge-chart/linear-gauge-chart.component';
-import { NormalizedAreaChartComponent } from '../components/shared/data-view/normalized-area-chart/normalized-area-chart.component';
 import { VerticalBarChartComponent } from '../components/shared/data-view/vertical-chart/vertical-chart.component';
-import { NormalizedHorizontalBarChartComponent } from '../components/shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component';
-import { NormalizedVerticalBarChartComponent } from '../components/shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component';
-import { NumberCardsComponent } from '../components/shared/data-view/number-chart/number-chart.component';
-import { PercentGaugeChartComponent } from '../components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component';
-import { PieGridComponent } from '../components/shared/data-view/pie-grid/pie-grid.component';
-import { PieChartComponent } from '../components/shared/data-view/pie-chart/pie-chart.component';
-import { PolarChartComponent } from '../components/shared/data-view/polar-chart/polar-chart.component';
-import { StackedAreaChartComponent } from '../components/shared/data-view/stacked-area-chart/stacked-area-chart.component';
-import { StackedHorizontalBarChartComponent } from '../components/shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component';
-import { StackedVerticalBarChartComponent } from '../components/shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component';
-import { TreeMapComponent } from '../components/shared/data-view/tree-chart/tree-chart.component';
-
-// Modal Components
 import { ChartSelectionModalComponent } from '../components/chart-selection-modal/chart-selection-modal.component';
 import { EditWidgetModalComponent } from '../components/edit-modal/edit-modal.component';
+import { AdvancedPieChartComponent } from "../components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component";
+import { AreaChartComponent } from "../components/shared/data-view/area-chart/area-chart.component";
+import { GaugeChartComponent } from "../components/shared/data-view/gauge-chart/gauge-chart.component";
+import { HeatMapComponent } from "../components/shared/data-view/heat-chart/heat-chart.component";
+import { BubbleChartComponent } from "../components/shared/data-view/bubble-chart/bubble-chart.component";
+import { BoxChartComponent } from "../components/shared/data-view/box-chart/box-chart.component";
+import { LineChartComponent } from "../components/shared/data-view/line-chart/line-chart.component";
+import { LinearGaugeChartComponent } from "../components/shared/data-view/linear-gauge-chart/linear-gauge-chart.component";
+import { NormalizedAreaChartComponent } from "../components/shared/data-view/normalized-area-chart/normalized-area-chart.component";
+import { NormalizedHorizontalBarChartComponent } from "../components/shared/data-view/normalized-horizontal-bar-chart/normalized-horizontal-bar-chart.component";
+import { NormalizedVerticalBarChartComponent } from "../components/shared/data-view/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component";
+import { NumberCardsComponent } from "../components/shared/data-view/number-chart/number-chart.component";
+import { PercentGaugeChartComponent } from "../components/shared/data-view/percent-gauge-chart/percent-gauge-chart.component";
+import { PieChartComponent } from "../components/shared/data-view/pie-chart/pie-chart.component";
+import { PieGridComponent } from "../components/shared/data-view/pie-grid/pie-grid.component";
+import { PolarChartComponent } from "../components/shared/data-view/polar-chart/polar-chart.component";
+import { StackedAreaChartComponent } from "../components/shared/data-view/stacked-area-chart/stacked-area-chart.component";
+import { StackedHorizontalBarChartComponent } from "../components/shared/data-view/stacked-horizontal-bar-chart/stacked-horizontal-bar-chart.component";
+import { StackedVerticalBarChartComponent } from "../components/shared/data-view/stacked-vertical-bar-chart/stacked-vertical-bar-chart.component";
+import { TreeMapComponent } from "../components/shared/data-view/tree-chart/tree-chart.component";
 
-// Interfaces
 interface ExtendedGridsterItem extends GridsterItem {
   chartType?: string;
   dataSource?: string;
@@ -86,16 +73,21 @@ interface SafeGridsterConfig extends GridsterConfig {
     PrimaryButtonComponent,
     DefaultButtonComponent,
     FloatShapeButtonComponent,
-    LineChartComponent,
-    VerticalBarChartComponent,
-    ChartSelectionModalComponent,
     AdvancedPieChartComponent,
     AreaChartComponent,
-    BoxChartComponent,
-    BubbleChartComponent,
     GaugeChartComponent,
     HeatMapComponent,
     HorizontalBarChartComponent,
+    VerticalBarChartComponent,
+    ChartSelectionModalComponent,
+    EditWidgetModalComponent,
+    NzIconModule,
+    TranslateModule,
+    ThemeToggleButtonComponent,
+    LanguageDropdownComponent,
+    BubbleChartComponent,
+    BoxChartComponent,
+    LineChartComponent,
     LinearGaugeChartComponent,
     NormalizedAreaChartComponent,
     NormalizedHorizontalBarChartComponent,
@@ -108,28 +100,19 @@ interface SafeGridsterConfig extends GridsterConfig {
     StackedAreaChartComponent,
     StackedHorizontalBarChartComponent,
     StackedVerticalBarChartComponent,
-    TreeMapComponent,
-    EditWidgetModalComponent,
-    NzIconModule,
-    TranslateModule,
-    ThemeToggleButtonComponent,
-    LanguageDropdownComponent
-  ],
+    TreeMapComponent
+],
   templateUrl: './gridster2.component.html',
   styleUrls: ['./gridster2.component.scss']
 })
 export class GridsterDashboardComponent implements OnInit {
-  // Gridster options and dashboard state
   options!: SafeGridsterConfig;
-  dashboard!: ExtendedGridsterItem[];
-
-  // UI State
+  dashboard: ExtendedGridsterItem[] = [];
   isModalVisible = false;
   isEditModalVisible = false;
   currentEditItem: ExtendedGridsterItem | null = null;
   currentTheme: 'default' | 'dark' = 'default';
 
-  // Language
   readonly languages = [
     { code: 'en', label: 'English' },
     { code: 'es', label: 'Español' },
@@ -139,7 +122,6 @@ export class GridsterDashboardComponent implements OnInit {
   ];
   selectedLanguage = 'en';
 
-  // Chart selection
   selectedChartType:
     | 'line-chart'
     | 'advanced-pie-chart'
@@ -148,7 +130,7 @@ export class GridsterDashboardComponent implements OnInit {
     | 'bubble-chart'
     | 'gauge-chart'
     | 'vertical-bar-chart'
-    | 'heat-map'
+    | 'heatMap'
     | 'horizontal-bar'
     | 'linear-gauge-chart'
     | 'normalized-area-chart'
@@ -165,7 +147,6 @@ export class GridsterDashboardComponent implements OnInit {
     | 'tree-map'
     | 'vertical-bar' = 'advanced-pie-chart';
 
-  // Gridster push items
   pushItemsEnabled = true;
 
   constructor(
@@ -175,29 +156,17 @@ export class GridsterDashboardComponent implements OnInit {
     private readonly translate: TranslateService,
   ) {}
 
-  // --- Lifecycle ---
   ngOnInit(): void {
-    this.initMediator();
     this.initTheme();
     this.initTranslation();
     this.initGridsterOptions();
-    this.dashboard = [];
   }
 
-  // --- Initialization ---
-  private initMediator(): void {
-    this.mediator.events$.subscribe(event => {
-      this.mediator.emit(event);
-    });
-  }
 
   private initTheme(): void {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     this.currentTheme = prefersDark ? 'dark' : 'default';
-    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement | null;
-    if (darkLink) {
-      darkLink.disabled = this.currentTheme !== 'dark';
-    }
+    this.toggleThemeCss();
   }
 
   private initTranslation(): void {
@@ -211,13 +180,8 @@ export class GridsterDashboardComponent implements OnInit {
       compactType: CompactType.None,
       margin: 1,
       outerMargin: false,
-      outerMarginTop: null,
-      outerMarginRight: null,
-      outerMarginBottom: null,
-      outerMarginLeft: null,
       useTransformPositioning: true,
       mobileBreakpoint: 640,
-      useBodyForBreakpoint: false,
       minCols: 5,
       maxCols: 10,
       minRows: 5,
@@ -232,18 +196,8 @@ export class GridsterDashboardComponent implements OnInit {
       defaultItemRows: 5,
       fixedColWidth: 249,
       fixedRowHeight: 249,
-      keepFixedWidthInMobile: false,
-      keepFixedHeightInMobile: false,
       scrollSensitivity: 10,
       scrollSpeed: 20,
-      enableEmptyCellClick: false,
-      enableEmptyCellContextMenu: false,
-      enableEmptyCellDrop: false,
-      enableEmptyCellDrag: false,
-      enableOccupiedCellDrop: false,
-      emptyCellDragMaxCols: 50,
-      emptyCellDragMaxRows: 50,
-      ignoreMarginInRow: false,
       draggable: { enabled: true },
       resizable: { enabled: true },
       swap: false,
@@ -259,7 +213,6 @@ export class GridsterDashboardComponent implements OnInit {
     };
   }
 
-  // --- Gridster Events ---
   static itemChange(item: GridsterItem, itemComponent: any): void {
     console.info('itemChanged', item, itemComponent);
   }
@@ -268,17 +221,13 @@ export class GridsterDashboardComponent implements OnInit {
     console.info('itemResized', item, itemComponent);
   }
 
-  // --- Dashboard Actions ---
   addItem(): void {
     if (!this.selectedChartType) {
       alert('Please select a chart type.');
       return;
     }
-    const newId = this.dashboard.length
-      ? Math.max(...this.dashboard.map(i => i['id'])) + 1
-      : 1;
     this.dashboard.push({
-      id: newId,
+      id: this.getNextId(),
       cols: 1,
       rows: 1,
       x: 0,
@@ -289,11 +238,8 @@ export class GridsterDashboardComponent implements OnInit {
 
   onAddChart(selection: { chartType: string; dataSource: string; dataCount: string }): void {
     this.selectedChartType = selection.chartType as any;
-    const newId = this.dashboard.length
-      ? Math.max(...this.dashboard.map(i => i['id'])) + 1
-      : 1;
     this.dashboard.push({
-      id: newId,
+      id: this.getNextId(),
       cols: 1,
       rows: 1,
       x: 0,
@@ -310,16 +256,44 @@ export class GridsterDashboardComponent implements OnInit {
 
   editItem(item: ExtendedGridsterItem): void {
     this.currentEditItem = item;
-    this.currentEditItem['dataCount'] ??= 'all';
+    this.currentEditItem.dataCount ??= 'all';
     this.isEditModalVisible = true;
   }
 
   handleWidgetEditSave(update: { dataCount: string; dataSource: string }): void {
     if (!this.currentEditItem) return;
-    this.currentEditItem['dataCount'] = update.dataCount;
-    this.currentEditItem['dataSource'] = update.dataSource;
-    this.reloadWidgetData(this.currentEditItem);
-    this.notification.warning('Warning', 'Widget modificado correctamente.');
+
+    const originalSource = this.currentEditItem.dataSource;
+    const wid = this.currentEditItem['id'];
+
+    if (update.dataCount !== this.currentEditItem.dataCount) {
+      this.dashboard
+        .filter(item => item.dataSource === originalSource)
+        .forEach(item => item.dataCount = update.dataCount);
+
+      this.mediator.emit({
+        type: 'updateCount',
+        dataSource: originalSource,
+        dataCount: update.dataCount
+      });
+    }
+
+    if (update.dataSource !== originalSource) {
+      this.currentEditItem.dataSource = update.dataSource;
+      this.chartDataService.loadChartsData(update.dataSource).subscribe({
+        next: () => {
+          this.mediator.emit({
+            type: 'updateSource',
+            widgetId: wid,
+            dataSource: update.dataSource
+          });
+        },
+        error: err => console.error('❌ Error al recargar datos:', err)
+      });
+    }
+
+    this.options.api?.optionsChanged?.();
+    this.notification.warning('Warning', 'Widget(s) sincronizado(s) correctamente.');
     this.handleEditModalClose();
   }
 
@@ -343,7 +317,6 @@ export class GridsterDashboardComponent implements OnInit {
     });
   }
 
-  // --- Modal Actions ---
   openCustomModal(): void {
     this.isModalVisible = true;
     this.notification.info(
@@ -356,7 +329,6 @@ export class GridsterDashboardComponent implements OnInit {
     this.isModalVisible = false;
   }
 
-  // --- Serialization ---
   serializeToJson(): void {
     const name = prompt('Nombre de archivo:', 'dashboardConfig') ?? 'dashboardConfig';
     const blob = new Blob([JSON.stringify(this.dashboard, null, 2)], { type: 'application/json' });
@@ -390,7 +362,7 @@ export class GridsterDashboardComponent implements OnInit {
       const arr = JSON.parse(json);
       if (Array.isArray(arr)) {
         arr.forEach(item => {
-          const idx = this.dashboard.findIndex(d => d['id'] === item['id']);
+          const idx = this.dashboard.findIndex(d => d['id'] === item.id);
           if (idx >= 0) this.dashboard[idx] = { ...this.dashboard[idx], ...item };
           else this.dashboard.push(item);
         });
@@ -413,7 +385,6 @@ export class GridsterDashboardComponent implements OnInit {
     reader.readAsText(file);
   }
 
-  // --- Gridster Options ---
   togglePushItems(): void {
     this.pushItemsEnabled = !this.pushItemsEnabled;
     this.options.pushItems = this.pushItemsEnabled;
@@ -430,15 +401,15 @@ export class GridsterDashboardComponent implements OnInit {
     );
   }
 
-  // --- Theme & Language ---
   onToggleTheme(): void {
-    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement;
-    if (this.currentTheme === 'default') {
-      darkLink.disabled = false;
-      this.currentTheme = 'dark';
-    } else {
-      darkLink.disabled = true;
-      this.currentTheme = 'default';
+    this.currentTheme = this.currentTheme === 'default' ? 'dark' : 'default';
+    this.toggleThemeCss();
+  }
+
+  private toggleThemeCss(): void {
+    const darkLink = document.getElementById('dark-theme-css') as HTMLLinkElement | null;
+    if (darkLink) {
+      darkLink.disabled = this.currentTheme !== 'dark';
     }
   }
 
@@ -447,8 +418,13 @@ export class GridsterDashboardComponent implements OnInit {
     this.translate.use(lang);
   }
 
-  // --- Utility ---
   trackByFn(_i: number, item: ExtendedGridsterItem): number {
     return item['id'];
+  }
+
+  private getNextId(): number {
+    return this.dashboard.length
+      ? Math.max(...this.dashboard.map(i => i['id'])) + 1
+      : 1;
   }
 }

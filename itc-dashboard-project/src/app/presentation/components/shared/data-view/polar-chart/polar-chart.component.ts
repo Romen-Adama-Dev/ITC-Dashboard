@@ -16,7 +16,7 @@ import { filter } from 'rxjs/operators';
 import { curveLinear } from 'd3-shape';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { MediatorService } from '../../../../../application/services/mediator.service';
-import { ChartData } from '../../../../../domain/entities/chart.model';
+import { ChartData, ChartConfig } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-polar-chart',
@@ -69,6 +69,7 @@ export class PolarChartComponent
 
   private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -78,11 +79,23 @@ export class PolarChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (300 / 700)];
+        this.view = [width, Math.round(width * (300 / 700))];
       }
     });
 
-    this.subscribeToMediatorEvents();
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(event => event.origin !== 'polar-chart'))
+      .subscribe(event => {
+        const cfg = this.helper.processEvent(event, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalData
+        });
+        this.theme = cfg.theme;
+        this.view = cfg.view;
+        this.originalData = cfg.data;
+        this.updateDisplayedData();
+      });
   }
 
   ngOnInit(): void {
@@ -90,10 +103,16 @@ export class PolarChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.loadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedData();
     }
   }
@@ -105,6 +124,7 @@ export class PolarChartComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   onSelect(event: any): void {
@@ -119,10 +139,10 @@ export class PolarChartComponent
     this.configSub?.unsubscribe();
     this.configSub = this.helper
       .loadChartConfig('polarChart', this.dataSource)
-      .subscribe(config => {
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
+      .subscribe((cfg: ChartConfig) => {
+        this.theme = cfg.theme;
+        this.view = cfg.view;
+        this.originalData = cfg.data;
         this.updateDisplayedData();
       });
   }
@@ -137,25 +157,10 @@ export class PolarChartComponent
       this.data = [...this.originalData];
     } else {
       const count = Number(this.dataCount);
-      this.data = count > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
     }
-  }
-
-  private subscribeToMediatorEvents(): void {
-    this.mediator.events$
-      .pipe(filter(event => event.origin !== 'polar-chart'))
-      .subscribe(event => {
-        const config = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
-        this.updateDisplayedData();
-      });
   }
 }
