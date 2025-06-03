@@ -52,9 +52,10 @@ export class StackedVerticalBarChartComponent
   barPadding = 8;
 
   data: ChartData[] = [];
-  originalData: ChartData[] = [];
+  private originalData: ChartData[] = [];
   private readonly resizeObserver: ResizeObserver;
   private cfgSub?: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -64,20 +65,20 @@ export class StackedVerticalBarChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        const height = width * (400 / 700);
+        const height = Math.round(width * (400 / 700));
         this.view = [width, height];
       }
     });
 
-    this.mediator.events$
+    this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'stacked-vertical-bar-chart'))
       .subscribe(event => {
-        const config = this.helper.processEvent(event, {
+        const cfg = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
           data: this.originalData
         });
-        this.applyConfig(config);
+        this.applyConfig(cfg);
       });
   }
 
@@ -86,48 +87,11 @@ export class StackedVerticalBarChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
       this.reloadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
       this.updateDisplayedData();
-    }
-  }
-
-  private loadConfig(): void {
-    this.cfgSub = this.helper
-      .loadChartConfig('stackedVerticalBarChart', this.dataSource)
-      .subscribe(
-        config => this.applyConfig(config),
-        error => console.error(error)
-      );
-  }
-
-  private reloadConfig(): void {
-    this.cfgSub?.unsubscribe();
-    this.loadConfig();
-  }
-
-  private applyConfig(config: ChartConfig): void {
-    this.theme = config.theme;
-    this.view = config.view;
-    this.originalData = [...config.data];
-    this.updateDisplayedData();
-  }
-
-  private updateDisplayedData(): void {
-    if (!this.originalData.length) {
-      this.data = [];
-      return;
-    }
-
-    if (this.dataCount === 'all') {
-      this.data = [...this.originalData];
-    } else {
-      const count = Number(this.dataCount);
-      this.data = count >= this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
     }
   }
 
@@ -138,6 +102,7 @@ export class StackedVerticalBarChartComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.cfgSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   onSelect(event: any): void {
@@ -146,5 +111,41 @@ export class StackedVerticalBarChartComponent
       type: 'select',
       payload: event
     });
+  }
+
+  private loadConfig(): void {
+    this.cfgSub = this.helper
+      .loadChartConfig('stackedVerticalBarChart', this.dataSource)
+      .subscribe(
+        cfg => this.applyConfig(cfg),
+        err => console.error('Error loading chart config', err)
+      );
+  }
+
+  private reloadConfig(): void {
+    this.cfgSub?.unsubscribe();
+    this.loadConfig();
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = [...cfg.data];
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
+    }
+    if (this.dataCount === 'all') {
+      this.data = [...this.originalData];
+    } else {
+      const count = Number(this.dataCount);
+      this.data = count >= this.originalData.length
+        ? [...this.originalData]
+        : this.originalData.slice(0, count);
+    }
   }
 }

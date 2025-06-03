@@ -1,4 +1,3 @@
-// edit-modal.component.ts
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'

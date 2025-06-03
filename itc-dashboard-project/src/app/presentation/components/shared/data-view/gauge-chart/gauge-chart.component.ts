@@ -10,10 +10,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-gauge-chart',
@@ -25,16 +26,18 @@ import { ChartHelperService } from '../../../../../application/services/chart-he
 export class GaugeChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
-  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
-  @Input() dataCount: string = 'all';
+  @Input() widgetId!: number;
+  @Input() dataSource = '/assets/datasets/data-set-1.json';
+  @Input() dataCount = 'all';
   @Input() theme: 'default' | 'dark' = 'default';
 
-  @HostBinding('class.dark') get isDarkTheme() {
+  @HostBinding('class.dark')
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
-  public originalData: Array<{ name: string; value: number; extra?: any }> = [];
-  public data: Array<{ name: string; value: number; extra?: any }> = [];
+  originalData: ChartData[] = [];
+  data: ChartData[] = [];
   view: [number, number] = [700, 700];
 
   animations = true;
@@ -44,16 +47,17 @@ export class GaugeChartComponent
   angleSpan = 240;
   startAngle = -120;
   showAxis = true;
-  margin: number[] = [10, 10, 10, 10];
+  margin = [10, 10, 10, 10];
   tooltipDisabled = false;
   showText = true;
   colorScheme: any = { domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5'] };
 
+  private configSub?: Subscription;
+  private readonly mediatorSub?: Subscription;
   private readonly resizeObserver: ResizeObserver;
 
   constructor(
     private readonly el: ElementRef,
-    private readonly http: HttpClient,
     private readonly mediator: MediatorService,
     private readonly helper: ChartHelperService
   ) {
@@ -64,8 +68,14 @@ export class GaugeChartComponent
       }
     });
 
-    this.mediator.events$
-      .pipe(filter(event => event.origin !== 'gauge-chart'))
+    this.mediatorSub = this.mediator.events$
+      .pipe(
+        filter(
+          event =>
+            (event.type === 'updateSource' && event.widgetId === this.widgetId) ||
+            (event.type === 'updateCount' && event.dataSource === this.dataSource)
+        )
+      )
       .subscribe(event => this.handleMediatorEvent(event));
   }
 
@@ -88,30 +98,29 @@ export class GaugeChartComponent
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub?.unsubscribe();
   }
 
   private loadConfig(): void {
-    const dataSource = this.dataSource.trim() || '/assets/datasets/data-set-1.json';
-    this.http.get<any>(dataSource).subscribe(
-      config => this.processConfig(config),
-      error => this.handleConfigError(error)
-    );
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('sharedChart', this.dataSource)
+      .subscribe({
+        next: config => this.processConfig(config),
+        error: err => this.handleConfigError(err),
+      });
   }
 
-  private processConfig(config: any): void {
-    const chart = config?.charts?.gaugeChart;
-    if (chart) {
-      this.theme = chart.theme;
-      this.view = chart.view;
-      this.originalData = chart.data;
-    } else {
-      this.originalData = [];
-    }
+  private processConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = [...config.data];
     this.updateDisplayedData();
   }
 
   private handleConfigError(error: any): void {
-    console.error('Error loading gaugeChart:', error);
+    console.error('Error loading gaugeChart config:', error);
     this.originalData = [];
     this.updateDisplayedData();
   }
@@ -121,21 +130,19 @@ export class GaugeChartComponent
       this.data = [];
       return;
     }
-    this.data = this.dataCount === 'all'
-      ? [...this.originalData]
-      : this.originalData.slice(0, Number(this.dataCount));
+    this.data =
+      this.dataCount === 'all'
+        ? [...this.originalData]
+        : this.originalData.slice(0, Number(this.dataCount));
   }
 
   private handleMediatorEvent(event: any): void {
-    const config = this.helper.processEvent(event, {
-      theme: this.theme,
-      view: this.view,
-      data: this.originalData,
-    });
-    this.theme = config.theme;
-    this.view = config.view;
-    this.originalData = config.data as typeof this.originalData;
-    this.updateDisplayedData();
+    if (event.type === 'updateSource' && event.widgetId === this.widgetId) {
+      this.loadConfig();
+    } else if (event.type === 'updateCount' && event.dataSource === this.dataSource) {
+      this.dataCount = event.dataCount;
+      this.updateDisplayedData();
+    }
   }
 
   onSelect(event: any): void {
@@ -143,6 +150,8 @@ export class GaugeChartComponent
       origin: 'gauge-chart',
       type: 'select',
       payload: event,
+      dataSource: this.dataSource,
+      widgetId: this.widgetId,
     });
   }
 }

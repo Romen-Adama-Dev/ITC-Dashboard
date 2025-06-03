@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "cols": 2,
+    "rows": 2,
+    "x": 0,
+    "y": 0,
+    "chartType": "line-chart",
+    "dataSource": "/assets/datasets/data-set-1.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 2,
+    "cols": 2,
+    "rows": 2,
+    "x": 2,
+    "y": 0,
+    "chartType": "area-chart",
+    "dataSource": "/assets/datasets/data-set-1.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 3,
+    "cols": 2,
+    "rows": 2,
+    "x": 4,
+    "y": 0,
+    "chartType": "box-chart",
+    "dataSource": "/assets/datasets/data-set-1.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 4,
+    "cols": 2,
+    "rows": 2,
+    "x": 6,
+    "y": 0,
+    "chartType": "normalized-area-chart",
+    "dataSource": "/assets/datasets/data-set-1.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 5,
+    "cols": 2,
+    "rows": 2,
+    "x": 8,
+    "y": 0,
+    "chartType": "stacked-area-chart",
+    "dataSource": "/assets/datasets/data-set-1.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 6,
+    "cols": 2,
+    "rows": 2,
+    "x": 8,
+    "y": 2,
+    "chartType": "stacked-area-chart",
+    "dataSource": "/assets/datasets/data-set-2.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 7,
+    "cols": 2,
+    "rows": 2,
+    "x": 6,
+    "y": 2,
+    "chartType": "normalized-area-chart",
+    "dataSource": "/assets/datasets/data-set-2.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 8,
+    "cols": 2,
+    "rows": 2,
+    "x": 4,
+    "y": 2,
+    "chartType": "box-chart",
+    "dataSource": "/assets/datasets/data-set-2.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 9,
+    "cols": 2,
+    "rows": 2,
+    "x": 2,
+    "y": 2,
+    "chartType": "area-chart",
+    "dataSource": "/assets/datasets/data-set-2.json",
+    "dataCount": "all"
+  },
+  {
+    "id": 10,
+    "cols": 2,
+    "rows": 2,
+    "x": 0,
+    "y": 2,
+    "chartType": "line-chart",
+    "dataSource": "/assets/datasets/data-set-2.json",
+    "dataCount": "all"
+  }
+]

@@ -15,7 +15,12 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
-import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.model';
+import { ChartConfig } from '../../../../../domain/entities/chart.model';
+
+interface TreeMapItem {
+  name: string;
+  value: number;
+}
 
 @Component({
   selector: 'app-tree-map',
@@ -39,10 +44,12 @@ export class TreeMapComponent
   view: [number, number] = [700, 400];
   animations = true;
   colorScheme: any = { domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
-  results: ChartData[] = [];
-  private originalResults: ChartData[] = [];
+
+  results: TreeMapItem[] = [];
+  private originalResults: TreeMapItem[] = [];
   private readonly resizeObserver: ResizeObserver;
   private cfgSub?: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -52,14 +59,21 @@ export class TreeMapComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        const height = width * (400 / 700);
+        const height = Math.round(width * (400 / 700));
         this.view = [width, height];
       }
     });
 
-    this.mediator.events$
+    this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'tree-map'))
-      .subscribe(event => this.handleMediatorEvent(event));
+      .subscribe(event => {
+        const cfg = this.helper.processEvent(event, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalResults
+        });
+        this.applyConfig(cfg);
+      });
   }
 
   ngOnInit(): void {
@@ -67,10 +81,10 @@ export class TreeMapComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
       this.reloadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
       this.updateDisplayedData();
     }
   }
@@ -82,12 +96,13 @@ export class TreeMapComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.cfgSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   private loadConfig(): void {
     this.cfgSub = this.helper.loadChartConfig('treeMap', this.dataSource).subscribe({
       next: cfg => this.applyConfig(cfg),
-      error: err => console.error(err)
+      error: err => console.error('Error loading tree map config', err)
     });
   }
 
@@ -99,7 +114,11 @@ export class TreeMapComponent
   private applyConfig(cfg: ChartConfig): void {
     this.theme = cfg.theme;
     this.view = cfg.view;
-    this.originalResults = [...cfg.data];
+    // Assume cfg.data contains only simple items { name, value }
+    this.originalResults = (cfg.data as TreeMapItem[]).map(item => ({
+      name: item.name,
+      value: item.value
+    }));
     this.updateDisplayedData();
   }
 
@@ -108,7 +127,6 @@ export class TreeMapComponent
       this.results = [];
       return;
     }
-
     if (this.dataCount === 'all') {
       this.results = [...this.originalResults];
     } else {
@@ -117,18 +135,6 @@ export class TreeMapComponent
         ? [...this.originalResults]
         : this.originalResults.slice(0, count);
     }
-  }
-
-  private handleMediatorEvent(event: any): void {
-    const config = this.helper.processEvent(event, {
-      theme: this.theme,
-      view: this.view,
-      data: this.originalResults
-    });
-    this.theme = config.theme;
-    this.view = config.view;
-    this.originalResults = config.data;
-    this.updateDisplayedData();
   }
 
   onSelect(event: any): void {

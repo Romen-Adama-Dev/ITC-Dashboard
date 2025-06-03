@@ -25,7 +25,7 @@ import { ChartHelperService } from '../../../../../application/services/chart-he
 export class HeatMapComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy 
 {
-  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
+  @Input() dataSource = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
   @Input() theme: 'default' | 'dark' = 'default';
 
@@ -55,7 +55,7 @@ export class HeatMapComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
@@ -110,7 +110,7 @@ export class HeatMapComponent
   }
 
   private updateDisplayedData(): void {
-    if (!this.originalData.length) {
+    if (!this.originalData?.length) {
       this.data = [];
       return;
     }
@@ -127,7 +127,7 @@ export class HeatMapComponent
     });
     this.theme = config.theme;
     this.view = config.view;
-    this.originalData = config.data;
+    this.originalData = config.data as typeof this.originalData;
     this.updateDisplayedData();
   }
 

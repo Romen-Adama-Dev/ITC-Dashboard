@@ -10,9 +10,10 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-advanced-pie-chart',
@@ -21,13 +22,16 @@ import { ChartHelperService } from '../../../../../application/services/chart-he
   templateUrl: './advanced-pie-chart.component.html',
   styleUrls: ['./advanced-pie-chart.component.scss']
 })
-export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class AdvancedPieChartComponent
+  implements OnInit, AfterViewInit, OnDestroy, OnChanges
+{
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
-  @Input() dataSource: string = '/assets/data-set-1.json';
-  @Input() dataCount: string = 'all';
+  @Input() dataSource = '/assets/datasets/data-set-1.json';
+  @Input() dataCount = 'all';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
@@ -36,8 +40,10 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
   gradient = false;
   tooltipDisabled = false;
 
-  data: any[] = [];
-  originalData: any[] = [];
+  data: ChartData[] = [];
+  private originalData: ChartData[] = [];
+  private configSub?: Subscription;
+  private readonly mediatorSub?: Subscription;
 
   colorScheme: any = {
     name: 'customScheme',
@@ -50,7 +56,6 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
 
   constructor(
     private readonly el: ElementRef,
-    private readonly http: HttpClient,
     private readonly mediator: MediatorService,
     private readonly helper: ChartHelperService
   ) {
@@ -61,21 +66,36 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
       }
     });
 
-    this.mediator.events$.subscribe(event => {
-      const cfg = this.helper.processEvent(event, {
-        theme: this.theme,
-        view: this.view,
-        data: this.originalData
-      });
-      this.theme = cfg.theme;
-      this.view = cfg.view;
-      this.originalData = cfg.data;
-      this.updateDisplayedData();
+    this.mediatorSub = this.mediator.events$.subscribe(event => {
+      // 1) Si es updateSource y coincide widgetId, recargar solo este widget
+      if (
+        event.type === 'updateSource' &&
+        event.widgetId === this.widgetId
+      ) {
+        this.reloadConfig();
+      }
+      // 2) Si es updateCount y coincide dataSource, actualizar dataCount en todos
+      if (
+        event.type === 'updateCount' &&
+        event.dataSource === this.dataSource
+      ) {
+        this.dataCount = event.dataCount;
+        this.updateDisplayedData();
+      }
     });
   }
 
   ngOnInit(): void {
     this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.reloadConfig();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -84,37 +104,38 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub?.unsubscribe();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
-      this.updateDisplayedData();
+  private loadConfig(): void {
+    const ds = this.dataSource.trim() || '/assets/datasets/data-set-1.json';
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('sharedChart', ds)
+      .subscribe({
+        next: config => this.applyConfig(config),
+        error: err => console.error('Error loading config:', err)
+      });
+  }
+
+  private reloadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.loadConfig();
+  }
+
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = config.view;
+    this.originalData = [...config.data];
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
     }
-    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
-      this.loadConfig();
-    }
-  }
-
-  loadConfig(): void {
-    const ds = this.dataSource?.trim() ? this.dataSource : '/assets/data-set-1.json';
-    this.http.get<any>(ds).subscribe(
-      config => {
-        if (config?.charts?.advancedPieChart) {
-          const advancedChart = config.charts.advancedPieChart;
-          this.theme = advancedChart.theme;
-          this.view = advancedChart.view;
-          this.originalData = advancedChart.data;
-          this.updateDisplayedData();
-        }
-      },
-      error => {
-        console.error('Error loading data:', error);
-      }
-    );
-  }
-
-  updateDisplayedData(): void {
-    if (!this.originalData?.length) return;
     if (this.dataCount !== 'all') {
       const count = Number(this.dataCount);
       this.data =

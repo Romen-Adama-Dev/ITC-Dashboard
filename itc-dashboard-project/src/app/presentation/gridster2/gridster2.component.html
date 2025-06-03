@@ -84,138 +84,158 @@
     <gridster-item *ngFor="let item of dashboard; trackBy: trackByFn" [item]="item">
       <div class="grid-item-content">
         <div class="item-content">
-          <ng-container *ngIf="item.chartType === 'line-chart'">
-            <app-line-chart></app-line-chart>
-          </ng-container>
           <ng-container *ngIf="item.chartType === 'advanced-pie-chart'">
             <app-advanced-pie-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-advanced-pie-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'area-chart'">
-            <app-area-chart 
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
-            ></app-area-chart>
+            <app-area-chart
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
+            </app-area-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'box-chart'">
             <app-box-chart
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
-            ></app-box-chart>
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
+            </app-box-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'bubble-chart'">
             <app-bubble-chart
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-bubble-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'gauge-chart'">
             <app-gauge-chart
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-gauge-chart>
           </ng-container>
-          <ng-container *ngIf="item.chartType === 'heat-map'">
+          <ng-container *ngIf="item.chartType === 'heatMap'">
             <app-heat-map
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-heat-map>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'horizontal-bar'">
             <app-horizontal-bar-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'line-chart'">
             <app-line-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-line-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'linear-gauge-chart'">
             <app-linear-gauge-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-linear-gauge-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'normalized-area-chart'">
             <app-normalized-area-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-normalized-area-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'normalized-horizontal-chart'">
             <app-normalized-horizontal-bar-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-normalized-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'normalized-vertical-chart'">
             <app-normalized-vertical-bar-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
-          </app-normalized-vertical-bar-chart>
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
+            </app-normalized-vertical-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'number-chart'">
             <app-number-cards
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
-          </app-number-cards>
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
+            </app-number-cards>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'percent-gauge-chart'">
             <app-percent-gauge-chart
-            [dataSource]="item.dataSource || ''">
-          </app-percent-gauge-chart>
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
+            </app-percent-gauge-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'pie-chart'">
             <app-pie-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
-          </app-pie-chart>
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
+            </app-pie-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'pie-grid-chart'">
             <app-pie-grid
-            [dataSource]="item.dataSource || ''"
-            [dataCount]="item.dataCount || ''">
+              [dataSource]="item.dataSource || ''"
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-pie-grid>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'polar-chart'">
             <app-polar-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-polar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-area-chart'">
             <app-stacked-area-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-stacked-area-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-horizontal-bar-chart'">
             <app-stacked-horizontal-bar-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-stacked-horizontal-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'stacked-vertical-bar-chart'">
             <app-stacked-vertical-bar-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-stacked-vertical-bar-chart>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'tree-map'">
             <app-tree-map
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-tree-map>
           </ng-container>
           <ng-container *ngIf="item.chartType === 'vertical-bar'">
             <app-vertical-chart
               [dataSource]="item.dataSource || ''"
-              [dataCount]="item.dataCount || ''">
+              [dataCount]="item.dataCount || ''"
+              [theme]="currentTheme">
             </app-vertical-chart>
           </ng-container>
         </div>

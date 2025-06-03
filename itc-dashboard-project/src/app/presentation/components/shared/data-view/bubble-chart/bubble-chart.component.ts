@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
@@ -24,7 +25,7 @@ import { ChartHelperService } from '../../../../../application/services/chart-he
 })
 export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @Input() theme: 'default' | 'dark' = 'default';
-  @Input() dataSource: string = '/assets/data-set-1.json';
+  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
@@ -67,6 +68,7 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
   };
 
   private readonly resizeObserver: ResizeObserver;
+  private readonly mediatorSub?: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -77,24 +79,14 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        const height = width * (400 / 700);
+        const height = Math.round(width * (400 / 700));
         this.view = [width, height];
       }
     });
 
-    this.mediator.events$
+    this.mediatorSub = this.mediator.events$
       .pipe(filter(e => e.origin !== 'bubble-chart'))
-      .subscribe(event => {
-        const cfg = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = cfg.theme;
-        this.view = cfg.view;
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
-      });
+      .subscribe(event => this.handleMediatorEvent(event));
   }
 
   ngOnInit(): void {
@@ -107,6 +99,7 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.mediatorSub?.unsubscribe();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -118,8 +111,8 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
     }
   }
 
-  loadConfig(): void {
-    const ds = this.dataSource?.trim() ? this.dataSource : '/assets/data-set-1.json';
+  private loadConfig(): void {
+    const ds = this.dataSource.trim() || '/assets/datasets/data-set-1.json';
     this.http.get<any>(ds).subscribe(
       config => {
         if (config?.charts?.bubbleChart) {
@@ -133,27 +126,44 @@ export class BubbleChartComponent implements OnInit, AfterViewInit, OnDestroy, O
         this.updateDisplayedData();
       },
       error => {
-        console.error('Error loading bubble chart config:', error);
+        console.error('Error loading bubbleChart config:', error);
         this.originalData = [];
         this.updateDisplayedData();
       }
     );
   }
 
-  updateDisplayedData(): void {
+  private updateDisplayedData(): void {
     if (!this.originalData?.length) {
       this.data = [];
       return;
     }
     if (this.dataCount !== 'all') {
       const count = Number(this.dataCount);
-      this.data = this.originalData.map(item => ({
-        ...item,
-        series: Array.isArray(item.series) ? item.series.slice(0, count) : []
-      }));
+      this.data = this.originalData.map(item => {
+        if (Array.isArray(item.series)) {
+          return {
+            ...item,
+            series: item.series.slice(0, count)
+          };
+        }
+        return { ...item };
+      });
     } else {
       this.data = [...this.originalData];
     }
+  }
+
+  private handleMediatorEvent(event: any): void {
+    const cfg = this.helper.processEvent(event, {
+      theme: this.theme,
+      view: this.view,
+      data: this.originalData
+    });
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = cfg.data as typeof this.originalData;
+    this.updateDisplayedData();
   }
 
   onSelect(event: any): void {

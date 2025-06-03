@@ -52,9 +52,10 @@ export class StackedHorizontalBarChartComponent
   barPadding = 8;
 
   data: ChartData[] = [];
-  originalData: ChartData[] = [];
+  private originalData: ChartData[] = [];
   private readonly resizeObserver: ResizeObserver;
   private cfgSub?: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -64,12 +65,12 @@ export class StackedHorizontalBarChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        const height = width * (400 / 700);
+        const height = Math.round(width * (400 / 700));
         this.view = [width, height];
       }
     });
 
-    this.mediator.events$
+    this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'stacked-horizontal-bar-chart'))
       .subscribe(event => {
         const cfg = this.helper.processEvent(event, {
@@ -86,10 +87,10 @@ export class StackedHorizontalBarChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
       this.reloadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
       this.updateDisplayedData();
     }
   }
@@ -101,6 +102,15 @@ export class StackedHorizontalBarChartComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.cfgSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
+  }
+
+  onSelect(event: any): void {
+    this.mediator.emit({
+      origin: 'stacked-horizontal-bar-chart',
+      type: 'select',
+      payload: event
+    });
   }
 
   private loadConfig(): void {
@@ -108,7 +118,7 @@ export class StackedHorizontalBarChartComponent
       .loadChartConfig('stackedHorizontalBarChart', this.dataSource)
       .subscribe(
         cfg => this.applyConfig(cfg),
-        err => console.error(err)
+        err => console.error('Error loading chart config', err)
       );
   }
 
@@ -125,11 +135,10 @@ export class StackedHorizontalBarChartComponent
   }
 
   private updateDisplayedData(): void {
-    if (!this.originalData?.length) {
+    if (!this.originalData.length) {
       this.data = [];
       return;
     }
-
     if (this.dataCount === 'all') {
       this.data = [...this.originalData];
     } else {
@@ -138,13 +147,5 @@ export class StackedHorizontalBarChartComponent
         ? [...this.originalData]
         : this.originalData.slice(0, count);
     }
-  }
-
-  onSelect(event: any): void {
-    this.mediator.emit({
-      origin: 'stacked-horizontal-bar-chart',
-      type: 'select',
-      payload: event
-    });
   }
 }

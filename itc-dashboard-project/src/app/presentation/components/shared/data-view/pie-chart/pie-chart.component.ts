@@ -64,7 +64,7 @@ export class PieChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
@@ -78,10 +78,16 @@ export class PieChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.loadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedData();
     }
   }
@@ -112,9 +118,10 @@ export class PieChartComponent
       this.data = [...this.originalData];
     } else {
       const count = Number(this.dataCount);
-      this.data = count > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
     }
   }
 

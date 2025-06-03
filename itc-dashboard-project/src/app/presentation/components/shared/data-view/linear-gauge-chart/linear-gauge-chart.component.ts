@@ -26,6 +26,7 @@ import { ChartConfig } from '../../../../../domain/entities/chart.model';
 export class LinearGaugeChartComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
@@ -40,7 +41,7 @@ export class LinearGaugeChartComponent
   previousValue = 0;
   min = 0;
   max = 100;
-  units = '%';
+  units = '' + '%';
   animations = true;
 
   colorScheme: any = {
@@ -60,22 +61,41 @@ export class LinearGaugeChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
     this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'linear-gauge-chart'))
       .subscribe(event => {
-        const config = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
-        this.updateDisplayedValues();
+        if (
+          event.type === 'updateCount' &&
+          event.dataSource === this.dataSource
+        ) {
+          this.dataCount = event.dataCount;
+          this.updateDisplayedValues();
+        }
+        if (
+          event.type === 'updateSource' &&
+          event.widgetId === this.widgetId
+        ) {
+          this.dataSource = event.dataSource;
+          this.loadConfig();
+        }
+        if (
+          event.type === 'updateAppearance' &&
+          event.widgetId === this.widgetId
+        ) {
+          const cfg = this.helper.setAppearance(event.appearance, {
+            theme: this.theme,
+            view: this.view,
+            data: this.originalData
+          });
+          this.theme = cfg.theme;
+          this.view = cfg.view;
+          this.originalData = cfg.data as typeof this.originalData;
+          this.updateDisplayedValues();
+        }
       });
   }
 
@@ -84,10 +104,16 @@ export class LinearGaugeChartComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.loadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedValues();
     }
   }
@@ -105,18 +131,18 @@ export class LinearGaugeChartComponent
   private applyConfig(config: ChartConfig): void {
     this.theme = config.theme;
     this.view = config.view;
-    this.originalData = [...config.data];
+    this.originalData = [...config.data] as { name: string; value: number }[];
     this.updateDisplayedValues();
   }
 
   private updateDisplayedValues(): void {
-    const dataSlice =
+    const slice =
       this.dataCount === 'all'
         ? this.originalData
         : this.originalData.slice(0, Number(this.dataCount));
 
-    this.value = dataSlice[0]?.value ?? this.value;
-    this.previousValue = dataSlice[1]?.value ?? this.previousValue;
+    this.value = slice[0]?.value ?? this.value;
+    this.previousValue = slice[1]?.value ?? this.previousValue;
   }
 
   ngAfterViewInit(): void {
@@ -130,7 +156,6 @@ export class LinearGaugeChartComponent
   }
 
   onSelect(event: any): void {
-    console.log(event);
     this.mediator.emit({
       origin: 'linear-gauge-chart',
       type: 'select',

@@ -1,3 +1,4 @@
+// src/app/components/shared/data-view/area-chart/area-chart.component.ts
 import {
   Component,
   Input,
@@ -10,11 +11,10 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClient } from '@angular/common/http';
-import { curveLinear } from 'd3-shape';
-import { filter } from 'rxjs/operators';
+import { Subscription, filter } from 'rxjs';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
+import { ChartConfig, SeriesChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-area-chart',
@@ -29,7 +29,7 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
   @Input() dataCount: string = 'all';
 
   @HostBinding('class.dark')
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme === 'dark';
   }
 
@@ -44,23 +44,23 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
   yAxisLabel = 'Population';
   autoScale = true;
   timeline = false;
-  curve = curveLinear;
+  curve = false; // ngx-charts area ya maneja la curva con su propio interpolation
 
-  data: any[] = [];
-  originalData: any[] = [];
+  data: SeriesChartData[] = [];
+  private originalData: SeriesChartData[] = [];
+  private configSub?: Subscription;
+  private readonly mediatorSub?: Subscription;
+  private readonly resizeObserver: ResizeObserver;
 
-  colorScheme: any = {
+  readonly colorScheme: any = {
     name: 'customScheme',
     selectable: true,
     group: 'Ordinal',
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  private readonly resizeObserver: ResizeObserver;
-
   constructor(
     private readonly el: ElementRef,
-    private readonly http: HttpClient,
     private readonly mediator: MediatorService,
     private readonly helper: ChartHelperService
   ) {
@@ -72,23 +72,31 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
       }
     });
 
-    this.mediator.events$
-      .pipe(filter(e => e.origin !== 'area-chart'))
+    // Solo reaccionamos a eventos de tipo 'updateAppearance' cuando el dataSource coincida
+    this.mediatorSub = this.mediator.events$
+      .pipe(filter(e => e.type === 'updateAppearance' && e.dataSource === this.dataSource))
       .subscribe(event => {
+        // Procesamos el evento contra el estado actual
         const cfg = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
-          data: this.originalData
+          data: this.originalData as any
         });
-        this.theme = cfg.theme;
-        this.view = cfg.view;
-        this.originalData = cfg.data;
-        this.updateDisplayedData();
+        this.applyConfig(cfg);
       });
   }
 
   ngOnInit(): void {
     this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
+      this.reloadConfig();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -97,43 +105,44 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub?.unsubscribe();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataCount'] && !changes['dataCount'].isFirstChange()) {
-      this.updateDisplayedData();
+  private loadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.configSub = this.helper
+      .loadChartConfig('areaChart', this.dataSource)
+      .subscribe({
+        next: config => this.applyConfig(config),
+        error: err => console.error('Error cargando configuración areaChart:', err)
+      });
+  }
+
+  private reloadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.loadConfig();
+  }
+
+  private applyConfig(config: ChartConfig): void {
+    this.theme = config.theme;
+    this.view = [ config.view[0], config.view[1] ];
+    // Filtramos solo los objetos que realmente tengan 'series'
+    this.originalData = config.data
+      .filter((d): d is SeriesChartData => 'series' in d)
+      .map(d => ({ name: d.name, series: [...d.series] }));
+
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data = [];
+      return;
     }
-    if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
-      this.loadConfig();
-    }
-  }
-
-  loadConfig(): void {
-    const ds = this.dataSource?.trim() ? this.dataSource : '/assets/data-set-1.json';
-    this.http.get<any>(ds).subscribe(
-      config => {
-        if (config?.charts?.areaChart) {
-          const areaChart = config.charts.areaChart;
-          this.theme = areaChart.theme;
-          this.view = areaChart.view;
-          this.originalData = areaChart.data;
-          this.updateDisplayedData();
-        }
-      },
-      error => {
-        console.error('Error loading data-set-1.json:', error);
-      }
-    );
-  }
-
-  updateDisplayedData(): void {
-    if (!this.originalData?.length) return;
     if (this.dataCount !== 'all') {
-      const count = Number(this.dataCount);
-      this.data =
-        count > this.originalData.length
-          ? [...this.originalData]
-          : this.originalData.slice(0, count);
+      const cnt = Number(this.dataCount);
+      this.data = this.originalData.slice(0, cnt);
     } else {
       this.data = [...this.originalData];
     }
@@ -141,9 +150,9 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
 
   onSelect(event: any): void {
     this.mediator.emit({
-      origin: 'area-chart',
       type: 'select',
-      payload: event
+      payload: event,
+      dataSource: this.dataSource
     });
   }
 }

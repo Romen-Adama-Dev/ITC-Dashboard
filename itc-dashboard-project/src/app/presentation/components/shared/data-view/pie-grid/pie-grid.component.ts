@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
 import { MediatorService } from '../../../../../application/services/mediator.service';
-import { ChartData } from '../../../../../domain/entities/chart.model';
+import { ChartData, ChartConfig } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-pie-grid',
@@ -50,6 +50,7 @@ export class PieGridComponent
 
   private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -59,11 +60,11 @@ export class PieGridComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
-    this.mediator.events$
+    this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'pie-grid'))
       .subscribe(event => this.handleMediatorEvent(event));
   }
@@ -73,10 +74,16 @@ export class PieGridComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.loadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedData();
     }
   }
@@ -88,16 +95,17 @@ export class PieGridComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
   }
 
   private loadConfig(): void {
     this.configSub?.unsubscribe();
     this.configSub = this.helper
       .loadChartConfig('pieGridChart', this.dataSource)
-      .subscribe(config => {
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
+      .subscribe((cfg: ChartConfig) => {
+        this.theme = cfg.theme;
+        this.view = cfg.view;
+        this.originalData = cfg.data;
         this.updateDisplayedData();
       });
   }
@@ -107,21 +115,22 @@ export class PieGridComponent
       this.data = [...this.originalData];
     } else {
       const count = Number(this.dataCount);
-      this.data = count > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
     }
   }
 
   private handleMediatorEvent(event: any): void {
-    const config = this.helper.processEvent(event, {
+    const cfg = this.helper.processEvent(event, {
       theme: this.theme,
       view: this.view,
       data: this.originalData
     });
-    this.theme = config.theme;
-    this.view = config.view;
-    this.originalData = config.data;
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = cfg.data;
     this.updateDisplayedData();
   }
 

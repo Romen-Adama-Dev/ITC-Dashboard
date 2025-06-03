@@ -26,6 +26,7 @@ import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.mod
 export class NumberCardsComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
   @Input() dataSource: string = '/assets/datasets/data-set-1.json';
   @Input() dataCount: string = 'all';
@@ -56,19 +57,41 @@ export class NumberCardsComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (499 / 749)];
+        this.view = [width, Math.round(width * (499 / 749))];
       }
     });
 
     this.mediatorSub = this.mediator.events$
       .pipe(filter(event => event.origin !== 'number-cards'))
       .subscribe(event => {
-        const config = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.applyConfig(config);
+        if (
+          event.type === 'updateCount' &&
+          event.dataSource === this.dataSource
+        ) {
+          this.dataCount = event.dataCount;
+          this.updateDisplayedData();
+        }
+        if (
+          event.type === 'updateSource' &&
+          event.widgetId === this.widgetId
+        ) {
+          this.dataSource = event.dataSource;
+          this.loadConfig();
+        }
+        if (
+          event.type === 'updateAppearance' &&
+          event.widgetId === this.widgetId
+        ) {
+          const cfg = this.helper.setAppearance(event.appearance, {
+            theme: this.theme,
+            view: this.view,
+            data: this.originalData
+          });
+          this.theme = cfg.theme;
+          this.view = cfg.view;
+          this.originalData = cfg.data;
+          this.updateDisplayedData();
+        }
       });
   }
 
@@ -77,10 +100,16 @@ export class NumberCardsComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataSource']?.previousValue !== changes['dataSource']?.currentValue) {
+    if (
+      changes['dataSource']?.previousValue !==
+      changes['dataSource']?.currentValue
+    ) {
       this.loadConfig();
     }
-    if (changes['dataCount']?.previousValue !== changes['dataCount']?.currentValue) {
+    if (
+      changes['dataCount']?.previousValue !==
+      changes['dataCount']?.currentValue
+    ) {
       this.updateDisplayedData();
     }
   }

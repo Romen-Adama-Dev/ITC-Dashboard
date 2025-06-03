@@ -60,6 +60,7 @@ export class StackedAreaChartComponent
 
   private readonly resizeObserver: ResizeObserver;
   private configSub?: Subscription;
+  private readonly mediatorSub: Subscription;
 
   constructor(
     private readonly el: ElementRef,
@@ -69,11 +70,11 @@ export class StackedAreaChartComponent
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        this.view = [width, width * (400 / 700)];
+        this.view = [width, Math.round(width * (400 / 700))];
       }
     });
 
-    this.mediator.events$
+    this.mediatorSub = this.mediator.events$
       .pipe(filter(e => e.origin !== 'stacked-area-chart'))
       .subscribe(event => this.handleMediatorEvent(event));
   }
@@ -98,13 +99,22 @@ export class StackedAreaChartComponent
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
     this.configSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
+  }
+
+  onSelect(event: any): void {
+    this.mediator.emit({
+      origin: 'stacked-area-chart',
+      type: 'select',
+      payload: event
+    });
   }
 
   private loadConfig(): void {
     this.configSub?.unsubscribe();
     this.configSub = this.helper
       .loadChartConfig('stackedAreaChart', this.dataSource)
-      .subscribe(cfg => {
+      .subscribe((cfg: ChartConfig) => {
         this.theme = cfg.theme;
         this.view = cfg.view;
         this.originalData = cfg.data;
@@ -122,30 +132,23 @@ export class StackedAreaChartComponent
       this.data = [...this.originalData];
     } else {
       const count = Number(this.dataCount);
-      this.data = count > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
     }
   }
 
   private handleMediatorEvent(event: any): void {
-    const config: ChartConfig = this.helper.processEvent(event, {
+    const cfg: ChartConfig = this.helper.processEvent(event, {
       theme: this.theme,
       view: this.view,
       data: this.originalData
     });
 
-    this.theme = config.theme;
-    this.view = config.view;
-    this.originalData = config.data;
+    this.theme = cfg.theme;
+    this.view = cfg.view;
+    this.originalData = cfg.data;
     this.updateDisplayedData();
-  }
-
-  onSelect(event: any): void {
-    this.mediator.emit({
-      origin: 'stacked-area-chart',
-      type: 'select',
-      payload: event
-    });
   }
 }

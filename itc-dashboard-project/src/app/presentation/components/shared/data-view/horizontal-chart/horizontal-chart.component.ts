@@ -10,25 +10,25 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Subscription, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MediatorService } from '../../../../../application/services/mediator.service';
 import { ChartHelperService } from '../../../../../application/services/chart-helper.service';
-import { ChartConfig, ChartData } from '../../../../../domain/entities/chart.model';
+import { ChartData } from '../../../../../domain/entities/chart.model';
 
 @Component({
   selector: 'app-horizontal-bar-chart',
   standalone: true,
-  imports: [NgxChartsModule, HttpClientModule],
+  imports: [NgxChartsModule],
   templateUrl: './horizontal-chart.component.html',
   styleUrls: ['./horizontal-chart.component.scss']
 })
-export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class HorizontalBarChartComponent
+  implements OnInit, AfterViewInit, OnDestroy, OnChanges
+{
+  @Input() widgetId!: number;
   @Input() theme: 'default' | 'dark' = 'default';
-  @Input() dataSource: string = '/assets/datasets/data-set-1.json';
-  @Input() dataCount: string = 'all';
-  @Input() graphqlEndpoint?: string;
-  @Input() graphqlQuery?: string;
+  @Input() dataSource = '/assets/datasets/data-set-1.json';
+  @Input() dataCount = 'all';
 
   @HostBinding('class.dark')
   get isDarkTheme(): boolean {
@@ -53,17 +53,15 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
   };
 
   data: ChartData[] = [];
-  originalData: ChartData[] = [];
-
-  private readonly resizeObserver: ResizeObserver;
+  private originalData: ChartData[] = [];
   private configSub?: Subscription;
-  private readonly mediatorSub: Subscription;
+  private readonly mediatorSub?: Subscription;
+  private readonly resizeObserver: ResizeObserver;
 
   constructor(
     private readonly el: ElementRef,
-    private readonly http: HttpClient,
-    private readonly helper: ChartHelperService,
-    private readonly mediator: MediatorService
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
   ) {
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
@@ -72,23 +70,33 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
       }
     });
 
-    this.mediatorSub = this.mediator.events$
-      .pipe(filter(event => event.origin !== 'horizontal-bar'))
-      .subscribe(event => {
-        const config = this.helper.processEvent(event, {
-          theme: this.theme,
-          view: this.view,
-          data: this.originalData
-        });
-        this.theme = config.theme;
-        this.view = config.view;
-        this.originalData = config.data;
+    this.mediatorSub = this.mediator.events$.subscribe(event => {
+      // 1) Si event.type === 'updateCount' y coincide dataSource, actualizar su dataCount
+      if (
+        event.type === 'updateCount' &&
+        event.dataSource === this.dataSource
+      ) {
+        this.dataCount = event.dataCount;
         this.updateDisplayedData();
-      });
+      }
+
+      // 2) Si event.type === 'updateSource' y coincide widgetId, recargar sólo este
+      if (
+        event.type === 'updateSource' &&
+        event.widgetId === this.widgetId &&
+        event.dataSource === this.dataSource
+      ) {
+        this.reloadConfig();
+      }
+    });
   }
 
   ngOnInit(): void {
     this.loadConfig();
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -96,34 +104,37 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
       this.updateDisplayedData();
     }
     if (changes['dataSource'] && !changes['dataSource'].isFirstChange()) {
-      this.loadConfig();
+      this.reloadConfig();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub?.unsubscribe();
   }
 
   private loadConfig(): void {
+    const ds = this.dataSource.trim() || '/assets/datasets/data-set-1.json';
     this.configSub?.unsubscribe();
-
-    if (this.graphqlEndpoint && this.graphqlQuery) {
-      this.configSub = this.http.post<any>(this.graphqlEndpoint, { query: this.graphqlQuery })
-        .subscribe({
-          next: res => this.applyConfig(res.data.horizontalBarChart),
-          error: err => console.error('Error loading via GraphQL', err)
-        });
-    } else {
-      this.configSub = this.helper
-        .loadChartConfig('horizontalBarChart', this.dataSource)
-        .subscribe({
-          next: config => this.applyConfig(config),
-          error: err => console.error('Error loading chart config', err)
-        });
-    }
+    this.configSub = this.helper
+      .loadChartConfig('sharedChart', ds)
+      .subscribe({
+        next: config => {
+          this.theme = config.theme;
+          this.view = config.view;
+          this.originalData = [...config.data];
+          this.updateDisplayedData();
+        },
+        error: err => {
+          console.error('Error loading chart config:', err);
+        }
+      });
   }
 
-  private applyConfig(config: ChartConfig): void {
-    this.theme = config.theme;
-    this.view = config.view;
-    this.originalData = [...config.data];
-    this.updateDisplayedData();
+  private reloadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.loadConfig();
   }
 
   private updateDisplayedData(): void {
@@ -131,29 +142,18 @@ export class HorizontalBarChartComponent implements OnInit, AfterViewInit, OnDes
       this.data = [];
       return;
     }
-
     if (this.dataCount !== 'all') {
       const count = Number(this.dataCount);
-      this.data = count > this.originalData.length
-        ? [...this.originalData]
-        : this.originalData.slice(0, count);
+      this.data =
+        count > this.originalData.length
+          ? [...this.originalData]
+          : this.originalData.slice(0, count);
     } else {
       this.data = [...this.originalData];
     }
   }
 
-  ngAfterViewInit(): void {
-    this.resizeObserver.observe(this.el.nativeElement);
-  }
-
-  ngOnDestroy(): void {
-    this.resizeObserver.disconnect();
-    this.configSub?.unsubscribe();
-    this.mediatorSub.unsubscribe();
-  }
-
   onSelect(event: any): void {
-    console.log(event);
-    this.mediator.emit({ origin: 'horizontal-bar', type: 'select', payload: event });
+    this.mediator.emit({ type: 'select', payload: event });
   }
 }
