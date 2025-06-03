@@ -290,7 +290,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;ChartConfig&gt;</code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ChartConfig.html" target="_self" >Observable&lt;ChartConfig&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -320,8 +320,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/application/services/chart-helper.service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/application/services/chart-helper.service.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -392,15 +392,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setAppearance(config: Partial<ChartConfig>, currentConfig: <a href="../interfaces/ChartConfig.html" target="_self">ChartConfig</a>)</code>
+<code>setAppearance(config: <a href="../interfaces/ChartConfig.html" target="_self">Partial&lt;ChartConfig&gt;</a>, currentConfig: <a href="../interfaces/ChartConfig.html" target="_self">ChartConfig</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/application/services/chart-helper.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/application/services/chart-helper.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -423,7 +423,7 @@
                                         <tr>
                                                 <td>config</td>
                                             <td>
-                                                        <code>Partial&lt;ChartConfig&gt;</code>
+                                                            <code><a href="../interfaces/ChartConfig.html" target="_self" >Partial&lt;ChartConfig&gt;</a></code>
                                             </td>
 
                                             <td>
@@ -487,7 +487,7 @@ export class ChartHelperService {
     if (dataSource) {
       return this.http.get&lt;ChartsJson&gt;(dataSource).pipe(
         map(chartsJson &#x3D;&gt; {
-          const config &#x3D; chartsJson.charts[chartType];
+          const config &#x3D; chartsJson.charts[chartType] as ChartConfig;
           if (config) {
             return config;
           }
@@ -498,7 +498,7 @@ export class ChartHelperService {
       return this.chartDataService.charts$.pipe(
         map(chartsJson &#x3D;&gt; {
           if (chartsJson) {
-            const config &#x3D; chartsJson.charts[chartType];
+            const config &#x3D; chartsJson.charts[chartType] as ChartConfig;
             if (config) {
               return config;
             }
@@ -509,6 +509,7 @@ export class ChartHelperService {
       );
     }
   }
+
 
   setAppearance(
     config: Partial&lt;ChartConfig&gt;,

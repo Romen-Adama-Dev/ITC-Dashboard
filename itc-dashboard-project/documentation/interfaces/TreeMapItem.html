@@ -98,7 +98,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  ChartOption</li>
+  TreeMapItem</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/presentation/components/chart-selector/chart-selector.component.ts</code>
+            <code>src/app/presentation/components/shared/data-view/tree-chart/tree-chart.component.ts</code>
         </p>
 
 
@@ -141,15 +141,9 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#category" 
+                                        <a href="#name" 
 >
-                                            category
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#label" 
->
-                                            label
+                                            name
                                         </a>
                                 </li>
                                 <li>
@@ -173,9 +167,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="category"></a>
-                                        <span class="name "><b>category</b>
-                                            <a href="#category">
+                                        <a name="name"></a>
+                                        <span class="name "><b>name</b>
+                                            <a href="#name">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -183,40 +177,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>category:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="label"></a>
-                                        <span class="name "><b>label</b>
-                                            <a href="#label">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>label:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -249,7 +210,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>value:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>value:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -257,7 +218,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                                         </td>
                                     </tr>
@@ -273,66 +234,151 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
-import { FormsModule } from &#x27;@angular/forms&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Component,
+  Input,
+  HostBinding,
+  ElementRef,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy
+} from &#x27;@angular/core&#x27;;
+import { NgxChartsModule } from &#x27;@swimlane/ngx-charts&#x27;;
+import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { filter } from &#x27;rxjs/operators&#x27;;
+import { MediatorService } from &#x27;../../../../../application/services/mediator.service&#x27;;
+import { ChartHelperService } from &#x27;../../../../../application/services/chart-helper.service&#x27;;
+import { ChartConfig } from &#x27;../../../../../domain/entities/chart.model&#x27;;
 
-interface ChartOption {
-  label: string;
-  value: string;
-  category: string;
+interface TreeMapItem {
+  name: string;
+  value: number;
 }
 
 @Component({
-  selector: &#x27;app-chart-selector-vanilla&#x27;,
+  selector: &#x27;app-tree-map&#x27;,
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: &#x27;./chart-selector.component.html&#x27;,
-  styleUrls: [&#x27;./chart-selector.component.scss&#x27;]
+  imports: [NgxChartsModule, HttpClientModule],
+  templateUrl: &#x27;./tree-chart.component.html&#x27;,
+  styleUrls: [&#x27;./tree-chart.component.scss&#x27;]
 })
-export class ChartSelectorVanillaComponent {
-  @Input() selectedChartCategory?: string;
-  @Input() selectedChartVariant?: string;
-  @Output() selectedChartVariantChange &#x3D; new EventEmitter&lt;string&gt;();
+export class TreeMapComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
+  @Input() theme: &#x27;default&#x27; | &#x27;dark&#x27; &#x3D; &#x27;default&#x27;;
+  @Input() dataSource: string &#x3D; &#x27;/assets/datasets/data-set-1.json&#x27;;
+  @Input() dataCount: string &#x3D; &#x27;all&#x27;;
 
-  chartOptions: ChartOption[] &#x3D; [
-    // Línea
-    { label: &#x27;Line Chart&#x27;,                 value: &#x27;line-chart&#x27;,                   category: &#x27;line-chart&#x27; },
-    { label: &#x27;Area Chart&#x27;,                 value: &#x27;area-chart&#x27;,                   category: &#x27;line-chart&#x27; },
-    { label: &#x27;Box Chart&#x27;,                  value: &#x27;box-chart&#x27;,                    category: &#x27;line-chart&#x27; },
-    { label: &#x27;Normalized Area Chart&#x27;,      value: &#x27;normalized-area-chart&#x27;,        category: &#x27;line-chart&#x27; },
-    { label: &#x27;Stacked Area Chart&#x27;,         value: &#x27;stacked-area-chart&#x27;,           category: &#x27;line-chart&#x27; },
-    // Pastel
-    { label: &#x27;Advanced Pie Chart&#x27;,         value: &#x27;advanced-pie-chart&#x27;,          category: &#x27;pie-chart&#x27; },
-    { label: &#x27;Pie Chart&#x27;,                  value: &#x27;pie-chart&#x27;,                   category: &#x27;pie-chart&#x27; },
-    { label: &#x27;Pie Grid Chart&#x27;,             value: &#x27;pie-grid-chart&#x27;,              category: &#x27;pie-chart&#x27; },
-    // Barras
-    { label: &#x27;Horizontal Bar Chart&#x27;,       value: &#x27;horizontal-bar&#x27;,              category: &#x27;bar-chart&#x27; },
-    { label: &#x27;Stacked Horizontal Bar&#x27;,     value: &#x27;stacked-horizontal-bar-chart&#x27;,category: &#x27;bar-chart&#x27; },
-    { label: &#x27;Normalized Horizontal Bar&#x27;,  value: &#x27;normalized-horizontal-chart&#x27;, category: &#x27;bar-chart&#x27; },
-    { label: &#x27;Vertical Bar Chart&#x27;,         value: &#x27;vertical-bar&#x27;,                category: &#x27;bar-chart&#x27; },
-    { label: &#x27;Stacked Vertical Bar&#x27;,       value: &#x27;stacked-vertical-bar-chart&#x27;,  category: &#x27;bar-chart&#x27; },
-    { label: &#x27;Normalized Vertical Bar&#x27;,    value: &#x27;normalized-vertical-chart&#x27;,   category: &#x27;bar-chart&#x27; },
-    // Gauge
-    { label: &#x27;Gauge Chart&#x27;,                value: &#x27;gauge-chart&#x27;,                category: &#x27;gauge-chart&#x27; },
-    { label: &#x27;Linear Gauge Chart&#x27;,         value: &#x27;linear-gauge-chart&#x27;,          category: &#x27;gauge-chart&#x27; },
-    { label: &#x27;Percent Gauge Chart&#x27;,        value: &#x27;percent-gauge-chart&#x27;,         category: &#x27;gauge-chart&#x27; },
-    // Otros
-    { label: &#x27;Bubble Chart&#x27;,               value: &#x27;bubble-chart&#x27;,               category: &#x27;other&#x27; },
-    { label: &#x27;Polar Chart&#x27;,                value: &#x27;polar-chart&#x27;,                category: &#x27;other&#x27; },
-    { label: &#x27;Heat Map&#x27;,                   value: &#x27;heatMap&#x27;,                   category: &#x27;other&#x27; },
-    { label: &#x27;Number Cards&#x27;,               value: &#x27;number-chart&#x27;,               category: &#x27;other&#x27; },
-    { label: &#x27;Tree Map&#x27;,                   value: &#x27;tree-map&#x27;,                   category: &#x27;other&#x27; },
-  ];
-
-  get filteredOptions(): ChartOption[] {
-    return this.selectedChartCategory
-      ? this.chartOptions.filter(o &#x3D;&gt; o.category &#x3D;&#x3D;&#x3D; this.selectedChartCategory)
-      : [];
+  @HostBinding(&#x27;class.dark&#x27;)
+  get isDarkTheme(): boolean {
+    return this.theme &#x3D;&#x3D;&#x3D; &#x27;dark&#x27;;
   }
 
-  onSelectionChange(newValue: string): void {
-    this.selectedChartVariantChange.emit(newValue);
+  view: [number, number] &#x3D; [700, 400];
+  animations &#x3D; true;
+  colorScheme: any &#x3D; { domain: [&#x27;#5AA454&#x27;, &#x27;#A10A28&#x27;, &#x27;#C7B42C&#x27;, &#x27;#AAAAAA&#x27;] };
+
+  results: TreeMapItem[] &#x3D; [];
+  private originalResults: TreeMapItem[] &#x3D; [];
+  private readonly resizeObserver: ResizeObserver;
+  private cfgSub?: Subscription;
+  private readonly mediatorSub: Subscription;
+
+  constructor(
+    private readonly el: ElementRef,
+    private readonly mediator: MediatorService,
+    private readonly helper: ChartHelperService
+  ) {
+    this.resizeObserver &#x3D; new ResizeObserver(entries &#x3D;&gt; {
+      for (const entry of entries) {
+        const width &#x3D; entry.contentRect.width;
+        const height &#x3D; Math.round(width * (400 / 700));
+        this.view &#x3D; [width, height];
+      }
+    });
+
+    this.mediatorSub &#x3D; this.mediator.events$
+      .pipe(filter(event &#x3D;&gt; event.origin !&#x3D;&#x3D; &#x27;tree-map&#x27;))
+      .subscribe(event &#x3D;&gt; {
+        const cfg &#x3D; this.helper.processEvent(event, {
+          theme: this.theme,
+          view: this.view,
+          data: this.originalResults
+        });
+        this.applyConfig(cfg);
+      });
+  }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes[&#x27;dataSource&#x27;] &amp;&amp; !changes[&#x27;dataSource&#x27;].isFirstChange()) {
+      this.reloadConfig();
+    }
+    if (changes[&#x27;dataCount&#x27;] &amp;&amp; !changes[&#x27;dataCount&#x27;].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.disconnect();
+    this.cfgSub?.unsubscribe();
+    this.mediatorSub.unsubscribe();
+  }
+
+  private loadConfig(): void {
+    this.cfgSub &#x3D; this.helper.loadChartConfig(&#x27;treeMap&#x27;, this.dataSource).subscribe({
+      next: cfg &#x3D;&gt; this.applyConfig(cfg),
+      error: err &#x3D;&gt; console.error(&#x27;Error loading tree map config&#x27;, err)
+    });
+  }
+
+  private reloadConfig(): void {
+    this.cfgSub?.unsubscribe();
+    this.loadConfig();
+  }
+
+  private applyConfig(cfg: ChartConfig): void {
+    this.theme &#x3D; cfg.theme;
+    this.view &#x3D; cfg.view;
+    // Assume cfg.data contains only simple items { name, value }
+    this.originalResults &#x3D; (cfg.data as TreeMapItem[]).map(item &#x3D;&gt; ({
+      name: item.name,
+      value: item.value
+    }));
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalResults.length) {
+      this.results &#x3D; [];
+      return;
+    }
+    if (this.dataCount &#x3D;&#x3D;&#x3D; &#x27;all&#x27;) {
+      this.results &#x3D; [...this.originalResults];
+    } else {
+      const count &#x3D; Number(this.dataCount);
+      this.results &#x3D; count &gt;&#x3D; this.originalResults.length
+        ? [...this.originalResults]
+        : this.originalResults.slice(0, count);
+    }
+  }
+
+  onSelect(event: any): void {
+    this.mediator.emit({
+      origin: &#x27;tree-map&#x27;,
+      type: &#x27;select&#x27;,
+      payload: event
+    });
   }
 }</code></pre>
     </div>
@@ -371,7 +417,7 @@ export class ChartSelectorVanillaComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'ChartOption.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TreeMapItem.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

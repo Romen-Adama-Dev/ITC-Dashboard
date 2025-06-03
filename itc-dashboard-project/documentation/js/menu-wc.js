@@ -182,28 +182,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/ChartConfig.html" data-type="entity-link" >ChartConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ChartConfig-1.html" data-type="entity-link" >ChartConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ChartData.html" data-type="entity-link" >ChartData</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ChartData-1.html" data-type="entity-link" >ChartData</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ChartOption.html" data-type="entity-link" >ChartOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ChartsJson.html" data-type="entity-link" >ChartsJson</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ChartsJson-1.html" data-type="entity-link" >ChartsJson</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ExtendedGridsterItem.html" data-type="entity-link" >ExtendedGridsterItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SafeGridsterConfig.html" data-type="entity-link" >SafeGridsterConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SeriesChartData.html" data-type="entity-link" >SeriesChartData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SimpleChartData.html" data-type="entity-link" >SimpleChartData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TreeMapItem.html" data-type="entity-link" >TreeMapItem</a>
                             </li>
                         </ul>
                     </li>
@@ -217,6 +214,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>

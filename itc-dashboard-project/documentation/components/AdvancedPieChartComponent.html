@@ -212,12 +212,24 @@
                                 <a href="#colorScheme" >colorScheme</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#configSub" >configSub</a>
+                            </li>
+                            <li>
                                 <a href="#data" >data</a>
                             </li>
                             <li>
                                 <a href="#gradient" >gradient</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#mediatorSub" >mediatorSub</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#originalData" >originalData</a>
                             </li>
                             <li>
@@ -244,6 +256,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyConfig" >applyConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#loadConfig" >loadConfig</a>
                             </li>
                             <li>
@@ -262,6 +279,11 @@
                                 <a href="#onSelect" >onSelect</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#reloadConfig" >reloadConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#updateDisplayedData" >updateDisplayedData</a>
                             </li>
                         </ul>
@@ -284,6 +306,9 @@
                             </li>
                             <li>
                                 <a href="#theme" >theme</a>
+                            </li>
+                            <li>
+                                <a href="#widgetId" >widgetId</a>
                             </li>
                         </ul>
                     </td>
@@ -330,12 +355,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(el: ElementRef, http: HttpClient, mediator: <a href="../injectables/MediatorService.html" target="_self">MediatorService</a>, helper: <a href="../injectables/ChartHelperService.html" target="_self">ChartHelperService</a>)</code>
+<code>constructor(el: ElementRef, mediator: <a href="../injectables/MediatorService.html" target="_self">MediatorService</a>, helper: <a href="../injectables/ChartHelperService.html" target="_self">ChartHelperService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -357,18 +382,6 @@
                                                   
                                                         <td>
                                                                     <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>http</td>
-                                                  
-                                                        <td>
-                                                                    <code>HttpClient</code>
                                                         </td>
                                                   
                                                     <td>
@@ -432,7 +445,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:31</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -453,12 +466,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;/assets/data-set-1.json&#x27;</code>
+                        <i>Default value : </i><code>&#x27;/assets/datasets/data-set-1.json&#x27;</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:30</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -484,7 +497,28 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:29</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="widgetId"></a>
+                        <b>widgetId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:28</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -511,7 +545,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -530,8 +564,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="applyConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>applyConfig</b></span>
+                        <a href="#applyConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyConfig(config: <a href="../interfaces/ChartConfig.html" target="_self">ChartConfig</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>config</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ChartConfig.html" target="_self" >ChartConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="loadConfig"></a>
                     <span class="name">
+                            <span class="modifier">Private</span>
                         <span ><b>loadConfig</b></span>
                         <a href="#loadConfig"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -539,15 +643,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>loadConfig()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadConfig()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="98"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:98</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -583,8 +688,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -620,8 +725,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -687,8 +792,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -724,8 +829,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -761,8 +866,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:129</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:150</a></div>
                         </td>
                     </tr>
 
@@ -812,8 +917,48 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="reloadConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>reloadConfig</b></span>
+                        <a href="#reloadConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>reloadConfig()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateDisplayedData"></a>
                     <span class="name">
+                            <span class="modifier">Private</span>
                         <span ><b>updateDisplayedData</b></span>
                         <a href="#updateDisplayedData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -821,15 +966,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateDisplayedData()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateDisplayedData()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -869,7 +1015,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -905,7 +1051,35 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configSub"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>configSub</b></span>
+                        <a href="#configSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -925,7 +1099,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>any[]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ChartData" target="_self" >ChartData[]</a></code>
 
                     </td>
                 </tr>
@@ -936,7 +1110,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -961,7 +1135,36 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mediatorSub"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>mediatorSub</b></span>
+                        <a href="#mediatorSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -974,6 +1177,7 @@
                 <td class="col-md-4">
                     <a name="originalData"></a>
                     <span class="name">
+                            <span class="modifier">Private</span>
                         <span ><b>originalData</b></span>
                         <a href="#originalData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -981,7 +1185,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>any[]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ChartData" target="_self" >ChartData[]</a></code>
 
                     </td>
                 </tr>
@@ -992,7 +1196,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -1020,7 +1224,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -1045,7 +1249,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -1076,7 +1280,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -1105,7 +1309,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:34</a></div>
                                 </td>
                             </tr>
 
@@ -1128,9 +1332,10 @@
   SimpleChanges
 } from &#x27;@angular/core&#x27;;
 import { NgxChartsModule } from &#x27;@swimlane/ngx-charts&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
 import { MediatorService } from &#x27;../../../../../application/services/mediator.service&#x27;;
 import { ChartHelperService } from &#x27;../../../../../application/services/chart-helper.service&#x27;;
+import { ChartConfig, ChartData } from &#x27;../../../../../domain/entities/chart.model&#x27;;
 
 @Component({
   selector: &#x27;app-advanced-pie-chart&#x27;,
@@ -1139,13 +1344,16 @@ import { ChartHelperService } from &#x27;../../../../../application/services/cha
   templateUrl: &#x27;./advanced-pie-chart.component.html&#x27;,
   styleUrls: [&#x27;./advanced-pie-chart.component.scss&#x27;]
 })
-export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class AdvancedPieChartComponent
+  implements OnInit, AfterViewInit, OnDestroy, OnChanges
+{
+  @Input() widgetId!: number;
   @Input() theme: &#x27;default&#x27; | &#x27;dark&#x27; &#x3D; &#x27;default&#x27;;
-  @Input() dataSource: string &#x3D; &#x27;/assets/data-set-1.json&#x27;;
-  @Input() dataCount: string &#x3D; &#x27;all&#x27;;
+  @Input() dataSource &#x3D; &#x27;/assets/datasets/data-set-1.json&#x27;;
+  @Input() dataCount &#x3D; &#x27;all&#x27;;
 
   @HostBinding(&#x27;class.dark&#x27;)
-  get isDarkTheme() {
+  get isDarkTheme(): boolean {
     return this.theme &#x3D;&#x3D;&#x3D; &#x27;dark&#x27;;
   }
 
@@ -1154,8 +1362,10 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
   gradient &#x3D; false;
   tooltipDisabled &#x3D; false;
 
-  data: any[] &#x3D; [];
-  originalData: any[] &#x3D; [];
+  data: ChartData[] &#x3D; [];
+  private originalData: ChartData[] &#x3D; [];
+  private configSub?: Subscription;
+  private readonly mediatorSub?: Subscription;
 
   colorScheme: any &#x3D; {
     name: &#x27;customScheme&#x27;,
@@ -1168,7 +1378,6 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
 
   constructor(
     private readonly el: ElementRef,
-    private readonly http: HttpClient,
     private readonly mediator: MediatorService,
     private readonly helper: ChartHelperService
   ) {
@@ -1179,21 +1388,36 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
       }
     });
 
-    this.mediator.events$.subscribe(event &#x3D;&gt; {
-      const cfg &#x3D; this.helper.processEvent(event, {
-        theme: this.theme,
-        view: this.view,
-        data: this.originalData
-      });
-      this.theme &#x3D; cfg.theme;
-      this.view &#x3D; cfg.view;
-      this.originalData &#x3D; cfg.data;
-      this.updateDisplayedData();
+    this.mediatorSub &#x3D; this.mediator.events$.subscribe(event &#x3D;&gt; {
+      // 1) Si es updateSource y coincide widgetId, recargar solo este widget
+      if (
+        event.type &#x3D;&#x3D;&#x3D; &#x27;updateSource&#x27; &amp;&amp;
+        event.widgetId &#x3D;&#x3D;&#x3D; this.widgetId
+      ) {
+        this.reloadConfig();
+      }
+      // 2) Si es updateCount y coincide dataSource, actualizar dataCount en todos
+      if (
+        event.type &#x3D;&#x3D;&#x3D; &#x27;updateCount&#x27; &amp;&amp;
+        event.dataSource &#x3D;&#x3D;&#x3D; this.dataSource
+      ) {
+        this.dataCount &#x3D; event.dataCount;
+        this.updateDisplayedData();
+      }
     });
   }
 
   ngOnInit(): void {
     this.loadConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes[&#x27;dataCount&#x27;] &amp;&amp; !changes[&#x27;dataCount&#x27;].isFirstChange()) {
+      this.updateDisplayedData();
+    }
+    if (changes[&#x27;dataSource&#x27;] &amp;&amp; !changes[&#x27;dataSource&#x27;].isFirstChange()) {
+      this.reloadConfig();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -1202,37 +1426,38 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.resizeObserver.disconnect();
+    this.configSub?.unsubscribe();
+    this.mediatorSub?.unsubscribe();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes[&#x27;dataCount&#x27;] &amp;&amp; !changes[&#x27;dataCount&#x27;].isFirstChange()) {
-      this.updateDisplayedData();
+  private loadConfig(): void {
+    const ds &#x3D; this.dataSource.trim() || &#x27;/assets/datasets/data-set-1.json&#x27;;
+    this.configSub?.unsubscribe();
+    this.configSub &#x3D; this.helper
+      .loadChartConfig(&#x27;sharedChart&#x27;, ds)
+      .subscribe({
+        next: config &#x3D;&gt; this.applyConfig(config),
+        error: err &#x3D;&gt; console.error(&#x27;Error loading config:&#x27;, err)
+      });
+  }
+
+  private reloadConfig(): void {
+    this.configSub?.unsubscribe();
+    this.loadConfig();
+  }
+
+  private applyConfig(config: ChartConfig): void {
+    this.theme &#x3D; config.theme;
+    this.view &#x3D; config.view;
+    this.originalData &#x3D; [...config.data];
+    this.updateDisplayedData();
+  }
+
+  private updateDisplayedData(): void {
+    if (!this.originalData.length) {
+      this.data &#x3D; [];
+      return;
     }
-    if (changes[&#x27;dataSource&#x27;] &amp;&amp; !changes[&#x27;dataSource&#x27;].isFirstChange()) {
-      this.loadConfig();
-    }
-  }
-
-  loadConfig(): void {
-    const ds &#x3D; this.dataSource?.trim() ? this.dataSource : &#x27;/assets/data-set-1.json&#x27;;
-    this.http.get&lt;any&gt;(ds).subscribe(
-      config &#x3D;&gt; {
-        if (config?.charts?.advancedPieChart) {
-          const advancedChart &#x3D; config.charts.advancedPieChart;
-          this.theme &#x3D; advancedChart.theme;
-          this.view &#x3D; advancedChart.view;
-          this.originalData &#x3D; advancedChart.data;
-          this.updateDisplayedData();
-        }
-      },
-      error &#x3D;&gt; {
-        console.error(&#x27;Error loading data:&#x27;, error);
-      }
-    );
-  }
-
-  updateDisplayedData(): void {
-    if (!this.originalData?.length) return;
     if (this.dataCount !&#x3D;&#x3D; &#x27;all&#x27;) {
       const count &#x3D; Number(this.dataCount);
       this.data &#x3D;
@@ -1247,8 +1472,7 @@ export class AdvancedPieChartComponent implements OnInit, AfterViewInit, OnDestr
   onSelect(event: any): void {
     this.mediator.emit({ type: &#x27;select&#x27;, payload: event });
   }
-}
-</code></pre>
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">

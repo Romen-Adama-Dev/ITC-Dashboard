@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/application/services/chart-data.service.ts</code>
+            <code>src/app/domain/entities/chart.model.ts</code>
         </p>
 
 
@@ -195,15 +195,20 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-import { tap } from &#x27;rxjs/operators&#x27;;
-
-export interface ChartData {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface SimpleChartData {
   name: string;
   value: number;
 }
+
+export interface SeriesChartData {
+  name: string;
+  series: Array&lt;{
+    name: string;
+    value: number;
+  }&gt;;
+}
+
+export type ChartData &#x3D; SimpleChartData | SeriesChartData;
 
 export interface ChartConfig {
   theme: &#x27;default&#x27; | &#x27;dark&#x27;;
@@ -213,50 +218,26 @@ export interface ChartConfig {
 
 export interface ChartsJson {
   charts: {
-    advancedPieChart: ChartConfig;
-    areaChart: ChartConfig;
-    boxChart: ChartConfig;
-    bubbleChart: ChartConfig;
-    gaugeChart: ChartConfig;
-    heatmapChart: ChartConfig;
-    horizontalBarChart: ChartConfig;
-    lineChart: ChartConfig;
-    linearGaugeChart: ChartConfig;
-    normalizedAreaChart: ChartConfig;
-    normalizedHorizontalBarChart: ChartConfig;
-    normalizedVerticalBarChart: ChartConfig;
-    numberCards: ChartConfig;
-    percentGaugeChart: ChartConfig;
-    pieChart: ChartConfig;
-    pieGridChart: ChartConfig;
-    polarChart: ChartConfig;
-    stackedAreaChart: ChartConfig;
-    stackedHorizontalBarChart: ChartConfig;
-    stackedVerticalBarChart: ChartConfig;
-    treeMap: ChartConfig;
-    verticalBarChart: ChartConfig;
+    sharedChart: ChartConfig;
+    areaChart?: ChartConfig;
+    boxChart?: ChartConfig;
+    bubbleChart?: ChartConfig;
+    heatMap?: ChartConfig;
+    lineChart?: ChartConfig;
+    linearGaugeChart?: ChartConfig;
+    normalizedAreaChart?: ChartConfig;
+    normalizedHorizontalBarChart?: ChartConfig;
+    normalizedVerticalBarChart?: ChartConfig;
+    numberCards?: ChartConfig;
+    percentGaugeChart?: ChartConfig;
+    pieChart?: ChartConfig;
+    pieGridChart?: ChartConfig;
+    polarChart?: ChartConfig;
+    stackedAreaChart?: ChartConfig;
+    stackedHorizontalBarChart?: ChartConfig;
+    stackedVerticalBarChart?: ChartConfig;
+    treeMap?: ChartConfig;
   };
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;
-})
-export class ChartDataService {
-  private readonly chartsSubject &#x3D; new BehaviorSubject&lt;ChartsJson | null&gt;(null);
-  readonly charts$: Observable&lt;ChartsJson | null&gt; &#x3D; this.chartsSubject.asObservable();
-  private readonly defaultUrl &#x3D; &#x27;/assets/datasets/data-set-1.json&#x27;;
-
-  constructor(private readonly http: HttpClient) { }
-
-  loadChartsData(url: string &#x3D; this.defaultUrl): Observable&lt;ChartsJson&gt; {
-    return this.http.get&lt;ChartsJson&gt;(url).pipe(
-      tap((data: ChartsJson) &#x3D;&gt; this.chartsSubject.next(data))
-    );
-  }
-
-  updateChartsData(newData: ChartsJson): void {
-    this.chartsSubject.next(newData);
-  }
 }
 </code></pre>
     </div>

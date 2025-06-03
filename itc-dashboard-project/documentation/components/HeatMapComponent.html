@@ -1320,7 +1320,7 @@ import { ChartHelperService } from &#x27;../../../../../application/services/cha
 export class HeatMapComponent
   implements OnInit, OnChanges, AfterViewInit, OnDestroy 
 {
-  @Input() dataSource: string &#x3D; &#x27;/assets/datasets/data-set-1.json&#x27;;
+  @Input() dataSource &#x3D; &#x27;/assets/datasets/data-set-1.json&#x27;;
   @Input() dataCount: string &#x3D; &#x27;all&#x27;;
   @Input() theme: &#x27;default&#x27; | &#x27;dark&#x27; &#x3D; &#x27;default&#x27;;
 
@@ -1350,7 +1350,7 @@ export class HeatMapComponent
     this.resizeObserver &#x3D; new ResizeObserver(entries &#x3D;&gt; {
       for (const entry of entries) {
         const width &#x3D; entry.contentRect.width;
-        this.view &#x3D; [width, width * (400 / 700)];
+        this.view &#x3D; [width, Math.round(width * (400 / 700))];
       }
     });
 
@@ -1405,7 +1405,7 @@ export class HeatMapComponent
   }
 
   private updateDisplayedData(): void {
-    if (!this.originalData.length) {
+    if (!this.originalData?.length) {
       this.data &#x3D; [];
       return;
     }
@@ -1422,7 +1422,7 @@ export class HeatMapComponent
     });
     this.theme &#x3D; config.theme;
     this.view &#x3D; config.view;
-    this.originalData &#x3D; config.data;
+    this.originalData &#x3D; config.data as typeof this.originalData;
     this.updateDisplayedData();
   }
 
@@ -1440,12 +1440,12 @@ export class HeatMapComponent
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ngx-charts-heat-map
   [view]&#x3D;&quot;view&quot;
-  [results]&#x3D;&quot;data&quot;
   [scheme]&#x3D;&quot;colorScheme&quot;
+  [results]&#x3D;&quot;data&quot;
+  [legend]&#x3D;&quot;legend&quot;
   [gradient]&#x3D;&quot;gradient&quot;
   [xAxis]&#x3D;&quot;showXAxis&quot;
   [yAxis]&#x3D;&quot;showYAxis&quot;
-  [legend]&#x3D;&quot;legend&quot;
   (select)&#x3D;&quot;onSelect($event)&quot;&gt;
 &lt;/ngx-charts-heat-map&gt;</code></pre>
     </div>
@@ -1498,7 +1498,7 @@ export class HeatMapComponent
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngx-charts-heat-map  [view]="view"  [results]="data"  [scheme]="colorScheme"  [gradient]="gradient"  [xAxis]="showXAxis"  [yAxis]="showYAxis"  [legend]="legend"  (select)="onSelect($event)"></ngx-charts-heat-map></div>'
+        var COMPONENT_TEMPLATE = '<div><ngx-charts-heat-map  [view]="view"  [scheme]="colorScheme"  [results]="data"  [legend]="legend"  [gradient]="gradient"  [xAxis]="showXAxis"  [yAxis]="showYAxis"  (select)="onSelect($event)"></ngx-charts-heat-map></div>'
     var COMPONENTS = [{'name': 'AdvancedPieChartComponent', 'selector': 'app-advanced-pie-chart'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AreaChartComponent', 'selector': 'app-area-chart'},{'name': 'BoxChartComponent', 'selector': 'app-box-chart'},{'name': 'BubbleChartComponent', 'selector': 'app-bubble-chart'},{'name': 'ChartSelectionModalComponent', 'selector': 'app-chart-selection-modal'},{'name': 'ChartSelectorVanillaComponent', 'selector': 'app-chart-selector-vanilla'},{'name': 'DefaultButtonComponent', 'selector': 'app-default-button'},{'name': 'EditWidgetModalComponent', 'selector': 'app-edit-widget-modal'},{'name': 'FloatShapeButtonComponent', 'selector': 'app-float-shape-button'},{'name': 'GaugeChartComponent', 'selector': 'app-gauge-chart'},{'name': 'GridsterDashboardComponent', 'selector': 'app-gridster-dashboard'},{'name': 'HeatMapComponent', 'selector': 'app-heat-map'},{'name': 'HorizontalBarChartComponent', 'selector': 'app-horizontal-bar-chart'},{'name': 'LanguageDropdownComponent', 'selector': 'app-language-dropdown'},{'name': 'LinearGaugeChartComponent', 'selector': 'app-linear-gauge-chart'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'NormalizedAreaChartComponent', 'selector': 'app-normalized-area-chart'},{'name': 'NormalizedHorizontalBarChartComponent', 'selector': 'app-normalized-horizontal-bar-chart'},{'name': 'NormalizedVerticalBarChartComponent', 'selector': 'app-normalized-vertical-bar-chart'},{'name': 'NumberCardsComponent', 'selector': 'app-number-cards'},{'name': 'PercentGaugeChartComponent', 'selector': 'app-percent-gauge-chart'},{'name': 'PieChartComponent', 'selector': 'app-pie-chart'},{'name': 'PieGridComponent', 'selector': 'app-pie-grid'},{'name': 'PolarChartComponent', 'selector': 'app-polar-chart'},{'name': 'PrimaryButtonComponent', 'selector': 'app-primary-button'},{'name': 'StackedAreaChartComponent', 'selector': 'app-stacked-area-chart'},{'name': 'StackedHorizontalBarChartComponent', 'selector': 'app-stacked-horizontal-bar-chart'},{'name': 'StackedVerticalBarChartComponent', 'selector': 'app-stacked-vertical-bar-chart'},{'name': 'ThemeToggleButtonComponent', 'selector': 'app-theme-toggle-button'},{'name': 'TreeMapComponent', 'selector': 'app-tree-map'},{'name': 'VerticalBarChartComponent', 'selector': 'app-vertical-chart'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeatMapComponent'};

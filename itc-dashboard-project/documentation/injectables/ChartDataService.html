@@ -189,7 +189,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/application/services/chart-data.service.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/application/services/chart-data.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -252,8 +252,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/application/services/chart-data.service.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/application/services/chart-data.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -293,7 +293,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;ChartsJson&gt;</code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ChartsJson.html" target="_self" >Observable&lt;ChartsJson&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -323,8 +323,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/application/services/chart-data.service.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/application/services/chart-data.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -390,7 +390,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Observable&lt;ChartsJson | null&gt;</code>
+                        <i>Type : </i>        <code><a href="../interfaces/ChartsJson.html" target="_self" >Observable&lt;ChartsJson | null&gt;</a></code>
 
                     </td>
                 </tr>
@@ -401,7 +401,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/application/services/chart-data.service.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/application/services/chart-data.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -428,7 +428,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/application/services/chart-data.service.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/application/services/chart-data.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -461,7 +461,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/application/services/chart-data.service.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/application/services/chart-data.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -478,44 +478,7 @@
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 import { tap } from &#x27;rxjs/operators&#x27;;
-
-export interface ChartData {
-  name: string;
-  value: number;
-}
-
-export interface ChartConfig {
-  theme: &#x27;default&#x27; | &#x27;dark&#x27;;
-  view: [number, number];
-  data: ChartData[];
-}
-
-export interface ChartsJson {
-  charts: {
-    advancedPieChart: ChartConfig;
-    areaChart: ChartConfig;
-    boxChart: ChartConfig;
-    bubbleChart: ChartConfig;
-    gaugeChart: ChartConfig;
-    heatmapChart: ChartConfig;
-    horizontalBarChart: ChartConfig;
-    lineChart: ChartConfig;
-    linearGaugeChart: ChartConfig;
-    normalizedAreaChart: ChartConfig;
-    normalizedHorizontalBarChart: ChartConfig;
-    normalizedVerticalBarChart: ChartConfig;
-    numberCards: ChartConfig;
-    percentGaugeChart: ChartConfig;
-    pieChart: ChartConfig;
-    pieGridChart: ChartConfig;
-    polarChart: ChartConfig;
-    stackedAreaChart: ChartConfig;
-    stackedHorizontalBarChart: ChartConfig;
-    stackedVerticalBarChart: ChartConfig;
-    treeMap: ChartConfig;
-    verticalBarChart: ChartConfig;
-  };
-}
+import { ChartsJson } from &#x27;../../domain/entities/chart.model&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -529,15 +492,17 @@ export class ChartDataService {
 
   loadChartsData(url: string &#x3D; this.defaultUrl): Observable&lt;ChartsJson&gt; {
     return this.http.get&lt;ChartsJson&gt;(url).pipe(
-      tap((data: ChartsJson) &#x3D;&gt; this.chartsSubject.next(data))
+      tap((data: ChartsJson) &#x3D;&gt; {
+        const shared &#x3D; data.charts.sharedChart;
+        this.chartsSubject.next({ charts: { sharedChart: shared } });
+      })
     );
   }
 
   updateChartsData(newData: ChartsJson): void {
     this.chartsSubject.next(newData);
   }
-}
-</code></pre>
+}</code></pre>
     </div>
 
 </div>
