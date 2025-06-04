@@ -317,6 +317,7 @@ export class GridsterDashboardComponent implements OnInit {
     });
   }
 
+  
   openCustomModal(): void {
     this.isModalVisible = true;
     this.notification.info(

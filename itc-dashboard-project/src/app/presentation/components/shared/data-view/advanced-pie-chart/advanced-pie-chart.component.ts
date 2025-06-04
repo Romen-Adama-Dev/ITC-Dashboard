@@ -67,14 +67,12 @@ export class AdvancedPieChartComponent
     });
 
     this.mediatorSub = this.mediator.events$.subscribe(event => {
-      // 1) Si es updateSource y coincide widgetId, recargar solo este widget
       if (
         event.type === 'updateSource' &&
         event.widgetId === this.widgetId
       ) {
         this.reloadConfig();
       }
-      // 2) Si es updateCount y coincide dataSource, actualizar dataCount en todos
       if (
         event.type === 'updateCount' &&
         event.dataSource === this.dataSource

@@ -1,4 +1,3 @@
-// src/app/components/shared/data-view/area-chart/area-chart.component.ts
 import {
   Component,
   Input,
@@ -44,7 +43,7 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
   yAxisLabel = 'Population';
   autoScale = true;
   timeline = false;
-  curve = false; // ngx-charts area ya maneja la curva con su propio interpolation
+  curve = false;
 
   data: SeriesChartData[] = [];
   private originalData: SeriesChartData[] = [];
@@ -72,11 +71,9 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
       }
     });
 
-    // Solo reaccionamos a eventos de tipo 'updateAppearance' cuando el dataSource coincida
     this.mediatorSub = this.mediator.events$
       .pipe(filter(e => e.type === 'updateAppearance' && e.dataSource === this.dataSource))
       .subscribe(event => {
-        // Procesamos el evento contra el estado actual
         const cfg = this.helper.processEvent(event, {
           theme: this.theme,
           view: this.view,
@@ -127,7 +124,6 @@ export class AreaChartComponent implements OnInit, AfterViewInit, OnDestroy, OnC
   private applyConfig(config: ChartConfig): void {
     this.theme = config.theme;
     this.view = [ config.view[0], config.view[1] ];
-    // Filtramos solo los objetos que realmente tengan 'series'
     this.originalData = config.data
       .filter((d): d is SeriesChartData => 'series' in d)
       .map(d => ({ name: d.name, series: [...d.series] }));

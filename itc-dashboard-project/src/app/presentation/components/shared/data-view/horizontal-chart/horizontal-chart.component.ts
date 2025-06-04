@@ -71,7 +71,6 @@ export class HorizontalBarChartComponent
     });
 
     this.mediatorSub = this.mediator.events$.subscribe(event => {
-      // 1) Si event.type === 'updateCount' y coincide dataSource, actualizar su dataCount
       if (
         event.type === 'updateCount' &&
         event.dataSource === this.dataSource
@@ -79,8 +78,6 @@ export class HorizontalBarChartComponent
         this.dataCount = event.dataCount;
         this.updateDisplayedData();
       }
-
-      // 2) Si event.type === 'updateSource' y coincide widgetId, recargar sólo este
       if (
         event.type === 'updateSource' &&
         event.widgetId === this.widgetId &&

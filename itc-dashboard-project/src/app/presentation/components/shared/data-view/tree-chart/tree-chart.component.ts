@@ -114,7 +114,6 @@ export class TreeMapComponent
   private applyConfig(cfg: ChartConfig): void {
     this.theme = cfg.theme;
     this.view = cfg.view;
-    // Assume cfg.data contains only simple items { name, value }
     this.originalResults = (cfg.data as TreeMapItem[]).map(item => ({
       name: item.name,
       value: item.value
