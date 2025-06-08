@@ -582,8 +582,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -651,8 +651,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -688,8 +688,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="101"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:101</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -725,8 +725,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -792,8 +792,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -829,8 +829,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -866,8 +866,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="150"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:150</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:148</a></div>
                         </td>
                     </tr>
 
@@ -935,8 +935,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="122"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:122</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:120</a></div>
                         </td>
                     </tr>
 
@@ -974,8 +974,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/presentation/components/shared/data-view/advanced-pie-chart/advanced-pie-chart.component.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -1389,14 +1389,12 @@ export class AdvancedPieChartComponent
     });
 
     this.mediatorSub &#x3D; this.mediator.events$.subscribe(event &#x3D;&gt; {
-      // 1) Si es updateSource y coincide widgetId, recargar solo este widget
       if (
         event.type &#x3D;&#x3D;&#x3D; &#x27;updateSource&#x27; &amp;&amp;
         event.widgetId &#x3D;&#x3D;&#x3D; this.widgetId
       ) {
         this.reloadConfig();
       }
-      // 2) Si es updateCount y coincide dataSource, actualizar dataCount en todos
       if (
         event.type &#x3D;&#x3D;&#x3D; &#x27;updateCount&#x27; &amp;&amp;
         event.dataSource &#x3D;&#x3D;&#x3D; this.dataSource

@@ -52,8 +52,14 @@ This repository contains both the reusable component library (`projects/`) and a
 
 ### Clone & Install
 
-1. Clone the repository and navigate to its root.  
+1. Clone the repository and navigate to its root.
+   cd ITC-Dashboard
 2. Install dependencies using your preferred package manager.
+3.	Verify installation
+   npm run lint   # checks for linting errors
+4.	Serve & View
+   npm run start      # starts the demo app at http://localhost:4200
+   npm run doc:serve  # serves Compodoc
 
 ### Available Scripts
 
