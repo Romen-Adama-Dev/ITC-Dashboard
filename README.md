@@ -52,30 +52,19 @@ This repository contains both the reusable component library (`projects/`) and a
 
 ### Clone & Install
 
-1. Clone the repository and navigate to its root.
-   cd ITC-Dashboard
-2. Install dependencies using your preferred package manager.
-3.	Verify installation
-   npm run lint   # checks for linting errors
-4.	Serve & View
-   npm run start      # starts the demo app at http://localhost:4200
-   npm run doc:serve  # serves Compodoc
+```bash
+git clone https://github.com/Romen-Adama-Dev/ITC-Dashboard.git
+cd ITC-Dashboard
+npm install
+npm run lint     # checks for linting errors
+npm run start    # starts the demo app at http://localhost:4200
+npm run doc:serve  # serves Compodoc documentation at http://localhost:8080
+```
 
 ### Available Scripts
 
-From the root folder, you can run:
-
-- **Serve the demo application** (with live reload)  
-- **Build both the library and the demo** for production  
-- **Run unit tests** via Karma & Jasmine  
-- **Run end-to-end tests** (Cypress or Protractor can be configured)  
-- **Lint all TypeScript and HTML files**  
-- **Generate Compodoc documentation** (output in `documentation/` folder)  
-- **List available Angular CLI schematics**
-
-> _Note: Replace npm with yarn if you prefer._
-
----
+- `npm run start` — serve the demo app (http://localhost:4200)
+- `npm run doc:serve` — serve Compodoc documentation
 
 ## ⭐ Key Features
 
@@ -172,48 +161,4 @@ _Open-Source & Free to Use — credit must be given in derivative works._
 - NextGenDem (ITC) for funding and domain expertise.  
 - Swimlane (`ngx-charts`), Angular-Gridster2, NG-Zorro, `ngx-translate` teams for outstanding open-source libraries.  
 - StackOverflow and the Angular community for troubleshooting and sharing best practices.  
-- My family, friends, mentors … and tools like ChatGPT / CoPilot for assistance in content generation and coding.
-
----
-
-### Explanation of Changes and Improvements
-
-1. **Title & Badge**  
-   - SonarCloud badge in the header shows Quality Gate status at a glance.  
-   - Subtitle offers a concise summary of the project’s purpose.
-
-2. **Table of Contents**  
-   - Quick navigation to key sections improves reader experience.
-
-3. **Project Overview**  
-   - Concise summary of the project, its components and main objectives.  
-   - Mentions real-world integration with NextGenDem (ITC) and layered architecture.
-
-4. **Prerequisites**  
-   - Clearly lists minimum versions and required tools before cloning.
-
-5. **Getting Started**  
-   - Provides high-level instructions for cloning, installing and running the demo.  
-   - Lists all available scripts without full bash syntax, for a cleaner presentation.
-
-6. **Folder Structure**  
-   - Describes the organization of directories: `projects/` for the library, `src/` for the demo.  
-   - Helps new contributors find each module quickly.
-
-7. **Key Features**  
-   - Details primary functionalities: drag-and-drop dashboard, modular chart components, RxJS flows, theming, accessibility, Clean Architecture, etc.  
-   - Links to original third-party repositories where appropriate.
-
-8. **Code Quality & Documentation**  
-   - Explains how linting (ESLint flat config), static analysis (SonarCloud), testing (Karma/Jasmine, e2e), and documentation (Compodoc) work.  
-   - Includes the commands in plain text form as part of “Available Scripts.”
-
-9. **Contributing**  
-   - Outlines a straightforward workflow: forks, branches, commit conventions and pull request process.  
-   - Highlights the use of Conventional Commits and a CI checklist.
-
-10. **License**  
-    - Clarifies MIT licensing and freedom to use, modify and redistribute.
-
-11. **Acknowledgements**  
-    - Credits NextGenDem (ITC), key open-source libraries and personal acknowledgments (family, friends, mentors, ChatGPT/CoPilot).
+- My family, friends, and mentors for their support and guidance.
